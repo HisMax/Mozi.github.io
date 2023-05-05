@@ -1,6 +1,93 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>【教程】TexLive超详细安装指南（Windows）</title>
+    <url>/2023/05/ef1f5b3c/</url>
+    <content><![CDATA[<blockquote>
+<p>本文将详细介绍如何安装TexLive，以及如何使用TexLive编译LaTeX文档。</p>
+</blockquote>
+<h2 id="什么是texlive">什么是TexLive</h2>
+<p><strong>TexLive是一个免费、开源的TeX发行版，它包含了用于排版各种类型文档的TeX系统和许多相关工具、字体、宏包和文档。</strong>
+TeX是一种专业的排版系统，用于创建高质量的科技论文、书籍、期刊和其他技术文档，它在学术界和出版业广泛使用。</p>
+<p>TexLive包含了许多与TeX相关的软件包和工具，<strong>包括LaTeX、ConTeXt、MetaPost、pdfTeX、LuaTeX等等。</strong>
+它是一个跨平台的软件，可以在不同的操作系统上使用，例如Windows、Linux、MacOS等。</p>
+<p><strong>简而言之：当你需要写一份专业的科技论文、书籍、期刊或其他技术文档时，排版是非常重要的一步。TeX是一种专业的排版系统，可以让你创建高质量的文档，它在学术界和出版业广泛使用。</strong></p>
+<h2 id="为什么要使用texlive">为什么要使用TexLive</h2>
+<p>其实，TexLive并不是唯一的TeX发行版，还有许多其他的发行版，例如MiKTeX、MacTeX等等。那么，为什么要使用TexLive呢？</p>
+<p>TexLive是一个跨平台的软件，可以在不同的操作系统上使用，例如Windows、Linux、MacOS等。而其他的TeX发行版，例如MiKTeX、MacTeX等，只能在特定的操作系统上使用，例如MiKTeX只能在Windows上使用，MacTeX只能在MacOS上使用。</p>
+<h2 id="国内texlive下载">国内TexLive下载</h2>
+<p>首选清华大学开源软件镜像站：<a
+href="https://mirrors.tuna.tsinghua.edu.cn/CTAN/systems/texlive/Images/">点我下载</a>、</p>
+<p>打开后选择最新的版本，例如这个2023年0313版本：</p>
+<p><img src="https://s2.loli.net/2023/05/05/VGIQ6b95wWHn4Xk.png" /></p>
+<p>这个<code>TexLive</code>有四五个G，看来下载要等一会儿了。</p>
+<p>如果对下载速度有要求的同学可以尝试一下
+<code>IDM</code>、<code>FDM</code> 等多线程加速的下载器。</p>
+<p>不过几分钟，我们的下载就完成啦~</p>
+<p>接下来的任务是安装</p>
+<hr />
+<h2 id="安装texlivewindows">安装TexLive（Windows）</h2>
+<p>双击我们刚刚下载好的文件</p>
+<p><img src="https://s2.loli.net/2023/05/05/Y7k3fOxsC9LFHqG.png" /></p>
+<p>会弹出一个选择应用打开的窗口</p>
+<p><img src="https://s2.loli.net/2023/05/05/vs9FckBGqRPYz7x.png" /></p>
+<p>我们选择资源管理器即可</p>
+<p>这时候，<code>我的计算机</code> 里会多出来一个软驱（DVD驱动器）</p>
+<p><img src="https://s2.loli.net/2023/05/05/QafUJpcZCFVNT5b.png" /></p>
+<p>我们打开后看到的就是TexLive的全部文件</p>
+<p>这里选择打开 <code>install-tl-windows.bat</code></p>
+<p><img src="https://s2.loli.net/2023/05/05/dAD6IwP7bipVEMg.png" /></p>
+<p>打开后，稍等一会儿，我们就可以看到我们的安装窗口</p>
+<p><img src="https://s2.loli.net/2023/05/05/9iSW5oRPuQL6fgk.png" /></p>
+<p>安装窗口大概长这样</p>
+<p>如果不是中文界面的小伙伴可以选择菜单里的 <code>GUI Languaga</code>
+来修改界面的语言</p>
+<p><img src="https://s2.loli.net/2023/05/05/lA58RHTx3rs1pbi.png" /></p>
+<p>这里默子肯定是选到中文滴</p>
+<p>然后我们修改一下安装的硬盘分区（可选）</p>
+<p>点击界面上路径后面的 <code>修改</code> 按钮</p>
+<p>会弹出一个选择路径的界面</p>
+<p><img src="https://s2.loli.net/2023/05/05/fbcxk2l7rWZOend.png" /></p>
+<p>这里默子就选择改装到H盘去了，毕竟如果都装C盘的话，C盘迟早变
+<code>血红战神</code></p>
+<blockquote>
+<p>默子暴论：如果可以自定义路径的软件还装C盘，那就是xx</p>
+</blockquote>
+<p>一切都确定后，就可以点击安装啦！</p>
+<p><strong>注意，这个安装可能会耗时1个小时。所以确保1个小时内，电脑都可以持续正常工作，不要装一半了突然笔记本没电关机，那就尴尬了。</strong></p>
+<p><img src="https://s2.loli.net/2023/05/05/iB1KbkLNAIE7a9F.png" /></p>
+<p>安装界面这里经常会出现一些问题，比如可能有的同学会闪退，我们后面再讨论这里报错的问题。</p>
+<p>等到这个4490出现（反正是差不多的数字就行），说明我们的安装开始进行了。</p>
+<p>后面有剩余时间的估计，不过这个时间经常是不准的，一般安装时间都要持续<code>40min</code></p>
+<p><strong>默子是13900HX的CPU，开了性能模式，安装了大概51min吧</strong></p>
+<p>安装好后的提示如图</p>
+<p><img src="https://s2.loli.net/2023/05/05/HOBuf9wEGNM4Q8R.png" /></p>
+<p>自此，我们的TexLive就已经成功安装完毕</p>
+<p>后续默子再来讲一讲，如何在VSCode里配置我们最舒适的LaTeX编码环境</p>
+<p>让我们的生产效率 UP UP ~</p>
+<p><a href="/">【施工中】TexLive与VSCode能碰撞出怎样的火花</a></p>
+<p><a href="/">【施工中】让人工智能辅助我们创作优秀的排版作品</a></p>
+<p><a href="/">【施工中】最舒适的TeX编写指南</a></p>
+<h2 id="参考资料">参考资料</h2>
+<p>中文LaTeX社区：<a
+href="https://www.latexstudio.net/">LaTeX工作室</a></p>
+<p>更多关于TeX的知识，可以参考这篇文章：<a
+href="https://www.latexstudio.net/texdoc/#/28?page_id=133">TeX
+家族与基础概念</a></p>
+<p>更多关于其他发行版的知识，可以参考这篇文章：<a
+href="https://www.latexstudio.net/texdoc/#/28?page_id=114">LaTeX
+发行版与下载</a></p>
+]]></content>
+      <categories>
+        <category>软件教程</category>
+      </categories>
+      <tags>
+        <tag>教程</tag>
+        <tag>LaTeX</tag>
+        <tag>TexLive</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>【杂记】2020年3月28日</title>
     <url>/2020/03/14f0aad4/</url>
     <content><![CDATA[<p><img
@@ -167,93 +254,6 @@ src="https://cdn.luogu.com.cn/upload/image_hosting/ivxjt9tg.png" /></p>
         <tag>日常</tag>
         <tag>树状数组</tag>
         <tag>NOI省选</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【教程】TexLive超详细安装指南（Windows）</title>
-    <url>/2023/05/ef1f5b3c/</url>
-    <content><![CDATA[<blockquote>
-<p>本文将详细介绍如何安装TexLive，以及如何使用TexLive编译LaTeX文档。</p>
-</blockquote>
-<h2 id="什么是texlive">什么是TexLive</h2>
-<p><strong>TexLive是一个免费、开源的TeX发行版，它包含了用于排版各种类型文档的TeX系统和许多相关工具、字体、宏包和文档。</strong>
-TeX是一种专业的排版系统，用于创建高质量的科技论文、书籍、期刊和其他技术文档，它在学术界和出版业广泛使用。</p>
-<p>TexLive包含了许多与TeX相关的软件包和工具，<strong>包括LaTeX、ConTeXt、MetaPost、pdfTeX、LuaTeX等等。</strong>
-它是一个跨平台的软件，可以在不同的操作系统上使用，例如Windows、Linux、MacOS等。</p>
-<p><strong>简而言之：当你需要写一份专业的科技论文、书籍、期刊或其他技术文档时，排版是非常重要的一步。TeX是一种专业的排版系统，可以让你创建高质量的文档，它在学术界和出版业广泛使用。</strong></p>
-<h2 id="为什么要使用texlive">为什么要使用TexLive</h2>
-<p>其实，TexLive并不是唯一的TeX发行版，还有许多其他的发行版，例如MiKTeX、MacTeX等等。那么，为什么要使用TexLive呢？</p>
-<p>TexLive是一个跨平台的软件，可以在不同的操作系统上使用，例如Windows、Linux、MacOS等。而其他的TeX发行版，例如MiKTeX、MacTeX等，只能在特定的操作系统上使用，例如MiKTeX只能在Windows上使用，MacTeX只能在MacOS上使用。</p>
-<h2 id="国内texlive下载">国内TexLive下载</h2>
-<p>首选清华大学开源软件镜像站：<a
-href="https://mirrors.tuna.tsinghua.edu.cn/CTAN/systems/texlive/Images/">点我下载</a>、</p>
-<p>打开后选择最新的版本，例如这个2023年0313版本：</p>
-<p><img src="https://s2.loli.net/2023/05/05/VGIQ6b95wWHn4Xk.png" /></p>
-<p>这个<code>TexLive</code>有四五个G，看来下载要等一会儿了。</p>
-<p>如果对下载速度有要求的同学可以尝试一下
-<code>IDM</code>、<code>FDM</code> 等多线程加速的下载器。</p>
-<p>不过几分钟，我们的下载就完成啦~</p>
-<p>接下来的任务是安装</p>
-<hr />
-<h2 id="安装texlivewindows">安装TexLive（Windows）</h2>
-<p>双击我们刚刚下载好的文件</p>
-<p><img src="https://s2.loli.net/2023/05/05/Y7k3fOxsC9LFHqG.png" /></p>
-<p>会弹出一个选择应用打开的窗口</p>
-<p><img src="https://s2.loli.net/2023/05/05/vs9FckBGqRPYz7x.png" /></p>
-<p>我们选择资源管理器即可</p>
-<p>这时候，<code>我的计算机</code> 里会多出来一个软驱（DVD驱动器）</p>
-<p><img src="https://s2.loli.net/2023/05/05/QafUJpcZCFVNT5b.png" /></p>
-<p>我们打开后看到的就是TexLive的全部文件</p>
-<p>这里选择打开 <code>install-tl-windows.bat</code></p>
-<p><img src="https://s2.loli.net/2023/05/05/dAD6IwP7bipVEMg.png" /></p>
-<p>打开后，稍等一会儿，我们就可以看到我们的安装窗口</p>
-<p><img src="https://s2.loli.net/2023/05/05/9iSW5oRPuQL6fgk.png" /></p>
-<p>安装窗口大概长这样</p>
-<p>如果不是中文界面的小伙伴可以选择菜单里的 <code>GUI Languaga</code>
-来修改界面的语言</p>
-<p><img src="https://s2.loli.net/2023/05/05/lA58RHTx3rs1pbi.png" /></p>
-<p>这里默子肯定是选到中文滴</p>
-<p>然后我们修改一下安装的硬盘分区（可选）</p>
-<p>点击界面上路径后面的 <code>修改</code> 按钮</p>
-<p>会弹出一个选择路径的界面</p>
-<p><img src="https://s2.loli.net/2023/05/05/fbcxk2l7rWZOend.png" /></p>
-<p>这里默子就选择改装到H盘去了，毕竟如果都装C盘的话，C盘迟早变
-<code>血红战神</code></p>
-<blockquote>
-<p>默子暴论：如果可以自定义路径的软件还装C盘，那就是xx</p>
-</blockquote>
-<p>一切都确定后，就可以点击安装啦！</p>
-<p><strong>注意，这个安装可能会耗时1个小时。所以确保1个小时内，电脑都可以持续正常工作，不要装一半了突然笔记本没电关机，那就尴尬了。</strong></p>
-<p><img src="https://s2.loli.net/2023/05/05/iB1KbkLNAIE7a9F.png" /></p>
-<p>安装界面这里经常会出现一些问题，比如可能有的同学会闪退，我们后面再讨论这里报错的问题。</p>
-<p>等到这个4490出现（反正是差不多的数字就行），说明我们的安装开始进行了。</p>
-<p>后面有剩余时间的估计，不过这个时间经常是不准的，一般安装时间都要持续<code>40min</code></p>
-<p><strong>默子是13900HX的CPU，开了性能模式，安装了大概51min吧</strong></p>
-<p>安装好后的提示如图</p>
-<p><img src="https://s2.loli.net/2023/05/05/HOBuf9wEGNM4Q8R.png" /></p>
-<p>自此，我们的TexLive就已经成功安装完毕</p>
-<p>后续默子再来讲一讲，如何在VSCode里配置我们最舒适的LaTeX编码环境</p>
-<p>让我们的生产效率 UP UP ~</p>
-<p><a href="/">【施工中】TexLive与VSCode能碰撞出怎样的火花</a></p>
-<p><a href="/">【施工中】让人工智能辅助我们创作优秀的排版作品</a></p>
-<p><a href="/">【施工中】最舒适的TeX编写指南</a></p>
-<h2 id="参考资料">参考资料</h2>
-<p>中文LaTeX社区：<a
-href="https://www.latexstudio.net/">LaTeX工作室</a></p>
-<p>更多关于TeX的知识，可以参考这篇文章：<a
-href="https://www.latexstudio.net/texdoc/#/28?page_id=133">TeX
-家族与基础概念</a></p>
-<p>更多关于其他发行版的知识，可以参考这篇文章：<a
-href="https://www.latexstudio.net/texdoc/#/28?page_id=114">LaTeX
-发行版与下载</a></p>
-]]></content>
-      <categories>
-        <category>软件教程</category>
-      </categories>
-      <tags>
-        <tag>教程</tag>
-        <tag>LaTeX</tag>
-        <tag>TexLive</tag>
       </tags>
   </entry>
   <entry>
