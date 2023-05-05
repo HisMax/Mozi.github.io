@@ -19,12 +19,7 @@ TeX是一种专业的排版系统，用于创建高质量的科技论文、书�
 <p>首选清华大学开源软件镜像站：<a
 href="https://mirrors.tuna.tsinghua.edu.cn/CTAN/systems/texlive/Images/">点我下载</a>、</p>
 <p>打开后选择最新的版本，例如这个2023年0313版本：</p>
-<figure>
-<img src="https://s2.loli.net/2023/05/05/VGIQ6b95wWHn4Xk.png"
-alt="baea5d64aa1669e37d08ebb60c62b3f.png" />
-<figcaption
-aria-hidden="true">baea5d64aa1669e37d08ebb60c62b3f.png</figcaption>
-</figure>
+<p><img src="https://s2.loli.net/2023/05/05/VGIQ6b95wWHn4Xk.png" /></p>
 <p>这个<code>TexLive</code>有四五个G，看来下载要等一会儿了。</p>
 <p>如果对下载速度有要求的同学可以尝试一下
 <code>IDM</code>、<code>FDM</code> 等多线程加速的下载器。</p>
@@ -33,59 +28,26 @@ aria-hidden="true">baea5d64aa1669e37d08ebb60c62b3f.png</figcaption>
 <hr />
 <h2 id="安装texlivewindows">安装TexLive（Windows）</h2>
 <p>双击我们刚刚下载好的文件</p>
-<figure>
-<img src="https://s2.loli.net/2023/05/05/Y7k3fOxsC9LFHqG.png"
-alt="image.png" />
-<figcaption aria-hidden="true">image.png</figcaption>
-</figure>
+<p><img src="https://s2.loli.net/2023/05/05/Y7k3fOxsC9LFHqG.png" /></p>
 <p>会弹出一个选择应用打开的窗口</p>
-<figure>
-<img src="https://s2.loli.net/2023/05/05/vs9FckBGqRPYz7x.png"
-alt="c442000f60b8524d210e6be53688f2e.png" />
-<figcaption
-aria-hidden="true">c442000f60b8524d210e6be53688f2e.png</figcaption>
-</figure>
+<p><img src="https://s2.loli.net/2023/05/05/vs9FckBGqRPYz7x.png" /></p>
 <p>我们选择资源管理器即可</p>
 <p>这时候，<code>我的计算机</code> 里会多出来一个软驱（DVD驱动器）</p>
-<figure>
-<img src="https://s2.loli.net/2023/05/05/QafUJpcZCFVNT5b.png"
-alt="image.png" />
-<figcaption aria-hidden="true">image.png</figcaption>
-</figure>
+<p><img src="https://s2.loli.net/2023/05/05/QafUJpcZCFVNT5b.png" /></p>
 <p>我们打开后看到的就是TexLive的全部文件</p>
 <p>这里选择打开 <code>install-tl-windows.bat</code></p>
-<figure>
-<img src="https://s2.loli.net/2023/05/05/dAD6IwP7bipVEMg.png"
-alt="c9fc480e0c07a66cdff73c59fbfb35e.png" />
-<figcaption
-aria-hidden="true">c9fc480e0c07a66cdff73c59fbfb35e.png</figcaption>
-</figure>
+<p><img src="https://s2.loli.net/2023/05/05/dAD6IwP7bipVEMg.png" /></p>
 <p>打开后，稍等一会儿，我们就可以看到我们的安装窗口</p>
-<figure>
-<img src="https://s2.loli.net/2023/05/05/9iSW5oRPuQL6fgk.png"
-alt="6f63e3b8fdfe08f4cd26d12b6529509.png" />
-<figcaption
-aria-hidden="true">6f63e3b8fdfe08f4cd26d12b6529509.png</figcaption>
-</figure>
+<p><img src="https://s2.loli.net/2023/05/05/9iSW5oRPuQL6fgk.png" /></p>
 <p>安装窗口大概长这样</p>
 <p>如果不是中文界面的小伙伴可以选择菜单里的 <code>GUI Languaga</code>
 来修改界面的语言</p>
-<figure>
-<img src="https://s2.loli.net/2023/05/05/lA58RHTx3rs1pbi.png"
-alt="35ff5b4825281754f36713b68e9e474.png" />
-<figcaption
-aria-hidden="true">35ff5b4825281754f36713b68e9e474.png</figcaption>
-</figure>
+<p><img src="https://s2.loli.net/2023/05/05/lA58RHTx3rs1pbi.png" /></p>
 <p>这里默子肯定是选到中文滴</p>
 <p>然后我们修改一下安装的硬盘分区（可选）</p>
 <p>点击界面上路径后面的 <code>修改</code> 按钮</p>
 <p>会弹出一个选择路径的界面</p>
-<figure>
-<img src="https://s2.loli.net/2023/05/05/fbcxk2l7rWZOend.png"
-alt="f00577338543b8976f9fe2e1c2628e5.png" />
-<figcaption
-aria-hidden="true">f00577338543b8976f9fe2e1c2628e5.png</figcaption>
-</figure>
+<p><img src="https://s2.loli.net/2023/05/05/fbcxk2l7rWZOend.png" /></p>
 <p>这里默子就选择改装到H盘去了，毕竟如果都装C盘的话，C盘迟早变
 <code>血红战神</code></p>
 <blockquote>
@@ -93,22 +55,13 @@ aria-hidden="true">f00577338543b8976f9fe2e1c2628e5.png</figcaption>
 </blockquote>
 <p>一切都确定后，就可以点击安装啦！</p>
 <p><strong>注意，这个安装可能会耗时1个小时。所以确保1个小时内，电脑都可以持续正常工作，不要装一半了突然笔记本没电关机，那就尴尬了。</strong></p>
-<figure>
-<img src="https://s2.loli.net/2023/05/05/iB1KbkLNAIE7a9F.png"
-alt="d183d65cfefc5a75aa7439f933cc901.png" />
-<figcaption
-aria-hidden="true">d183d65cfefc5a75aa7439f933cc901.png</figcaption>
-</figure>
+<p><img src="https://s2.loli.net/2023/05/05/iB1KbkLNAIE7a9F.png" /></p>
 <p>安装界面这里经常会出现一些问题，比如可能有的同学会闪退，我们后面再讨论这里报错的问题。</p>
 <p>等到这个4490出现（反正是差不多的数字就行），说明我们的安装开始进行了。</p>
 <p>后面有剩余时间的估计，不过这个时间经常是不准的，一般安装时间都要持续<code>40min</code></p>
 <p><strong>默子是13900HX的CPU，开了性能模式，安装了大概51min吧</strong></p>
 <p>安装好后的提示如图</p>
-<figure>
-<img src="https://s2.loli.net/2023/05/05/HOBuf9wEGNM4Q8R.png"
-alt="image.png" />
-<figcaption aria-hidden="true">image.png</figcaption>
-</figure>
+<p><img src="https://s2.loli.net/2023/05/05/HOBuf9wEGNM4Q8R.png" /></p>
 <p>自此，我们的TexLive就已经成功安装完毕</p>
 <p>后续默子再来讲一讲，如何在VSCode里配置我们最舒适的LaTeX编码环境</p>
 <p>让我们的生产效率 UP UP ~</p>
