@@ -287,9 +287,10 @@ src="https://cdn.luogu.com.cn/upload/image_hosting/ivxjt9tg.png" /></p>
     <url>/2020/03/50796d93/</url>
     <content><![CDATA[<p>又是很颓的一天啊……</p>
 <p>日常肝题，奇怪的是今天居然没有玩游戏</p>
-<h3 id="上午1030"><span class="math inline">\(上午10:30\)</span></h3>
+<h3 id="上午1030">上午10:30</h3>
 <p>其实醒来有很长时间了</p>
-<p>但是一直懒在床上没有动，看了会许胤龙的《组合数学引论》</p>
+<p>但是一直懒在床上没有动，看了会
+<strong>许胤龙的《组合数学引论》</strong></p>
 <p><del>怎么可能看懂，这个东西简直需要两个脑子</del></p>
 <p>对<strong>Fibonacci数</strong>和<strong>Catalan数</strong>有了更深刻的认识。</p>
 <p>但是还有些不太明白，明天再看看书吧……</p>
@@ -313,39 +314,36 @@ id="安利一款超棒的游戏坎巴拉的太空计划">安利一款超棒的�
 <p>你用最笨拙的方式——燃料和引力飞向星空</p>
 <p>在其他游戏里习惯了线性一样的移动后，回过头来看看这个游戏</p>
 <p>它真正代表了人类对太空在历史上的探索</p>
-<p><a href="https://imgchr.com/i/89xvXn"><img
-src="https://s2.ax1x.com/2020/03/09/89xvXn.jpg"
-alt="89xvXn.jpg" /></a></p>
+<figure>
+<img src="https://s2.ax1x.com/2020/03/09/89xvXn.jpg"
+alt="坎巴拉的太空计划-游戏截图" />
+<figcaption aria-hidden="true">坎巴拉的太空计划-游戏截图</figcaption>
+</figure>
 <p>听说最近出系列2了，如果有机会的话，夏天入手，<strong>112RMB</strong></p>
 <p>学生党伤不起啊……</p>
 <hr />
-<h3 id="中午1230"><span class="math inline">\(中午12：30\)</span></h3>
+<h3 id="中午1230">中午12：30</h3>
 <p>麻婆豆腐香啊，三碗米饭????是日常操作。</p>
 <p>写到这里，我觉得我该减肥了????????????</p>
 <p>嗯，从明天开始做一些运动吧……</p>
 <p>不过，现在吃饱了才有力气明天减肥嘛<code>负罪感--</code></p>
-<h3 id="下午1800"><span class="math inline">\(下午18：00\)</span></h3>
+<h3 id="下午1800">下午18：00</h3>
 <p>午觉愣是睡成了下午觉！！！</p>
 <p>打开手机，本想着逛一会B站，但是看了看日历</p>
 <p>今天距离<strong>省选</strong>还有——<strong>20</strong>天啊。</p>
 <p>算了，学习吧。</p>
 <p><strong>熟悉的洛谷，熟悉的味道</strong></p>
-<h3 id="st表的原理以及实现"><span
-class="math inline">\(ST表的原理以及实现\)</span></h3>
+<h3 id="st表的原理以及实现">ST表的原理以及实现</h3>
 <p>今天搞了一下快忘掉的一些数据结构和算法</p>
 <p>众所周知，在维护区间最值的时候，我们常用两种算法，一种叫ST表，一种叫线段树</p>
 <p>这里主要说下<strong>ST表(Sparse Table)</strong></p>
 <p><strong>预处理时间复杂度<code>O(nlogn)</code></strong></p>
 <p><strong>查询时间复杂度<code>O(1)</code></strong></p>
-<p><span
-class="math inline">\(我们首先定义一个初始数据数组和二维的ST表数组\)</span></p>
+<p>我们首先定义一个初始数据数组和二维的ST表数组</p>
 <pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token comment">//n为数据大小</span>
-
 <span class="token keyword">int</span> a<span class="token punctuation">[</span>n<span class="token punctuation">]</span>    存初始数据
-
 <span class="token comment">//21后面具体再解释,其实当你看完原理也就懂了</span>
-
-<span class="token keyword">int</span> st<span class="token punctuation">[</span>n<span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">21</span><span class="token punctuation">]</span>    存ST表<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token keyword">int</span> st<span class="token punctuation">[</span>n<span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">21</span><span class="token punctuation">]</span>    存ST表<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 <p><span class="math inline">\(st[ i ][ j ]表示的是区间[ i , i+2^j-1
 ]里的最大值\)</span></p>
 <p><span class="math inline">\(所以，st[ i ][ j ] = max(st[ i ][ j-1 ] ,
@@ -354,40 +352,51 @@ st[ i+2^(j-1) ][ j-1 ])\)</span></p>
 class="math inline">\(这里以维护区间最大值来举例，最大值最小值其实都一样，只有\)</span><strong>max</strong><span
 class="math inline">\(和\)</span><strong>min</strong><span
 class="math inline">\(的区别\)</span></p>
-<h3 id="初始化st表"><span class="math inline">\(初始化ST表\)</span></h3>
-<p><span class="math inline">\(怎么来的呢？\)</span></p>
-<p><span
-class="math inline">\(个人觉得，简单来说就是一个{\color{red}{二分+分治}}的思想\)</span></p>
-<p><strong><span class="math inline">\(我们要求区间[ i , i+2^j-1
-]里的最大值\)</span></strong></p>
-<p><strong><span class="math inline">\(可以先求区间[ i , i+2^(j-1)
-]和区间[ i+2^(j-1)} , i+2^(j-1 )]\)</span></strong></p>
-<p><strong><span class="math inline">\(所以，st[ i ][ j ] = max(st[ i ][
-j-1 ] , st[ i+2^(j-1) ][ j-1 ])\)</span></strong></p>
-<p><span
-class="math inline">\(如果还是不理解的话，再看一下st数组的含义\)</span></p>
-<p><strong>st[ i ][ j ]表示的是区间[ i , i+2^j-1
-]里的最大值</strong></p>
-<p><span class="math inline">\(初始化最小单元，也就是区间[i,i+2^0-1]
-，也就是[i,i]\)</span> <pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>i<span class="token operator">&lt;=</span>n<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span>
-    st<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token operator">=</span>a<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></p>
-<p><span
-class="math inline">\(初始化剩余部分，这里用到了位运算节约时间开销\)</span></p>
+<h3 id="初始化st表">初始化ST表</h3>
+<p>怎么来的呢？</p>
+<p>个人觉得，简单来说就是一个 <code>二分+分治</code> 的思想</p>
+<p><strong>我们要求区间 <span class="math inline">\([ i , i+2^j-1
+]\)</span> 里的最大值</strong></p>
+<p><strong>可以先求区间 <span class="math inline">\([ i , i+2^(j-1)-1
+]\)</span> 里的最大值</strong></p>
+<p><strong>再求区间 <span class="math inline">\([ i+2^(j-1) , i+2^j-1
+]\)</span> 里的最大值</strong></p>
+<p><strong>最后取这两个区间的最大值</strong></p>
+<p>所以，<span class="math inline">\(st[ i ][ j ] = max(st[ i ][ j-1 ] ,
+st[ i+2^(j-1) ][ j-1 ])\)</span></p>
+<p>如果还是不理解的话，再看一下st数组的含义</p>
+<p><span class="math inline">\(st[ i ][ j ]\)</span>表示的是区间<span
+class="math inline">\([ i , i+2^j-1 ]\)</span>里的最大值</p>
+<p>初始化最小单元，也就是 <span class="math inline">\(st[ i ][ 0
+]\)</span> ，也就是区间 <span class="math inline">\([ i , i ]\)</span>
+里的最大值</p>
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>i<span class="token operator">&lt;=</span>n<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span>
+    st<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token operator">=</span>a<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>初始化剩余部分，这里用到了位运算节约时间开销</p>
 <pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> j<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token operator">&lt;&lt;</span>j<span class="token punctuation">)</span><span class="token operator">&lt;=</span>n<span class="token punctuation">;</span>j<span class="token operator">++</span><span class="token punctuation">)</span>
     <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>i<span class="token operator">+</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token operator">&lt;&lt;</span>j<span class="token punctuation">)</span><span class="token operator">&lt;=</span>n<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span>
         st<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">max</span><span class="token punctuation">(</span>st<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span>st<span class="token punctuation">[</span>i<span class="token operator">+</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token operator">&lt;&lt;</span><span class="token punctuation">(</span>j<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-<h3 id="查询st表"><span class="math inline">\(查询ST表\)</span></h3>
+<h3 id="查询st表">查询ST表</h3>
 <p>ST表的查询许多萌新上来会迷惑的一个操作</p>
-<p>比如，我们要查询区间[l,r]</p>
-<p>如果这个区间恰好是ST表里的一个区间[ i , i+2^j-1
-]，那么我们就可以直接访问st[i][j]</p>
+<p>比如，我们要查询区间 <span class="math inline">\([ l , r ]\)</span>
+里的最大值</p>
+<p>如果这个区间恰好是<strong>ST表</strong>里的一个区间 <span
+class="math inline">\([ i , i+2^j-1 ]\)</span> ，那么我们就可以直接访问
+<span class="math inline">\(st[i][j]\)</span></p>
 <p>可惜大多时候都不是，那么我们怎么做呢？我们可以这样做</p>
 <pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">int</span> k <span class="token operator">=</span> <span class="token function">log</span><span class="token punctuation">(</span>r<span class="token operator">-</span>l<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token operator">/</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token keyword">int</span> ans <span class="token operator">=</span> <span class="token function">max</span><span class="token punctuation">(</span>st<span class="token punctuation">[</span>l<span class="token punctuation">]</span><span class="token punctuation">[</span>k<span class="token punctuation">]</span><span class="token punctuation">,</span>st<span class="token punctuation">[</span>y<span class="token operator">-</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token operator">&lt;&lt;</span>k<span class="token punctuation">)</span><span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">[</span>k<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<p>k是区间[l,r]长度取对数向下取整的值</p>
-<p>最后比较的两个区间[l,l+2^k]和[r-2^k,r]有可能是重合的，但是答案是唯一的</p>
+<p>这里的 <span class="math inline">\(y\)</span> 是什么呢？ <span
+class="math inline">\(y\)</span> 是满足 <span
+class="math inline">\(y-(1&lt;&lt;k)+1&lt;=r\)</span> 的最大值</p>
+<p><span class="math inline">\(k\)</span>是什么呢？<span
+class="math inline">\(k\)</span> 是满足 <span
+class="math inline">\(2^k&lt;=r-l+1\)</span> 的最大值</p>
+<p>最后比较的两个区间 <span class="math inline">\([l,l+2^k]\)</span> 和
+<span class="math inline">\([r-2^k,r]\)</span>
+有可能是重合的，但是答案是唯一的</p>
 <p><del><strong>板子还是要自己打，不然怎么才能背会呢？</strong></del></p>
-<h2 id="晚上2230"><span class="math inline">\(晚上22：30\)</span></h2>
+<h2 id="晚上2230">晚上22：30</h2>
 <p>刷题的日子总是这么朴实无华且枯燥</p>
 <p>写完博客，一看表居然已经12点了</p>
 <p>看来我还是太菜，一篇杂记类博客居然要写一个半小时。</p>
