@@ -18,7 +18,7 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"hismax.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"hismax.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":"default"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta name="description" content="默子的博客，在这里记录一些学习笔记，生活感悟，以及一些有趣的事情。这次我会坚持下去。">
@@ -350,6 +350,7 @@ mjx-container[display="true"] + br {
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
               <span>3 分钟</span>
             </span>
+            <div class="post-description">本文将详细介绍如何安装TexLive，以及如何使用TexLive编译LaTeX文档。让你在Windows上也能愉快的使用LaTeX，体验到LaTeX的魅力。</div>
 
         </div>
       </header>
@@ -360,15 +361,81 @@ mjx-container[display="true"] + br {
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>本文将详细介绍如何安装TexLive，以及如何使用TexLive编译LaTeX文档。让你在Windows上也能愉快的使用LaTeX，体验到LaTeX的魅力。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2023/05/ef1f5b3c/">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
+          <blockquote>
+<p>本文将详细介绍如何安装TexLive，以及如何使用TexLive编译LaTeX文档。</p>
+</blockquote>
+<h2 id="什么是texlive">什么是TexLive</h2>
+<p><strong>TexLive是一个免费、开源的TeX发行版，它包含了用于排版各种类型文档的TeX系统和许多相关工具、字体、宏包和文档。</strong>
+TeX是一种专业的排版系统，用于创建高质量的科技论文、书籍、期刊和其他技术文档，它在学术界和出版业广泛使用。</p>
+<p>TexLive包含了许多与TeX相关的软件包和工具，<strong>包括LaTeX、ConTeXt、MetaPost、pdfTeX、LuaTeX等等。</strong>
+它是一个跨平台的软件，可以在不同的操作系统上使用，例如Windows、Linux、MacOS等。</p>
+<p><strong>简而言之：当你需要写一份专业的科技论文、书籍、期刊或其他技术文档时，排版是非常重要的一步。TeX是一种专业的排版系统，可以让你创建高质量的文档，它在学术界和出版业广泛使用。</strong></p>
+<h2 id="为什么要使用texlive">为什么要使用TexLive</h2>
+<p>其实，TexLive并不是唯一的TeX发行版，还有许多其他的发行版，例如MiKTeX、MacTeX等等。那么，为什么要使用TexLive呢？</p>
+<p>TexLive是一个跨平台的软件，可以在不同的操作系统上使用，例如Windows、Linux、MacOS等。而其他的TeX发行版，例如MiKTeX、MacTeX等，只能在特定的操作系统上使用，例如MiKTeX只能在Windows上使用，MacTeX只能在MacOS上使用。</p>
+<h2 id="国内texlive下载">国内TexLive下载</h2>
+<p>首选清华大学开源软件镜像站：<a
+target="_blank" rel="noopener" href="https://mirrors.tuna.tsinghua.edu.cn/CTAN/systems/texlive/Images/">点我下载</a>、</p>
+<p>打开后选择最新的版本，例如这个2023年0313版本：</p>
+<p><img src="https://s2.loli.net/2023/05/05/VGIQ6b95wWHn4Xk.png" /></p>
+<p>这个<code>TexLive</code>有四五个G，看来下载要等一会儿了。</p>
+<p>如果对下载速度有要求的同学可以尝试一下
+<code>IDM</code>、<code>FDM</code> 等多线程加速的下载器。</p>
+<p>不过几分钟，我们的下载就完成啦~</p>
+<p>接下来的任务是安装</p>
+<hr />
+<h2 id="安装texlivewindows">安装TexLive（Windows）</h2>
+<p>双击我们刚刚下载好的文件</p>
+<p><img src="https://s2.loli.net/2023/05/05/Y7k3fOxsC9LFHqG.png" /></p>
+<p>会弹出一个选择应用打开的窗口</p>
+<p><img src="https://s2.loli.net/2023/05/05/vs9FckBGqRPYz7x.png" /></p>
+<p>我们选择资源管理器即可</p>
+<p>这时候，<code>我的计算机</code> 里会多出来一个软驱（DVD驱动器）</p>
+<p><img src="https://s2.loli.net/2023/05/05/QafUJpcZCFVNT5b.png" /></p>
+<p>我们打开后看到的就是TexLive的全部文件</p>
+<p>这里选择打开 <code>install-tl-windows.bat</code></p>
+<p><img src="https://s2.loli.net/2023/05/05/dAD6IwP7bipVEMg.png" /></p>
+<p>打开后，稍等一会儿，我们就可以看到我们的安装窗口</p>
+<p><img src="https://s2.loli.net/2023/05/05/9iSW5oRPuQL6fgk.png" /></p>
+<p>安装窗口大概长这样</p>
+<p>如果不是中文界面的小伙伴可以选择菜单里的 <code>GUI Languaga</code>
+来修改界面的语言</p>
+<p><img src="https://s2.loli.net/2023/05/05/lA58RHTx3rs1pbi.png" /></p>
+<p>这里默子肯定是选到中文滴</p>
+<p>然后我们修改一下安装的硬盘分区（可选）</p>
+<p>点击界面上路径后面的 <code>修改</code> 按钮</p>
+<p>会弹出一个选择路径的界面</p>
+<p><img src="https://s2.loli.net/2023/05/05/fbcxk2l7rWZOend.png" /></p>
+<p>这里默子就选择改装到H盘去了，毕竟如果都装C盘的话，C盘迟早变
+<code>血红战神</code></p>
+<blockquote>
+<p>默子暴论：如果可以自定义路径的软件还装C盘，那就是xx</p>
+</blockquote>
+<p>一切都确定后，就可以点击安装啦！</p>
+<p><strong>注意，这个安装可能会耗时1个小时。所以确保1个小时内，电脑都可以持续正常工作，不要装一半了突然笔记本没电关机，那就尴尬了。</strong></p>
+<p><img src="https://s2.loli.net/2023/05/05/iB1KbkLNAIE7a9F.png" /></p>
+<p>安装界面这里经常会出现一些问题，比如可能有的同学会闪退，我们后面再讨论这里报错的问题。</p>
+<p>等到这个4490出现（反正是差不多的数字就行），说明我们的安装开始进行了。</p>
+<p>后面有剩余时间的估计，不过这个时间经常是不准的，一般安装时间都要持续<code>40min</code></p>
+<p><strong>默子是13900HX的CPU，开了性能模式，安装了大概51min吧</strong></p>
+<p>安装好后的提示如图</p>
+<p><img src="https://s2.loli.net/2023/05/05/HOBuf9wEGNM4Q8R.png" /></p>
+<p>自此，我们的TexLive就已经成功安装完毕</p>
+<p>后续默子再来讲一讲，如何在VSCode里配置我们最舒适的LaTeX编码环境</p>
+<p>让我们的生产效率 UP UP ~</p>
+<p><a href="/">【施工中】TexLive与VSCode能碰撞出怎样的火花</a></p>
+<p><a href="/">【施工中】让人工智能辅助我们创作优秀的排版作品</a></p>
+<p><a href="/">【施工中】最舒适的TeX编写指南</a></p>
+<h2 id="参考资料">参考资料</h2>
+<p>中文LaTeX社区：<a
+target="_blank" rel="noopener" href="https://www.latexstudio.net/">LaTeX工作室</a></p>
+<p>更多关于TeX的知识，可以参考这篇文章：<a
+target="_blank" rel="noopener" href="https://www.latexstudio.net/texdoc/#/28?page_id=133">TeX
+家族与基础概念</a></p>
+<p>更多关于其他发行版的知识，可以参考这篇文章：<a
+target="_blank" rel="noopener" href="https://www.latexstudio.net/texdoc/#/28?page_id=114">LaTeX
+发行版与下载</a></p>
+
       
     </div>
 
@@ -436,6 +503,7 @@ mjx-container[display="true"] + br {
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
               <span>3 分钟</span>
             </span>
+            <div class="post-description">关于博客的一些想法，以及一些规矩。同时测试一下Hexo的数学公式渲染和代码高亮等等。</div>
 
         </div>
       </header>
@@ -446,15 +514,79 @@ mjx-container[display="true"] + br {
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>关于博客的一些想法，以及一些规矩。同时测试一下Hexo的数学公式渲染和代码高亮等等。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2023/05/81817ba7/">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
+          <h2 id="一些关于博客想说的话">一些关于博客想说的话</h2>
+<h3 id="为什么要写博客">1. 为什么要写博客</h3>
+<p>默子其实也不知道，只是觉得学到一些技术，用博客记录下来，也算是对自己的一种总结吧。同时还可以帮到更多的人，何乐而不为呢？</p>
+<h3 id="为什么要用hexo">2. 为什么要用Hexo</h3>
+<p>折腾了这么久，发现还是这种静态博客框架比较简单方便，其他的框架玩着玩着就搞起了前后端训练，很难绷。</p>
+<p><code>Github+Hexo+Next</code>
+，简直就是懒人一键建站最佳方案（当然，你得有一点点基础）。</p>
+<p>关于之前折腾的框架，少说也有七八个了，常见的主流的，都玩过</p>
+<p>这个博客从想法到部署，也就是30分钟的事情。（可能是已经折腾出了技术吧，哈哈哈哈，总之就是一个熟练工）</p>
+<h3 id="为什么要用github">3. 为什么要用Github</h3>
+<p>虽然国内访问Github
+Pages速度不是很快，但没关系。默子预估能看到这篇文章的人，大概率都已经是技术力比较高的CS相关人士了。</p>
+<p><strong>手里没几把趁手的梯子，说得过去嘛</strong></p>
+<h3 id="之后的更新">4. 之后的更新</h3>
+<p>这个纯纯随缘了，基本上想到什么就去更新什么。</p>
+<p>在其他平台还有很多的文章，默子也会慢慢的迁移过来。（最好是整理之后，不然其他平台的文章现在太乱了）</p>
+<p>有可能一天爆更10篇文章，也有可能两个星期没啥更新。毕竟，随缘博主是这样的，哈哈哈哈</p>
+<h3 id="关于博客的一些想法">5. 关于博客的一些想法</h3>
+<p>写博客，记录的自己，看的是别人。</p>
+<p>所以，这里定一些小小的规矩，也是对自己的一种约束吧：</p>
+<ol type="1">
+<li>尽量少用ChatGPT来完成博客的写作</li>
+<li>保持每个月至少有两篇文章更新，不能一断就断没影了</li>
+<li>技术类的文章质量做到 <code>Top 10%</code> ，不能摸鱼划水</li>
+<li>日常生活和点滴记录也可以发</li>
+</ol>
+<h3 id="最后">6. 最后</h3>
+<p>默子的博客，在这里记录一些学习笔记，生活感悟，以及一些有趣的事情。这次我会坚持下去。</p>
+<h3 id="测试项目">7. 测试项目</h3>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># 定义一个函数</span>
+<span class="token keyword">def</span> <span class="token function">func</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"hello world"</span><span class="token punctuation">)</span>
+
+<span class="token comment"># 调用函数</span>
+func<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token comment">// 利用指针交换两个数的值</span>
+<span class="token keyword">void</span> <span class="token function">swap</span><span class="token punctuation">(</span><span class="token keyword">int</span> <span class="token operator">*</span>a<span class="token punctuation">,</span> <span class="token keyword">int</span> <span class="token operator">*</span>b<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">int</span> temp <span class="token operator">=</span> <span class="token operator">*</span>a<span class="token punctuation">;</span>
+    <span class="token operator">*</span>a <span class="token operator">=</span> <span class="token operator">*</span>b<span class="token punctuation">;</span>
+    <span class="token operator">*</span>b <span class="token operator">=</span> temp<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">// 二分查找</span>
+<span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">int</span> <span class="token function">binarySearch</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> arr<span class="token punctuation">,</span> <span class="token keyword">int</span> target<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">int</span> left <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token keyword">int</span> right <span class="token operator">=</span> arr<span class="token punctuation">.</span>length <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token keyword">while</span> <span class="token punctuation">(</span>left <span class="token operator">&lt;=</span> right<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">int</span> mid <span class="token operator">=</span> <span class="token punctuation">(</span>left <span class="token operator">+</span> right<span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token number">2</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>arr<span class="token punctuation">[</span>mid<span class="token punctuation">]</span> <span class="token operator">==</span> target<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> mid<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>arr<span class="token punctuation">[</span>mid<span class="token punctuation">]</span> <span class="token operator">&lt;</span> target<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            left <span class="token operator">=</span> mid <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>arr<span class="token punctuation">[</span>mid<span class="token punctuation">]</span> <span class="token operator">&gt;</span> target<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            right <span class="token operator">=</span> mid <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>数学公式测试：</p>
+<p><span class="math display"><mjx-container class="MathJax" jax="SVG" display="true"><svg style="vertical-align: -2.819ex;" xmlns="http://www.w3.org/2000/svg" width="16.809ex" height="6.354ex" role="img" focusable="false" viewBox="0 -1562.5 7429.7 2808.5"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="munderover"><g data-mml-node="mo"><path data-c="2211" d="M60 948Q63 950 665 950H1267L1325 815Q1384 677 1388 669H1348L1341 683Q1320 724 1285 761Q1235 809 1174 838T1033 881T882 898T699 902H574H543H251L259 891Q722 258 724 252Q725 250 724 246Q721 243 460 -56L196 -356Q196 -357 407 -357Q459 -357 548 -357T676 -358Q812 -358 896 -353T1063 -332T1204 -283T1307 -196Q1328 -170 1348 -124H1388Q1388 -125 1381 -145T1356 -210T1325 -294L1267 -449L666 -450Q64 -450 61 -448Q55 -446 55 -439Q55 -437 57 -433L590 177Q590 178 557 222T452 366T322 544L56 909L55 924Q55 945 60 948Z"></path></g><g data-mml-node="TeXAtom" transform="translate(148.2,-1087.9) scale(0.707)" data-mjx-texclass="ORD"><g data-mml-node="mi"><path data-c="1D456" d="M184 600Q184 624 203 642T247 661Q265 661 277 649T290 619Q290 596 270 577T226 557Q211 557 198 567T184 600ZM21 287Q21 295 30 318T54 369T98 420T158 442Q197 442 223 419T250 357Q250 340 236 301T196 196T154 83Q149 61 149 51Q149 26 166 26Q175 26 185 29T208 43T235 78T260 137Q263 149 265 151T282 153Q302 153 302 143Q302 135 293 112T268 61T223 11T161 -11Q129 -11 102 10T74 74Q74 91 79 106T122 220Q160 321 166 341T173 380Q173 404 156 404H154Q124 404 99 371T61 287Q60 286 59 284T58 281T56 279T53 278T49 278T41 278H27Q21 284 21 287Z"></path></g><g data-mml-node="mo" transform="translate(345,0)"><path data-c="3D" d="M56 347Q56 360 70 367H707Q722 359 722 347Q722 336 708 328L390 327H72Q56 332 56 347ZM56 153Q56 168 72 173H708Q722 163 722 153Q722 140 707 133H70Q56 140 56 153Z"></path></g><g data-mml-node="mn" transform="translate(1123,0)"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path></g></g><g data-mml-node="TeXAtom" transform="translate(509.9,1150) scale(0.707)" data-mjx-texclass="ORD"><g data-mml-node="mi"><path data-c="1D45B" d="M21 287Q22 293 24 303T36 341T56 388T89 425T135 442Q171 442 195 424T225 390T231 369Q231 367 232 367L243 378Q304 442 382 442Q436 442 469 415T503 336T465 179T427 52Q427 26 444 26Q450 26 453 27Q482 32 505 65T540 145Q542 153 560 153Q580 153 580 145Q580 144 576 130Q568 101 554 73T508 17T439 -10Q392 -10 371 17T350 73Q350 92 386 193T423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 180T152 343Q153 348 153 366Q153 405 129 405Q91 405 66 305Q60 285 60 284Q58 278 41 278H27Q21 284 21 287Z"></path></g></g></g><g data-mml-node="mi" transform="translate(1610.7,0)"><path data-c="1D456" d="M184 600Q184 624 203 642T247 661Q265 661 277 649T290 619Q290 596 270 577T226 557Q211 557 198 567T184 600ZM21 287Q21 295 30 318T54 369T98 420T158 442Q197 442 223 419T250 357Q250 340 236 301T196 196T154 83Q149 61 149 51Q149 26 166 26Q175 26 185 29T208 43T235 78T260 137Q263 149 265 151T282 153Q302 153 302 143Q302 135 293 112T268 61T223 11T161 -11Q129 -11 102 10T74 74Q74 91 79 106T122 220Q160 321 166 341T173 380Q173 404 156 404H154Q124 404 99 371T61 287Q60 286 59 284T58 281T56 279T53 278T49 278T41 278H27Q21 284 21 287Z"></path></g><g data-mml-node="mo" transform="translate(2233.4,0)"><path data-c="3D" d="M56 347Q56 360 70 367H707Q722 359 722 347Q722 336 708 328L390 327H72Q56 332 56 347ZM56 153Q56 168 72 173H708Q722 163 722 153Q722 140 707 133H70Q56 140 56 153Z"></path></g><g data-mml-node="mfrac" transform="translate(3289.2,0)"><g data-mml-node="mrow" transform="translate(220,710)"><g data-mml-node="mi"><path data-c="1D45B" d="M21 287Q22 293 24 303T36 341T56 388T89 425T135 442Q171 442 195 424T225 390T231 369Q231 367 232 367L243 378Q304 442 382 442Q436 442 469 415T503 336T465 179T427 52Q427 26 444 26Q450 26 453 27Q482 32 505 65T540 145Q542 153 560 153Q580 153 580 145Q580 144 576 130Q568 101 554 73T508 17T439 -10Q392 -10 371 17T350 73Q350 92 386 193T423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 180T152 343Q153 348 153 366Q153 405 129 405Q91 405 66 305Q60 285 60 284Q58 278 41 278H27Q21 284 21 287Z"></path></g><g data-mml-node="mo" transform="translate(600,0)"><path data-c="28" d="M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z"></path></g><g data-mml-node="mi" transform="translate(989,0)"><path data-c="1D45B" d="M21 287Q22 293 24 303T36 341T56 388T89 425T135 442Q171 442 195 424T225 390T231 369Q231 367 232 367L243 378Q304 442 382 442Q436 442 469 415T503 336T465 179T427 52Q427 26 444 26Q450 26 453 27Q482 32 505 65T540 145Q542 153 560 153Q580 153 580 145Q580 144 576 130Q568 101 554 73T508 17T439 -10Q392 -10 371 17T350 73Q350 92 386 193T423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 180T152 343Q153 348 153 366Q153 405 129 405Q91 405 66 305Q60 285 60 284Q58 278 41 278H27Q21 284 21 287Z"></path></g><g data-mml-node="mo" transform="translate(1811.2,0)"><path data-c="2B" d="M56 237T56 250T70 270H369V420L370 570Q380 583 389 583Q402 583 409 568V270H707Q722 262 722 250T707 230H409V-68Q401 -82 391 -82H389H387Q375 -82 369 -68V230H70Q56 237 56 250Z"></path></g><g data-mml-node="mn" transform="translate(2811.4,0)"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path></g><g data-mml-node="mo" transform="translate(3311.4,0)"><path data-c="29" d="M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z"></path></g></g><g data-mml-node="mn" transform="translate(1820.2,-686)"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path></g><rect width="3900.4" height="60" x="120" y="220"></rect></g></g></g></svg></mjx-container></span></p>
+<pre class="mermaid">graph LR
+A[方形] --&gt;B(圆角)
+    B --&gt; C{条件a}
+    C --&gt;|a=1| D[结果1]
+    C --&gt;|a=2| E[结果2]
+    F[横向流程图]</pre>
+<pre class="mermaid">graph TD
+    A[方形] --&gt;B(圆角)
+    B --&gt; C{条件a}
+    C --&gt;|a=1| D[结果1]
+    C --&gt;|a=2| E[结果2]
+    F[纵向流程图]</pre>
+
       
     </div>
 
@@ -612,6 +744,65 @@ mjx-container[display="true"] + br {
       本站访问量<span id="busuanzi_value_site_pv"></span>
   </span>
 </div>
+  <div id="site-runtime">
+  <span class="post-meta-item-icon">
+    <i class="fa fa-clock-o"></i>
+  </span>
+  <span id="runtime"></span>
+</div>
+
+<script language="javascript">
+  function isPC() {
+    var userAgentInfo = navigator.userAgent;
+    var agents = ["Android", "iPhone", "SymbianOS", "Windows Phone", "iPad", "iPod"];
+    for (var i = 0; i < agents.length; i++) {
+      if (userAgentInfo.indexOf(agents[i]) > 0) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  function siteTime(openOnPC, start) {
+    window.setTimeout("siteTime(openOnPC, start)", 1000);
+    var seconds = 1000;
+    var minutes = seconds * 60;
+    var hours = minutes * 60;
+    var days = hours * 24;
+    var years = days * 365;
+      start = new Date("2023-5-4 20:15:00 +0800");
+    var now = new Date();
+    var year = now.getFullYear();
+    var month = now.getMonth() + 1;
+    var date = now.getDate();
+    var hour = now.getHours();
+    var minute = now.getMinutes();
+    var second = now.getSeconds();
+    var diff = now - start;
+
+    var diffYears = Math.floor(diff / years);
+    var diffDays = Math.floor((diff / days) - diffYears * 365);
+    var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+    var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) / minutes);
+    var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours - diffMinutes * minutes) / seconds);
+
+    if (openOnPC) {
+      document.getElementById("runtime").innerHTML = "Running: " + diffYears + " years " + diffDays + " days " + diffHours + " hours " + diffMinutes + " mins " + diffSeconds + " secs";
+    } else {
+      document.getElementById("runtime").innerHTML = "Running: " + diffYears + "y " + diffDays + "d " + diffHours + "h " + diffMinutes + "m " + diffSeconds + "s";
+    }
+  }
+
+  var showOnMobile = true;
+  var openOnPC = isPC();
+  var start = new Date();
+  siteTime(openOnPC, start);
+
+  if (!openOnPC && !showOnMobile) {
+    document.getElementById('site-runtime').style.display = 'none';
+  }
+</script>
+
 
         
 
@@ -628,6 +819,7 @@ mjx-container[display="true"] + br {
 
   
   <script src="/lib/anime.min.js"></script>
+  <script src="/lib/pjax/pjax.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
   <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
@@ -643,7 +835,68 @@ mjx-container[display="true"] + br {
 
 <script src="/js/next-boot.js"></script>
 
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '.languages',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
 
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[data-pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.dataset.pjax !== undefined) {
+      script.dataset.pjax = '';
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+  <script defer src="/lib/three/three.min.js"></script>
+    <script defer src="/lib/three/three-waves.min.js"></script>
 
 
   
@@ -664,7 +917,7 @@ mjx-container[display="true"] + br {
 
 
 
-<script>
+<script data-pjax>
 if (document.querySelectorAll('pre.mermaid').length) {
   NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
     mermaid.initialize({
@@ -679,6 +932,7 @@ if (document.querySelectorAll('pre.mermaid').length) {
 </script>
 
 
+    <div id="pjax">
   
 
   
@@ -740,5 +994,6 @@ if (document.querySelectorAll('pre.mermaid').length) {
 
   
 
+    </div>
 </body>
 </html>
