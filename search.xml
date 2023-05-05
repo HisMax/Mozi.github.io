@@ -134,126 +134,90 @@ src="https://images.cnblogs.com/cnblogs_com/Histone/1682817/o_200328051122origin
       </tags>
   </entry>
   <entry>
-    <title>【杂记】2020年3月8日</title>
-    <url>/2020/03/e8c50af6/</url>
-    <content><![CDATA[<h3 id="早上-930">早上 9：30</h3>
-<p>迷迷糊糊地吃了一碗方便面，又打开了电脑。</p>
-<p><strong>熟悉的洛谷，熟悉的DevCpp</strong></p>
-<p>第一件事是，用民间数据把昨天NOI Online的代码测试了下</p>
-<p>25+0+0</p>
-<p>哇，心态瞬间<strong>爆炸</strong>……</p>
-<p><del>（第一题明明有50的啊，第二题怎么又爆0了，第三题意料之中）</del></p>
-<p>还是要调整好自己的心态，毕竟自己是真的蒟蒻,</p>
-<p>短时间菜一点可以容忍，但绝不能容忍长时间的菜！！！</p>
-<hr />
-<h3 id="上午-1030">上午 10：30</h3>
-<p>今天距离<strong>省选</strong>还有——<strong>21</strong>天啊</p>
-<p>调整好心态继续加油。。。</p>
-<p>学着学着，突然发现，树状数组给我整蒙圈了</p>
-<p>以前就是<strong>会打板子</strong>，今天花了我好长时间总于搞懂<strong>其中的原理的lowbit操作</strong>是个什么鬼了！</p>
-<p>众所周知，树状数组可以维护区间和</p>
-<p>比如给我们一个 <strong>num[ ]</strong> 数组，长度为
-<strong>n</strong>。</p>
-<p>并且我们打算把它加到我们的树状数组 <strong>tree[ ]</strong> 中去</p>
-<p><strong>如下图</strong></p>
-<p><a href="https://imgchr.com/i/3zyxPA"><img
-src="https://s2.ax1x.com/2020/03/08/3zyxPA.png"
-alt="3zyxPA.png" /></a></p>
-<h4 id="树状数组修改插入操作">树状数组修改插入操作</h4>
-<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">void</span> <span class="token function">update</span><span class="token punctuation">(</span><span class="token keyword">int</span> x<span class="token punctuation">,</span><span class="token keyword">int</span> a<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-    <span class="token comment">//x是插入的位置</span>
-    <span class="token comment">//a是要插入的值</span>
-    <span class="token keyword">while</span><span class="token punctuation">(</span>x<span class="token operator">&lt;=</span>n<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-        tree<span class="token punctuation">[</span>x<span class="token punctuation">]</span><span class="token operator">+=</span>a<span class="token punctuation">;</span>
-        x <span class="token operator">+=</span> <span class="token function">lowbit</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token comment">//也就是 x = x&amp;-x</span>
-    <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p><strong>假设 x = 1,n = 8,a = 5,则</strong></p>
-<p><strong>tree[1]+=5</strong> <strong>tree[2]+=5</strong>
-<strong>tree[4]+=5</strong> <strong>tree[8]+=5</strong></p>
-<p>lowbit()返回的其实就是x在二进制下，末尾
-<strong>第一个遇到的1和在那之前的0</strong> 的情况，比如：</p>
-<p><strong>0001 1</strong> lowbit(1) = 1</p>
-<p><strong>0010 2</strong> lowbit(2) = 2</p>
-<p><strong>0011 3</strong> lowbit(3) = 1</p>
-<p><strong>0100 4</strong> lowbit(4) = 4</p>
-<p><strong>0101 5</strong> lowbit(5) = 1</p>
-<p><strong>0110 6</strong> lowbit(6) = 2</p>
-<p><strong>0111 7</strong> lowbit(7) = 1</p>
-<p><strong>1000 8</strong> lowbit(8) = 8</p>
-<p>给一个随便给一个数字 <strong>5201314‬</strong>
-<del>(不用怀疑准确性，我用计算器算的)</del></p>
-<p><strong>lowbit(5201314) = 2</strong></p>
-<p>因为 <strong>5201314</strong>的二进制模样长这样：<strong>100 1111
-0101 1101 1010 0010‬</strong></p>
-<p>关心最后两位 100 1111 0101 1101 1010 00<strong>10‬</strong></p>
-<p>就是二进制的 <strong>2</strong></p>
-<p>至于具体的运算参考手边二进制运算课本，<del>没有？那百度啊</del></p>
-<h4 id="树状数组区间求和从x到1操作">树状数组区间求和(从x到1)操作</h4>
-<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">int</span> <span class="token function">sum</span><span class="token punctuation">(</span><span class="token keyword">int</span> x<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-    <span class="token comment">//x还是位置</span>
-	<span class="token keyword">int</span> ans <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
-	<span class="token keyword">while</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-		ans <span class="token operator">+=</span> treen<span class="token punctuation">[</span>x<span class="token punctuation">]</span><span class="token punctuation">;</span>
-		x <span class="token operator">-=</span> <span class="token function">lowbit</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">;</span>
-	<span class="token punctuation">&#125;</span>
-	<span class="token keyword">return</span> ans<span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p><strong>什么，你要求和5到12区间内的和？？？</strong></p>
-<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp">ans <span class="token operator">=</span> <span class="token function">sum</span><span class="token punctuation">(</span><span class="token number">12</span><span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token function">sum</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p><del>很颓很颓的一上午，虽然我知道我可能上面没太讲清</del></p>
-<p><del>但是那又有什么关系呢，这只是一篇类似于 <strong>日记</strong>
-的东东</del></p>
-<hr />
-<h3 id="中午-1320">中午 13：20</h3>
-<p>吃了一大盘鸡肉+两碗米饭 <del>(具体菜名叫不上来)</del></p>
-<p>来了客人，家里把以前的旧车卖了，来的是买车的人</p>
-<p>说实话，他们都认识我，我不认识他们，233333</p>
-<p>关上卧室门，逍遥自在</p>
-<hr />
-<h3 id="下午-1400">下午 14：00</h3>
-<p>刚准备打开游戏，看看沙雕可爱的 <strong>羽羽音小鸟(はばね
-ことり)</strong></p>
-<p>以及开朗温柔的 <strong>姫城扬羽(ひめぎ あげは)</strong></p>
-<p>突然想起来有洛谷月赛啊……淦！</p>
-<p>(因为我太弱，所以只做了Div2)</p>
-<p><strong>T1</strong>
-第一眼还以为是八皇后问题，但仔细一看……什么嘛，入门组水题</p>
-<p>20分钟愉快切掉 <del>(中间边界条件搞错WA了两次)</del></p>
-<p><strong>T2</strong>
-明显是道数学结论题，一开始写了个O(K)的算法上去</p>
-<p>果不其然，TLE掉最后一组数据</p>
-<p>思考了好久，推了下式子</p>
-<p><span class="math inline">\(\text{(n+1) * pow(2,k)}\)</span></p>
-<p>鉴于k比较大，写个快速幂水过去了</p>
-<p><strong>T3</strong> 卡了 我两个小时</p>
-<p>各种瞎搞算法都用过，好像是DP，但是也用前缀和搞过</p>
-<p>最后DFS暴力14分，果断滚粗</p>
-<p><strong>T4</strong> 没看……</p>
-<hr />
-<h3 id="傍晚-1900">傍晚 19：00</h3>
-<p>打开了Steam，心不在焉地玩着<strong>If My Heart Had Wings</strong></p>
-<p><img
-src="https://cdn.luogu.com.cn/upload/image_hosting/ivxjt9tg.png" /></p>
-<p>无聊中解答了几个问题，推进了下剧情</p>
-<p>记忆化搜索？(×)</p>
-<p>瞎搞 (√)</p>
-<hr />
-<h3 id="晚上-2200">晚上 22：00</h3>
-<p>关掉了游戏，写下博客</p>
-<p>决定当个日更博客主</p>
-<hr />
+    <title>一些关于博客想说的话</title>
+    <url>/2023/05/81817ba7/</url>
+    <content><![CDATA[<h2 id="一些关于博客想说的话">一些关于博客想说的话</h2>
+<h3 id="为什么要写博客">1. 为什么要写博客</h3>
+<p>默子其实也不知道，只是觉得学到一些技术，用博客记录下来，也算是对自己的一种总结吧。同时还可以帮到更多的人，何乐而不为呢？</p>
+<h3 id="为什么要用hexo">2. 为什么要用Hexo</h3>
+<p>折腾了这么久，发现还是这种静态博客框架比较简单方便，其他的框架玩着玩着就搞起了前后端训练，很难绷。</p>
+<p><code>Github+Hexo+Next</code>
+，简直就是懒人一键建站最佳方案（当然，你得有一点点基础）。</p>
+<p>关于之前折腾的框架，少说也有七八个了，常见的主流的，都玩过</p>
+<p>这个博客从想法到部署，也就是30分钟的事情。（可能是已经折腾出了技术吧，哈哈哈哈，总之就是一个熟练工）</p>
+<h3 id="为什么要用github">3. 为什么要用Github</h3>
+<p>虽然国内访问Github
+Pages速度不是很快，但没关系。默子预估能看到这篇文章的人，大概率都已经是技术力比较高的CS相关人士了。</p>
+<p><strong>手里没几把趁手的梯子，说得过去嘛</strong></p>
+<h3 id="之后的更新">4. 之后的更新</h3>
+<p>这个纯纯随缘了，基本上想到什么就去更新什么。</p>
+<p>在其他平台还有很多的文章，默子也会慢慢的迁移过来。（最好是整理之后，不然其他平台的文章现在太乱了）</p>
+<p>有可能一天爆更10篇文章，也有可能两个星期没啥更新。毕竟，随缘博主是这样的，哈哈哈哈</p>
+<h3 id="关于博客的一些想法">5. 关于博客的一些想法</h3>
+<p>写博客，记录的自己，看的是别人。</p>
+<p>所以，这里定一些小小的规矩，也是对自己的一种约束吧：</p>
+<ol type="1">
+<li>尽量少用ChatGPT来完成博客的写作</li>
+<li>保持每个月至少有两篇文章更新，不能一断就断没影了</li>
+<li>技术类的文章质量做到 <code>Top 10%</code> ，不能摸鱼划水</li>
+<li>日常生活和点滴记录也可以发</li>
+</ol>
+<h3 id="最后">6. 最后</h3>
+<p>默子的博客，在这里记录一些学习笔记，生活感悟，以及一些有趣的事情。这次我会坚持下去。</p>
+<h3 id="测试项目">7. 测试项目</h3>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 定义一个函数</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">func</span>():<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;hello world&quot;</span>)<br><br><span class="hljs-comment"># 调用函数</span><br>func()<br></code></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-comment">// 利用指针交换两个数的值</span><br><span class="hljs-type">void</span> <span class="hljs-title function_">swap</span><span class="hljs-params">(<span class="hljs-type">int</span> *a, <span class="hljs-type">int</span> *b)</span><br>&#123;<br>    <span class="hljs-type">int</span> temp = *a;<br>    *a = *b;<br>    *b = temp;<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 二分查找</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-type">int</span> <span class="hljs-title function_">binarySearch</span><span class="hljs-params">(<span class="hljs-type">int</span>[] arr, <span class="hljs-type">int</span> target)</span> &#123;<br>    <span class="hljs-type">int</span> <span class="hljs-variable">left</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;<br>    <span class="hljs-type">int</span> <span class="hljs-variable">right</span> <span class="hljs-operator">=</span> arr.length - <span class="hljs-number">1</span>;<br>    <span class="hljs-keyword">while</span> (left &lt;= right) &#123;<br>        <span class="hljs-type">int</span> <span class="hljs-variable">mid</span> <span class="hljs-operator">=</span> (left + right) / <span class="hljs-number">2</span>;<br>        <span class="hljs-keyword">if</span> (arr[mid] == target) &#123;<br>            <span class="hljs-keyword">return</span> mid;<br>        &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (arr[mid] &lt; target) &#123;<br>            left = mid + <span class="hljs-number">1</span>;<br>        &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (arr[mid] &gt; target) &#123;<br>            right = mid - <span class="hljs-number">1</span>;<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> -<span class="hljs-number">1</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>数学公式测试：</p>
+<p><span
+class="math display">\[\sum_{i=1}^{n}i=\frac{n(n+1)}{2}\]</span></p>
+<pre class="mermaid">graph LR
+A[方形] -->B(圆角)
+    B --> C{条件a}
+    C -->|a=1| D[结果1]
+    C -->|a=2| E[结果2]
+    F[横向流程图]</pre>
+<pre class="mermaid">graph TD
+    A[方形] -->B(圆角)
+    B --> C{条件a}
+    C -->|a=1| D[结果1]
+    C -->|a=2| E[结果2]
+    F[纵向流程图]</pre>
+<p><span class="math display">\[ n \% m = 2^{n-1} \]</span></p>
+<p><span class="math display">\[ \int_{a}^{b}f^{(3)}(t)dt \]</span></p>
+<p><span
+class="math display">\[\begin{pmatrix}ax+1&amp;1&amp;0\\1&amp;bx+2&amp;1\\0&amp;1&amp;cx+3\end{pmatrix}\]</span></p>
+<p><span class="math display">\[ c =
+(2^{7-n}-\frac{7e^{i\pi}}{6\pi})\frac{\pi}{n}+\mathrm{O}(n\lg{\lg{n}})\]</span></p>
+<p><span class="math display">\[1 \leq a_i,b_i\leq max(n,m)\]</span></p>
+<p><span
+class="math display">\[\sum\limits_{i=1}^{n}(x_i-y_i)^n\]</span></p>
+<p><span
+class="math display">\[\prod\limits_{i=1}^{n(n-1)}(k_i+\frac{\sum\limits_{j-1}^{i}(x_i+y_i)^{\frac{3}{2}}}{e\ln{(i+1)}})-\epsilon\]</span></p>
+<p><span class="math display">\[\dot{A_r} = \frac{\dot{x_0}}{\dot{x_i}}
+= \frac{\dot{A}}{1+\dot{A}\dot{F}}\]</span></p>
+<p><span class="math display">\[f(\theta) =
+\frac{\sin{\theta}(\left|cos\right|)^{\frac{1}{2}}}{2\sin(\theta)+2}-2\sin{(\theta)}+2\]</span></p>
+<p><span class="math display">\[\pi^{4}+\pi^{5}\approx
+e^{6}\]</span></p>
+<p><span
+class="math display">\[\sqrt{1+2\sqrt{1+3\sqrt{1+4\sqrt{1+\dots}}}} =
+3\]</span></p>
+<p><span class="math display">\[\hat{f}(\xi) =
+\frac{1}{(2\pi)^\frac{d}{2}}\int_{\mathbb{R}^d}e^{-ix\xi}f(x)dx\]</span></p>
+<p>为什么，渲染失败！！</p>
+<p><span
+class="math display">\[\begin{bmatrix}1&amp;2&amp;3\\4&amp;5&amp;6\\7&amp;8&amp;9\end{bmatrix}\]</span></p>
+<p>妈的</p>
 ]]></content>
       <categories>
-        <category>杂记</category>
+        <category>博客</category>
       </categories>
       <tags>
-        <tag>杂记</tag>
-        <tag>日常</tag>
-        <tag>树状数组</tag>
-        <tag>NOI省选</tag>
+        <tag>博客</tag>
+        <tag>Hexo</tag>
+        <tag>Github</tag>
+        <tag>Next</tag>
       </tags>
   </entry>
   <entry>
@@ -314,10 +278,7 @@ alt="坎巴拉的太空计划-游戏截图" />
 <p><strong>预处理时间复杂度<code>O(nlogn)</code></strong></p>
 <p><strong>查询时间复杂度<code>O(1)</code></strong></p>
 <p>我们首先定义一个初始数据数组和二维的ST表数组</p>
-<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token comment">//n为数据大小</span>
-<span class="token keyword">int</span> a<span class="token punctuation">[</span>n<span class="token punctuation">]</span>    存初始数据
-<span class="token comment">//21后面具体再解释,其实当你看完原理也就懂了</span>
-<span class="token keyword">int</span> st<span class="token punctuation">[</span>n<span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">21</span><span class="token punctuation">]</span>    存ST表<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">//n为数据大小</span><br><span class="hljs-type">int</span> a[n]    存初始数据<br><span class="hljs-comment">//21后面具体再解释,其实当你看完原理也就懂了</span><br><span class="hljs-type">int</span> st[n][<span class="hljs-number">21</span>]    存ST表<br></code></pre></td></tr></table></figure>
 <p><span class="math inline">\(st[ i ][ j ]表示的是区间[ i , i+2^j-1
 ]里的最大值\)</span></p>
 <p><span class="math inline">\(所以，st[ i ][ j ] = max(st[ i ][ j-1 ] ,
@@ -344,12 +305,9 @@ class="math inline">\([ i , i+2^j-1 ]\)</span>里的最大值</p>
 <p>初始化最小单元，也就是 <span class="math inline">\(st[ i ][ 0
 ]\)</span> ，也就是区间 <span class="math inline">\([ i , i ]\)</span>
 里的最大值</p>
-<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>i<span class="token operator">&lt;=</span>n<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span>
-    st<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token operator">=</span>a<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++)<br>    st[i][<span class="hljs-number">0</span>]=a[i];<br></code></pre></td></tr></table></figure>
 <p>初始化剩余部分，这里用到了位运算节约时间开销</p>
-<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> j<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token operator">&lt;&lt;</span>j<span class="token punctuation">)</span><span class="token operator">&lt;=</span>n<span class="token punctuation">;</span>j<span class="token operator">++</span><span class="token punctuation">)</span>
-    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>i<span class="token operator">+</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token operator">&lt;&lt;</span>j<span class="token punctuation">)</span><span class="token operator">&lt;=</span>n<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span>
-        st<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">max</span><span class="token punctuation">(</span>st<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span>st<span class="token punctuation">[</span>i<span class="token operator">+</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token operator">&lt;&lt;</span><span class="token punctuation">(</span>j<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j=<span class="hljs-number">1</span>;(<span class="hljs-number">1</span>&lt;&lt;j)&lt;=n;j++)<br>    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i+(<span class="hljs-number">1</span>&lt;&lt;j)&lt;=n;i++)<br>        st[i][j] = <span class="hljs-built_in">max</span>(st[i][j<span class="hljs-number">-1</span>],st[i+(<span class="hljs-number">1</span>&lt;&lt;(j<span class="hljs-number">-1</span>))][j<span class="hljs-number">-1</span>]);<br></code></pre></td></tr></table></figure>
 <h3 id="查询st表">查询ST表</h3>
 <p>ST表的查询许多萌新上来会迷惑的一个操作</p>
 <p>比如，我们要查询区间 <span class="math inline">\([ l , r ]\)</span>
@@ -358,8 +316,7 @@ class="math inline">\([ i , i+2^j-1 ]\)</span>里的最大值</p>
 class="math inline">\([ i , i+2^j-1 ]\)</span> ，那么我们就可以直接访问
 <span class="math inline">\(st[i][j]\)</span></p>
 <p>可惜大多时候都不是，那么我们怎么做呢？我们可以这样做</p>
-<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">int</span> k <span class="token operator">=</span> <span class="token function">log</span><span class="token punctuation">(</span>r<span class="token operator">-</span>l<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token operator">/</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token keyword">int</span> ans <span class="token operator">=</span> <span class="token function">max</span><span class="token punctuation">(</span>st<span class="token punctuation">[</span>l<span class="token punctuation">]</span><span class="token punctuation">[</span>k<span class="token punctuation">]</span><span class="token punctuation">,</span>st<span class="token punctuation">[</span>y<span class="token operator">-</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token operator">&lt;&lt;</span>k<span class="token punctuation">)</span><span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">[</span>k<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-type">int</span> k = <span class="hljs-built_in">log</span>(r-l+<span class="hljs-number">1</span>)/<span class="hljs-built_in">log</span>(<span class="hljs-number">2</span>));<br><span class="hljs-type">int</span> ans = <span class="hljs-built_in">max</span>(st[l][k],st[y-(<span class="hljs-number">1</span>&lt;&lt;k)+<span class="hljs-number">1</span>][k]);<br></code></pre></td></tr></table></figure>
 <p>这里的 <span class="math inline">\(y\)</span> 是什么呢？ <span
 class="math inline">\(y\)</span> 是满足 <span
 class="math inline">\(y-(1&lt;&lt;k)+1&lt;=r\)</span> 的最大值</p>
@@ -392,116 +349,109 @@ class="math inline">\(2^k&lt;=r-l+1\)</span> 的最大值</p>
       </tags>
   </entry>
   <entry>
-    <title>一些关于博客想说的话</title>
-    <url>/2023/05/81817ba7/</url>
-    <content><![CDATA[<h2 id="一些关于博客想说的话">一些关于博客想说的话</h2>
-<h3 id="为什么要写博客">1. 为什么要写博客</h3>
-<p>默子其实也不知道，只是觉得学到一些技术，用博客记录下来，也算是对自己的一种总结吧。同时还可以帮到更多的人，何乐而不为呢？</p>
-<h3 id="为什么要用hexo">2. 为什么要用Hexo</h3>
-<p>折腾了这么久，发现还是这种静态博客框架比较简单方便，其他的框架玩着玩着就搞起了前后端训练，很难绷。</p>
-<p><code>Github+Hexo+Next</code>
-，简直就是懒人一键建站最佳方案（当然，你得有一点点基础）。</p>
-<p>关于之前折腾的框架，少说也有七八个了，常见的主流的，都玩过</p>
-<p>这个博客从想法到部署，也就是30分钟的事情。（可能是已经折腾出了技术吧，哈哈哈哈，总之就是一个熟练工）</p>
-<h3 id="为什么要用github">3. 为什么要用Github</h3>
-<p>虽然国内访问Github
-Pages速度不是很快，但没关系。默子预估能看到这篇文章的人，大概率都已经是技术力比较高的CS相关人士了。</p>
-<p><strong>手里没几把趁手的梯子，说得过去嘛</strong></p>
-<h3 id="之后的更新">4. 之后的更新</h3>
-<p>这个纯纯随缘了，基本上想到什么就去更新什么。</p>
-<p>在其他平台还有很多的文章，默子也会慢慢的迁移过来。（最好是整理之后，不然其他平台的文章现在太乱了）</p>
-<p>有可能一天爆更10篇文章，也有可能两个星期没啥更新。毕竟，随缘博主是这样的，哈哈哈哈</p>
-<h3 id="关于博客的一些想法">5. 关于博客的一些想法</h3>
-<p>写博客，记录的自己，看的是别人。</p>
-<p>所以，这里定一些小小的规矩，也是对自己的一种约束吧：</p>
-<ol type="1">
-<li>尽量少用ChatGPT来完成博客的写作</li>
-<li>保持每个月至少有两篇文章更新，不能一断就断没影了</li>
-<li>技术类的文章质量做到 <code>Top 10%</code> ，不能摸鱼划水</li>
-<li>日常生活和点滴记录也可以发</li>
-</ol>
-<h3 id="最后">6. 最后</h3>
-<p>默子的博客，在这里记录一些学习笔记，生活感悟，以及一些有趣的事情。这次我会坚持下去。</p>
-<h3 id="测试项目">7. 测试项目</h3>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># 定义一个函数</span>
-<span class="token keyword">def</span> <span class="token function">func</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"hello world"</span><span class="token punctuation">)</span>
-
-<span class="token comment"># 调用函数</span>
-func<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token comment">// 利用指针交换两个数的值</span>
-<span class="token keyword">void</span> <span class="token function">swap</span><span class="token punctuation">(</span><span class="token keyword">int</span> <span class="token operator">*</span>a<span class="token punctuation">,</span> <span class="token keyword">int</span> <span class="token operator">*</span>b<span class="token punctuation">)</span>
-<span class="token punctuation">&#123;</span>
-    <span class="token keyword">int</span> temp <span class="token operator">=</span> <span class="token operator">*</span>a<span class="token punctuation">;</span>
-    <span class="token operator">*</span>a <span class="token operator">=</span> <span class="token operator">*</span>b<span class="token punctuation">;</span>
-    <span class="token operator">*</span>b <span class="token operator">=</span> temp<span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">// 二分查找</span>
-<span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">int</span> <span class="token function">binarySearch</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> arr<span class="token punctuation">,</span> <span class="token keyword">int</span> target<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-    <span class="token keyword">int</span> left <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
-    <span class="token keyword">int</span> right <span class="token operator">=</span> arr<span class="token punctuation">.</span>length <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span>
-    <span class="token keyword">while</span> <span class="token punctuation">(</span>left <span class="token operator">&lt;=</span> right<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-        <span class="token keyword">int</span> mid <span class="token operator">=</span> <span class="token punctuation">(</span>left <span class="token operator">+</span> right<span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token number">2</span><span class="token punctuation">;</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>arr<span class="token punctuation">[</span>mid<span class="token punctuation">]</span> <span class="token operator">==</span> target<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-            <span class="token keyword">return</span> mid<span class="token punctuation">;</span>
-        <span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>arr<span class="token punctuation">[</span>mid<span class="token punctuation">]</span> <span class="token operator">&lt;</span> target<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-            left <span class="token operator">=</span> mid <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span>
-        <span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>arr<span class="token punctuation">[</span>mid<span class="token punctuation">]</span> <span class="token operator">></span> target<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-            right <span class="token operator">=</span> mid <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span>
-        <span class="token punctuation">&#125;</span>
-    <span class="token punctuation">&#125;</span>
-    <span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>数学公式测试：</p>
-<p><span
-class="math display">\[\sum_{i=1}^{n}i=\frac{n(n+1)}{2}\]</span></p>
-<pre class="mermaid">graph LR
-A[方形] -->B(圆角)
-    B --> C{条件a}
-    C -->|a=1| D[结果1]
-    C -->|a=2| E[结果2]
-    F[横向流程图]</pre>
-<pre class="mermaid">graph TD
-    A[方形] -->B(圆角)
-    B --> C{条件a}
-    C -->|a=1| D[结果1]
-    C -->|a=2| E[结果2]
-    F[纵向流程图]</pre>
-<p><span class="math display">\[ n \% m = 2^{n-1} \]</span></p>
-<p><span class="math display">\[ \int_{a}^{b}f^{(3)}(t)dt \]</span></p>
-<p><span
-class="math display">\[\begin{pmatrix}ax+1&amp;1&amp;0\\1&amp;bx+2&amp;1\\0&amp;1&amp;cx+3\end{pmatrix}\]</span></p>
-<p><span class="math display">\[ c =
-(2^{7-n}-\frac{7e^{i\pi}}{6\pi})\frac{\pi}{n}+\mathrm{O}(n\lg{\lg{n}})\]</span></p>
-<p><span class="math display">\[1 \leq a_i,b_i\leq max(n,m)\]</span></p>
-<p><span
-class="math display">\[\sum\limits_{i=1}^{n}(x_i-y_i)^n\]</span></p>
-<p><span
-class="math display">\[\prod\limits_{i=1}^{n(n-1)}(k_i+\frac{\sum\limits_{j-1}^{i}(x_i+y_i)^{\frac{3}{2}}}{e\ln{(i+1)}})-\epsilon\]</span></p>
-<p><span class="math display">\[\dot{A_r} = \frac{\dot{x_0}}{\dot{x_i}}
-= \frac{\dot{A}}{1+\dot{A}\dot{F}}\]</span></p>
-<p><span class="math display">\[f(\theta) =
-\frac{\sin{\theta}(\left|cos\right|)^{\frac{1}{2}}}{2\sin(\theta)+2}-2\sin{(\theta)}+2\]</span></p>
-<p><span class="math display">\[\pi^{4}+\pi^{5}\approx
-e^{6}\]</span></p>
-<p><span
-class="math display">\[\sqrt{1+2\sqrt{1+3\sqrt{1+4\sqrt{1+\dots}}}} =
-3\]</span></p>
-<p><span class="math display">\[\hat{f}(\xi) =
-\frac{1}{(2\pi)^\frac{d}{2}}\int_{\mathbb{R}^d}e^{-ix\xi}f(x)dx\]</span></p>
-<p>为什么，渲染失败！！</p>
-<p><span
-class="math display">\[\begin{bmatrix}1&amp;2&amp;3\\4&amp;5&amp;6\\7&amp;8&amp;9\end{bmatrix}\]</span></p>
-<p>妈的</p>
+    <title>【杂记】2020年3月8日</title>
+    <url>/2020/03/e8c50af6/</url>
+    <content><![CDATA[<h3 id="早上-930">早上 9：30</h3>
+<p>迷迷糊糊地吃了一碗方便面，又打开了电脑。</p>
+<p><strong>熟悉的洛谷，熟悉的DevCpp</strong></p>
+<p>第一件事是，用民间数据把昨天NOI Online的代码测试了下</p>
+<p>25+0+0</p>
+<p>哇，心态瞬间<strong>爆炸</strong>……</p>
+<p><del>（第一题明明有50的啊，第二题怎么又爆0了，第三题意料之中）</del></p>
+<p>还是要调整好自己的心态，毕竟自己是真的蒟蒻,</p>
+<p>短时间菜一点可以容忍，但绝不能容忍长时间的菜！！！</p>
+<hr />
+<h3 id="上午-1030">上午 10：30</h3>
+<p>今天距离<strong>省选</strong>还有——<strong>21</strong>天啊</p>
+<p>调整好心态继续加油。。。</p>
+<p>学着学着，突然发现，树状数组给我整蒙圈了</p>
+<p>以前就是<strong>会打板子</strong>，今天花了我好长时间总于搞懂<strong>其中的原理的lowbit操作</strong>是个什么鬼了！</p>
+<p>众所周知，树状数组可以维护区间和</p>
+<p>比如给我们一个 <strong>num[ ]</strong> 数组，长度为
+<strong>n</strong>。</p>
+<p>并且我们打算把它加到我们的树状数组 <strong>tree[ ]</strong> 中去</p>
+<p><strong>如下图</strong></p>
+<p><a href="https://imgchr.com/i/3zyxPA"><img
+src="https://s2.ax1x.com/2020/03/08/3zyxPA.png"
+alt="3zyxPA.png" /></a></p>
+<h4 id="树状数组修改插入操作">树状数组修改插入操作</h4>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">update</span><span class="hljs-params">(<span class="hljs-type">int</span> x,<span class="hljs-type">int</span> a)</span></span>&#123;<br>    <span class="hljs-comment">//x是插入的位置</span><br>    <span class="hljs-comment">//a是要插入的值</span><br>    <span class="hljs-keyword">while</span>(x&lt;=n)&#123;<br>        tree[x]+=a;<br>        x += <span class="hljs-built_in">lowbit</span>(x);<br>        <span class="hljs-comment">//也就是 x = x&amp;-x</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p><strong>假设 x = 1,n = 8,a = 5,则</strong></p>
+<p><strong>tree[1]+=5</strong> <strong>tree[2]+=5</strong>
+<strong>tree[4]+=5</strong> <strong>tree[8]+=5</strong></p>
+<p>lowbit()返回的其实就是x在二进制下，末尾
+<strong>第一个遇到的1和在那之前的0</strong> 的情况，比如：</p>
+<p><strong>0001 1</strong> lowbit(1) = 1</p>
+<p><strong>0010 2</strong> lowbit(2) = 2</p>
+<p><strong>0011 3</strong> lowbit(3) = 1</p>
+<p><strong>0100 4</strong> lowbit(4) = 4</p>
+<p><strong>0101 5</strong> lowbit(5) = 1</p>
+<p><strong>0110 6</strong> lowbit(6) = 2</p>
+<p><strong>0111 7</strong> lowbit(7) = 1</p>
+<p><strong>1000 8</strong> lowbit(8) = 8</p>
+<p>给一个随便给一个数字 <strong>5201314‬</strong>
+<del>(不用怀疑准确性，我用计算器算的)</del></p>
+<p><strong>lowbit(5201314) = 2</strong></p>
+<p>因为 <strong>5201314</strong>的二进制模样长这样：<strong>100 1111
+0101 1101 1010 0010‬</strong></p>
+<p>关心最后两位 100 1111 0101 1101 1010 00<strong>10‬</strong></p>
+<p>就是二进制的 <strong>2</strong></p>
+<p>至于具体的运算参考手边二进制运算课本，<del>没有？那百度啊</del></p>
+<h4 id="树状数组区间求和从x到1操作">树状数组区间求和(从x到1)操作</h4>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">sum</span><span class="hljs-params">(<span class="hljs-type">int</span> x)</span></span>&#123;<br>    <span class="hljs-comment">//x还是位置</span><br>	<span class="hljs-type">int</span> ans = <span class="hljs-number">0</span>;<br>	<span class="hljs-keyword">while</span>(x)&#123;<br>		ans += treen[x];<br>		x -= <span class="hljs-built_in">lowbit</span>(x);<br>	&#125;<br>	<span class="hljs-keyword">return</span> ans;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p><strong>什么，你要求和5到12区间内的和？？？</strong></p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp">ans = <span class="hljs-built_in">sum</span>(<span class="hljs-number">12</span>) - <span class="hljs-built_in">sum</span>(<span class="hljs-number">5</span><span class="hljs-number">-1</span>);<br><br></code></pre></td></tr></table></figure>
+<p><del>很颓很颓的一上午，虽然我知道我可能上面没太讲清</del></p>
+<p><del>但是那又有什么关系呢，这只是一篇类似于 <strong>日记</strong>
+的东东</del></p>
+<hr />
+<h3 id="中午-1320">中午 13：20</h3>
+<p>吃了一大盘鸡肉+两碗米饭 <del>(具体菜名叫不上来)</del></p>
+<p>来了客人，家里把以前的旧车卖了，来的是买车的人</p>
+<p>说实话，他们都认识我，我不认识他们，233333</p>
+<p>关上卧室门，逍遥自在</p>
+<hr />
+<h3 id="下午-1400">下午 14：00</h3>
+<p>刚准备打开游戏，看看沙雕可爱的 <strong>羽羽音小鸟(はばね
+ことり)</strong></p>
+<p>以及开朗温柔的 <strong>姫城扬羽(ひめぎ あげは)</strong></p>
+<p>突然想起来有洛谷月赛啊……淦！</p>
+<p>(因为我太弱，所以只做了Div2)</p>
+<p><strong>T1</strong>
+第一眼还以为是八皇后问题，但仔细一看……什么嘛，入门组水题</p>
+<p>20分钟愉快切掉 <del>(中间边界条件搞错WA了两次)</del></p>
+<p><strong>T2</strong>
+明显是道数学结论题，一开始写了个O(K)的算法上去</p>
+<p>果不其然，TLE掉最后一组数据</p>
+<p>思考了好久，推了下式子</p>
+<p><span class="math inline">\(\text{(n+1) * pow(2,k)}\)</span></p>
+<p>鉴于k比较大，写个快速幂水过去了</p>
+<p><strong>T3</strong> 卡了 我两个小时</p>
+<p>各种瞎搞算法都用过，好像是DP，但是也用前缀和搞过</p>
+<p>最后DFS暴力14分，果断滚粗</p>
+<p><strong>T4</strong> 没看……</p>
+<hr />
+<h3 id="傍晚-1900">傍晚 19：00</h3>
+<p>打开了Steam，心不在焉地玩着<strong>If My Heart Had Wings</strong></p>
+<p><img
+src="https://cdn.luogu.com.cn/upload/image_hosting/ivxjt9tg.png" /></p>
+<p>无聊中解答了几个问题，推进了下剧情</p>
+<p>记忆化搜索？(×)</p>
+<p>瞎搞 (√)</p>
+<hr />
+<h3 id="晚上-2200">晚上 22：00</h3>
+<p>关掉了游戏，写下博客</p>
+<p>决定当个日更博客主</p>
+<hr />
 ]]></content>
       <categories>
-        <category>博客</category>
+        <category>杂记</category>
       </categories>
       <tags>
-        <tag>博客</tag>
-        <tag>Hexo</tag>
-        <tag>Github</tag>
-        <tag>Next</tag>
+        <tag>杂记</tag>
+        <tag>日常</tag>
+        <tag>树状数组</tag>
+        <tag>NOI省选</tag>
       </tags>
   </entry>
 </search>
