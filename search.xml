@@ -187,8 +187,21 @@ func<span class="token punctuation">(</span><span class="token punctuation">)</s
     <span class="token punctuation">&#125;</span>
     <span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p><span class="math inline">\(\LaTeX\)</span></p>
-<p>$</p>
+<p>数学公式测试：</p>
+<p><span
+class="math display">\[\sum_{i=1}^{n}i=\frac{n(n+1)}{2}\]</span></p>
+<pre class="line-numbers language-mermaid" data-language="mermaid"><code class="language-mermaid"><span class="token keyword">graph</span> LR
+A<span class="token text string">[方形]</span> <span class="token arrow operator">--></span>B<span class="token text string">(圆角)</span>
+    B <span class="token arrow operator">--></span> C<span class="token text string">&#123;条件a&#125;</span>
+    C <span class="token arrow operator">--></span><span class="token label property">|a=1|</span> D<span class="token text string">[结果1]</span>
+    C <span class="token arrow operator">--></span><span class="token label property">|a=2|</span> E<span class="token text string">[结果2]</span>
+    F<span class="token text string">[横向流程图]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-mermaid" data-language="mermaid"><code class="language-mermaid"><span class="token keyword">graph</span> TD
+    A<span class="token text string">[方形]</span> <span class="token arrow operator">--></span>B<span class="token text string">(圆角)</span>
+    B <span class="token arrow operator">--></span> C<span class="token text string">&#123;条件a&#125;</span>
+    C <span class="token arrow operator">--></span><span class="token label property">|a=1|</span> D<span class="token text string">[结果1]</span>
+    C <span class="token arrow operator">--></span><span class="token label property">|a=2|</span> E<span class="token text string">[结果2]</span>
+    F<span class="token text string">[纵向流程图]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 ]]></content>
   </entry>
 </search>
