@@ -1,6 +1,206 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>【教程】TexLive超详细安装指南（Windows）</title>
+    <url>/2023/05/ef1f5b3c/</url>
+    <content><![CDATA[<blockquote>
+<p>本文将详细介绍如何安装TexLive，以及如何使用TexLive编译LaTeX文档。</p>
+</blockquote>
+<h2 id="什么是texlive">什么是TexLive</h2>
+<p><strong>TexLive是一个免费、开源的TeX发行版，它包含了用于排版各种类型文档的TeX系统和许多相关工具、字体、宏包和文档。</strong>
+TeX是一种专业的排版系统，用于创建高质量的科技论文、书籍、期刊和其他技术文档，它在学术界和出版业广泛使用。</p>
+<p>TexLive包含了许多与TeX相关的软件包和工具，<strong>包括LaTeX、ConTeXt、MetaPost、pdfTeX、LuaTeX等等。</strong>
+它是一个跨平台的软件，可以在不同的操作系统上使用，例如Windows、Linux、MacOS等。</p>
+<p><strong>简而言之：当你需要写一份专业的科技论文、书籍、期刊或其他技术文档时，排版是非常重要的一步。TeX是一种专业的排版系统，可以让你创建高质量的文档，它在学术界和出版业广泛使用。</strong></p>
+<h2 id="为什么要使用texlive">为什么要使用TexLive</h2>
+<p>其实，TexLive并不是唯一的TeX发行版，还有许多其他的发行版，例如MiKTeX、MacTeX等等。那么，为什么要使用TexLive呢？</p>
+<p>TexLive是一个跨平台的软件，可以在不同的操作系统上使用，例如Windows、Linux、MacOS等。而其他的TeX发行版，例如MiKTeX、MacTeX等，只能在特定的操作系统上使用，例如MiKTeX只能在Windows上使用，MacTeX只能在MacOS上使用。</p>
+<h2 id="国内texlive下载">国内TexLive下载</h2>
+<p>首选清华大学开源软件镜像站：<a
+href="https://mirrors.tuna.tsinghua.edu.cn/CTAN/systems/texlive/Images/">点我下载</a>、</p>
+<p>打开后选择最新的版本，例如这个2023年0313版本：</p>
+<p><img src="https://s2.loli.net/2023/05/05/VGIQ6b95wWHn4Xk.png" /></p>
+<p>这个<code>TexLive</code>有四五个G，看来下载要等一会儿了。</p>
+<p>如果对下载速度有要求的同学可以尝试一下
+<code>IDM</code>、<code>FDM</code> 等多线程加速的下载器。</p>
+<p>不过几分钟，我们的下载就完成啦~</p>
+<p>接下来的任务是安装</p>
+<hr />
+<h2 id="安装texlivewindows">安装TexLive（Windows）</h2>
+<p>双击我们刚刚下载好的文件</p>
+<p><img src="https://s2.loli.net/2023/05/05/Y7k3fOxsC9LFHqG.png" /></p>
+<p>会弹出一个选择应用打开的窗口</p>
+<p><img src="https://s2.loli.net/2023/05/05/vs9FckBGqRPYz7x.png" /></p>
+<p>我们选择资源管理器即可</p>
+<p>这时候，<code>我的计算机</code> 里会多出来一个软驱（DVD驱动器）</p>
+<p><img src="https://s2.loli.net/2023/05/05/QafUJpcZCFVNT5b.png" /></p>
+<p>我们打开后看到的就是TexLive的全部文件</p>
+<p>这里选择打开 <code>install-tl-windows.bat</code></p>
+<p><img src="https://s2.loli.net/2023/05/05/dAD6IwP7bipVEMg.png" /></p>
+<p>打开后，稍等一会儿，我们就可以看到我们的安装窗口</p>
+<p><img src="https://s2.loli.net/2023/05/05/9iSW5oRPuQL6fgk.png" /></p>
+<p>安装窗口大概长这样</p>
+<p>如果不是中文界面的小伙伴可以选择菜单里的 <code>GUI Languaga</code>
+来修改界面的语言</p>
+<p><img src="https://s2.loli.net/2023/05/05/lA58RHTx3rs1pbi.png" /></p>
+<p>这里默子肯定是选到中文滴</p>
+<p>然后我们修改一下安装的硬盘分区（可选）</p>
+<p>点击界面上路径后面的 <code>修改</code> 按钮</p>
+<p>会弹出一个选择路径的界面</p>
+<p><img src="https://s2.loli.net/2023/05/05/fbcxk2l7rWZOend.png" /></p>
+<p>这里默子就选择改装到H盘去了，毕竟如果都装C盘的话，C盘迟早变
+<code>血红战神</code></p>
+<blockquote>
+<p>默子暴论：如果可以自定义路径的软件还装C盘，那就是xx</p>
+</blockquote>
+<p>一切都确定后，就可以点击安装啦！</p>
+<p><strong>注意，这个安装可能会耗时1个小时。所以确保1个小时内，电脑都可以持续正常工作，不要装一半了突然笔记本没电关机，那就尴尬了。</strong></p>
+<p><img src="https://s2.loli.net/2023/05/05/iB1KbkLNAIE7a9F.png" /></p>
+<p>安装界面这里经常会出现一些问题，比如可能有的同学会闪退，我们后面再讨论这里报错的问题。</p>
+<p>等到这个4490出现（反正是差不多的数字就行），说明我们的安装开始进行了。</p>
+<p>后面有剩余时间的估计，不过这个时间经常是不准的，一般安装时间都要持续<code>40min</code></p>
+<p><strong>默子是13900HX的CPU，开了性能模式，安装了大概51min吧</strong></p>
+<p>安装好后的提示如图</p>
+<p><img src="https://s2.loli.net/2023/05/05/HOBuf9wEGNM4Q8R.png" /></p>
+<p>自此，我们的TexLive就已经成功安装完毕</p>
+<p>后续默子再来讲一讲，如何在VSCode里配置我们最舒适的LaTeX编码环境</p>
+<p>让我们的生产效率 UP UP ~</p>
+<p><a href="/">【施工中】TexLive与VSCode能碰撞出怎样的火花</a></p>
+<p><a href="/">【施工中】让人工智能辅助我们创作优秀的排版作品</a></p>
+<p><a href="/">【施工中】最舒适的TeX编写指南</a></p>
+<h2 id="参考资料">参考资料</h2>
+<p>中文LaTeX社区：<a
+href="https://www.latexstudio.net/">LaTeX工作室</a></p>
+<p>更多关于TeX的知识，可以参考这篇文章：<a
+href="https://www.latexstudio.net/texdoc/#/28?page_id=133">TeX
+家族与基础概念</a></p>
+<p>更多关于其他发行版的知识，可以参考这篇文章：<a
+href="https://www.latexstudio.net/texdoc/#/28?page_id=114">LaTeX
+发行版与下载</a></p>
+]]></content>
+      <categories>
+        <category>软件教程</category>
+      </categories>
+      <tags>
+        <tag>教程</tag>
+        <tag>LaTeX</tag>
+        <tag>TexLive</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>一些关于博客想说的话</title>
+    <url>/2023/05/81817ba7/</url>
+    <content><![CDATA[<h2 id="一些关于博客想说的话">一些关于博客想说的话</h2>
+<h3 id="为什么要写博客">1. 为什么要写博客</h3>
+<p>默子其实也不知道，只是觉得学到一些技术，用博客记录下来，也算是对自己的一种总结吧。同时还可以帮到更多的人，何乐而不为呢？</p>
+<h3 id="为什么要用hexo">2. 为什么要用Hexo</h3>
+<p>折腾了这么久，发现还是这种静态博客框架比较简单方便，其他的框架玩着玩着就搞起了前后端训练，很难绷。</p>
+<p><code>Github+Hexo+Next</code>
+，简直就是懒人一键建站最佳方案（当然，你得有一点点基础）。</p>
+<p>关于之前折腾的框架，少说也有七八个了，常见的主流的，都玩过</p>
+<p>这个博客从想法到部署，也就是30分钟的事情。（可能是已经折腾出了技术吧，哈哈哈哈，总之就是一个熟练工）</p>
+<h3 id="为什么要用github">3. 为什么要用Github</h3>
+<p>虽然国内访问Github
+Pages速度不是很快，但没关系。默子预估能看到这篇文章的人，大概率都已经是技术力比较高的CS相关人士了。</p>
+<p><strong>手里没几把趁手的梯子，说得过去嘛</strong></p>
+<h3 id="之后的更新">4. 之后的更新</h3>
+<p>这个纯纯随缘了，基本上想到什么就去更新什么。</p>
+<p>在其他平台还有很多的文章，默子也会慢慢的迁移过来。（最好是整理之后，不然其他平台的文章现在太乱了）</p>
+<p>有可能一天爆更10篇文章，也有可能两个星期没啥更新。毕竟，随缘博主是这样的，哈哈哈哈</p>
+<h3 id="关于博客的一些想法">5. 关于博客的一些想法</h3>
+<p>写博客，记录的自己，看的是别人。</p>
+<p>所以，这里定一些小小的规矩，也是对自己的一种约束吧：</p>
+<ol type="1">
+<li>尽量少用ChatGPT来完成博客的写作</li>
+<li>保持每个月至少有两篇文章更新，不能一断就断没影了</li>
+<li>技术类的文章质量做到 <code>Top 10%</code> ，不能摸鱼划水</li>
+<li>日常生活和点滴记录也可以发</li>
+</ol>
+<h3 id="最后">6. 最后</h3>
+<p>默子的博客，在这里记录一些学习笔记，生活感悟，以及一些有趣的事情。这次我会坚持下去。</p>
+<h3 id="测试项目">7. 测试项目</h3>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># 定义一个函数</span>
+<span class="token keyword">def</span> <span class="token function">func</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"hello world"</span><span class="token punctuation">)</span>
+
+<span class="token comment"># 调用函数</span>
+func<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token comment">// 利用指针交换两个数的值</span>
+<span class="token keyword">void</span> <span class="token function">swap</span><span class="token punctuation">(</span><span class="token keyword">int</span> <span class="token operator">*</span>a<span class="token punctuation">,</span> <span class="token keyword">int</span> <span class="token operator">*</span>b<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token keyword">int</span> temp <span class="token operator">=</span> <span class="token operator">*</span>a<span class="token punctuation">;</span>
+    <span class="token operator">*</span>a <span class="token operator">=</span> <span class="token operator">*</span>b<span class="token punctuation">;</span>
+    <span class="token operator">*</span>b <span class="token operator">=</span> temp<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">// 二分查找</span>
+<span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">int</span> <span class="token function">binarySearch</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> arr<span class="token punctuation">,</span> <span class="token keyword">int</span> target<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">int</span> left <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token keyword">int</span> right <span class="token operator">=</span> arr<span class="token punctuation">.</span>length <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token keyword">while</span> <span class="token punctuation">(</span>left <span class="token operator">&lt;=</span> right<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">int</span> mid <span class="token operator">=</span> <span class="token punctuation">(</span>left <span class="token operator">+</span> right<span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token number">2</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>arr<span class="token punctuation">[</span>mid<span class="token punctuation">]</span> <span class="token operator">==</span> target<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            <span class="token keyword">return</span> mid<span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>arr<span class="token punctuation">[</span>mid<span class="token punctuation">]</span> <span class="token operator">&lt;</span> target<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            left <span class="token operator">=</span> mid <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>arr<span class="token punctuation">[</span>mid<span class="token punctuation">]</span> <span class="token operator">></span> target<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            right <span class="token operator">=</span> mid <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>数学公式测试：</p>
+<p><span
+class="math display">\[\sum_{i=1}^{n}i=\frac{n(n+1)}{2}\]</span></p>
+<pre class="mermaid">graph LR
+A[方形] -->B(圆角)
+    B --> C{条件a}
+    C -->|a=1| D[结果1]
+    C -->|a=2| E[结果2]
+    F[横向流程图]</pre>
+<pre class="mermaid">graph TD
+    A[方形] -->B(圆角)
+    B --> C{条件a}
+    C -->|a=1| D[结果1]
+    C -->|a=2| E[结果2]
+    F[纵向流程图]</pre>
+<p><span class="math display">\[ n \% m = 2^{n-1} \]</span></p>
+<p><span class="math display">\[ \int_{a}^{b}f^{(3)}(t)dt \]</span></p>
+<p><span
+class="math display">\[\begin{pmatrix}ax+1&amp;1&amp;0\\1&amp;bx+2&amp;1\\0&amp;1&amp;cx+3\end{pmatrix}\]</span></p>
+<p><span class="math display">\[ c =
+(2^{7-n}-\frac{7e^{i\pi}}{6\pi})\frac{\pi}{n}+\mathrm{O}(n\lg{\lg{n}})\]</span></p>
+<p><span class="math display">\[1 \leq a_i,b_i\leq max(n,m)\]</span></p>
+<p><span
+class="math display">\[\sum\limits_{i=1}^{n}(x_i-y_i)^n\]</span></p>
+<p><span
+class="math display">\[\prod\limits_{i=1}^{n(n-1)}(k_i+\frac{\sum\limits_{j-1}^{i}(x_i+y_i)^{\frac{3}{2}}}{e\ln{(i+1)}})-\epsilon\]</span></p>
+<p><span class="math display">\[\dot{A_r} = \frac{\dot{x_0}}{\dot{x_i}}
+= \frac{\dot{A}}{1+\dot{A}\dot{F}}\]</span></p>
+<p><span class="math display">\[f(\theta) =
+\frac{\sin{\theta}(\left|cos\right|)^{\frac{1}{2}}}{2\sin(\theta)+2}-2\sin{(\theta)}+2\]</span></p>
+<p><span class="math display">\[\pi^{4}+\pi^{5}\approx
+e^{6}\]</span></p>
+<p><span
+class="math display">\[\sqrt{1+2\sqrt{1+3\sqrt{1+4\sqrt{1+\dots}}}} =
+3\]</span></p>
+<p><span class="math display">\[\hat{f}(\xi) =
+\frac{1}{(2\pi)^\frac{d}{2}}\int_{\mathbb{R}^d}e^{-ix\xi}f(x)dx\]</span></p>
+<p>为什么，渲染失败！！</p>
+<p><span
+class="math display">\[\begin{bmatrix}1&amp;2&amp;3\\4&amp;5&amp;6\\7&amp;8&amp;9\end{bmatrix}\]</span></p>
+<p>妈的</p>
+]]></content>
+      <categories>
+        <category>博客</category>
+      </categories>
+      <tags>
+        <tag>博客</tag>
+        <tag>Hexo</tag>
+        <tag>Github</tag>
+        <tag>Next</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>【杂记】2020年3月28日</title>
     <url>/2020/03/14f0aad4/</url>
     <content><![CDATA[<p><img
@@ -44,6 +244,129 @@ src="https://images.cnblogs.com/cnblogs_com/Histone/1682817/o_200328051122origin
         <tag>日常</tag>
         <tag>省选</tag>
         <tag>颓废</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【杂记】2020年3月8日</title>
+    <url>/2020/03/e8c50af6/</url>
+    <content><![CDATA[<h3 id="早上-930">早上 9：30</h3>
+<p>迷迷糊糊地吃了一碗方便面，又打开了电脑。</p>
+<p><strong>熟悉的洛谷，熟悉的DevCpp</strong></p>
+<p>第一件事是，用民间数据把昨天NOI Online的代码测试了下</p>
+<p>25+0+0</p>
+<p>哇，心态瞬间<strong>爆炸</strong>……</p>
+<p><del>（第一题明明有50的啊，第二题怎么又爆0了，第三题意料之中）</del></p>
+<p>还是要调整好自己的心态，毕竟自己是真的蒟蒻,</p>
+<p>短时间菜一点可以容忍，但绝不能容忍长时间的菜！！！</p>
+<hr />
+<h3 id="上午-1030">上午 10：30</h3>
+<p>今天距离<strong>省选</strong>还有——<strong>21</strong>天啊</p>
+<p>调整好心态继续加油。。。</p>
+<p>学着学着，突然发现，树状数组给我整蒙圈了</p>
+<p>以前就是<strong>会打板子</strong>，今天花了我好长时间总于搞懂<strong>其中的原理的lowbit操作</strong>是个什么鬼了！</p>
+<p>众所周知，树状数组可以维护区间和</p>
+<p>比如给我们一个 <strong>num[ ]</strong> 数组，长度为
+<strong>n</strong>。</p>
+<p>并且我们打算把它加到我们的树状数组 <strong>tree[ ]</strong> 中去</p>
+<p><strong>如下图</strong></p>
+<p><a href="https://imgchr.com/i/3zyxPA"><img
+src="https://s2.ax1x.com/2020/03/08/3zyxPA.png"
+alt="3zyxPA.png" /></a></p>
+<h4 id="树状数组修改插入操作">树状数组修改插入操作</h4>
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">void</span> <span class="token function">update</span><span class="token punctuation">(</span><span class="token keyword">int</span> x<span class="token punctuation">,</span><span class="token keyword">int</span> a<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+    <span class="token comment">//x是插入的位置</span>
+    <span class="token comment">//a是要插入的值</span>
+    <span class="token keyword">while</span><span class="token punctuation">(</span>x<span class="token operator">&lt;=</span>n<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        tree<span class="token punctuation">[</span>x<span class="token punctuation">]</span><span class="token operator">+=</span>a<span class="token punctuation">;</span>
+        x <span class="token operator">+=</span> <span class="token function">lowbit</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">//也就是 x = x&amp;-x</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><strong>假设 x = 1,n = 8,a = 5,则</strong></p>
+<p><strong>tree[1]+=5</strong> <strong>tree[2]+=5</strong>
+<strong>tree[4]+=5</strong> <strong>tree[8]+=5</strong></p>
+<p>lowbit()返回的其实就是x在二进制下，末尾
+<strong>第一个遇到的1和在那之前的0</strong> 的情况，比如：</p>
+<p><strong>0001 1</strong> lowbit(1) = 1</p>
+<p><strong>0010 2</strong> lowbit(2) = 2</p>
+<p><strong>0011 3</strong> lowbit(3) = 1</p>
+<p><strong>0100 4</strong> lowbit(4) = 4</p>
+<p><strong>0101 5</strong> lowbit(5) = 1</p>
+<p><strong>0110 6</strong> lowbit(6) = 2</p>
+<p><strong>0111 7</strong> lowbit(7) = 1</p>
+<p><strong>1000 8</strong> lowbit(8) = 8</p>
+<p>给一个随便给一个数字 <strong>5201314‬</strong>
+<del>(不用怀疑准确性，我用计算器算的)</del></p>
+<p><strong>lowbit(5201314) = 2</strong></p>
+<p>因为 <strong>5201314</strong>的二进制模样长这样：<strong>100 1111
+0101 1101 1010 0010‬</strong></p>
+<p>关心最后两位 100 1111 0101 1101 1010 00<strong>10‬</strong></p>
+<p>就是二进制的 <strong>2</strong></p>
+<p>至于具体的运算参考手边二进制运算课本，<del>没有？那百度啊</del></p>
+<h4 id="树状数组区间求和从x到1操作">树状数组区间求和(从x到1)操作</h4>
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">int</span> <span class="token function">sum</span><span class="token punctuation">(</span><span class="token keyword">int</span> x<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+    <span class="token comment">//x还是位置</span>
+	<span class="token keyword">int</span> ans <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+	<span class="token keyword">while</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+		ans <span class="token operator">+=</span> treen<span class="token punctuation">[</span>x<span class="token punctuation">]</span><span class="token punctuation">;</span>
+		x <span class="token operator">-=</span> <span class="token function">lowbit</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">&#125;</span>
+	<span class="token keyword">return</span> ans<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><strong>什么，你要求和5到12区间内的和？？？</strong></p>
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp">ans <span class="token operator">=</span> <span class="token function">sum</span><span class="token punctuation">(</span><span class="token number">12</span><span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token function">sum</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><del>很颓很颓的一上午，虽然我知道我可能上面没太讲清</del></p>
+<p><del>但是那又有什么关系呢，这只是一篇类似于 <strong>日记</strong>
+的东东</del></p>
+<hr />
+<h3 id="中午-1320">中午 13：20</h3>
+<p>吃了一大盘鸡肉+两碗米饭 <del>(具体菜名叫不上来)</del></p>
+<p>来了客人，家里把以前的旧车卖了，来的是买车的人</p>
+<p>说实话，他们都认识我，我不认识他们，233333</p>
+<p>关上卧室门，逍遥自在</p>
+<hr />
+<h3 id="下午-1400">下午 14：00</h3>
+<p>刚准备打开游戏，看看沙雕可爱的 <strong>羽羽音小鸟(はばね
+ことり)</strong></p>
+<p>以及开朗温柔的 <strong>姫城扬羽(ひめぎ あげは)</strong></p>
+<p>突然想起来有洛谷月赛啊……淦！</p>
+<p>(因为我太弱，所以只做了Div2)</p>
+<p><strong>T1</strong>
+第一眼还以为是八皇后问题，但仔细一看……什么嘛，入门组水题</p>
+<p>20分钟愉快切掉 <del>(中间边界条件搞错WA了两次)</del></p>
+<p><strong>T2</strong>
+明显是道数学结论题，一开始写了个O(K)的算法上去</p>
+<p>果不其然，TLE掉最后一组数据</p>
+<p>思考了好久，推了下式子</p>
+<p><span class="math inline">\(\text{(n+1) * pow(2,k)}\)</span></p>
+<p>鉴于k比较大，写个快速幂水过去了</p>
+<p><strong>T3</strong> 卡了 我两个小时</p>
+<p>各种瞎搞算法都用过，好像是DP，但是也用前缀和搞过</p>
+<p>最后DFS暴力14分，果断滚粗</p>
+<p><strong>T4</strong> 没看……</p>
+<hr />
+<h3 id="傍晚-1900">傍晚 19：00</h3>
+<p>打开了Steam，心不在焉地玩着<strong>If My Heart Had Wings</strong></p>
+<p><img
+src="https://cdn.luogu.com.cn/upload/image_hosting/ivxjt9tg.png" /></p>
+<p>无聊中解答了几个问题，推进了下剧情</p>
+<p>记忆化搜索？(×)</p>
+<p>瞎搞 (√)</p>
+<hr />
+<h3 id="晚上-2200">晚上 22：00</h3>
+<p>关掉了游戏，写下博客</p>
+<p>决定当个日更博客主</p>
+<hr />
+]]></content>
+      <categories>
+        <category>杂记</category>
+      </categories>
+      <tags>
+        <tag>杂记</tag>
+        <tag>日常</tag>
+        <tag>树状数组</tag>
+        <tag>NOI省选</tag>
       </tags>
   </entry>
   <entry>
@@ -179,329 +502,6 @@ class="math inline">\(2^k&lt;=r-l+1\)</span> 的最大值</p>
         <tag>Fibonacci数</tag>
         <tag>Catalan数</tag>
         <tag>洛谷</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>一些关于博客想说的话</title>
-    <url>/2023/05/81817ba7/</url>
-    <content><![CDATA[<h2 id="一些关于博客想说的话">一些关于博客想说的话</h2>
-<h3 id="为什么要写博客">1. 为什么要写博客</h3>
-<p>默子其实也不知道，只是觉得学到一些技术，用博客记录下来，也算是对自己的一种总结吧。同时还可以帮到更多的人，何乐而不为呢？</p>
-<h3 id="为什么要用hexo">2. 为什么要用Hexo</h3>
-<p>折腾了这么久，发现还是这种静态博客框架比较简单方便，其他的框架玩着玩着就搞起了前后端训练，很难绷。</p>
-<p><code>Github+Hexo+Next</code>
-，简直就是懒人一键建站最佳方案（当然，你得有一点点基础）。</p>
-<p>关于之前折腾的框架，少说也有七八个了，常见的主流的，都玩过</p>
-<p>这个博客从想法到部署，也就是30分钟的事情。（可能是已经折腾出了技术吧，哈哈哈哈，总之就是一个熟练工）</p>
-<h3 id="为什么要用github">3. 为什么要用Github</h3>
-<p>虽然国内访问Github
-Pages速度不是很快，但没关系。默子预估能看到这篇文章的人，大概率都已经是技术力比较高的CS相关人士了。</p>
-<p><strong>手里没几把趁手的梯子，说得过去嘛</strong></p>
-<h3 id="之后的更新">4. 之后的更新</h3>
-<p>这个纯纯随缘了，基本上想到什么就去更新什么。</p>
-<p>在其他平台还有很多的文章，默子也会慢慢的迁移过来。（最好是整理之后，不然其他平台的文章现在太乱了）</p>
-<p>有可能一天爆更10篇文章，也有可能两个星期没啥更新。毕竟，随缘博主是这样的，哈哈哈哈</p>
-<h3 id="关于博客的一些想法">5. 关于博客的一些想法</h3>
-<p>写博客，记录的自己，看的是别人。</p>
-<p>所以，这里定一些小小的规矩，也是对自己的一种约束吧：</p>
-<ol type="1">
-<li>尽量少用ChatGPT来完成博客的写作</li>
-<li>保持每个月至少有两篇文章更新，不能一断就断没影了</li>
-<li>技术类的文章质量做到 <code>Top 10%</code> ，不能摸鱼划水</li>
-<li>日常生活和点滴记录也可以发</li>
-</ol>
-<h3 id="最后">6. 最后</h3>
-<p>默子的博客，在这里记录一些学习笔记，生活感悟，以及一些有趣的事情。这次我会坚持下去。</p>
-<h3 id="测试项目">7. 测试项目</h3>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># 定义一个函数</span>
-<span class="token keyword">def</span> <span class="token function">func</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"hello world"</span><span class="token punctuation">)</span>
-
-<span class="token comment"># 调用函数</span>
-func<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token comment">// 利用指针交换两个数的值</span>
-<span class="token keyword">void</span> <span class="token function">swap</span><span class="token punctuation">(</span><span class="token keyword">int</span> <span class="token operator">*</span>a<span class="token punctuation">,</span> <span class="token keyword">int</span> <span class="token operator">*</span>b<span class="token punctuation">)</span>
-<span class="token punctuation">&#123;</span>
-    <span class="token keyword">int</span> temp <span class="token operator">=</span> <span class="token operator">*</span>a<span class="token punctuation">;</span>
-    <span class="token operator">*</span>a <span class="token operator">=</span> <span class="token operator">*</span>b<span class="token punctuation">;</span>
-    <span class="token operator">*</span>b <span class="token operator">=</span> temp<span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">// 二分查找</span>
-<span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">int</span> <span class="token function">binarySearch</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> arr<span class="token punctuation">,</span> <span class="token keyword">int</span> target<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-    <span class="token keyword">int</span> left <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
-    <span class="token keyword">int</span> right <span class="token operator">=</span> arr<span class="token punctuation">.</span>length <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span>
-    <span class="token keyword">while</span> <span class="token punctuation">(</span>left <span class="token operator">&lt;=</span> right<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-        <span class="token keyword">int</span> mid <span class="token operator">=</span> <span class="token punctuation">(</span>left <span class="token operator">+</span> right<span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token number">2</span><span class="token punctuation">;</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>arr<span class="token punctuation">[</span>mid<span class="token punctuation">]</span> <span class="token operator">==</span> target<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-            <span class="token keyword">return</span> mid<span class="token punctuation">;</span>
-        <span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>arr<span class="token punctuation">[</span>mid<span class="token punctuation">]</span> <span class="token operator">&lt;</span> target<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-            left <span class="token operator">=</span> mid <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span>
-        <span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>arr<span class="token punctuation">[</span>mid<span class="token punctuation">]</span> <span class="token operator">></span> target<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-            right <span class="token operator">=</span> mid <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span>
-        <span class="token punctuation">&#125;</span>
-    <span class="token punctuation">&#125;</span>
-    <span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>数学公式测试：</p>
-<p><span
-class="math display">\[\sum_{i=1}^{n}i=\frac{n(n+1)}{2}\]</span></p>
-<pre class="mermaid">graph LR
-A[方形] -->B(圆角)
-    B --> C{条件a}
-    C -->|a=1| D[结果1]
-    C -->|a=2| E[结果2]
-    F[横向流程图]</pre>
-<pre class="mermaid">graph TD
-    A[方形] -->B(圆角)
-    B --> C{条件a}
-    C -->|a=1| D[结果1]
-    C -->|a=2| E[结果2]
-    F[纵向流程图]</pre>
-<p><span class="math display">\[ n \% m = 2^{n-1} \]</span></p>
-<p><span class="math display">\[ \int_{a}^{b}f^{(3)}(t)dt \]</span></p>
-<p><span
-class="math display">\[\begin{pmatrix}ax+1&amp;1&amp;0\\1&amp;bx+2&amp;1\\0&amp;1&amp;cx+3\end{pmatrix}\]</span></p>
-<p><span class="math display">\[ c =
-(2^{7-n}-\frac{7e^{i\pi}}{6\pi})\frac{\pi}{n}+\mathrm{O}(n\lg{\lg{n}})\]</span></p>
-<p><span class="math display">\[1 \leq a_i,b_i\leq max(n,m)\]</span></p>
-<p><span
-class="math display">\[\sum\limits_{i=1}^{n}(x_i-y_i)^n\]</span></p>
-<p><span
-class="math display">\[\prod\limits_{i=1}^{n(n-1)}(k_i+\frac{\sum\limits_{j-1}^{i}(x_i+y_i)^{\frac{3}{2}}}{e\ln{(i+1)}})-\epsilon\]</span></p>
-<p><span class="math display">\[\dot{A_r} = \frac{\dot{x_0}}{\dot{x_i}}
-= \frac{\dot{A}}{1+\dot{A}\dot{F}}\]</span></p>
-<p><span class="math display">\[f(\theta) =
-\frac{\sin{\theta}(\left|cos\right|)^{\frac{1}{2}}}{2\sin(\theta)+2}-2\sin{(\theta)}+2\]</span></p>
-<p><span class="math display">\[\pi^{4}+\pi^{5}\approx
-e^{6}\]</span></p>
-<p><span
-class="math display">\[\sqrt{1+2\sqrt{1+3\sqrt{1+4\sqrt{1+\dots}}}} =
-3\]</span></p>
-<p><span class="math display">\[\hat{f}(\xi) =
-\frac{1}{(2\pi)^\frac{d}{2}}\int_{\mathbb{R}^d}e^{-ix\xi}f(x)dx\]</span></p>
-<p>为什么，渲染失败！！</p>
-<p><span
-class="math display">\[\begin{bmatrix}1&amp;2&amp;3\\4&amp;5&amp;6\\7&amp;8&amp;9\end{bmatrix}\]</span></p>
-<p>妈的</p>
-]]></content>
-      <categories>
-        <category>博客</category>
-      </categories>
-      <tags>
-        <tag>博客</tag>
-        <tag>Hexo</tag>
-        <tag>Github</tag>
-        <tag>Next</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【教程】TexLive超详细安装指南（Windows）</title>
-    <url>/2023/05/ef1f5b3c/</url>
-    <content><![CDATA[<blockquote>
-<p>本文将详细介绍如何安装TexLive，以及如何使用TexLive编译LaTeX文档。</p>
-</blockquote>
-<h2 id="什么是texlive">什么是TexLive</h2>
-<p><strong>TexLive是一个免费、开源的TeX发行版，它包含了用于排版各种类型文档的TeX系统和许多相关工具、字体、宏包和文档。</strong>
-TeX是一种专业的排版系统，用于创建高质量的科技论文、书籍、期刊和其他技术文档，它在学术界和出版业广泛使用。</p>
-<p>TexLive包含了许多与TeX相关的软件包和工具，<strong>包括LaTeX、ConTeXt、MetaPost、pdfTeX、LuaTeX等等。</strong>
-它是一个跨平台的软件，可以在不同的操作系统上使用，例如Windows、Linux、MacOS等。</p>
-<p><strong>简而言之：当你需要写一份专业的科技论文、书籍、期刊或其他技术文档时，排版是非常重要的一步。TeX是一种专业的排版系统，可以让你创建高质量的文档，它在学术界和出版业广泛使用。</strong></p>
-<h2 id="为什么要使用texlive">为什么要使用TexLive</h2>
-<p>其实，TexLive并不是唯一的TeX发行版，还有许多其他的发行版，例如MiKTeX、MacTeX等等。那么，为什么要使用TexLive呢？</p>
-<p>TexLive是一个跨平台的软件，可以在不同的操作系统上使用，例如Windows、Linux、MacOS等。而其他的TeX发行版，例如MiKTeX、MacTeX等，只能在特定的操作系统上使用，例如MiKTeX只能在Windows上使用，MacTeX只能在MacOS上使用。</p>
-<h2 id="国内texlive下载">国内TexLive下载</h2>
-<p>首选清华大学开源软件镜像站：<a
-href="https://mirrors.tuna.tsinghua.edu.cn/CTAN/systems/texlive/Images/">点我下载</a>、</p>
-<p>打开后选择最新的版本，例如这个2023年0313版本：</p>
-<p><img src="https://s2.loli.net/2023/05/05/VGIQ6b95wWHn4Xk.png" /></p>
-<p>这个<code>TexLive</code>有四五个G，看来下载要等一会儿了。</p>
-<p>如果对下载速度有要求的同学可以尝试一下
-<code>IDM</code>、<code>FDM</code> 等多线程加速的下载器。</p>
-<p>不过几分钟，我们的下载就完成啦~</p>
-<p>接下来的任务是安装</p>
-<hr />
-<h2 id="安装texlivewindows">安装TexLive（Windows）</h2>
-<p>双击我们刚刚下载好的文件</p>
-<p><img src="https://s2.loli.net/2023/05/05/Y7k3fOxsC9LFHqG.png" /></p>
-<p>会弹出一个选择应用打开的窗口</p>
-<p><img src="https://s2.loli.net/2023/05/05/vs9FckBGqRPYz7x.png" /></p>
-<p>我们选择资源管理器即可</p>
-<p>这时候，<code>我的计算机</code> 里会多出来一个软驱（DVD驱动器）</p>
-<p><img src="https://s2.loli.net/2023/05/05/QafUJpcZCFVNT5b.png" /></p>
-<p>我们打开后看到的就是TexLive的全部文件</p>
-<p>这里选择打开 <code>install-tl-windows.bat</code></p>
-<p><img src="https://s2.loli.net/2023/05/05/dAD6IwP7bipVEMg.png" /></p>
-<p>打开后，稍等一会儿，我们就可以看到我们的安装窗口</p>
-<p><img src="https://s2.loli.net/2023/05/05/9iSW5oRPuQL6fgk.png" /></p>
-<p>安装窗口大概长这样</p>
-<p>如果不是中文界面的小伙伴可以选择菜单里的 <code>GUI Languaga</code>
-来修改界面的语言</p>
-<p><img src="https://s2.loli.net/2023/05/05/lA58RHTx3rs1pbi.png" /></p>
-<p>这里默子肯定是选到中文滴</p>
-<p>然后我们修改一下安装的硬盘分区（可选）</p>
-<p>点击界面上路径后面的 <code>修改</code> 按钮</p>
-<p>会弹出一个选择路径的界面</p>
-<p><img src="https://s2.loli.net/2023/05/05/fbcxk2l7rWZOend.png" /></p>
-<p>这里默子就选择改装到H盘去了，毕竟如果都装C盘的话，C盘迟早变
-<code>血红战神</code></p>
-<blockquote>
-<p>默子暴论：如果可以自定义路径的软件还装C盘，那就是xx</p>
-</blockquote>
-<p>一切都确定后，就可以点击安装啦！</p>
-<p><strong>注意，这个安装可能会耗时1个小时。所以确保1个小时内，电脑都可以持续正常工作，不要装一半了突然笔记本没电关机，那就尴尬了。</strong></p>
-<p><img src="https://s2.loli.net/2023/05/05/iB1KbkLNAIE7a9F.png" /></p>
-<p>安装界面这里经常会出现一些问题，比如可能有的同学会闪退，我们后面再讨论这里报错的问题。</p>
-<p>等到这个4490出现（反正是差不多的数字就行），说明我们的安装开始进行了。</p>
-<p>后面有剩余时间的估计，不过这个时间经常是不准的，一般安装时间都要持续<code>40min</code></p>
-<p><strong>默子是13900HX的CPU，开了性能模式，安装了大概51min吧</strong></p>
-<p>安装好后的提示如图</p>
-<p><img src="https://s2.loli.net/2023/05/05/HOBuf9wEGNM4Q8R.png" /></p>
-<p>自此，我们的TexLive就已经成功安装完毕</p>
-<p>后续默子再来讲一讲，如何在VSCode里配置我们最舒适的LaTeX编码环境</p>
-<p>让我们的生产效率 UP UP ~</p>
-<p><a href="/">【施工中】TexLive与VSCode能碰撞出怎样的火花</a></p>
-<p><a href="/">【施工中】让人工智能辅助我们创作优秀的排版作品</a></p>
-<p><a href="/">【施工中】最舒适的TeX编写指南</a></p>
-<h2 id="参考资料">参考资料</h2>
-<p>中文LaTeX社区：<a
-href="https://www.latexstudio.net/">LaTeX工作室</a></p>
-<p>更多关于TeX的知识，可以参考这篇文章：<a
-href="https://www.latexstudio.net/texdoc/#/28?page_id=133">TeX
-家族与基础概念</a></p>
-<p>更多关于其他发行版的知识，可以参考这篇文章：<a
-href="https://www.latexstudio.net/texdoc/#/28?page_id=114">LaTeX
-发行版与下载</a></p>
-]]></content>
-      <categories>
-        <category>软件教程</category>
-      </categories>
-      <tags>
-        <tag>教程</tag>
-        <tag>LaTeX</tag>
-        <tag>TexLive</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【杂记】2020年3月8日</title>
-    <url>/2020/03/e8c50af6/</url>
-    <content><![CDATA[<h3 id="早上-930">早上 9：30</h3>
-<p>迷迷糊糊地吃了一碗方便面，又打开了电脑。</p>
-<p><strong>熟悉的洛谷，熟悉的DevCpp</strong></p>
-<p>第一件事是，用民间数据把昨天NOI Online的代码测试了下</p>
-<p>25+0+0</p>
-<p>哇，心态瞬间<strong>爆炸</strong>……</p>
-<p><del>（第一题明明有50的啊，第二题怎么又爆0了，第三题意料之中）</del></p>
-<p>还是要调整好自己的心态，毕竟自己是真的蒟蒻,</p>
-<p>短时间菜一点可以容忍，但绝不能容忍长时间的菜！！！</p>
-<hr />
-<h3 id="上午-1030">上午 10：30</h3>
-<p>今天距离<strong>省选</strong>还有——<strong>21</strong>天啊</p>
-<p>调整好心态继续加油。。。</p>
-<p>学着学着，突然发现，树状数组给我整蒙圈了</p>
-<p>以前就是<strong>会打板子</strong>，今天花了我好长时间总于搞懂<strong>其中的原理的lowbit操作</strong>是个什么鬼了！</p>
-<p>众所周知，树状数组可以维护区间和</p>
-<p>比如给我们一个 <strong>num[ ]</strong> 数组，长度为
-<strong>n</strong>。</p>
-<p>并且我们打算把它加到我们的树状数组 <strong>tree[ ]</strong> 中去</p>
-<p><strong>如下图</strong></p>
-<p><a href="https://imgchr.com/i/3zyxPA"><img
-src="https://s2.ax1x.com/2020/03/08/3zyxPA.png"
-alt="3zyxPA.png" /></a></p>
-<h4 id="树状数组修改插入操作">树状数组修改插入操作</h4>
-<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">void</span> <span class="token function">update</span><span class="token punctuation">(</span><span class="token keyword">int</span> x<span class="token punctuation">,</span><span class="token keyword">int</span> a<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-    <span class="token comment">//x是插入的位置</span>
-    <span class="token comment">//a是要插入的值</span>
-    <span class="token keyword">while</span><span class="token punctuation">(</span>x<span class="token operator">&lt;=</span>n<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-        tree<span class="token punctuation">[</span>x<span class="token punctuation">]</span><span class="token operator">+=</span>a<span class="token punctuation">;</span>
-        x <span class="token operator">+=</span> <span class="token function">lowbit</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token comment">//也就是 x = x&amp;-x</span>
-    <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p><strong>假设 x = 1,n = 8,a = 5,则</strong></p>
-<p><strong>tree[1]+=5</strong> <strong>tree[2]+=5</strong>
-<strong>tree[4]+=5</strong> <strong>tree[8]+=5</strong></p>
-<p>lowbit()返回的其实就是x在二进制下，末尾
-<strong>第一个遇到的1和在那之前的0</strong> 的情况，比如：</p>
-<p><strong>0001 1</strong> lowbit(1) = 1</p>
-<p><strong>0010 2</strong> lowbit(2) = 2</p>
-<p><strong>0011 3</strong> lowbit(3) = 1</p>
-<p><strong>0100 4</strong> lowbit(4) = 4</p>
-<p><strong>0101 5</strong> lowbit(5) = 1</p>
-<p><strong>0110 6</strong> lowbit(6) = 2</p>
-<p><strong>0111 7</strong> lowbit(7) = 1</p>
-<p><strong>1000 8</strong> lowbit(8) = 8</p>
-<p>给一个随便给一个数字 <strong>5201314‬</strong>
-<del>(不用怀疑准确性，我用计算器算的)</del></p>
-<p><strong>lowbit(5201314) = 2</strong></p>
-<p>因为 <strong>5201314</strong>的二进制模样长这样：<strong>100 1111
-0101 1101 1010 0010‬</strong></p>
-<p>关心最后两位 100 1111 0101 1101 1010 00<strong>10‬</strong></p>
-<p>就是二进制的 <strong>2</strong></p>
-<p>至于具体的运算参考手边二进制运算课本，<del>没有？那百度啊</del></p>
-<h4 id="树状数组区间求和从x到1操作">树状数组区间求和(从x到1)操作</h4>
-<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">int</span> <span class="token function">sum</span><span class="token punctuation">(</span><span class="token keyword">int</span> x<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-    <span class="token comment">//x还是位置</span>
-	<span class="token keyword">int</span> ans <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
-	<span class="token keyword">while</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-		ans <span class="token operator">+=</span> treen<span class="token punctuation">[</span>x<span class="token punctuation">]</span><span class="token punctuation">;</span>
-		x <span class="token operator">-=</span> <span class="token function">lowbit</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">;</span>
-	<span class="token punctuation">&#125;</span>
-	<span class="token keyword">return</span> ans<span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p><strong>什么，你要求和5到12区间内的和？？？</strong></p>
-<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp">ans <span class="token operator">=</span> <span class="token function">sum</span><span class="token punctuation">(</span><span class="token number">12</span><span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token function">sum</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p><del>很颓很颓的一上午，虽然我知道我可能上面没太讲清</del></p>
-<p><del>但是那又有什么关系呢，这只是一篇类似于 <strong>日记</strong>
-的东东</del></p>
-<hr />
-<h3 id="中午-1320">中午 13：20</h3>
-<p>吃了一大盘鸡肉+两碗米饭 <del>(具体菜名叫不上来)</del></p>
-<p>来了客人，家里把以前的旧车卖了，来的是买车的人</p>
-<p>说实话，他们都认识我，我不认识他们，233333</p>
-<p>关上卧室门，逍遥自在</p>
-<hr />
-<h3 id="下午-1400">下午 14：00</h3>
-<p>刚准备打开游戏，看看沙雕可爱的 <strong>羽羽音小鸟(はばね
-ことり)</strong></p>
-<p>以及开朗温柔的 <strong>姫城扬羽(ひめぎ あげは)</strong></p>
-<p>突然想起来有洛谷月赛啊……淦！</p>
-<p>(因为我太弱，所以只做了Div2)</p>
-<p><strong>T1</strong>
-第一眼还以为是八皇后问题，但仔细一看……什么嘛，入门组水题</p>
-<p>20分钟愉快切掉 <del>(中间边界条件搞错WA了两次)</del></p>
-<p><strong>T2</strong>
-明显是道数学结论题，一开始写了个O(K)的算法上去</p>
-<p>果不其然，TLE掉最后一组数据</p>
-<p>思考了好久，推了下式子</p>
-<p><span class="math inline">\(\text{(n+1) * pow(2,k)}\)</span></p>
-<p>鉴于k比较大，写个快速幂水过去了</p>
-<p><strong>T3</strong> 卡了 我两个小时</p>
-<p>各种瞎搞算法都用过，好像是DP，但是也用前缀和搞过</p>
-<p>最后DFS暴力14分，果断滚粗</p>
-<p><strong>T4</strong> 没看……</p>
-<hr />
-<h3 id="傍晚-1900">傍晚 19：00</h3>
-<p>打开了Steam，心不在焉地玩着<strong>If My Heart Had Wings</strong></p>
-<p><img
-src="https://cdn.luogu.com.cn/upload/image_hosting/ivxjt9tg.png" /></p>
-<p>无聊中解答了几个问题，推进了下剧情</p>
-<p>记忆化搜索？(×)</p>
-<p>瞎搞 (√)</p>
-<hr />
-<h3 id="晚上-2200">晚上 22：00</h3>
-<p>关掉了游戏，写下博客</p>
-<p>决定当个日更博客主</p>
-<hr />
-]]></content>
-      <categories>
-        <category>杂记</category>
-      </categories>
-      <tags>
-        <tag>杂记</tag>
-        <tag>日常</tag>
-        <tag>树状数组</tag>
-        <tag>NOI省选</tag>
       </tags>
   </entry>
 </search>
