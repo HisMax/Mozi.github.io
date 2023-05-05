@@ -1,84 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>一些关于博客想说的话</title>
-    <url>/Mozi.github.io/2023/05/81817ba7/</url>
-    <content><![CDATA[<h2 id="一些关于博客想说的话">一些关于博客想说的话</h2>
-<h3 id="为什么要写博客">1. 为什么要写博客</h3>
-<p>默子其实也不知道，只是觉得学到一些技术，用博客记录下来，也算是对自己的一种总结吧。同时还可以帮到更多的人，何乐而不为呢？</p>
-<h3 id="为什么要用hexo">2. 为什么要用Hexo</h3>
-<p>折腾了这么久，发现还是这种静态博客框架比较简单方便，其他的框架玩着玩着就搞起了前后端训练，很难绷。</p>
-<p><code>Github+Hexo+Next</code>
-，简直就是懒人一键建站最佳方案（当然，你得有一点点基础）。</p>
-<p>关于之前折腾的框架，少说也有七八个了，常见的主流的，都玩过</p>
-<p>这个博客从想法到部署，也就是30分钟的事情。（可能是已经折腾出了技术吧，哈哈哈哈，总之就是一个熟练工）</p>
-<h3 id="为什么要用github">3. 为什么要用Github</h3>
-<p>虽然国内访问Github
-Pages速度不是很快，但没关系。默子预估能看到这篇文章的人，大概率都已经是技术力比较高的CS相关人士了。</p>
-<p><strong>手里没几把趁手的梯子，说得过去嘛</strong></p>
-<h3 id="之后的更新">4. 之后的更新</h3>
-<p>这个纯纯随缘了，基本上想到什么就去更新什么。</p>
-<p>在其他平台还有很多的文章，默子也会慢慢的迁移过来。（最好是整理之后，不然其他平台的文章现在太乱了）</p>
-<p>有可能一天爆更10篇文章，也有可能两个星期没啥更新。毕竟，随缘博主是这样的，哈哈哈哈</p>
-<h3 id="关于博客的一些想法">5. 关于博客的一些想法</h3>
-<p>写博客，记录的自己，看的是别人。</p>
-<p>所以，这里定一些小小的规矩，也是对自己的一种约束吧：</p>
-<ol type="1">
-<li>尽量少用ChatGPT来完成博客的写作</li>
-<li>保持每个月至少有两篇文章更新，不能一断就断没影了</li>
-<li>技术类的文章质量做到 <code>Top 10%</code> ，不能摸鱼划水</li>
-<li>日常生活和点滴记录也可以发</li>
-</ol>
-<h3 id="最后">6. 最后</h3>
-<p>默子的博客，在这里记录一些学习笔记，生活感悟，以及一些有趣的事情。这次我会坚持下去。</p>
-<h3 id="测试项目">7. 测试项目</h3>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># 定义一个函数</span>
-<span class="token keyword">def</span> <span class="token function">func</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"hello world"</span><span class="token punctuation">)</span>
-
-<span class="token comment"># 调用函数</span>
-func<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token comment">// 利用指针交换两个数的值</span>
-<span class="token keyword">void</span> <span class="token function">swap</span><span class="token punctuation">(</span><span class="token keyword">int</span> <span class="token operator">*</span>a<span class="token punctuation">,</span> <span class="token keyword">int</span> <span class="token operator">*</span>b<span class="token punctuation">)</span>
-<span class="token punctuation">&#123;</span>
-    <span class="token keyword">int</span> temp <span class="token operator">=</span> <span class="token operator">*</span>a<span class="token punctuation">;</span>
-    <span class="token operator">*</span>a <span class="token operator">=</span> <span class="token operator">*</span>b<span class="token punctuation">;</span>
-    <span class="token operator">*</span>b <span class="token operator">=</span> temp<span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">// 二分查找</span>
-<span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">int</span> <span class="token function">binarySearch</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> arr<span class="token punctuation">,</span> <span class="token keyword">int</span> target<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-    <span class="token keyword">int</span> left <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
-    <span class="token keyword">int</span> right <span class="token operator">=</span> arr<span class="token punctuation">.</span>length <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span>
-    <span class="token keyword">while</span> <span class="token punctuation">(</span>left <span class="token operator">&lt;=</span> right<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-        <span class="token keyword">int</span> mid <span class="token operator">=</span> <span class="token punctuation">(</span>left <span class="token operator">+</span> right<span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token number">2</span><span class="token punctuation">;</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>arr<span class="token punctuation">[</span>mid<span class="token punctuation">]</span> <span class="token operator">==</span> target<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-            <span class="token keyword">return</span> mid<span class="token punctuation">;</span>
-        <span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>arr<span class="token punctuation">[</span>mid<span class="token punctuation">]</span> <span class="token operator">&lt;</span> target<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-            left <span class="token operator">=</span> mid <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span>
-        <span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>arr<span class="token punctuation">[</span>mid<span class="token punctuation">]</span> <span class="token operator">></span> target<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-            right <span class="token operator">=</span> mid <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span>
-        <span class="token punctuation">&#125;</span>
-    <span class="token punctuation">&#125;</span>
-    <span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>数学公式测试：</p>
-<p><span
-class="math display">\[\sum_{i=1}^{n}i=\frac{n(n+1)}{2}\]</span></p>
-<pre class="line-numbers language-mermaid" data-language="mermaid"><code class="language-mermaid"><span class="token keyword">graph</span> LR
-A<span class="token text string">[方形]</span> <span class="token arrow operator">--></span>B<span class="token text string">(圆角)</span>
-    B <span class="token arrow operator">--></span> C<span class="token text string">&#123;条件a&#125;</span>
-    C <span class="token arrow operator">--></span><span class="token label property">|a=1|</span> D<span class="token text string">[结果1]</span>
-    C <span class="token arrow operator">--></span><span class="token label property">|a=2|</span> E<span class="token text string">[结果2]</span>
-    F<span class="token text string">[横向流程图]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<pre class="line-numbers language-mermaid" data-language="mermaid"><code class="language-mermaid"><span class="token keyword">graph</span> TD
-    A<span class="token text string">[方形]</span> <span class="token arrow operator">--></span>B<span class="token text string">(圆角)</span>
-    B <span class="token arrow operator">--></span> C<span class="token text string">&#123;条件a&#125;</span>
-    C <span class="token arrow operator">--></span><span class="token label property">|a=1|</span> D<span class="token text string">[结果1]</span>
-    C <span class="token arrow operator">--></span><span class="token label property">|a=2|</span> E<span class="token text string">[结果2]</span>
-    F<span class="token text string">[纵向流程图]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-]]></content>
-  </entry>
-  <entry>
     <title>【教程】TexLive超详细安装指南（Windows）</title>
     <url>/Mozi.github.io/2023/05/ef1f5b3c/</url>
     <content><![CDATA[<blockquote>
@@ -202,6 +124,84 @@ href="https://www.latexstudio.net/texdoc/#/28?page_id=133">TeX
 <p>更多关于其他发行版的知识，可以参考这篇文章：<a
 href="https://www.latexstudio.net/texdoc/#/28?page_id=114">LaTeX
 发行版与下载</a></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>一些关于博客想说的话</title>
+    <url>/Mozi.github.io/2023/05/81817ba7/</url>
+    <content><![CDATA[<h2 id="一些关于博客想说的话">一些关于博客想说的话</h2>
+<h3 id="为什么要写博客">1. 为什么要写博客</h3>
+<p>默子其实也不知道，只是觉得学到一些技术，用博客记录下来，也算是对自己的一种总结吧。同时还可以帮到更多的人，何乐而不为呢？</p>
+<h3 id="为什么要用hexo">2. 为什么要用Hexo</h3>
+<p>折腾了这么久，发现还是这种静态博客框架比较简单方便，其他的框架玩着玩着就搞起了前后端训练，很难绷。</p>
+<p><code>Github+Hexo+Next</code>
+，简直就是懒人一键建站最佳方案（当然，你得有一点点基础）。</p>
+<p>关于之前折腾的框架，少说也有七八个了，常见的主流的，都玩过</p>
+<p>这个博客从想法到部署，也就是30分钟的事情。（可能是已经折腾出了技术吧，哈哈哈哈，总之就是一个熟练工）</p>
+<h3 id="为什么要用github">3. 为什么要用Github</h3>
+<p>虽然国内访问Github
+Pages速度不是很快，但没关系。默子预估能看到这篇文章的人，大概率都已经是技术力比较高的CS相关人士了。</p>
+<p><strong>手里没几把趁手的梯子，说得过去嘛</strong></p>
+<h3 id="之后的更新">4. 之后的更新</h3>
+<p>这个纯纯随缘了，基本上想到什么就去更新什么。</p>
+<p>在其他平台还有很多的文章，默子也会慢慢的迁移过来。（最好是整理之后，不然其他平台的文章现在太乱了）</p>
+<p>有可能一天爆更10篇文章，也有可能两个星期没啥更新。毕竟，随缘博主是这样的，哈哈哈哈</p>
+<h3 id="关于博客的一些想法">5. 关于博客的一些想法</h3>
+<p>写博客，记录的自己，看的是别人。</p>
+<p>所以，这里定一些小小的规矩，也是对自己的一种约束吧：</p>
+<ol type="1">
+<li>尽量少用ChatGPT来完成博客的写作</li>
+<li>保持每个月至少有两篇文章更新，不能一断就断没影了</li>
+<li>技术类的文章质量做到 <code>Top 10%</code> ，不能摸鱼划水</li>
+<li>日常生活和点滴记录也可以发</li>
+</ol>
+<h3 id="最后">6. 最后</h3>
+<p>默子的博客，在这里记录一些学习笔记，生活感悟，以及一些有趣的事情。这次我会坚持下去。</p>
+<h3 id="测试项目">7. 测试项目</h3>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># 定义一个函数</span>
+<span class="token keyword">def</span> <span class="token function">func</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"hello world"</span><span class="token punctuation">)</span>
+
+<span class="token comment"># 调用函数</span>
+func<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token comment">// 利用指针交换两个数的值</span>
+<span class="token keyword">void</span> <span class="token function">swap</span><span class="token punctuation">(</span><span class="token keyword">int</span> <span class="token operator">*</span>a<span class="token punctuation">,</span> <span class="token keyword">int</span> <span class="token operator">*</span>b<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token keyword">int</span> temp <span class="token operator">=</span> <span class="token operator">*</span>a<span class="token punctuation">;</span>
+    <span class="token operator">*</span>a <span class="token operator">=</span> <span class="token operator">*</span>b<span class="token punctuation">;</span>
+    <span class="token operator">*</span>b <span class="token operator">=</span> temp<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">// 二分查找</span>
+<span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">int</span> <span class="token function">binarySearch</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> arr<span class="token punctuation">,</span> <span class="token keyword">int</span> target<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">int</span> left <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token keyword">int</span> right <span class="token operator">=</span> arr<span class="token punctuation">.</span>length <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token keyword">while</span> <span class="token punctuation">(</span>left <span class="token operator">&lt;=</span> right<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">int</span> mid <span class="token operator">=</span> <span class="token punctuation">(</span>left <span class="token operator">+</span> right<span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token number">2</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>arr<span class="token punctuation">[</span>mid<span class="token punctuation">]</span> <span class="token operator">==</span> target<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            <span class="token keyword">return</span> mid<span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>arr<span class="token punctuation">[</span>mid<span class="token punctuation">]</span> <span class="token operator">&lt;</span> target<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            left <span class="token operator">=</span> mid <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>arr<span class="token punctuation">[</span>mid<span class="token punctuation">]</span> <span class="token operator">></span> target<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            right <span class="token operator">=</span> mid <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>数学公式测试：</p>
+<p><span
+class="math display">\[\sum_{i=1}^{n}i=\frac{n(n+1)}{2}\]</span></p>
+<pre class="line-numbers language-mermaid" data-language="mermaid"><code class="language-mermaid"><span class="token keyword">graph</span> LR
+A<span class="token text string">[方形]</span> <span class="token arrow operator">--></span>B<span class="token text string">(圆角)</span>
+    B <span class="token arrow operator">--></span> C<span class="token text string">&#123;条件a&#125;</span>
+    C <span class="token arrow operator">--></span><span class="token label property">|a=1|</span> D<span class="token text string">[结果1]</span>
+    C <span class="token arrow operator">--></span><span class="token label property">|a=2|</span> E<span class="token text string">[结果2]</span>
+    F<span class="token text string">[横向流程图]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-mermaid" data-language="mermaid"><code class="language-mermaid"><span class="token keyword">graph</span> TD
+    A<span class="token text string">[方形]</span> <span class="token arrow operator">--></span>B<span class="token text string">(圆角)</span>
+    B <span class="token arrow operator">--></span> C<span class="token text string">&#123;条件a&#125;</span>
+    C <span class="token arrow operator">--></span><span class="token label property">|a=1|</span> D<span class="token text string">[结果1]</span>
+    C <span class="token arrow operator">--></span><span class="token label property">|a=2|</span> E<span class="token text string">[结果2]</span>
+    F<span class="token text string">[纵向流程图]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 ]]></content>
   </entry>
 </search>
