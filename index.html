@@ -224,7 +224,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>1.5k</span>
+              <span>1.9k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -246,61 +246,124 @@
           <blockquote>
 <p>本文将详细介绍如何安装TexLive，以及如何使用TexLive编译LaTeX文档。</p>
 </blockquote>
-<h2 id="什么是TexLive"><a href="#什么是TexLive" class="headerlink" title="什么是TexLive"></a>什么是TexLive</h2><p><strong>TexLive是一个免费、开源的TeX发行版，它包含了用于排版各种类型文档的TeX系统和许多相关工具、字体、宏包和文档。</strong> TeX是一种专业的排版系统，用于创建高质量的科技论文、书籍、期刊和其他技术文档，它在学术界和出版业广泛使用。</p>
-<p>TexLive包含了许多与TeX相关的软件包和工具，<strong>包括LaTeX、ConTeXt、MetaPost、pdfTeX、LuaTeX等等。</strong> 它是一个跨平台的软件，可以在不同的操作系统上使用，例如Windows、Linux、MacOS等。</p>
+<h2 id="什么是texlive">什么是TexLive</h2>
+<p><strong>TexLive是一个免费、开源的TeX发行版，它包含了用于排版各种类型文档的TeX系统和许多相关工具、字体、宏包和文档。</strong>
+TeX是一种专业的排版系统，用于创建高质量的科技论文、书籍、期刊和其他技术文档，它在学术界和出版业广泛使用。</p>
+<p>TexLive包含了许多与TeX相关的软件包和工具，<strong>包括LaTeX、ConTeXt、MetaPost、pdfTeX、LuaTeX等等。</strong>
+它是一个跨平台的软件，可以在不同的操作系统上使用，例如Windows、Linux、MacOS等。</p>
 <p><strong>简而言之：当你需要写一份专业的科技论文、书籍、期刊或其他技术文档时，排版是非常重要的一步。TeX是一种专业的排版系统，可以让你创建高质量的文档，它在学术界和出版业广泛使用。</strong></p>
-<h2 id="为什么要使用TexLive"><a href="#为什么要使用TexLive" class="headerlink" title="为什么要使用TexLive"></a>为什么要使用TexLive</h2><p>其实，TexLive并不是唯一的TeX发行版，还有许多其他的发行版，例如MiKTeX、MacTeX等等。那么，为什么要使用TexLive呢？</p>
+<h2 id="为什么要使用texlive">为什么要使用TexLive</h2>
+<p>其实，TexLive并不是唯一的TeX发行版，还有许多其他的发行版，例如MiKTeX、MacTeX等等。那么，为什么要使用TexLive呢？</p>
 <p>TexLive是一个跨平台的软件，可以在不同的操作系统上使用，例如Windows、Linux、MacOS等。而其他的TeX发行版，例如MiKTeX、MacTeX等，只能在特定的操作系统上使用，例如MiKTeX只能在Windows上使用，MacTeX只能在MacOS上使用。</p>
-<h2 id="国内TexLive下载"><a href="#国内TexLive下载" class="headerlink" title="国内TexLive下载"></a>国内TexLive下载</h2><p>首选清华大学开源软件镜像站：<a target="_blank" rel="noopener" href="https://mirrors.tuna.tsinghua.edu.cn/CTAN/systems/texlive/Images/">点我下载</a>、</p>
+<h2 id="国内texlive下载">国内TexLive下载</h2>
+<p>首选清华大学开源软件镜像站：<a
+target="_blank" rel="noopener" href="https://mirrors.tuna.tsinghua.edu.cn/CTAN/systems/texlive/Images/">点我下载</a>、</p>
 <p>打开后选择最新的版本，例如这个2023年0313版本：</p>
-<p><img src="https://s2.loli.net/2023/05/05/VGIQ6b95wWHn4Xk.png" alt="baea5d64aa1669e37d08ebb60c62b3f.png"></p>
+<figure>
+<img src="https://s2.loli.net/2023/05/05/VGIQ6b95wWHn4Xk.png"
+alt="baea5d64aa1669e37d08ebb60c62b3f.png" />
+<figcaption
+aria-hidden="true">baea5d64aa1669e37d08ebb60c62b3f.png</figcaption>
+</figure>
 <p>这个<code>TexLive</code>有四五个G，看来下载要等一会儿了。</p>
-<p>如果对下载速度有要求的同学可以尝试一下 <code>IDM</code>、<code>FDM</code> 等多线程加速的下载器。</p>
+<p>如果对下载速度有要求的同学可以尝试一下
+<code>IDM</code>、<code>FDM</code> 等多线程加速的下载器。</p>
 <p>不过几分钟，我们的下载就完成啦~</p>
 <p>接下来的任务是安装</p>
-<hr>
-<h2 id="安装TexLive（Windows）"><a href="#安装TexLive（Windows）" class="headerlink" title="安装TexLive（Windows）"></a>安装TexLive（Windows）</h2><p>双击我们刚刚下载好的文件</p>
-<p><img src="https://s2.loli.net/2023/05/05/Y7k3fOxsC9LFHqG.png" alt="image.png"></p>
+<hr />
+<h2 id="安装texlivewindows">安装TexLive（Windows）</h2>
+<p>双击我们刚刚下载好的文件</p>
+<figure>
+<img src="https://s2.loli.net/2023/05/05/Y7k3fOxsC9LFHqG.png"
+alt="image.png" />
+<figcaption aria-hidden="true">image.png</figcaption>
+</figure>
 <p>会弹出一个选择应用打开的窗口</p>
-<p><img src="https://s2.loli.net/2023/05/05/vs9FckBGqRPYz7x.png" alt="c442000f60b8524d210e6be53688f2e.png"></p>
+<figure>
+<img src="https://s2.loli.net/2023/05/05/vs9FckBGqRPYz7x.png"
+alt="c442000f60b8524d210e6be53688f2e.png" />
+<figcaption
+aria-hidden="true">c442000f60b8524d210e6be53688f2e.png</figcaption>
+</figure>
 <p>我们选择资源管理器即可</p>
 <p>这时候，<code>我的计算机</code> 里会多出来一个软驱（DVD驱动器）</p>
-<p><img src="https://s2.loli.net/2023/05/05/QafUJpcZCFVNT5b.png" alt="image.png"></p>
+<figure>
+<img src="https://s2.loli.net/2023/05/05/QafUJpcZCFVNT5b.png"
+alt="image.png" />
+<figcaption aria-hidden="true">image.png</figcaption>
+</figure>
 <p>我们打开后看到的就是TexLive的全部文件</p>
 <p>这里选择打开 <code>install-tl-windows.bat</code></p>
-<p><img src="https://s2.loli.net/2023/05/05/dAD6IwP7bipVEMg.png" alt="c9fc480e0c07a66cdff73c59fbfb35e.png"></p>
+<figure>
+<img src="https://s2.loli.net/2023/05/05/dAD6IwP7bipVEMg.png"
+alt="c9fc480e0c07a66cdff73c59fbfb35e.png" />
+<figcaption
+aria-hidden="true">c9fc480e0c07a66cdff73c59fbfb35e.png</figcaption>
+</figure>
 <p>打开后，稍等一会儿，我们就可以看到我们的安装窗口</p>
-<p><img src="https://s2.loli.net/2023/05/05/9iSW5oRPuQL6fgk.png" alt="6f63e3b8fdfe08f4cd26d12b6529509.png"></p>
+<figure>
+<img src="https://s2.loli.net/2023/05/05/9iSW5oRPuQL6fgk.png"
+alt="6f63e3b8fdfe08f4cd26d12b6529509.png" />
+<figcaption
+aria-hidden="true">6f63e3b8fdfe08f4cd26d12b6529509.png</figcaption>
+</figure>
 <p>安装窗口大概长这样</p>
-<p>如果不是中文界面的小伙伴可以选择菜单里的 <code>GUI Languaga</code> 来修改界面的语言</p>
-<p><img src="https://s2.loli.net/2023/05/05/lA58RHTx3rs1pbi.png" alt="35ff5b4825281754f36713b68e9e474.png"></p>
+<p>如果不是中文界面的小伙伴可以选择菜单里的 <code>GUI Languaga</code>
+来修改界面的语言</p>
+<figure>
+<img src="https://s2.loli.net/2023/05/05/lA58RHTx3rs1pbi.png"
+alt="35ff5b4825281754f36713b68e9e474.png" />
+<figcaption
+aria-hidden="true">35ff5b4825281754f36713b68e9e474.png</figcaption>
+</figure>
 <p>这里默子肯定是选到中文滴</p>
 <p>然后我们修改一下安装的硬盘分区（可选）</p>
 <p>点击界面上路径后面的 <code>修改</code> 按钮</p>
 <p>会弹出一个选择路径的界面</p>
-<p><img src="https://s2.loli.net/2023/05/05/fbcxk2l7rWZOend.png" alt="f00577338543b8976f9fe2e1c2628e5.png"></p>
-<p>这里默子就选择改装到H盘去了，毕竟如果都装C盘的话，C盘迟早变 <code>血红战神</code></p>
+<figure>
+<img src="https://s2.loli.net/2023/05/05/fbcxk2l7rWZOend.png"
+alt="f00577338543b8976f9fe2e1c2628e5.png" />
+<figcaption
+aria-hidden="true">f00577338543b8976f9fe2e1c2628e5.png</figcaption>
+</figure>
+<p>这里默子就选择改装到H盘去了，毕竟如果都装C盘的话，C盘迟早变
+<code>血红战神</code></p>
 <blockquote>
 <p>默子暴论：如果可以自定义路径的软件还装C盘，那就是xx</p>
 </blockquote>
 <p>一切都确定后，就可以点击安装啦！</p>
 <p><strong>注意，这个安装可能会耗时1个小时。所以确保1个小时内，电脑都可以持续正常工作，不要装一半了突然笔记本没电关机，那就尴尬了。</strong></p>
-<p><img src="https://s2.loli.net/2023/05/05/iB1KbkLNAIE7a9F.png" alt="d183d65cfefc5a75aa7439f933cc901.png"></p>
+<figure>
+<img src="https://s2.loli.net/2023/05/05/iB1KbkLNAIE7a9F.png"
+alt="d183d65cfefc5a75aa7439f933cc901.png" />
+<figcaption
+aria-hidden="true">d183d65cfefc5a75aa7439f933cc901.png</figcaption>
+</figure>
 <p>安装界面这里经常会出现一些问题，比如可能有的同学会闪退，我们后面再讨论这里报错的问题。</p>
 <p>等到这个4490出现（反正是差不多的数字就行），说明我们的安装开始进行了。</p>
 <p>后面有剩余时间的估计，不过这个时间经常是不准的，一般安装时间都要持续<code>40min</code></p>
 <p><strong>默子是13900HX的CPU，开了性能模式，安装了大概51min吧</strong></p>
 <p>安装好后的提示如图</p>
-<p><img src="https://s2.loli.net/2023/05/05/HOBuf9wEGNM4Q8R.png" alt="image.png"></p>
+<figure>
+<img src="https://s2.loli.net/2023/05/05/HOBuf9wEGNM4Q8R.png"
+alt="image.png" />
+<figcaption aria-hidden="true">image.png</figcaption>
+</figure>
 <p>自此，我们的TexLive就已经成功安装完毕</p>
 <p>后续默子再来讲一讲，如何在VSCode里配置我们最舒适的LaTeX编码环境</p>
 <p>让我们的生产效率 UP UP ~</p>
 <p><a href="/">【施工中】TexLive与VSCode能碰撞出怎样的火花</a></p>
 <p><a href="/">【施工中】让人工智能辅助我们创作优秀的排版作品</a></p>
 <p><a href="/">【施工中】最舒适的TeX编写指南</a></p>
-<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p>中文LaTeX社区：<a target="_blank" rel="noopener" href="https://www.latexstudio.net/">LaTeX工作室</a></p>
-<p>更多关于TeX的知识，可以参考这篇文章：<a target="_blank" rel="noopener" href="https://www.latexstudio.net/texdoc/#/28?page_id=133">TeX 家族与基础概念</a></p>
-<p>更多关于其他发行版的知识，可以参考这篇文章：<a target="_blank" rel="noopener" href="https://www.latexstudio.net/texdoc/#/28?page_id=114">LaTeX 发行版与下载</a></p>
+<h2 id="参考资料">参考资料</h2>
+<p>中文LaTeX社区：<a
+target="_blank" rel="noopener" href="https://www.latexstudio.net/">LaTeX工作室</a></p>
+<p>更多关于TeX的知识，可以参考这篇文章：<a
+target="_blank" rel="noopener" href="https://www.latexstudio.net/texdoc/#/28?page_id=133">TeX
+家族与基础概念</a></p>
+<p>更多关于其他发行版的知识，可以参考这篇文章：<a
+target="_blank" rel="noopener" href="https://www.latexstudio.net/texdoc/#/28?page_id=114">LaTeX
+发行版与下载</a></p>
 
       
     </div>
@@ -351,7 +414,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-05-05 01:32:54" itemprop="dateModified" datetime="2023-05-05T01:32:54+08:00">2023-05-05</time>
+                <time title="修改时间：2023-05-05 08:20:39" itemprop="dateModified" datetime="2023-05-05T08:20:39+08:00">2023-05-05</time>
               </span>
 
           <br>
@@ -379,32 +442,41 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="一些关于博客想说的话"><a href="#一些关于博客想说的话" class="headerlink" title="一些关于博客想说的话"></a>一些关于博客想说的话</h2><h3 id="1-为什么要写博客"><a href="#1-为什么要写博客" class="headerlink" title="1. 为什么要写博客"></a>1. 为什么要写博客</h3><p>默子其实也不知道，只是觉得学到一些技术，用博客记录下来，也算是对自己的一种总结吧。同时还可以帮到更多的人，何乐而不为呢？</p>
-<h3 id="2-为什么要用Hexo"><a href="#2-为什么要用Hexo" class="headerlink" title="2. 为什么要用Hexo"></a>2. 为什么要用Hexo</h3><p>折腾了这么久，发现还是这种静态博客框架比较简单方便，其他的框架玩着玩着就搞起了前后端训练，很难绷。</p>
-<p><code>Github+Hexo+Next</code> ，简直就是懒人一键建站最佳方案（当然，你得有一点点基础）。</p>
+          <h2 id="一些关于博客想说的话">一些关于博客想说的话</h2>
+<h3 id="为什么要写博客">1. 为什么要写博客</h3>
+<p>默子其实也不知道，只是觉得学到一些技术，用博客记录下来，也算是对自己的一种总结吧。同时还可以帮到更多的人，何乐而不为呢？</p>
+<h3 id="为什么要用hexo">2. 为什么要用Hexo</h3>
+<p>折腾了这么久，发现还是这种静态博客框架比较简单方便，其他的框架玩着玩着就搞起了前后端训练，很难绷。</p>
+<p><code>Github+Hexo+Next</code>
+，简直就是懒人一键建站最佳方案（当然，你得有一点点基础）。</p>
 <p>关于之前折腾的框架，少说也有七八个了，常见的主流的，都玩过</p>
 <p>这个博客从想法到部署，也就是30分钟的事情。（可能是已经折腾出了技术吧，哈哈哈哈，总之就是一个熟练工）</p>
-<h3 id="3-为什么要用Github"><a href="#3-为什么要用Github" class="headerlink" title="3. 为什么要用Github"></a>3. 为什么要用Github</h3><p>虽然国内访问Github Pages速度不是很快，但没关系。默子预估能看到这篇文章的人，大概率都已经是技术力比较高的CS相关人士了。</p>
+<h3 id="为什么要用github">3. 为什么要用Github</h3>
+<p>虽然国内访问Github
+Pages速度不是很快，但没关系。默子预估能看到这篇文章的人，大概率都已经是技术力比较高的CS相关人士了。</p>
 <p><strong>手里没几把趁手的梯子，说得过去嘛</strong></p>
-<h3 id="4-之后的更新"><a href="#4-之后的更新" class="headerlink" title="4. 之后的更新"></a>4. 之后的更新</h3><p>这个纯纯随缘了，基本上想到什么就去更新什么。</p>
+<h3 id="之后的更新">4. 之后的更新</h3>
+<p>这个纯纯随缘了，基本上想到什么就去更新什么。</p>
 <p>在其他平台还有很多的文章，默子也会慢慢的迁移过来。（最好是整理之后，不然其他平台的文章现在太乱了）</p>
 <p>有可能一天爆更10篇文章，也有可能两个星期没啥更新。毕竟，随缘博主是这样的，哈哈哈哈</p>
-<h3 id="5-关于博客的一些想法"><a href="#5-关于博客的一些想法" class="headerlink" title="5. 关于博客的一些想法"></a>5. 关于博客的一些想法</h3><p>写博客，记录的自己，看的是别人。</p>
+<h3 id="关于博客的一些想法">5. 关于博客的一些想法</h3>
+<p>写博客，记录的自己，看的是别人。</p>
 <p>所以，这里定一些小小的规矩，也是对自己的一种约束吧：</p>
-<ol>
+<ol type="1">
 <li>尽量少用ChatGPT来完成博客的写作</li>
 <li>保持每个月至少有两篇文章更新，不能一断就断没影了</li>
 <li>技术类的文章质量做到 <code>Top 10%</code> ，不能摸鱼划水</li>
 <li>日常生活和点滴记录也可以发</li>
 </ol>
-<h3 id="6-最后"><a href="#6-最后" class="headerlink" title="6. 最后"></a>6. 最后</h3><p>默子的博客，在这里记录一些学习笔记，生活感悟，以及一些有趣的事情。这次我会坚持下去。</p>
-<h3 id="7-测试项目"><a href="#7-测试项目" class="headerlink" title="7. 测试项目"></a>7. 测试项目</h3><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># 定义一个函数</span>
+<h3 id="最后">6. 最后</h3>
+<p>默子的博客，在这里记录一些学习笔记，生活感悟，以及一些有趣的事情。这次我会坚持下去。</p>
+<h3 id="测试项目">7. 测试项目</h3>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># 定义一个函数</span>
 <span class="token keyword">def</span> <span class="token function">func</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
     <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"hello world"</span><span class="token punctuation">)</span>
 
 <span class="token comment"># 调用函数</span>
 func<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
 <pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token comment">// 利用指针交换两个数的值</span>
 <span class="token keyword">void</span> <span class="token function">swap</span><span class="token punctuation">(</span><span class="token keyword">int</span> <span class="token operator">*</span>a<span class="token punctuation">,</span> <span class="token keyword">int</span> <span class="token operator">*</span>b<span class="token punctuation">)</span>
 <span class="token punctuation">&#123;</span>
@@ -412,7 +484,6 @@ func<span class="token punctuation">(</span><span class="token punctuation">)</s
     <span class="token operator">*</span>a <span class="token operator">=</span> <span class="token operator">*</span>b<span class="token punctuation">;</span>
     <span class="token operator">*</span>b <span class="token operator">=</span> temp<span class="token punctuation">;</span>
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
 <pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">// 二分查找</span>
 <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">int</span> <span class="token function">binarySearch</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> arr<span class="token punctuation">,</span> <span class="token keyword">int</span> target<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
     <span class="token keyword">int</span> left <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
@@ -429,18 +500,8 @@ func<span class="token punctuation">(</span><span class="token punctuation">)</s
     <span class="token punctuation">&#125;</span>
     <span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>麦克斯韦方程组：</p>
-<ol>
-<li><p>$$ \nabla \cdot \vec{E} &#x3D; \frac{\rho}{\varepsilon_0} $$</p>
-</li>
-<li><p>$$ \nabla \cdot \vec{B} &#x3D; 0 $$</p>
-</li>
-<li><p>$$ \nabla \times \vec{E} &#x3D; -\frac{\partial \vec{B}}{\partial t} $$</p>
-</li>
-<li><p>$$ \nabla \times \vec{B} &#x3D; \mu_0 \vec{j} + \mu_0\varepsilon_0 \frac{\partial \vec{E}}{\partial t} $$</p>
-</li>
-</ol>
+<p><span class="math inline">\(\LaTeX\)</span></p>
+<p>$</p>
 
       
     </div>
@@ -575,7 +636,7 @@ func<span class="token punctuation">(</span><span class="token punctuation">)</s
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">5 分钟</span>
+    <span title="站点阅读时长">6 分钟</span>
 </div>
 
 <div class="powered-by">
