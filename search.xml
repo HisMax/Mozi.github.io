@@ -1,49 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>【杂记】2020年3月28日</title>
-    <url>/2020/03/14f0aad4/</url>
-    <content><![CDATA[<p><img
-src="https://images.cnblogs.com/cnblogs_com/Histone/1682817/o_200328051122original(1).jpg" /></p>
-<p><strong>打开电脑→打开OJ→浏览题目→浏览博客→“颓”→关闭电脑</strong></p>
-<p>按理说，过了凌晨，2020-03-28就已经来到了。</p>
-<p>CCF的通知上说的，今天就是省选的Day1</p>
-<p>疫情的来临使得咕咕F更咕了些，至今未通知何时省选。</p>
-<p><del>（发邮件给特派员也不回，23333）</del></p>
-<p>现在每天都感觉自己非常蒟蒻</p>
-<p>今天看了一部电影《贫民窟里的百万富翁》</p>
-<p>给我感触最深的是，这个电影并没有讲金钱意义上的百万富翁。</p>
-<p>而是讲述了主人公从小到大的经历，正是这种经历才使得主人公成为了百万富翁。</p>
-<p>或许我希望是这样吧。</p>
-<p>停课去搞OI，真的需要很大的勇气与毅力。</p>
-<p>老师不理解，学校不理解，同学不理解。他们很难想象我居然为了一个看不见摸不着的OI放弃两个月的文化课。</p>
-<p>但我真的是非常喜欢OI，从小学六年级接触到易语言时，我就感受到了编程的魅力。</p>
-<p>从那之后，自学了Java，Python，C++……，可惜高中前学的都是语言</p>
-<p>直到高一，我才真正意义上接触到OI，仗着年轻气盛，憨批的我参加了2018NOIP</p>
-<p>那肯定爆零了啊，直接提高，我还是全市唯一一个C语言的……23333</p>
-<p>然后呢，我在文化课里颓了一年，由普通班升到了重点班（可惜不是最重点）</p>
-<p>直到2019年9月13日，我才惊醒到，原来我还有OI。</p>
-<p>于是拼命肝了两个月，2019CSP-TG 捞了一个弱省二等</p>
-<p>之后，我发现我彻底爱上了OI，解题的快乐，AC的那一瞬间</p>
-<p>假期去清北学堂集训了一次
-<del>（最心疼的是钱，对于贫困家庭来说，支出不小）</del></p>
-<p>也没认识许多大佬，大部分水平还是差不多了，其实是真正的大佬不屑和我这个蒟蒻交朋友</p>
-<p>由于在弱省，省选竞争不是很大，二等也可以混进去考一下。</p>
-<p>但是……我想进队</p>
-<p>于是就开启了停课，疯狂刷题阶段。</p>
-<p>进了队，我就继续停课，至少要打个Ag回来</p>
-<p>没进队，就滚回去学文化课，2020再考最后一次NOIP，正式AFO~</p>
-<p>怎么说呢，文笔很烂，感觉跟流水账似的。</p>
-<p><strong>PS：话说2020省选啥时候通知啊，我TM直接自闭好不好，就算推迟，给个通知啊！！！</strong></p>
+    <title>【教程】TexLive超详细安装指南（Windows）</title>
+    <url>/2023/05/ef1f5b3c/</url>
+    <content><![CDATA[<blockquote>
+<p>本文将详细介绍如何安装TexLive，使用TexLive编译LaTeX文档。让你在Windows上也能愉快的使用LaTeX，体验到LaTeX的魅力。</p>
+</blockquote>
+<p>想必大家都或多或少知道LaTeX究竟是个什么东西</p>
+<h2 id="什么是texlive">什么是TexLive</h2>
+<p><strong>TexLive是一个免费、开源的TeX发行版，它包含了用于排版各种类型文档的TeX系统和许多相关工具、字体、宏包和文档。</strong>
+TeX是一种专业的排版系统，用于创建高质量的科技论文、书籍、期刊和其他技术文档，它在学术界和出版业广泛使用。</p>
+<p>TexLive包含了许多与TeX相关的软件包和工具，<strong>包括LaTeX、ConTeXt、MetaPost、pdfTeX、LuaTeX等等。</strong>
+它是一个跨平台的软件，可以在不同的操作系统上使用，例如Windows、Linux、MacOS等。</p>
+<p><strong>简而言之：当你需要写一份专业的科技论文、书籍、期刊或其他技术文档时，排版是非常重要的一步。TeX是一种专业的排版系统，可以让你创建高质量的文档，它在学术界和出版业广泛使用。</strong></p>
+<h2 id="为什么要使用texlive">为什么要使用TexLive</h2>
+<p>其实，TexLive并不是唯一的TeX发行版，还有许多其他的发行版，例如MiKTeX、MacTeX等等。那么，为什么要使用TexLive呢？</p>
+<p>TexLive是一个跨平台的软件，可以在不同的操作系统上使用，例如Windows、Linux、MacOS等。而其他的TeX发行版，例如MiKTeX、MacTeX等，只能在特定的操作系统上使用，例如MiKTeX只能在Windows上使用，MacTeX只能在MacOS上使用。</p>
+<h2 id="国内texlive下载">国内TexLive下载</h2>
+<p>首选清华大学开源软件镜像站：<a
+href="https://mirrors.tuna.tsinghua.edu.cn/CTAN/systems/texlive/Images/">点我下载</a>、</p>
+<p>打开后选择最新的版本，例如这个2023年0313版本：</p>
+<p><img src="https://s2.loli.net/2023/05/05/VGIQ6b95wWHn4Xk.png" /></p>
+<p>这个<code>TexLive</code>有四五个G，看来下载要等一会儿了。</p>
+<p>如果对下载速度有要求的同学可以尝试一下
+<code>IDM</code>、<code>FDM</code> 等多线程加速的下载器。</p>
+<p>不过几分钟，我们的下载就完成啦~</p>
+<p>接下来的任务是安装</p>
+<hr />
+<h2 id="安装texlivewindows">安装TexLive（Windows）</h2>
+<p>双击我们刚刚下载好的文件</p>
+<p><img src="https://s2.loli.net/2023/05/05/Y7k3fOxsC9LFHqG.png" /></p>
+<p>会弹出一个选择应用打开的窗口</p>
+<p><img src="https://s2.loli.net/2023/05/05/vs9FckBGqRPYz7x.png" /></p>
+<p>我们选择资源管理器即可</p>
+<p>这时候，<code>我的计算机</code> 里会多出来一个软驱（DVD驱动器）</p>
+<p><img src="https://s2.loli.net/2023/05/05/QafUJpcZCFVNT5b.png" /></p>
+<p>我们打开后看到的就是TexLive的全部文件</p>
+<p>这里选择打开 <code>install-tl-windows.bat</code></p>
+<p><img src="https://s2.loli.net/2023/05/05/dAD6IwP7bipVEMg.png" /></p>
+<p>打开后，稍等一会儿，我们就可以看到我们的安装窗口</p>
+<p><img src="https://s2.loli.net/2023/05/05/9iSW5oRPuQL6fgk.png" /></p>
+<p>安装窗口大概长这样</p>
+<p>如果不是中文界面的小伙伴可以选择菜单里的 <code>GUI Languaga</code>
+来修改界面的语言</p>
+<p><img src="https://s2.loli.net/2023/05/05/lA58RHTx3rs1pbi.png" /></p>
+<p>这里默子肯定是选到中文滴</p>
+<p>然后我们修改一下安装的硬盘分区（可选）</p>
+<p>点击界面上路径后面的 <code>修改</code> 按钮</p>
+<p>会弹出一个选择路径的界面</p>
+<p><img src="https://s2.loli.net/2023/05/05/fbcxk2l7rWZOend.png" /></p>
+<p>这里默子就选择改装到H盘去了，毕竟如果都装C盘的话，C盘迟早变
+<code>血红战神</code></p>
+<blockquote>
+<p>默子暴论：如果可以自定义路径的软件还装C盘，那就是xx</p>
+</blockquote>
+<p>一切都确定后，就可以点击安装啦！</p>
+<p><strong>注意，这个安装可能会耗时1个小时。所以确保1个小时内，电脑都可以持续正常工作，不要装一半了突然笔记本没电关机，那就尴尬了。</strong></p>
+<p><img src="https://s2.loli.net/2023/05/05/iB1KbkLNAIE7a9F.png" /></p>
+<p>安装界面这里经常会出现一些问题，比如可能有的同学会闪退，我们后面再讨论这里报错的问题。</p>
+<p>等到这个4490出现（反正是差不多的数字就行），说明我们的安装开始进行了。</p>
+<p>后面有剩余时间的估计，不过这个时间经常是不准的，一般安装时间都要持续<code>40min</code></p>
+<p><strong>默子是13900HX的CPU，开了性能模式，安装了大概51min吧</strong></p>
+<p>安装好后的提示如图</p>
+<p><img src="https://s2.loli.net/2023/05/05/HOBuf9wEGNM4Q8R.png" /></p>
+<p>自此，我们的TexLive就已经成功安装完毕</p>
+<p>后续默子再来讲一讲，如何在VSCode里配置我们最舒适的LaTeX编码环境</p>
+<p>让我们的生产效率 UP UP ~</p>
+<p><a href="/">【施工中】TexLive与VSCode能碰撞出怎样的火花</a></p>
+<p><a href="/">【施工中】让人工智能辅助我们创作优秀的排版作品</a></p>
+<p><a href="/">【施工中】最舒适的TeX编写指南</a></p>
+<h2 id="参考资料">参考资料</h2>
+<p>中文LaTeX社区：<a
+href="https://www.latexstudio.net/">LaTeX工作室</a></p>
+<p>更多关于TeX的知识，可以参考这篇文章：<a
+href="https://www.latexstudio.net/texdoc/#/28?page_id=133">TeX
+家族与基础概念</a></p>
+<p>更多关于其他发行版的知识，可以参考这篇文章：<a
+href="https://www.latexstudio.net/texdoc/#/28?page_id=114">LaTeX
+发行版与下载</a></p>
 ]]></content>
       <categories>
-        <category>杂记</category>
+        <category>软件教程</category>
       </categories>
       <tags>
-        <tag>杂记</tag>
-        <tag>日常</tag>
-        <tag>省选</tag>
-        <tag>颓废</tag>
+        <tag>教程</tag>
+        <tag>LaTeX</tag>
+        <tag>TexLive</tag>
       </tags>
   </entry>
   <entry>
@@ -153,119 +195,40 @@ src="https://cdn.luogu.com.cn/upload/image_hosting/ivxjt9tg.png" /></p>
       </tags>
   </entry>
   <entry>
-    <title>【杂记】2020年3月9日</title>
-    <url>/2020/03/50796d93/</url>
-    <content><![CDATA[<p>又是很颓的一天啊……</p>
-<p>日常肝题，奇怪的是今天居然没有玩游戏</p>
-<h2 id="上午1030">上午10:30</h2>
-<p>其实醒来有很长时间了</p>
-<p>但是一直懒在床上没有动，看了会
-<strong>许胤龙的《组合数学引论》</strong></p>
-<p><del>怎么可能看懂，这个东西简直需要两个脑子</del></p>
-<p>对<strong>Fibonacci数</strong>和<strong>Catalan数</strong>有了更深刻的认识。</p>
-<p>但是还有些不太明白，明天再看看书吧……</p>
-<p>唉，当一个蒟蒻的快乐是大佬们永远体验不到的</p>
-<p>新知识的海洋在向蒟蒻招手。</p>
-<p>至于大佬呢？大佬们忙着发现新的类地星球，不屑于在地表游玩。</p>
-<h3
-id="安利一款超棒的游戏坎巴拉的太空计划">安利一款超棒的游戏《坎巴拉的太空计划》</h3>
-<blockquote>
-<p>虽然我还不怎么会玩，勉强靠着新手教程发射了第一次火箭</p>
-</blockquote>
-<blockquote>
-<p>但是游戏真的超棒，物理、航天、宇宙爱好者的最佳选择</p>
-</blockquote>
-<blockquote>
-<p>这里贴一段游戏评论</p>
-</blockquote>
-<p><strong>本游戏百小时都出不了新手村</strong></p>
-<p>但是作为一个太空模拟它做到了尽可能的真实（相比其他游戏</p>
-<p>没有什么超光速引擎，没有跃迁，没有虫洞</p>
-<p>你用最笨拙的方式——燃料和引力飞向星空</p>
-<p>在其他游戏里习惯了线性一样的移动后，回过头来看看这个游戏</p>
-<p>它真正代表了人类对太空在历史上的探索</p>
-<figure>
-<img src="https://s2.ax1x.com/2020/03/09/89xvXn.jpg"
-alt="坎巴拉的太空计划-游戏截图" />
-<figcaption aria-hidden="true">坎巴拉的太空计划-游戏截图</figcaption>
-</figure>
-<p>听说最近出系列2了，如果有机会的话，夏天入手，<strong>112RMB</strong></p>
-<p>学生党伤不起啊……</p>
-<hr />
-<h2 id="中午1230">中午12：30</h2>
-<p>麻婆豆腐香啊，三碗米饭????是日常操作。</p>
-<p>写到这里，我觉得我该减肥了????????????</p>
-<p>嗯，从明天开始做一些运动吧……</p>
-<p>不过，现在吃饱了才有力气明天减肥嘛<code>负罪感--</code></p>
-<h2 id="下午1800">下午18：00</h2>
-<p>午觉愣是睡成了下午觉！！！</p>
-<p>打开手机，本想着逛一会B站，但是看了看日历</p>
-<p>今天距离<strong>省选</strong>还有——<strong>20</strong>天啊。</p>
-<p>算了，学习吧。</p>
-<p><strong>熟悉的洛谷，熟悉的味道</strong></p>
-<h3 id="st表的原理以及实现">ST表的原理以及实现</h3>
-<p>今天搞了一下快忘掉的一些数据结构和算法</p>
-<p>众所周知，在维护区间最值的时候，我们常用两种算法，一种叫ST表，一种叫线段树</p>
-<p>这里主要说下<strong>ST表(Sparse Table)</strong></p>
-<p><strong>预处理时间复杂度<code>O(nlogn)</code></strong></p>
-<p><strong>查询时间复杂度<code>O(1)</code></strong></p>
-<p>我们首先定义一个初始数据数组和二维的ST表数组</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">//n为数据大小</span><br><span class="hljs-type">int</span> a[n]    存初始数据<br><span class="hljs-comment">//21后面具体再解释,其实当你看完原理也就懂了</span><br><span class="hljs-type">int</span> st[n][<span class="hljs-number">21</span>]    存ST表<br></code></pre></td></tr></table></figure>
-<p><span class="math inline">\(st[ i ][ j ]表示的是区间[ i , i+2^j-1
-]里的最大值\)</span></p>
-<p><span class="math inline">\(所以，st[ i ][ j ] = max(st[ i ][ j-1 ] ,
-st[ i+2^(j-1) ][ j-1 ])\)</span></p>
-<p><span
-class="math inline">\(这里以维护区间最大值来举例，最大值最小值其实都一样，只有\)</span><strong>max</strong><span
-class="math inline">\(和\)</span><strong>min</strong><span
-class="math inline">\(的区别\)</span></p>
-<h3 id="初始化st表">初始化ST表</h3>
-<p>怎么来的呢？</p>
-<p>个人觉得，简单来说就是一个 <code>二分+分治</code> 的思想</p>
-<p><strong>我们要求区间 <span class="math inline">\([ i , i+2^j-1
-]\)</span> 里的最大值</strong></p>
-<p><strong>可以先求区间 <span class="math inline">\([ i , i+2^(j-1)-1
-]\)</span> 里的最大值</strong></p>
-<p><strong>再求区间 <span class="math inline">\([ i+2^(j-1) , i+2^j-1
-]\)</span> 里的最大值</strong></p>
-<p><strong>最后取这两个区间的最大值</strong></p>
-<p>所以，<span class="math inline">\(st[ i ][ j ] = max(st[ i ][ j-1 ] ,
-st[ i+2^(j-1) ][ j-1 ])\)</span></p>
-<p>如果还是不理解的话，再看一下st数组的含义</p>
-<p><span class="math inline">\(st[ i ][ j ]\)</span>表示的是区间<span
-class="math inline">\([ i , i+2^j-1 ]\)</span>里的最大值</p>
-<p>初始化最小单元，也就是 <span class="math inline">\(st[ i ][ 0
-]\)</span> ，也就是区间 <span class="math inline">\([ i , i ]\)</span>
-里的最大值</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++)<br>    st[i][<span class="hljs-number">0</span>]=a[i];<br></code></pre></td></tr></table></figure>
-<p>初始化剩余部分，这里用到了位运算节约时间开销</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j=<span class="hljs-number">1</span>;(<span class="hljs-number">1</span>&lt;&lt;j)&lt;=n;j++)<br>    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i+(<span class="hljs-number">1</span>&lt;&lt;j)&lt;=n;i++)<br>        st[i][j] = <span class="hljs-built_in">max</span>(st[i][j<span class="hljs-number">-1</span>],st[i+(<span class="hljs-number">1</span>&lt;&lt;(j<span class="hljs-number">-1</span>))][j<span class="hljs-number">-1</span>]);<br></code></pre></td></tr></table></figure>
-<h3 id="查询st表">查询ST表</h3>
-<p>ST表的查询许多萌新上来会迷惑的一个操作</p>
-<p>比如，我们要查询区间 <span class="math inline">\([ l , r ]\)</span>
-里的最大值</p>
-<p>如果这个区间恰好是<strong>ST表</strong>里的一个区间 <span
-class="math inline">\([ i , i+2^j-1 ]\)</span> ，那么我们就可以直接访问
-<span class="math inline">\(st[i][j]\)</span></p>
-<p>可惜大多时候都不是，那么我们怎么做呢？我们可以这样做</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-type">int</span> k = <span class="hljs-built_in">log</span>(r-l+<span class="hljs-number">1</span>)/<span class="hljs-built_in">log</span>(<span class="hljs-number">2</span>));<br><span class="hljs-type">int</span> ans = <span class="hljs-built_in">max</span>(st[l][k],st[y-(<span class="hljs-number">1</span>&lt;&lt;k)+<span class="hljs-number">1</span>][k]);<br></code></pre></td></tr></table></figure>
-<p>这里的 <span class="math inline">\(y\)</span> 是什么呢？ <span
-class="math inline">\(y\)</span> 是满足 <span
-class="math inline">\(y-(1&lt;&lt;k)+1&lt;=r\)</span> 的最大值</p>
-<p><span class="math inline">\(k\)</span>是什么呢？<span
-class="math inline">\(k\)</span> 是满足 <span
-class="math inline">\(2^k&lt;=r-l+1\)</span> 的最大值</p>
-<p>最后比较的两个区间 <span class="math inline">\([l,l+2^k]\)</span> 和
-<span class="math inline">\([r-2^k,r]\)</span>
-有可能是重合的，但是答案是唯一的</p>
-<p><del><strong>板子还是要自己打，不然怎么才能背会呢？</strong></del></p>
-<h2 id="晚上2230">晚上22：30</h2>
-<p>刷题的日子总是这么朴实无华且枯燥</p>
-<p>写完博客，一看表居然已经12点了</p>
-<p>看来我还是太菜，一篇杂记类博客居然要写一个半小时。</p>
-<p>今天AK洛谷第一页黄题，明天继续肝吧，绿题蓝题要提上日程了</p>
-<p>之前有位大佬建议我刷满2页蓝，……太犇了。</p>
-<p>继续加油吧，不忘初心。</p>
+    <title>【杂记】2020年3月28日</title>
+    <url>/2020/03/14f0aad4/</url>
+    <content><![CDATA[<p><img
+src="https://images.cnblogs.com/cnblogs_com/Histone/1682817/o_200328051122original(1).jpg" /></p>
+<p><strong>打开电脑→打开OJ→浏览题目→浏览博客→“颓”→关闭电脑</strong></p>
+<p>按理说，过了凌晨，2020-03-28就已经来到了。</p>
+<p>CCF的通知上说的，今天就是省选的Day1</p>
+<p>疫情的来临使得咕咕F更咕了些，至今未通知何时省选。</p>
+<p><del>（发邮件给特派员也不回，23333）</del></p>
+<p>现在每天都感觉自己非常蒟蒻</p>
+<p>今天看了一部电影《贫民窟里的百万富翁》</p>
+<p>给我感触最深的是，这个电影并没有讲金钱意义上的百万富翁。</p>
+<p>而是讲述了主人公从小到大的经历，正是这种经历才使得主人公成为了百万富翁。</p>
+<p>或许我希望是这样吧。</p>
+<p>停课去搞OI，真的需要很大的勇气与毅力。</p>
+<p>老师不理解，学校不理解，同学不理解。他们很难想象我居然为了一个看不见摸不着的OI放弃两个月的文化课。</p>
+<p>但我真的是非常喜欢OI，从小学六年级接触到易语言时，我就感受到了编程的魅力。</p>
+<p>从那之后，自学了Java，Python，C++……，可惜高中前学的都是语言</p>
+<p>直到高一，我才真正意义上接触到OI，仗着年轻气盛，憨批的我参加了2018NOIP</p>
+<p>那肯定爆零了啊，直接提高，我还是全市唯一一个C语言的……23333</p>
+<p>然后呢，我在文化课里颓了一年，由普通班升到了重点班（可惜不是最重点）</p>
+<p>直到2019年9月13日，我才惊醒到，原来我还有OI。</p>
+<p>于是拼命肝了两个月，2019CSP-TG 捞了一个弱省二等</p>
+<p>之后，我发现我彻底爱上了OI，解题的快乐，AC的那一瞬间</p>
+<p>假期去清北学堂集训了一次
+<del>（最心疼的是钱，对于贫困家庭来说，支出不小）</del></p>
+<p>也没认识许多大佬，大部分水平还是差不多了，其实是真正的大佬不屑和我这个蒟蒻交朋友</p>
+<p>由于在弱省，省选竞争不是很大，二等也可以混进去考一下。</p>
+<p>但是……我想进队</p>
+<p>于是就开启了停课，疯狂刷题阶段。</p>
+<p>进了队，我就继续停课，至少要打个Ag回来</p>
+<p>没进队，就滚回去学文化课，2020再考最后一次NOIP，正式AFO~</p>
+<p>怎么说呢，文笔很烂，感觉跟流水账似的。</p>
+<p><strong>PS：话说2020省选啥时候通知啊，我TM直接自闭好不好，就算推迟，给个通知啊！！！</strong></p>
 ]]></content>
       <categories>
         <category>杂记</category>
@@ -273,11 +236,8 @@ class="math inline">\(2^k&lt;=r-l+1\)</span> 的最大值</p>
       <tags>
         <tag>杂记</tag>
         <tag>日常</tag>
-        <tag>ST表</tag>
-        <tag>坎巴拉的太空计划</tag>
-        <tag>Fibonacci数</tag>
-        <tag>Catalan数</tag>
-        <tag>洛谷</tag>
+        <tag>省选</tag>
+        <tag>颓废</tag>
       </tags>
   </entry>
   <entry>
@@ -419,6 +379,134 @@ href="https://markdown.com.cn/intro.html#markdown-%E6%9C%89%E4%BB%80%E4%B9%88%E7
 ]]></content>
   </entry>
   <entry>
+    <title>【杂记】2020年3月9日</title>
+    <url>/2020/03/50796d93/</url>
+    <content><![CDATA[<p>又是很颓的一天啊……</p>
+<p>日常肝题，奇怪的是今天居然没有玩游戏</p>
+<h2 id="上午1030">上午10:30</h2>
+<p>其实醒来有很长时间了</p>
+<p>但是一直懒在床上没有动，看了会
+<strong>许胤龙的《组合数学引论》</strong></p>
+<p><del>怎么可能看懂，这个东西简直需要两个脑子</del></p>
+<p>对<strong>Fibonacci数</strong>和<strong>Catalan数</strong>有了更深刻的认识。</p>
+<p>但是还有些不太明白，明天再看看书吧……</p>
+<p>唉，当一个蒟蒻的快乐是大佬们永远体验不到的</p>
+<p>新知识的海洋在向蒟蒻招手。</p>
+<p>至于大佬呢？大佬们忙着发现新的类地星球，不屑于在地表游玩。</p>
+<h3
+id="安利一款超棒的游戏坎巴拉的太空计划">安利一款超棒的游戏《坎巴拉的太空计划》</h3>
+<blockquote>
+<p>虽然我还不怎么会玩，勉强靠着新手教程发射了第一次火箭</p>
+</blockquote>
+<blockquote>
+<p>但是游戏真的超棒，物理、航天、宇宙爱好者的最佳选择</p>
+</blockquote>
+<blockquote>
+<p>这里贴一段游戏评论</p>
+</blockquote>
+<p><strong>本游戏百小时都出不了新手村</strong></p>
+<p>但是作为一个太空模拟它做到了尽可能的真实（相比其他游戏</p>
+<p>没有什么超光速引擎，没有跃迁，没有虫洞</p>
+<p>你用最笨拙的方式——燃料和引力飞向星空</p>
+<p>在其他游戏里习惯了线性一样的移动后，回过头来看看这个游戏</p>
+<p>它真正代表了人类对太空在历史上的探索</p>
+<figure>
+<img src="https://s2.ax1x.com/2020/03/09/89xvXn.jpg"
+alt="坎巴拉的太空计划-游戏截图" />
+<figcaption aria-hidden="true">坎巴拉的太空计划-游戏截图</figcaption>
+</figure>
+<p>听说最近出系列2了，如果有机会的话，夏天入手，<strong>112RMB</strong></p>
+<p>学生党伤不起啊……</p>
+<hr />
+<h2 id="中午1230">中午12：30</h2>
+<p>麻婆豆腐香啊，三碗米饭????是日常操作。</p>
+<p>写到这里，我觉得我该减肥了????????????</p>
+<p>嗯，从明天开始做一些运动吧……</p>
+<p>不过，现在吃饱了才有力气明天减肥嘛<code>负罪感--</code></p>
+<h2 id="下午1800">下午18：00</h2>
+<p>午觉愣是睡成了下午觉！！！</p>
+<p>打开手机，本想着逛一会B站，但是看了看日历</p>
+<p>今天距离<strong>省选</strong>还有——<strong>20</strong>天啊。</p>
+<p>算了，学习吧。</p>
+<p><strong>熟悉的洛谷，熟悉的味道</strong></p>
+<h3 id="st表的原理以及实现">ST表的原理以及实现</h3>
+<p>今天搞了一下快忘掉的一些数据结构和算法</p>
+<p>众所周知，在维护区间最值的时候，我们常用两种算法，一种叫ST表，一种叫线段树</p>
+<p>这里主要说下<strong>ST表(Sparse Table)</strong></p>
+<p><strong>预处理时间复杂度<code>O(nlogn)</code></strong></p>
+<p><strong>查询时间复杂度<code>O(1)</code></strong></p>
+<p>我们首先定义一个初始数据数组和二维的ST表数组</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">//n为数据大小</span><br><span class="hljs-type">int</span> a[n]    存初始数据<br><span class="hljs-comment">//21后面具体再解释,其实当你看完原理也就懂了</span><br><span class="hljs-type">int</span> st[n][<span class="hljs-number">21</span>]    存ST表<br></code></pre></td></tr></table></figure>
+<p><span class="math inline">\(st[ i ][ j ]表示的是区间[ i , i+2^j-1
+]里的最大值\)</span></p>
+<p><span class="math inline">\(所以，st[ i ][ j ] = max(st[ i ][ j-1 ] ,
+st[ i+2^(j-1) ][ j-1 ])\)</span></p>
+<p><span
+class="math inline">\(这里以维护区间最大值来举例，最大值最小值其实都一样，只有\)</span><strong>max</strong><span
+class="math inline">\(和\)</span><strong>min</strong><span
+class="math inline">\(的区别\)</span></p>
+<h3 id="初始化st表">初始化ST表</h3>
+<p>怎么来的呢？</p>
+<p>个人觉得，简单来说就是一个 <code>二分+分治</code> 的思想</p>
+<p><strong>我们要求区间 <span class="math inline">\([ i , i+2^j-1
+]\)</span> 里的最大值</strong></p>
+<p><strong>可以先求区间 <span class="math inline">\([ i , i+2^(j-1)-1
+]\)</span> 里的最大值</strong></p>
+<p><strong>再求区间 <span class="math inline">\([ i+2^(j-1) , i+2^j-1
+]\)</span> 里的最大值</strong></p>
+<p><strong>最后取这两个区间的最大值</strong></p>
+<p>所以，<span class="math inline">\(st[ i ][ j ] = max(st[ i ][ j-1 ] ,
+st[ i+2^(j-1) ][ j-1 ])\)</span></p>
+<p>如果还是不理解的话，再看一下st数组的含义</p>
+<p><span class="math inline">\(st[ i ][ j ]\)</span>表示的是区间<span
+class="math inline">\([ i , i+2^j-1 ]\)</span>里的最大值</p>
+<p>初始化最小单元，也就是 <span class="math inline">\(st[ i ][ 0
+]\)</span> ，也就是区间 <span class="math inline">\([ i , i ]\)</span>
+里的最大值</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++)<br>    st[i][<span class="hljs-number">0</span>]=a[i];<br></code></pre></td></tr></table></figure>
+<p>初始化剩余部分，这里用到了位运算节约时间开销</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j=<span class="hljs-number">1</span>;(<span class="hljs-number">1</span>&lt;&lt;j)&lt;=n;j++)<br>    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i+(<span class="hljs-number">1</span>&lt;&lt;j)&lt;=n;i++)<br>        st[i][j] = <span class="hljs-built_in">max</span>(st[i][j<span class="hljs-number">-1</span>],st[i+(<span class="hljs-number">1</span>&lt;&lt;(j<span class="hljs-number">-1</span>))][j<span class="hljs-number">-1</span>]);<br></code></pre></td></tr></table></figure>
+<h3 id="查询st表">查询ST表</h3>
+<p>ST表的查询许多萌新上来会迷惑的一个操作</p>
+<p>比如，我们要查询区间 <span class="math inline">\([ l , r ]\)</span>
+里的最大值</p>
+<p>如果这个区间恰好是<strong>ST表</strong>里的一个区间 <span
+class="math inline">\([ i , i+2^j-1 ]\)</span> ，那么我们就可以直接访问
+<span class="math inline">\(st[i][j]\)</span></p>
+<p>可惜大多时候都不是，那么我们怎么做呢？我们可以这样做</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-type">int</span> k = <span class="hljs-built_in">log</span>(r-l+<span class="hljs-number">1</span>)/<span class="hljs-built_in">log</span>(<span class="hljs-number">2</span>));<br><span class="hljs-type">int</span> ans = <span class="hljs-built_in">max</span>(st[l][k],st[y-(<span class="hljs-number">1</span>&lt;&lt;k)+<span class="hljs-number">1</span>][k]);<br></code></pre></td></tr></table></figure>
+<p>这里的 <span class="math inline">\(y\)</span> 是什么呢？ <span
+class="math inline">\(y\)</span> 是满足 <span
+class="math inline">\(y-(1&lt;&lt;k)+1&lt;=r\)</span> 的最大值</p>
+<p><span class="math inline">\(k\)</span>是什么呢？<span
+class="math inline">\(k\)</span> 是满足 <span
+class="math inline">\(2^k&lt;=r-l+1\)</span> 的最大值</p>
+<p>最后比较的两个区间 <span class="math inline">\([l,l+2^k]\)</span> 和
+<span class="math inline">\([r-2^k,r]\)</span>
+有可能是重合的，但是答案是唯一的</p>
+<p><del><strong>板子还是要自己打，不然怎么才能背会呢？</strong></del></p>
+<h2 id="晚上2230">晚上22：30</h2>
+<p>刷题的日子总是这么朴实无华且枯燥</p>
+<p>写完博客，一看表居然已经12点了</p>
+<p>看来我还是太菜，一篇杂记类博客居然要写一个半小时。</p>
+<p>今天AK洛谷第一页黄题，明天继续肝吧，绿题蓝题要提上日程了</p>
+<p>之前有位大佬建议我刷满2页蓝，……太犇了。</p>
+<p>继续加油吧，不忘初心。</p>
+]]></content>
+      <categories>
+        <category>杂记</category>
+      </categories>
+      <tags>
+        <tag>杂记</tag>
+        <tag>日常</tag>
+        <tag>ST表</tag>
+        <tag>坎巴拉的太空计划</tag>
+        <tag>Fibonacci数</tag>
+        <tag>Catalan数</tag>
+        <tag>洛谷</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>【博客】一些想说的话</title>
     <url>/2023/05/81817ba7/</url>
     <content><![CDATA[<h2 id="一些关于博客想说的话">一些关于博客想说的话</h2>
@@ -546,6 +634,49 @@ class="math display">\[\begin{bmatrix}1&amp;2&amp;3\\4&amp;5&amp;6\\7&amp;8&amp;
     John-->>Alice: Great!
     John->>Bob: How about you?
     Bob-->>John: Jolly good!</pre>
+<pre class="mermaid">gantt
+dateFormat  YYYY-MM-DD
+title Adding GANTT diagram to mermaid
+excludes weekdays 2014-01-10
+
+section A section
+Completed task            :done,    des1, 2014-01-06,2014-01-08
+Active task               :active,  des2, 2014-01-09, 3d
+Future task               :         des3, after des2, 5d
+Future task2               :         des4, after des3, 5d</pre>
+<pre class="mermaid">classDiagram
+Class01 <|-- AveryLongClass : Cool
+Class03 *-- Class04
+Class05 o-- Class06
+Class07 .. Class08
+Class09 --> C2 : Where am i?
+Class09 --* C3
+Class09 --|> Class07
+Class07 : equals()
+Class07 : Object[] elementData
+Class01 : size()
+Class01 : int chimp
+Class01 : int gorilla
+Class08 <--> C2: Cool label</pre>
+<pre class="mermaid">    gitGraph
+       commit
+       commit
+       branch develop
+       commit
+       commit
+       commit
+       checkout main
+       commit
+       commit</pre>
+<pre class="mermaid">journey
+    title My working day
+    section Go to work
+      Make tea: 5: Me
+      Go upstairs: 3: Me
+      Do work: 1: Me, Cat
+    section Go home
+      Go downstairs: 5: Me
+      Sit down: 5: Me</pre>
 ]]></content>
       <categories>
         <category>博客</category>
@@ -555,94 +686,6 @@ class="math display">\[\begin{bmatrix}1&amp;2&amp;3\\4&amp;5&amp;6\\7&amp;8&amp;
         <tag>Hexo</tag>
         <tag>Github</tag>
         <tag>Next</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【教程】TexLive超详细安装指南（Windows）</title>
-    <url>/2023/05/ef1f5b3c/</url>
-    <content><![CDATA[<blockquote>
-<p>本文将详细介绍如何安装TexLive，使用TexLive编译LaTeX文档。让你在Windows上也能愉快的使用LaTeX，体验到LaTeX的魅力。</p>
-</blockquote>
-<p>想必大家都或多或少知道LaTeX究竟是个什么东西</p>
-<h2 id="什么是texlive">什么是TexLive</h2>
-<p><strong>TexLive是一个免费、开源的TeX发行版，它包含了用于排版各种类型文档的TeX系统和许多相关工具、字体、宏包和文档。</strong>
-TeX是一种专业的排版系统，用于创建高质量的科技论文、书籍、期刊和其他技术文档，它在学术界和出版业广泛使用。</p>
-<p>TexLive包含了许多与TeX相关的软件包和工具，<strong>包括LaTeX、ConTeXt、MetaPost、pdfTeX、LuaTeX等等。</strong>
-它是一个跨平台的软件，可以在不同的操作系统上使用，例如Windows、Linux、MacOS等。</p>
-<p><strong>简而言之：当你需要写一份专业的科技论文、书籍、期刊或其他技术文档时，排版是非常重要的一步。TeX是一种专业的排版系统，可以让你创建高质量的文档，它在学术界和出版业广泛使用。</strong></p>
-<h2 id="为什么要使用texlive">为什么要使用TexLive</h2>
-<p>其实，TexLive并不是唯一的TeX发行版，还有许多其他的发行版，例如MiKTeX、MacTeX等等。那么，为什么要使用TexLive呢？</p>
-<p>TexLive是一个跨平台的软件，可以在不同的操作系统上使用，例如Windows、Linux、MacOS等。而其他的TeX发行版，例如MiKTeX、MacTeX等，只能在特定的操作系统上使用，例如MiKTeX只能在Windows上使用，MacTeX只能在MacOS上使用。</p>
-<h2 id="国内texlive下载">国内TexLive下载</h2>
-<p>首选清华大学开源软件镜像站：<a
-href="https://mirrors.tuna.tsinghua.edu.cn/CTAN/systems/texlive/Images/">点我下载</a>、</p>
-<p>打开后选择最新的版本，例如这个2023年0313版本：</p>
-<p><img src="https://s2.loli.net/2023/05/05/VGIQ6b95wWHn4Xk.png" /></p>
-<p>这个<code>TexLive</code>有四五个G，看来下载要等一会儿了。</p>
-<p>如果对下载速度有要求的同学可以尝试一下
-<code>IDM</code>、<code>FDM</code> 等多线程加速的下载器。</p>
-<p>不过几分钟，我们的下载就完成啦~</p>
-<p>接下来的任务是安装</p>
-<hr />
-<h2 id="安装texlivewindows">安装TexLive（Windows）</h2>
-<p>双击我们刚刚下载好的文件</p>
-<p><img src="https://s2.loli.net/2023/05/05/Y7k3fOxsC9LFHqG.png" /></p>
-<p>会弹出一个选择应用打开的窗口</p>
-<p><img src="https://s2.loli.net/2023/05/05/vs9FckBGqRPYz7x.png" /></p>
-<p>我们选择资源管理器即可</p>
-<p>这时候，<code>我的计算机</code> 里会多出来一个软驱（DVD驱动器）</p>
-<p><img src="https://s2.loli.net/2023/05/05/QafUJpcZCFVNT5b.png" /></p>
-<p>我们打开后看到的就是TexLive的全部文件</p>
-<p>这里选择打开 <code>install-tl-windows.bat</code></p>
-<p><img src="https://s2.loli.net/2023/05/05/dAD6IwP7bipVEMg.png" /></p>
-<p>打开后，稍等一会儿，我们就可以看到我们的安装窗口</p>
-<p><img src="https://s2.loli.net/2023/05/05/9iSW5oRPuQL6fgk.png" /></p>
-<p>安装窗口大概长这样</p>
-<p>如果不是中文界面的小伙伴可以选择菜单里的 <code>GUI Languaga</code>
-来修改界面的语言</p>
-<p><img src="https://s2.loli.net/2023/05/05/lA58RHTx3rs1pbi.png" /></p>
-<p>这里默子肯定是选到中文滴</p>
-<p>然后我们修改一下安装的硬盘分区（可选）</p>
-<p>点击界面上路径后面的 <code>修改</code> 按钮</p>
-<p>会弹出一个选择路径的界面</p>
-<p><img src="https://s2.loli.net/2023/05/05/fbcxk2l7rWZOend.png" /></p>
-<p>这里默子就选择改装到H盘去了，毕竟如果都装C盘的话，C盘迟早变
-<code>血红战神</code></p>
-<blockquote>
-<p>默子暴论：如果可以自定义路径的软件还装C盘，那就是xx</p>
-</blockquote>
-<p>一切都确定后，就可以点击安装啦！</p>
-<p><strong>注意，这个安装可能会耗时1个小时。所以确保1个小时内，电脑都可以持续正常工作，不要装一半了突然笔记本没电关机，那就尴尬了。</strong></p>
-<p><img src="https://s2.loli.net/2023/05/05/iB1KbkLNAIE7a9F.png" /></p>
-<p>安装界面这里经常会出现一些问题，比如可能有的同学会闪退，我们后面再讨论这里报错的问题。</p>
-<p>等到这个4490出现（反正是差不多的数字就行），说明我们的安装开始进行了。</p>
-<p>后面有剩余时间的估计，不过这个时间经常是不准的，一般安装时间都要持续<code>40min</code></p>
-<p><strong>默子是13900HX的CPU，开了性能模式，安装了大概51min吧</strong></p>
-<p>安装好后的提示如图</p>
-<p><img src="https://s2.loli.net/2023/05/05/HOBuf9wEGNM4Q8R.png" /></p>
-<p>自此，我们的TexLive就已经成功安装完毕</p>
-<p>后续默子再来讲一讲，如何在VSCode里配置我们最舒适的LaTeX编码环境</p>
-<p>让我们的生产效率 UP UP ~</p>
-<p><a href="/">【施工中】TexLive与VSCode能碰撞出怎样的火花</a></p>
-<p><a href="/">【施工中】让人工智能辅助我们创作优秀的排版作品</a></p>
-<p><a href="/">【施工中】最舒适的TeX编写指南</a></p>
-<h2 id="参考资料">参考资料</h2>
-<p>中文LaTeX社区：<a
-href="https://www.latexstudio.net/">LaTeX工作室</a></p>
-<p>更多关于TeX的知识，可以参考这篇文章：<a
-href="https://www.latexstudio.net/texdoc/#/28?page_id=133">TeX
-家族与基础概念</a></p>
-<p>更多关于其他发行版的知识，可以参考这篇文章：<a
-href="https://www.latexstudio.net/texdoc/#/28?page_id=114">LaTeX
-发行版与下载</a></p>
-]]></content>
-      <categories>
-        <category>软件教程</category>
-      </categories>
-      <tags>
-        <tag>教程</tag>
-        <tag>LaTeX</tag>
-        <tag>TexLive</tag>
       </tags>
   </entry>
 </search>
