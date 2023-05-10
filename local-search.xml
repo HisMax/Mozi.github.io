@@ -179,11 +179,44 @@
   
   
   <entry>
-    <title>关于默子</title>
+    <title>404，默子丢啦</title>
     <link href="/"/>
     <url>/</url>
     
-    <content type="html"><![CDATA[<p>你好👋, 这里是默子</p><p>我的座右铭是：无限进步</p><ul><li><p>默子：一个大二在读的CS本科生</p></li><li><p>就读于杭州电子科技大学卓越学院 -智能计算与数据科学学院（计算机科学与技术专业）</p></li><li><p>兴趣爱好：Minecraft、原神、缺氧、都市：天际线、欧陆风云4、上古卷轴5</p></li></ul><p>网站Logo设计，从阿里巴巴矢量库里一个大佬的字母设计里摘取的</p><p><strong>是默子的M</strong></p><figure><img src="../../source/img/ico/M200.svg" alt="logo" /><figcaption aria-hidden="true">logo</figcaption></figure>]]></content>
+    <content type="html"><![CDATA[]]></content>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>分类</title>
+    <link href="/"/>
+    <url>/</url>
+    
+    <content type="html"><![CDATA[]]></content>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>关于</title>
+    <link href="/"/>
+    <url>/</url>
+    
+    <content type="html"><![CDATA[]]></content>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>标签</title>
+    <link href="/"/>
+    <url>/</url>
+    
+    <content type="html"><![CDATA[]]></content>
     
   </entry>
   
@@ -206,39 +239,6 @@
     <url>/</url>
     
     <content type="html"><![CDATA[<p>你好</p>]]></content>
-    
-  </entry>
-  
-  
-  
-  <entry>
-    <title>标签</title>
-    <link href="/"/>
-    <url>/</url>
-    
-    <content type="html"><![CDATA[]]></content>
-    
-  </entry>
-  
-  
-  
-  <entry>
-    <title>分类</title>
-    <link href="/"/>
-    <url>/</url>
-    
-    <content type="html"><![CDATA[]]></content>
-    
-  </entry>
-  
-  
-  
-  <entry>
-    <title>404，默子丢啦</title>
-    <link href="/"/>
-    <url>/</url>
-    
-    <content type="html"><![CDATA[]]></content>
     
   </entry>
   

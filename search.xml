@@ -89,6 +89,272 @@ href="https://www.latexstudio.net/texdoc/#/28?page_id=114">LaTeX
       </tags>
   </entry>
   <entry>
+    <title>【杂记】2020年3月9日</title>
+    <url>/2020/03/50796d93/</url>
+    <content><![CDATA[<p>又是很颓的一天啊……</p>
+<p>日常肝题，奇怪的是今天居然没有玩游戏</p>
+<h2 id="上午1030">上午10:30</h2>
+<p>其实醒来有很长时间了</p>
+<p>但是一直懒在床上没有动，看了会
+<strong>许胤龙的《组合数学引论》</strong></p>
+<p><del>怎么可能看懂，这个东西简直需要两个脑子</del></p>
+<p>对<strong>Fibonacci数</strong>和<strong>Catalan数</strong>有了更深刻的认识。</p>
+<p>但是还有些不太明白，明天再看看书吧……</p>
+<p>唉，当一个蒟蒻的快乐是大佬们永远体验不到的</p>
+<p>新知识的海洋在向蒟蒻招手。</p>
+<p>至于大佬呢？大佬们忙着发现新的类地星球，不屑于在地表游玩。</p>
+<h3
+id="安利一款超棒的游戏坎巴拉的太空计划">安利一款超棒的游戏《坎巴拉的太空计划》</h3>
+<blockquote>
+<p>虽然我还不怎么会玩，勉强靠着新手教程发射了第一次火箭</p>
+</blockquote>
+<blockquote>
+<p>但是游戏真的超棒，物理、航天、宇宙爱好者的最佳选择</p>
+</blockquote>
+<blockquote>
+<p>这里贴一段游戏评论</p>
+</blockquote>
+<p><strong>本游戏百小时都出不了新手村</strong></p>
+<p>但是作为一个太空模拟它做到了尽可能的真实（相比其他游戏</p>
+<p>没有什么超光速引擎，没有跃迁，没有虫洞</p>
+<p>你用最笨拙的方式——燃料和引力飞向星空</p>
+<p>在其他游戏里习惯了线性一样的移动后，回过头来看看这个游戏</p>
+<p>它真正代表了人类对太空在历史上的探索</p>
+<figure>
+<img src="https://s2.ax1x.com/2020/03/09/89xvXn.jpg"
+alt="坎巴拉的太空计划-游戏截图" />
+<figcaption aria-hidden="true">坎巴拉的太空计划-游戏截图</figcaption>
+</figure>
+<p>听说最近出系列2了，如果有机会的话，夏天入手，<strong>112RMB</strong></p>
+<p>学生党伤不起啊……</p>
+<hr />
+<h2 id="中午1230">中午12：30</h2>
+<p>麻婆豆腐香啊，三碗米饭????是日常操作。</p>
+<p>写到这里，我觉得我该减肥了????????????</p>
+<p>嗯，从明天开始做一些运动吧……</p>
+<p>不过，现在吃饱了才有力气明天减肥嘛<code>负罪感--</code></p>
+<h2 id="下午1800">下午18：00</h2>
+<p>午觉愣是睡成了下午觉！！！</p>
+<p>打开手机，本想着逛一会B站，但是看了看日历</p>
+<p>今天距离<strong>省选</strong>还有——<strong>20</strong>天啊。</p>
+<p>算了，学习吧。</p>
+<p><strong>熟悉的洛谷，熟悉的味道</strong></p>
+<h3 id="st表的原理以及实现">ST表的原理以及实现</h3>
+<p>今天搞了一下快忘掉的一些数据结构和算法</p>
+<p>众所周知，在维护区间最值的时候，我们常用两种算法，一种叫ST表，一种叫线段树</p>
+<p>这里主要说下<strong>ST表(Sparse Table)</strong></p>
+<p><strong>预处理时间复杂度<code>O(nlogn)</code></strong></p>
+<p><strong>查询时间复杂度<code>O(1)</code></strong></p>
+<p>我们首先定义一个初始数据数组和二维的ST表数组</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">//n为数据大小</span><br><span class="hljs-type">int</span> a[n]    存初始数据<br><span class="hljs-comment">//21后面具体再解释,其实当你看完原理也就懂了</span><br><span class="hljs-type">int</span> st[n][<span class="hljs-number">21</span>]    存ST表<br></code></pre></td></tr></table></figure>
+<p><span class="math inline">\(st[ i ][ j ]表示的是区间[ i , i+2^j-1
+]里的最大值\)</span></p>
+<p><span class="math inline">\(所以，st[ i ][ j ] = max(st[ i ][ j-1 ] ,
+st[ i+2^(j-1) ][ j-1 ])\)</span></p>
+<p><span
+class="math inline">\(这里以维护区间最大值来举例，最大值最小值其实都一样，只有\)</span><strong>max</strong><span
+class="math inline">\(和\)</span><strong>min</strong><span
+class="math inline">\(的区别\)</span></p>
+<h3 id="初始化st表">初始化ST表</h3>
+<p>怎么来的呢？</p>
+<p>个人觉得，简单来说就是一个 <code>二分+分治</code> 的思想</p>
+<p><strong>我们要求区间 <span class="math inline">\([ i , i+2^j-1
+]\)</span> 里的最大值</strong></p>
+<p><strong>可以先求区间 <span class="math inline">\([ i , i+2^(j-1)-1
+]\)</span> 里的最大值</strong></p>
+<p><strong>再求区间 <span class="math inline">\([ i+2^(j-1) , i+2^j-1
+]\)</span> 里的最大值</strong></p>
+<p><strong>最后取这两个区间的最大值</strong></p>
+<p>所以，<span class="math inline">\(st[ i ][ j ] = max(st[ i ][ j-1 ] ,
+st[ i+2^(j-1) ][ j-1 ])\)</span></p>
+<p>如果还是不理解的话，再看一下st数组的含义</p>
+<p><span class="math inline">\(st[ i ][ j ]\)</span>表示的是区间<span
+class="math inline">\([ i , i+2^j-1 ]\)</span>里的最大值</p>
+<p>初始化最小单元，也就是 <span class="math inline">\(st[ i ][ 0
+]\)</span> ，也就是区间 <span class="math inline">\([ i , i ]\)</span>
+里的最大值</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++)<br>    st[i][<span class="hljs-number">0</span>]=a[i];<br></code></pre></td></tr></table></figure>
+<p>初始化剩余部分，这里用到了位运算节约时间开销</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j=<span class="hljs-number">1</span>;(<span class="hljs-number">1</span>&lt;&lt;j)&lt;=n;j++)<br>    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i+(<span class="hljs-number">1</span>&lt;&lt;j)&lt;=n;i++)<br>        st[i][j] = <span class="hljs-built_in">max</span>(st[i][j<span class="hljs-number">-1</span>],st[i+(<span class="hljs-number">1</span>&lt;&lt;(j<span class="hljs-number">-1</span>))][j<span class="hljs-number">-1</span>]);<br></code></pre></td></tr></table></figure>
+<h3 id="查询st表">查询ST表</h3>
+<p>ST表的查询许多萌新上来会迷惑的一个操作</p>
+<p>比如，我们要查询区间 <span class="math inline">\([ l , r ]\)</span>
+里的最大值</p>
+<p>如果这个区间恰好是<strong>ST表</strong>里的一个区间 <span
+class="math inline">\([ i , i+2^j-1 ]\)</span> ，那么我们就可以直接访问
+<span class="math inline">\(st[i][j]\)</span></p>
+<p>可惜大多时候都不是，那么我们怎么做呢？我们可以这样做</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-type">int</span> k = <span class="hljs-built_in">log</span>(r-l+<span class="hljs-number">1</span>)/<span class="hljs-built_in">log</span>(<span class="hljs-number">2</span>));<br><span class="hljs-type">int</span> ans = <span class="hljs-built_in">max</span>(st[l][k],st[y-(<span class="hljs-number">1</span>&lt;&lt;k)+<span class="hljs-number">1</span>][k]);<br></code></pre></td></tr></table></figure>
+<p>这里的 <span class="math inline">\(y\)</span> 是什么呢？ <span
+class="math inline">\(y\)</span> 是满足 <span
+class="math inline">\(y-(1&lt;&lt;k)+1&lt;=r\)</span> 的最大值</p>
+<p><span class="math inline">\(k\)</span>是什么呢？<span
+class="math inline">\(k\)</span> 是满足 <span
+class="math inline">\(2^k&lt;=r-l+1\)</span> 的最大值</p>
+<p>最后比较的两个区间 <span class="math inline">\([l,l+2^k]\)</span> 和
+<span class="math inline">\([r-2^k,r]\)</span>
+有可能是重合的，但是答案是唯一的</p>
+<p><del><strong>板子还是要自己打，不然怎么才能背会呢？</strong></del></p>
+<h2 id="晚上2230">晚上22：30</h2>
+<p>刷题的日子总是这么朴实无华且枯燥</p>
+<p>写完博客，一看表居然已经12点了</p>
+<p>看来我还是太菜，一篇杂记类博客居然要写一个半小时。</p>
+<p>今天AK洛谷第一页黄题，明天继续肝吧，绿题蓝题要提上日程了</p>
+<p>之前有位大佬建议我刷满2页蓝，……太犇了。</p>
+<p>继续加油吧，不忘初心。</p>
+]]></content>
+      <categories>
+        <category>杂记</category>
+      </categories>
+      <tags>
+        <tag>杂记</tag>
+        <tag>日常</tag>
+        <tag>ST表</tag>
+        <tag>坎巴拉的太空计划</tag>
+        <tag>Fibonacci数</tag>
+        <tag>Catalan数</tag>
+        <tag>洛谷</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【计科漫谈】都2023了，你还不会使用Markdown？</title>
+    <url>/2023/05/1d0b3c6c/</url>
+    <content><![CDATA[<p>【计科漫谈】<strong>都2023了，你还不会使用Markdown？</strong></p>
+<p>虽然这个标题有些攻击性，但相信默子，绝对不是有意的。</p>
+<p>2023的第二周马上要过去了，大年三十也已经在来的路上了。在这闲暇但也不太闲暇的日子里，学点Markdown为2023助助力吧！</p>
+<p><strong>相信它会成为你新一年学习工作的好助手哒！</strong></p>
+<hr />
+<h2 id="markdown-是什么">Markdown 是什么</h2>
+<p>Wikipedia 词条 <a
+href="https://en.wikipedia.org/wiki/Markdown">Markdown</a></p>
+<p>Markdown
+是一种轻量级的标记语言，可用于在<strong>纯文本文档</strong>中添加<strong>格式化元素</strong>。Markdown
+由 John Gruber 于 2004
+年创建，如今已成为世界上<strong>最受欢迎</strong>的标记语言之一。</p>
+<p>默子个人觉得，Markdown是一种 ==学习成本超低==
+，但是带来的<strong>回报率超高</strong>的一种标记语言。可以只用一些简单的符号，做到格式化文本，排版文章，做表插图。</p>
+<hr />
+<h2 id="markdown-用在何处">Markdown 用在何处</h2>
+<ol type="1">
+<li>==用来写技术博客==，记录学习笔记，常见的写作平台有CSDN、Github、掘金等。还可以在期末时直接将笔记作为报告。</li>
+<li>Obsidian知识管理，知识的输入与输出，构建数字大脑（使用的语法是Markdown）</li>
+</ol>
+<blockquote>
+<p>一般来说，Markdown
+在非程序员的圈子里知名度其实不高，而且即使很多程序员菜鸟，也要一两年才会接触到
+Markdown</p>
+<p>但是Markdown的优点真的是数不胜数，默子可以列举很多</p>
+</blockquote>
+<hr />
+<h2 id="markdown的优点">Markdown的优点</h2>
+<ul>
+<li>==绝对的跨平台==，因为
+Markdown的文件本身就是一个文本文件，<code>.md</code>
+可以用任意的文本编辑器打开，不存在兼容性的问题。最多是不同Markdown的渲染器渲染出来的效果不一样罢了。</li>
+<li>==格式设置简洁优美==，在传统排版软件Word中需要很多操作才可以完成的内容，在Markdown中就是多敲几个字符的事情。</li>
+<li>==让写作者更专注于内容的输出==，不会被复杂的排版，恼人的乱码困扰，记住十几个特定的字符，比在Word里面频繁的操作要省事的多。（其实就是追求的一种极简主义，简化不重要的边角，强化内容的核心）</li>
+<li>支持 <span class="math inline">\(\LaTeX\)</span>
+数学公式，让数学公式编辑不再折磨。</li>
+</ul>
+<hr />
+<h2 id="markdown-基础语法">Markdown 基础语法</h2>
+<p>Markdown里的基本语法不多，这里将介绍最主要的语法。更多扩展语法，默子会放出官方全面的网站，供大家收藏，日后方便查阅。</p>
+<blockquote>
+<p>标题、加粗、斜体、粗斜体、高亮、删除线、下划线、引用、链接、图片插入</p>
+</blockquote>
+<h4
+id="标题用-表示标题一级标题一个-二级标题两个-最高有六级标题">标题：用
+<code>#</code> 表示标题，一级标题一个 <code>#</code> ，二级标题两个
+<code>#</code> ，最高有六级标题。</h4>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><code class="hljs markdown"><span class="hljs-section"># 1级标题</span><br><span class="hljs-section">## 2级标题</span><br><span class="hljs-section">### 3级标题</span><br><span class="hljs-section">#### 4级标题</span><br><span class="hljs-section">##### 5级标题</span><br><span class="hljs-section">###### 6级标题</span><br></code></pre></td></tr></table></figure>
+<h4 id="加粗用-内容-包裹起来字体加粗">加粗：用 <code>**内容**</code>
+包裹起来，字体加粗</h4>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><code class="hljs markdown"><span class="hljs-strong">**加粗的内容**</span><br></code></pre></td></tr></table></figure>
+<p><strong>加粗的内容</strong></p>
+<h4 id="斜体用-内容-包裹起来字体倾斜">斜体：用 <code>*内容*</code>
+包裹起来，字体倾斜</h4>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><code class="hljs markdown"><span class="hljs-emphasis">*斜体的内容*</span><br></code></pre></td></tr></table></figure>
+<p><em>斜体的内容</em></p>
+<h4 id="粗斜体用-内容-包裹起来字体加粗倾斜">粗斜体：用
+<code>***内容***</code> 包裹起来，字体加粗倾斜</h4>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><code class="hljs markdown"><span class="hljs-strong">**<span class="hljs-emphasis">*粗斜体的内容*</span>**</span><br></code></pre></td></tr></table></figure>
+<p><strong><em>粗斜体的内容</em></strong></p>
+<h4 id="高亮用-内容-包裹起来字体背景高亮">高亮：用 <code>==内容==</code>
+包裹起来，字体背景高亮</h4>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><code class="hljs markdown">==高亮的内容==<br></code></pre></td></tr></table></figure>
+<p>==高亮的内容==</p>
+<h4 id="下划线用-u内容u-包裹起来添加下划线">下划线：用
+<code>&lt;u&gt;内容&lt;/u&gt;</code> 包裹起来，添加下划线</h4>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><code class="hljs markdown"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">u</span>&gt;</span></span>下划线的内容<span class="language-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">u</span>&gt;</span></span><br></code></pre></td></tr></table></figure>
+<p><u>下划线的内容</u></p>
+<h4 id="删除线用-内容-包裹起来添加删除线">删除线：用
+<code>~~内容~~</code> 包裹起来，添加删除线</h4>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><code class="hljs markdown">~~删除线的内容~~<br></code></pre></td></tr></table></figure>
+<p><del>删除线的内容</del></p>
+<h4 id="引用每一行的开始使用-表示引用">引用：每一行的开始使用
+<code>&gt;</code> 表示引用</h4>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><code class="hljs markdown"><span class="hljs-quote">&gt; 我爱你，以身，以心，以血，以命！以沉默，以眼泪！以唯一，以终结！以漂泊的灵魂，以永恒的死亡！</span><br></code></pre></td></tr></table></figure>
+<blockquote>
+<p>我爱你，以身，以心，以血，以命！以沉默，以眼泪！以唯一，以终结！以漂泊的灵魂，以永恒的死亡！</p>
+</blockquote>
+<p>多层嵌套引用可以用 <code>&gt;&gt;</code> 来表示</p>
+<blockquote>
+<p>外层引用</p>
+<blockquote>
+<p>内层引用1</p>
+</blockquote>
+<p>可以引用多行</p>
+<blockquote>
+<p>内层引用2</p>
+</blockquote>
+</blockquote>
+<h4
+id="链接用链接名称链接地址来表示一个链接">链接：用<code>[链接名称](链接地址)</code>来表示一个链接</h4>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><code class="hljs markdown">[<span class="hljs-string">链接名称</span>](<span class="hljs-link">链接地址</span>)<br>[<span class="hljs-string">Markdown - Wikipedia</span>](<span class="hljs-link">https://en.wikipedia.org/wiki/Markdown</span>)<br></code></pre></td></tr></table></figure>
+<p><a href="链接地址">链接名称</a></p>
+<p><a href="https://en.wikipedia.org/wiki/Markdown">Markdown -
+Wikipedia</a></p>
+<h4
+id="图片插入用图片描述图片地址来在文章中插入图片">图片插入：用<code>![图片描述](图片地址)</code>来在文章中插入图片</h4>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><code class="hljs markdown">![](<span class="hljs-link">https://profile.csdnimg.cn/3/5/3/1_qq_35657309</span>)<br></code></pre></td></tr></table></figure>
+<p><img
+src="https://img-blog.csdnimg.cn/img_convert/bfd1b8a6278d4576e183dbea48401416.png" /></p>
+<p>以上就是Markdown最基础的语法啦！相信大家应该都已经学会了叭。</p>
+<p>默子一直是秉持着，<code>先用起来，再不断巩固拓展。</code></p>
+<p>所以，其实上面的Markdown语法已经足够大家日常使用了。</p>
+<p>如果有更多的需求，不妨看看默子下方推荐的学习资料哦！</p>
+<hr />
+<h2 id="markdown-参考学习资料">Markdown 参考学习资料</h2>
+<ol type="1">
+<li><a href="https://www.markdownguide.org/getting-started/">Getting
+Started | Markdown Guide</a></li>
+</ol>
+<blockquote>
+<p>Markdown Guide
+官方的英文教程，大家英文水平如果OK的话，不妨去看一下（可能国内访问会比较困难）</p>
+</blockquote>
+<ol start="2" type="1">
+<li><a href="https://www.runoob.com/markdown/md-tutorial.html">Markdown
+教程 | 菜鸟教程 (runoob.com)</a></li>
+</ol>
+<blockquote>
+<p>菜鸟的中文教程，讲的十分详细清晰，建议小伙伴们看这个，同时有
+[[VSCode]] 的详细操作教程，对于零基础小伙伴来说十分友好。</p>
+</blockquote>
+<ol start="3" type="1">
+<li><a
+href="https://markdown.com.cn/intro.html#markdown-%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F">Markdown
+入门基础 | Markdown 官方教程</a></li>
+</ol>
+<blockquote>
+<p>官方中文教程，十分详细，但是可能其中的内容并不适合所有的初学者了解，
+比如 <a
+href="https://markdown.com.cn/intro.html#markdown-%E6%9C%89%E4%BB%80%E4%B9%88%E7%94%A8%EF%BC%9F">Markdown
+的工作原理</a></p>
+</blockquote>
+]]></content>
+  </entry>
+  <entry>
     <title>【杂记】2020年3月8日</title>
     <url>/2020/03/e8c50af6/</url>
     <content><![CDATA[<h3 id="早上-930">早上 9：30</h3>
@@ -378,271 +644,5 @@ class="math display">\[\begin{bmatrix}1&amp;2&amp;3\\4&amp;5&amp;6\\7&amp;8&amp;
         <tag>Github</tag>
         <tag>Next</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>【杂记】2020年3月9日</title>
-    <url>/2020/03/50796d93/</url>
-    <content><![CDATA[<p>又是很颓的一天啊……</p>
-<p>日常肝题，奇怪的是今天居然没有玩游戏</p>
-<h2 id="上午1030">上午10:30</h2>
-<p>其实醒来有很长时间了</p>
-<p>但是一直懒在床上没有动，看了会
-<strong>许胤龙的《组合数学引论》</strong></p>
-<p><del>怎么可能看懂，这个东西简直需要两个脑子</del></p>
-<p>对<strong>Fibonacci数</strong>和<strong>Catalan数</strong>有了更深刻的认识。</p>
-<p>但是还有些不太明白，明天再看看书吧……</p>
-<p>唉，当一个蒟蒻的快乐是大佬们永远体验不到的</p>
-<p>新知识的海洋在向蒟蒻招手。</p>
-<p>至于大佬呢？大佬们忙着发现新的类地星球，不屑于在地表游玩。</p>
-<h3
-id="安利一款超棒的游戏坎巴拉的太空计划">安利一款超棒的游戏《坎巴拉的太空计划》</h3>
-<blockquote>
-<p>虽然我还不怎么会玩，勉强靠着新手教程发射了第一次火箭</p>
-</blockquote>
-<blockquote>
-<p>但是游戏真的超棒，物理、航天、宇宙爱好者的最佳选择</p>
-</blockquote>
-<blockquote>
-<p>这里贴一段游戏评论</p>
-</blockquote>
-<p><strong>本游戏百小时都出不了新手村</strong></p>
-<p>但是作为一个太空模拟它做到了尽可能的真实（相比其他游戏</p>
-<p>没有什么超光速引擎，没有跃迁，没有虫洞</p>
-<p>你用最笨拙的方式——燃料和引力飞向星空</p>
-<p>在其他游戏里习惯了线性一样的移动后，回过头来看看这个游戏</p>
-<p>它真正代表了人类对太空在历史上的探索</p>
-<figure>
-<img src="https://s2.ax1x.com/2020/03/09/89xvXn.jpg"
-alt="坎巴拉的太空计划-游戏截图" />
-<figcaption aria-hidden="true">坎巴拉的太空计划-游戏截图</figcaption>
-</figure>
-<p>听说最近出系列2了，如果有机会的话，夏天入手，<strong>112RMB</strong></p>
-<p>学生党伤不起啊……</p>
-<hr />
-<h2 id="中午1230">中午12：30</h2>
-<p>麻婆豆腐香啊，三碗米饭????是日常操作。</p>
-<p>写到这里，我觉得我该减肥了????????????</p>
-<p>嗯，从明天开始做一些运动吧……</p>
-<p>不过，现在吃饱了才有力气明天减肥嘛<code>负罪感--</code></p>
-<h2 id="下午1800">下午18：00</h2>
-<p>午觉愣是睡成了下午觉！！！</p>
-<p>打开手机，本想着逛一会B站，但是看了看日历</p>
-<p>今天距离<strong>省选</strong>还有——<strong>20</strong>天啊。</p>
-<p>算了，学习吧。</p>
-<p><strong>熟悉的洛谷，熟悉的味道</strong></p>
-<h3 id="st表的原理以及实现">ST表的原理以及实现</h3>
-<p>今天搞了一下快忘掉的一些数据结构和算法</p>
-<p>众所周知，在维护区间最值的时候，我们常用两种算法，一种叫ST表，一种叫线段树</p>
-<p>这里主要说下<strong>ST表(Sparse Table)</strong></p>
-<p><strong>预处理时间复杂度<code>O(nlogn)</code></strong></p>
-<p><strong>查询时间复杂度<code>O(1)</code></strong></p>
-<p>我们首先定义一个初始数据数组和二维的ST表数组</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">//n为数据大小</span><br><span class="hljs-type">int</span> a[n]    存初始数据<br><span class="hljs-comment">//21后面具体再解释,其实当你看完原理也就懂了</span><br><span class="hljs-type">int</span> st[n][<span class="hljs-number">21</span>]    存ST表<br></code></pre></td></tr></table></figure>
-<p><span class="math inline">\(st[ i ][ j ]表示的是区间[ i , i+2^j-1
-]里的最大值\)</span></p>
-<p><span class="math inline">\(所以，st[ i ][ j ] = max(st[ i ][ j-1 ] ,
-st[ i+2^(j-1) ][ j-1 ])\)</span></p>
-<p><span
-class="math inline">\(这里以维护区间最大值来举例，最大值最小值其实都一样，只有\)</span><strong>max</strong><span
-class="math inline">\(和\)</span><strong>min</strong><span
-class="math inline">\(的区别\)</span></p>
-<h3 id="初始化st表">初始化ST表</h3>
-<p>怎么来的呢？</p>
-<p>个人觉得，简单来说就是一个 <code>二分+分治</code> 的思想</p>
-<p><strong>我们要求区间 <span class="math inline">\([ i , i+2^j-1
-]\)</span> 里的最大值</strong></p>
-<p><strong>可以先求区间 <span class="math inline">\([ i , i+2^(j-1)-1
-]\)</span> 里的最大值</strong></p>
-<p><strong>再求区间 <span class="math inline">\([ i+2^(j-1) , i+2^j-1
-]\)</span> 里的最大值</strong></p>
-<p><strong>最后取这两个区间的最大值</strong></p>
-<p>所以，<span class="math inline">\(st[ i ][ j ] = max(st[ i ][ j-1 ] ,
-st[ i+2^(j-1) ][ j-1 ])\)</span></p>
-<p>如果还是不理解的话，再看一下st数组的含义</p>
-<p><span class="math inline">\(st[ i ][ j ]\)</span>表示的是区间<span
-class="math inline">\([ i , i+2^j-1 ]\)</span>里的最大值</p>
-<p>初始化最小单元，也就是 <span class="math inline">\(st[ i ][ 0
-]\)</span> ，也就是区间 <span class="math inline">\([ i , i ]\)</span>
-里的最大值</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++)<br>    st[i][<span class="hljs-number">0</span>]=a[i];<br></code></pre></td></tr></table></figure>
-<p>初始化剩余部分，这里用到了位运算节约时间开销</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j=<span class="hljs-number">1</span>;(<span class="hljs-number">1</span>&lt;&lt;j)&lt;=n;j++)<br>    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i+(<span class="hljs-number">1</span>&lt;&lt;j)&lt;=n;i++)<br>        st[i][j] = <span class="hljs-built_in">max</span>(st[i][j<span class="hljs-number">-1</span>],st[i+(<span class="hljs-number">1</span>&lt;&lt;(j<span class="hljs-number">-1</span>))][j<span class="hljs-number">-1</span>]);<br></code></pre></td></tr></table></figure>
-<h3 id="查询st表">查询ST表</h3>
-<p>ST表的查询许多萌新上来会迷惑的一个操作</p>
-<p>比如，我们要查询区间 <span class="math inline">\([ l , r ]\)</span>
-里的最大值</p>
-<p>如果这个区间恰好是<strong>ST表</strong>里的一个区间 <span
-class="math inline">\([ i , i+2^j-1 ]\)</span> ，那么我们就可以直接访问
-<span class="math inline">\(st[i][j]\)</span></p>
-<p>可惜大多时候都不是，那么我们怎么做呢？我们可以这样做</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-type">int</span> k = <span class="hljs-built_in">log</span>(r-l+<span class="hljs-number">1</span>)/<span class="hljs-built_in">log</span>(<span class="hljs-number">2</span>));<br><span class="hljs-type">int</span> ans = <span class="hljs-built_in">max</span>(st[l][k],st[y-(<span class="hljs-number">1</span>&lt;&lt;k)+<span class="hljs-number">1</span>][k]);<br></code></pre></td></tr></table></figure>
-<p>这里的 <span class="math inline">\(y\)</span> 是什么呢？ <span
-class="math inline">\(y\)</span> 是满足 <span
-class="math inline">\(y-(1&lt;&lt;k)+1&lt;=r\)</span> 的最大值</p>
-<p><span class="math inline">\(k\)</span>是什么呢？<span
-class="math inline">\(k\)</span> 是满足 <span
-class="math inline">\(2^k&lt;=r-l+1\)</span> 的最大值</p>
-<p>最后比较的两个区间 <span class="math inline">\([l,l+2^k]\)</span> 和
-<span class="math inline">\([r-2^k,r]\)</span>
-有可能是重合的，但是答案是唯一的</p>
-<p><del><strong>板子还是要自己打，不然怎么才能背会呢？</strong></del></p>
-<h2 id="晚上2230">晚上22：30</h2>
-<p>刷题的日子总是这么朴实无华且枯燥</p>
-<p>写完博客，一看表居然已经12点了</p>
-<p>看来我还是太菜，一篇杂记类博客居然要写一个半小时。</p>
-<p>今天AK洛谷第一页黄题，明天继续肝吧，绿题蓝题要提上日程了</p>
-<p>之前有位大佬建议我刷满2页蓝，……太犇了。</p>
-<p>继续加油吧，不忘初心。</p>
-]]></content>
-      <categories>
-        <category>杂记</category>
-      </categories>
-      <tags>
-        <tag>杂记</tag>
-        <tag>日常</tag>
-        <tag>ST表</tag>
-        <tag>坎巴拉的太空计划</tag>
-        <tag>Fibonacci数</tag>
-        <tag>Catalan数</tag>
-        <tag>洛谷</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【计科漫谈】都2023了，你还不会使用Markdown？</title>
-    <url>/2023/05/1d0b3c6c/</url>
-    <content><![CDATA[<p>【计科漫谈】<strong>都2023了，你还不会使用Markdown？</strong></p>
-<p>虽然这个标题有些攻击性，但相信默子，绝对不是有意的。</p>
-<p>2023的第二周马上要过去了，大年三十也已经在来的路上了。在这闲暇但也不太闲暇的日子里，学点Markdown为2023助助力吧！</p>
-<p><strong>相信它会成为你新一年学习工作的好助手哒！</strong></p>
-<hr />
-<h2 id="markdown-是什么">Markdown 是什么</h2>
-<p>Wikipedia 词条 <a
-href="https://en.wikipedia.org/wiki/Markdown">Markdown</a></p>
-<p>Markdown
-是一种轻量级的标记语言，可用于在<strong>纯文本文档</strong>中添加<strong>格式化元素</strong>。Markdown
-由 John Gruber 于 2004
-年创建，如今已成为世界上<strong>最受欢迎</strong>的标记语言之一。</p>
-<p>默子个人觉得，Markdown是一种 ==学习成本超低==
-，但是带来的<strong>回报率超高</strong>的一种标记语言。可以只用一些简单的符号，做到格式化文本，排版文章，做表插图。</p>
-<hr />
-<h2 id="markdown-用在何处">Markdown 用在何处</h2>
-<ol type="1">
-<li>==用来写技术博客==，记录学习笔记，常见的写作平台有CSDN、Github、掘金等。还可以在期末时直接将笔记作为报告。</li>
-<li>Obsidian知识管理，知识的输入与输出，构建数字大脑（使用的语法是Markdown）</li>
-</ol>
-<blockquote>
-<p>一般来说，Markdown
-在非程序员的圈子里知名度其实不高，而且即使很多程序员菜鸟，也要一两年才会接触到
-Markdown</p>
-<p>但是Markdown的优点真的是数不胜数，默子可以列举很多</p>
-</blockquote>
-<hr />
-<h2 id="markdown的优点">Markdown的优点</h2>
-<ul>
-<li>==绝对的跨平台==，因为
-Markdown的文件本身就是一个文本文件，<code>.md</code>
-可以用任意的文本编辑器打开，不存在兼容性的问题。最多是不同Markdown的渲染器渲染出来的效果不一样罢了。</li>
-<li>==格式设置简洁优美==，在传统排版软件Word中需要很多操作才可以完成的内容，在Markdown中就是多敲几个字符的事情。</li>
-<li>==让写作者更专注于内容的输出==，不会被复杂的排版，恼人的乱码困扰，记住十几个特定的字符，比在Word里面频繁的操作要省事的多。（其实就是追求的一种极简主义，简化不重要的边角，强化内容的核心）</li>
-<li>支持 <span class="math inline">\(\LaTeX\)</span>
-数学公式，让数学公式编辑不再折磨。</li>
-</ul>
-<hr />
-<h2 id="markdown-基础语法">Markdown 基础语法</h2>
-<p>Markdown里的基本语法不多，这里将介绍最主要的语法。更多扩展语法，默子会放出官方全面的网站，供大家收藏，日后方便查阅。</p>
-<blockquote>
-<p>标题、加粗、斜体、粗斜体、高亮、删除线、下划线、引用、链接、图片插入</p>
-</blockquote>
-<h4
-id="标题用-表示标题一级标题一个-二级标题两个-最高有六级标题">标题：用
-<code>#</code> 表示标题，一级标题一个 <code>#</code> ，二级标题两个
-<code>#</code> ，最高有六级标题。</h4>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><code class="hljs markdown"><span class="hljs-section"># 1级标题</span><br><span class="hljs-section">## 2级标题</span><br><span class="hljs-section">### 3级标题</span><br><span class="hljs-section">#### 4级标题</span><br><span class="hljs-section">##### 5级标题</span><br><span class="hljs-section">###### 6级标题</span><br></code></pre></td></tr></table></figure>
-<h4 id="加粗用-内容-包裹起来字体加粗">加粗：用 <code>**内容**</code>
-包裹起来，字体加粗</h4>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><code class="hljs markdown"><span class="hljs-strong">**加粗的内容**</span><br></code></pre></td></tr></table></figure>
-<p><strong>加粗的内容</strong></p>
-<h4 id="斜体用-内容-包裹起来字体倾斜">斜体：用 <code>*内容*</code>
-包裹起来，字体倾斜</h4>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><code class="hljs markdown"><span class="hljs-emphasis">*斜体的内容*</span><br></code></pre></td></tr></table></figure>
-<p><em>斜体的内容</em></p>
-<h4 id="粗斜体用-内容-包裹起来字体加粗倾斜">粗斜体：用
-<code>***内容***</code> 包裹起来，字体加粗倾斜</h4>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><code class="hljs markdown"><span class="hljs-strong">**<span class="hljs-emphasis">*粗斜体的内容*</span>**</span><br></code></pre></td></tr></table></figure>
-<p><strong><em>粗斜体的内容</em></strong></p>
-<h4 id="高亮用-内容-包裹起来字体背景高亮">高亮：用 <code>==内容==</code>
-包裹起来，字体背景高亮</h4>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><code class="hljs markdown">==高亮的内容==<br></code></pre></td></tr></table></figure>
-<p>==高亮的内容==</p>
-<h4 id="下划线用-u内容u-包裹起来添加下划线">下划线：用
-<code>&lt;u&gt;内容&lt;/u&gt;</code> 包裹起来，添加下划线</h4>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><code class="hljs markdown"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">u</span>&gt;</span></span>下划线的内容<span class="language-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">u</span>&gt;</span></span><br></code></pre></td></tr></table></figure>
-<p><u>下划线的内容</u></p>
-<h4 id="删除线用-内容-包裹起来添加删除线">删除线：用
-<code>~~内容~~</code> 包裹起来，添加删除线</h4>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><code class="hljs markdown">~~删除线的内容~~<br></code></pre></td></tr></table></figure>
-<p><del>删除线的内容</del></p>
-<h4 id="引用每一行的开始使用-表示引用">引用：每一行的开始使用
-<code>&gt;</code> 表示引用</h4>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><code class="hljs markdown"><span class="hljs-quote">&gt; 我爱你，以身，以心，以血，以命！以沉默，以眼泪！以唯一，以终结！以漂泊的灵魂，以永恒的死亡！</span><br></code></pre></td></tr></table></figure>
-<blockquote>
-<p>我爱你，以身，以心，以血，以命！以沉默，以眼泪！以唯一，以终结！以漂泊的灵魂，以永恒的死亡！</p>
-</blockquote>
-<p>多层嵌套引用可以用 <code>&gt;&gt;</code> 来表示</p>
-<blockquote>
-<p>外层引用</p>
-<blockquote>
-<p>内层引用1</p>
-</blockquote>
-<p>可以引用多行</p>
-<blockquote>
-<p>内层引用2</p>
-</blockquote>
-</blockquote>
-<h4
-id="链接用链接名称链接地址来表示一个链接">链接：用<code>[链接名称](链接地址)</code>来表示一个链接</h4>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><code class="hljs markdown">[<span class="hljs-string">链接名称</span>](<span class="hljs-link">链接地址</span>)<br>[<span class="hljs-string">Markdown - Wikipedia</span>](<span class="hljs-link">https://en.wikipedia.org/wiki/Markdown</span>)<br></code></pre></td></tr></table></figure>
-<p><a href="链接地址">链接名称</a></p>
-<p><a href="https://en.wikipedia.org/wiki/Markdown">Markdown -
-Wikipedia</a></p>
-<h4
-id="图片插入用图片描述图片地址来在文章中插入图片">图片插入：用<code>![图片描述](图片地址)</code>来在文章中插入图片</h4>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><code class="hljs markdown">![](<span class="hljs-link">https://profile.csdnimg.cn/3/5/3/1_qq_35657309</span>)<br></code></pre></td></tr></table></figure>
-<p><img
-src="https://img-blog.csdnimg.cn/img_convert/bfd1b8a6278d4576e183dbea48401416.png" /></p>
-<p>以上就是Markdown最基础的语法啦！相信大家应该都已经学会了叭。</p>
-<p>默子一直是秉持着，<code>先用起来，再不断巩固拓展。</code></p>
-<p>所以，其实上面的Markdown语法已经足够大家日常使用了。</p>
-<p>如果有更多的需求，不妨看看默子下方推荐的学习资料哦！</p>
-<hr />
-<h2 id="markdown-参考学习资料">Markdown 参考学习资料</h2>
-<ol type="1">
-<li><a href="https://www.markdownguide.org/getting-started/">Getting
-Started | Markdown Guide</a></li>
-</ol>
-<blockquote>
-<p>Markdown Guide
-官方的英文教程，大家英文水平如果OK的话，不妨去看一下（可能国内访问会比较困难）</p>
-</blockquote>
-<ol start="2" type="1">
-<li><a href="https://www.runoob.com/markdown/md-tutorial.html">Markdown
-教程 | 菜鸟教程 (runoob.com)</a></li>
-</ol>
-<blockquote>
-<p>菜鸟的中文教程，讲的十分详细清晰，建议小伙伴们看这个，同时有
-[[VSCode]] 的详细操作教程，对于零基础小伙伴来说十分友好。</p>
-</blockquote>
-<ol start="3" type="1">
-<li><a
-href="https://markdown.com.cn/intro.html#markdown-%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F">Markdown
-入门基础 | Markdown 官方教程</a></li>
-</ol>
-<blockquote>
-<p>官方中文教程，十分详细，但是可能其中的内容并不适合所有的初学者了解，
-比如 <a
-href="https://markdown.com.cn/intro.html#markdown-%E6%9C%89%E4%BB%80%E4%B9%88%E7%94%A8%EF%BC%9F">Markdown
-的工作原理</a></p>
-</blockquote>
-]]></content>
   </entry>
 </search>
