@@ -4,6 +4,37 @@
   
   
   <entry>
+    <title>【深度学习】ViT入门（1）MNIST数据集练手</title>
+    <link href="/2023/05/e81b37fc/"/>
+    <url>/2023/05/e81b37fc/</url>
+    
+    <content type="html"><![CDATA[<h1id="深度学习vit入门1mnist数据集练手">【深度学习】ViT入门（1）MNIST数据集练手</h1><h2 id="简介视觉领域的transformer-vit">简介：视觉领域的Transformer ——ViT</h2><h3 id="什么是vit">什么是ViT</h3><p>默子要和大家分享一款在计算机视觉领域非常火热的技术——ViT，也就是VisionTransformer的缩写。</p><figure><img src="https://s2.loli.net/2023/05/12/F8ENLUH1tfJd9Vu.png"alt="image.png" /><figcaption aria-hidden="true">image.png</figcaption></figure><p><strong>虽然是几年前的图了，但这个图很明显，ViT强于传统的ResNet等一系列模型。</strong></p><p>我们今天要学习的，就是 ViT</p><p>相信大家对Transformer这个名词并不陌生吧，它是一种革命性的深度学习模型，在自然语言处理领域取得了巨大的成功。</p><figure><img src="https://s2.loli.net/2023/05/12/SafO6cIqFVY9E1u.png"alt="image.png" /><figcaption aria-hidden="true">image.png</figcaption></figure><p>那么，什么是ViT呢？简单来说，ViT是一种基于Transformer架构的模型，它能够处理图像数据。</p><p>通常情况下，在处理图像时会使用卷积神经网络（Convolutional NeuralNetwork，CNN），但是ViT却采用了和NLP领域中处理序列数据的Transformer相同的思路。</p><p><strong>Transformer是一种基于自注意力机制（Self-Attention）的深度学习模型。</strong></p><p>它不同于传统的卷积或者循环神经网络，而是通过全局的自注意力机制来学习序列之间的关系。</p><p>这种注意力机制允许模型在处理输入序列时能够对序列中不同位置的元素赋予不同的权重，从而捕捉到更丰富的上下文信息。</p><figure><img src="https://s2.loli.net/2023/05/12/m6ZnHd451tPlfaN.png"alt="image.png" /><figcaption aria-hidden="true">image.png</figcaption></figure><p>在ViT中，我们将图像视为一种特殊的序列数据，其中每个位置代表图像的一个小块区域，被称为<code>补丁(patch)</code>。这些补丁将被展平成向量形式，并作为输入序列传递给Transformer模型。</p><figure><img src="https://s2.loli.net/2023/05/12/PFxAIw74lV8Jfep.png"alt="image.png" /><figcaption aria-hidden="true">image.png</figcaption></figure><p>通过这种方式，ViT能够捕捉到图像中不同区域之间的上下文关系，从而实现对图像的理解和分析。</p><figure><img src="https://s2.loli.net/2023/05/12/CSR7VZ3O6ksxrEy.png"alt="image.png" /><figcaption aria-hidden="true">image.png</figcaption></figure><h3 id="vit训练过程">ViT训练过程</h3><p>ViT模型的训练分为两个阶段：预训练和微调。在预训练阶段，模型会使用大规模的图像数据进行自监督学习，通过学习图像的不同补丁之间的关系来构建视觉表示。</p><figure><img src="https://s2.loli.net/2023/05/12/QEkr3NgqPMpwlWc.png"alt="image.png" /><figcaption aria-hidden="true">image.png</figcaption></figure><p>在微调阶段，使用有标签的数据对模型进行进一步的训练，以适应具体的视觉任务，如图像分类、目标检测等。</p><figure><img src="https://s2.loli.net/2023/05/12/jPuZStNhe9rnaHU.png"alt="image.png" /><figcaption aria-hidden="true">image.png</figcaption></figure><h3 id="优点">优点</h3><p>ViT在计算机视觉领域取得了惊人的成绩，甚至在一些任务上超越了传统的卷积神经网络。它的优势之一是能够处理全局的上下文信息，而不仅仅局限于局部区域。</p><p>此外，ViT还具有良好的可解释性，可以通过可视化自注意力权重来理解模型在图像中关注的区域。这对于理解模型的决策过程和解释结果非常有帮助。</p><p>此外，ViT还能够处理不同尺寸和分辨率的图像，而无需进行特定的调整或修改网络结构。这种灵活性使得ViT在处理多样化的图像数据时更加方便。</p><h3 id="限制与挑战">限制与挑战</h3><p>当然，ViT也有一些挑战和限制。由于图像在序列化过程中丢失了空间信息，ViT可能无法充分捕捉到像素级别的细节。此外，ViT的计算成本较高，尤其是对于大型图像和复杂任务来说，需要更多的计算资源和时间。</p><p>不过，尽管存在这些挑战，ViT作为一种全新的视觉模型正在不断演进和发展。研究人员和工程师们正在努力改进ViT的性能，并将其应用于各种计算机视觉任务中。</p><hr /><h2 id="在mnist数据集上实现vit">在MNIST数据集上实现ViT</h2><p>如何在MNIST数据集上实现ViT，默子将通过一个简单的例子来介绍。</p><blockquote><p>提示：代码肯定跑不起来，但是可以作为参考。后面有放参考资料</p></blockquote><p>首先，我们需要导入所需的库。我们将使用PyTorch来构建和训练我们的ViT模型，同时还需要导入一些辅助库来处理数据和可视化结果。</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 导入PyTorch相关库</span><br><span class="hljs-keyword">import</span> torch<br><span class="hljs-comment"># 导入PyTorch的神经网络模块</span><br><span class="hljs-keyword">import</span> torch.nn <span class="hljs-keyword">as</span> nn<br><span class="hljs-comment"># 导入PyTorch的优化模块</span><br><span class="hljs-keyword">import</span> torch.optim <span class="hljs-keyword">as</span> optim<br><span class="hljs-comment"># 导入PyTorch的数据加载模块</span><br><span class="hljs-keyword">from</span> torch.utils.data <span class="hljs-keyword">import</span> DataLoader<br><span class="hljs-comment"># 导入PyTorch的视觉模块</span><br><span class="hljs-keyword">from</span> torchvision <span class="hljs-keyword">import</span> datasets, transforms<br><span class="hljs-comment"># 导入Matplotlib绘图库</span><br><span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt<br></code></pre></td></tr></table></figure><p>接下来，我们定义一些超参数，例如批大小、学习率、迭代次数等。你可以根据需要进行调整。</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python">batch_size = <span class="hljs-number">64</span>  <span class="hljs-comment"># 每个批次的样本数量</span><br>learning_rate = <span class="hljs-number">0.001</span>  <span class="hljs-comment"># 学习率</span><br>num_epochs = <span class="hljs-number">10</span>  <span class="hljs-comment"># 训练的轮数（迭代次数）</span><br></code></pre></td></tr></table></figure><p>现在，我们需要准备我们的数据集。MNIST数据集包含手写数字的灰度图像，每个图像都是28x28像素。我们将使用torchvision库来加载和预处理数据集。</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs python">transform = transforms.Compose([<br>    transforms.ToTensor(),  <span class="hljs-comment"># 将图像转换为Tensor类型</span><br>    transforms.Normalize((<span class="hljs-number">0.5</span>,), (<span class="hljs-number">0.5</span>,))  <span class="hljs-comment"># 对图像进行标准化处理</span><br>])<br><br>train_dataset = datasets.MNIST(root=<span class="hljs-string">&#x27;./data&#x27;</span>, train=<span class="hljs-literal">True</span>, transform=transform, download=<span class="hljs-literal">True</span>)  <span class="hljs-comment"># 加载训练数据集</span><br>test_dataset = datasets.MNIST(root=<span class="hljs-string">&#x27;./data&#x27;</span>, train=<span class="hljs-literal">False</span>, transform=transform)  <span class="hljs-comment"># 加载测试数据集</span><br><br>train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=<span class="hljs-literal">True</span>)  <span class="hljs-comment"># 创建训练数据加载器</span><br>test_loader = DataLoader(test_dataset, batch_size=batch_size, shuffle=<span class="hljs-literal">False</span>)  <span class="hljs-comment"># 创建测试数据加载器</span><br></code></pre></td></tr></table></figure><p>现在我们来定义我们的ViT模型。在这个例子中，我们简化了ViT模型的结构，仅使用了一个Transformer编码器和一个全连接层作为输出。</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">ViT</span>(nn.Module):<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, input_dim, hidden_dim, num_classes, num_heads, num_layers</span>):<br>        <span class="hljs-built_in">super</span>(ViT, self).__init__()<br>        self.embedding = nn.Linear(input_dim, hidden_dim)  <span class="hljs-comment"># 输入层，将输入数据进行线性变换</span><br>        self.transformer_encoder = nn.TransformerEncoder(nn.TransformerEncoderLayer(hidden_dim, num_heads), num_layers)  <span class="hljs-comment"># Transformer编码器层</span><br>        self.fc = nn.Linear(hidden_dim, num_classes)  <span class="hljs-comment"># 全连接层，将隐藏层输出映射到类别数量上</span><br>        <br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">forward</span>(<span class="hljs-params">self, x</span>):<br>        x = self.embedding(x)  <span class="hljs-comment"># 嵌入层</span><br>        x = x.permute(<span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">2</span>)  <span class="hljs-comment"># 重新排列张量的维度，将batch_size和seq_len交换位置 (seq_len, batch_size, hidden_dim)</span><br>        output = self.transformer_encoder(x)  <span class="hljs-comment"># Transformer编码器层的输出</span><br>        output = output.mean(dim=<span class="hljs-number">0</span>)  <span class="hljs-comment"># 沿着序列长度的维度进行平均</span><br>        output = self.fc(output)  <span class="hljs-comment"># 全连接层的输出</span><br>        <span class="hljs-keyword">return</span> output<br><br></code></pre></td></tr></table></figure><p>接下来，我们实例化我们的ViT模型，并定义损失函数和优化器。</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs python">input_dim = <span class="hljs-number">28</span> * <span class="hljs-number">28</span>  <span class="hljs-comment"># 输入维度为图像的大小（28x28）</span><br>hidden_dim = <span class="hljs-number">256</span>  <span class="hljs-comment"># 隐藏层维度</span><br>num_classes = <span class="hljs-number">10</span>  <span class="hljs-comment"># 类别数量（0-9）</span><br>num_heads = <span class="hljs-number">8</span>  <span class="hljs-comment"># Transformer中的注意力头数</span><br>num_layers = <span class="hljs-number">4</span>  <span class="hljs-comment"># Transformer编码器层数</span><br><br>model = ViT(input_dim, hidden_dim, num_classes, num_heads, num_layers)  <span class="hljs-comment"># 创建ViT模型实例</span><br>criterion = nn.CrossEntropyLoss()  <span class="hljs-comment"># 定义损失函数</span><br>optimizer = optim.Adam(model.parameters(), lr=learning_rate)  <span class="hljs-comment"># 定义优化器，将模型参数传入进行优化</span><br><br></code></pre></td></tr></table></figure><p>现在我们可以开始训练我们的模型了。我们将使用训练集进行模型的训练，并在每个epoch结束后使用测试集评估模型的性能。</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><code class="hljs python">device = torch.device(<span class="hljs-string">&quot;cuda&quot;</span> <span class="hljs-keyword">if</span> torch.cuda.is_available() <span class="hljs-keyword">else</span> <span class="hljs-string">&quot;cpu&quot;</span>)  <span class="hljs-comment"># 检查是否有可用的GPU，如果有则使用GPU，否则使用CPU</span><br>model.to(device)  <span class="hljs-comment"># 将模型移动到相应的设备上</span><br><br><span class="hljs-keyword">for</span> epoch <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(num_epochs):<br>    train_loss = <span class="hljs-number">0.0</span><br>    train_correct = <span class="hljs-number">0</span><br>    <br>    model.train()  <span class="hljs-comment"># 设置模型为训练模式</span><br>    <span class="hljs-keyword">for</span> images, labels <span class="hljs-keyword">in</span> train_loader:<br>        images = images.view(-<span class="hljs-number">1</span>, input_dim).to(device)  <span class="hljs-comment"># 转换输入数据的维度并将其移动到设备上</span><br>        labels = labels.to(device)<br>        <br>        optimizer.zero_grad()  <span class="hljs-comment"># 梯度置零</span><br>        <br>        outputs = model(images)  <span class="hljs-comment"># 前向传播</span><br>        loss = criterion(outputs, labels)  <span class="hljs-comment"># 计算损失</span><br>        loss.backward()  <span class="hljs-comment"># 反向传播</span><br>        optimizer.step()  <span class="hljs-comment"># 更新模型参数</span><br>        <br>        train_loss += loss.item() * images.size(<span class="hljs-number">0</span>)<br>        _, predicted = torch.<span class="hljs-built_in">max</span>(outputs.data, <span class="hljs-number">1</span>)<br>        train_correct += (predicted == labels).<span class="hljs-built_in">sum</span>().item()<br>    <br>    train_loss = train_loss / <span class="hljs-built_in">len</span>(train_loader.dataset)<br>    train_accuracy = train_correct / <span class="hljs-built_in">len</span>(train_loader.dataset)<br>    <br>    test_loss = <span class="hljs-number">0.0</span><br>    test_correct = <span class="hljs-number">0</span><br>    <br>    model.<span class="hljs-built_in">eval</span>()  <span class="hljs-comment"># 设置模型为评估模式</span><br>    <span class="hljs-keyword">with</span> torch.no_grad():<br>        <span class="hljs-keyword">for</span> images, labels <span class="hljs-keyword">in</span> test_loader:<br>            images = images.view(-<span class="hljs-number">1</span>, input_dim).to(device)<br>            labels = labels.to(device)<br>            <br>            outputs = model(images)<br>            loss = criterion(outputs, labels)<br>            <br>            test_loss += loss.item() * images.size(<span class="hljs-number">0</span>)<br>            _, predicted = torch.<span class="hljs-built_in">max</span>(outputs.data, <span class="hljs-number">1</span>)<br>            test_correct += (predicted == labels).<span class="hljs-built_in">sum</span>().item()<br>    <br>    test_loss = test_loss / <span class="hljs-built_in">len</span>(test_loader.dataset)<br>    test_accuracy = test_correct / <span class="hljs-built_in">len</span>(test_loader.dataset)<br>    <br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;Epoch <span class="hljs-subst">&#123;epoch+<span class="hljs-number">1</span>&#125;</span>/<span class="hljs-subst">&#123;num_epochs&#125;</span>: Train Loss: <span class="hljs-subst">&#123;train_loss:<span class="hljs-number">.4</span>f&#125;</span>, Train Accuracy: <span class="hljs-subst">&#123;train_accuracy:<span class="hljs-number">.4</span>f&#125;</span>, Test Loss: <span class="hljs-subst">&#123;test_loss:<span class="hljs-number">.4</span>f&#125;</span>, Test Accuracy: <span class="hljs-subst">&#123;test_accuracy:<span class="hljs-number">.4</span>f&#125;</span>&quot;</span>)<br><br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Training finished!&quot;</span>)<br><br></code></pre></td></tr></table></figure><h2 id="参考资料">参考资料</h2><p><ahref="https://zhuanlan.zhihu.com/p/486360853">https://zhuanlan.zhihu.com/p/486360853</a></p><p><ahref="https://blog.csdn.net/weixin_50295745/article/details/127554480">https://blog.csdn.net/weixin_50295745/article/details/127554480</a></p><p><ahref="https://blog.csdn.net/weixin_51331359/article/details/124514770">https://blog.csdn.net/weixin_51331359/article/details/124514770</a></p><p><ahref="https://blog.csdn.net/zqwwwm/article/details/124265975">https://blog.csdn.net/zqwwwm/article/details/124265975</a></p><p><ahref="https://zhuanlan.zhihu.com/p/364710161">https://zhuanlan.zhihu.com/p/364710161</a></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>深度学习</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>深度学习</tag>
+      
+      <tag>Pytorch</tag>
+      
+      <tag>ViT</tag>
+      
+      <tag>MNIST</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>【博客】照片库</title>
     <link href="/2023/05/b5e6212e/"/>
     <url>/2023/05/b5e6212e/</url>
@@ -210,10 +241,6 @@
     
     <tags>
       
-      <tag>洛谷</tag>
-      
-      <tag>题解</tag>
-      
       <tag>数据结构</tag>
       
       <tag>平衡树</tag>
@@ -221,6 +248,10 @@
       <tag>Treap</tag>
       
       <tag>模板</tag>
+      
+      <tag>洛谷</tag>
+      
+      <tag>题解</tag>
       
     </tags>
     
@@ -276,6 +307,8 @@
     
     <tags>
       
+      <tag>洛谷</tag>
+      
       <tag>杂记</tag>
       
       <tag>日常</tag>
@@ -287,8 +320,6 @@
       <tag>Fibonacci数</tag>
       
       <tag>Catalan数</tag>
-      
-      <tag>洛谷</tag>
       
     </tags>
     
@@ -371,29 +402,7 @@
   
   
   <entry>
-    <title>标签</title>
-    <link href="/"/>
-    <url>/</url>
-    
-    <content type="html"><![CDATA[]]></content>
-    
-  </entry>
-  
-  
-  
-  <entry>
     <title>分类</title>
-    <link href="/"/>
-    <url>/</url>
-    
-    <content type="html"><![CDATA[]]></content>
-    
-  </entry>
-  
-  
-  
-  <entry>
-    <title>友情链接</title>
     <link href="/"/>
     <url>/</url>
     
@@ -409,6 +418,28 @@
     <url>/</url>
     
     <content type="html"><![CDATA[<p>你好</p>]]></content>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>标签</title>
+    <link href="/"/>
+    <url>/</url>
+    
+    <content type="html"><![CDATA[]]></content>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>友情链接</title>
+    <link href="/"/>
+    <url>/</url>
+    
+    <content type="html"><![CDATA[]]></content>
     
   </entry>
   
