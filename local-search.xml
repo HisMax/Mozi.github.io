@@ -81,7 +81,7 @@
     <link href="/2023/01/4de6703a/"/>
     <url>/2023/01/4de6703a/</url>
     
-    <content type="html"><![CDATA[<h1id="检测cudacudnnpytorch是否可用">检测CUDA、cuDNN、Pytorch是否可用</h1><p>大家看完代码不妨看一下后文的详解哦~</p><p>默子在原有基础上增加了很多新的内容。</p><p><strong>解释的更加详细，更加具体，更加新颖！</strong></p><p>废话不多说，我们直接开始。</p><hr /><p>复制下列代码到IDE中运行</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> torch<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;CUDA版本:&#x27;</span>,torch.version.cuda)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;Pytorch版本:&#x27;</span>,torch.__version__)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;显卡是否可用:&#x27;</span>,<span class="hljs-string">&#x27;可用&#x27;</span> <span class="hljs-keyword">if</span>(torch.cuda.is_available()) <span class="hljs-keyword">else</span> <span class="hljs-string">&#x27;不可用&#x27;</span>)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;显卡数量:&#x27;</span>,torch.cuda.device_count())<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;是否支持BF16数字格式:&#x27;</span>,<span class="hljs-string">&#x27;支持&#x27;</span> <span class="hljs-keyword">if</span> (torch.cuda.is_bf16_supported()) <span class="hljs-keyword">else</span> <span class="hljs-string">&#x27;不支持&#x27;</span>)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;当前显卡型号:&#x27;</span>,torch.cuda.get_device_name())<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;当前显卡的CUDA算力:&#x27;</span>,torch.cuda.get_device_capability())<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;当前显卡的总显存:&#x27;</span>,torch.cuda.get_device_properties(<span class="hljs-number">0</span>).total_memory/<span class="hljs-number">1024</span>/<span class="hljs-number">1024</span>/<span class="hljs-number">1024</span>,<span class="hljs-string">&#x27;GB&#x27;</span>)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;是否支持TensorCore:&#x27;</span>,<span class="hljs-string">&#x27;支持&#x27;</span> <span class="hljs-keyword">if</span> (torch.cuda.get_device_properties(<span class="hljs-number">0</span>).major &gt;= <span class="hljs-number">7</span>) <span class="hljs-keyword">else</span> <span class="hljs-string">&#x27;不支持&#x27;</span>)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;当前显卡的显存使用率:&#x27;</span>,torch.cuda.memory_allocated(<span class="hljs-number">0</span>)/torch.cuda.get_device_properties(<span class="hljs-number">0</span>).total_memory*<span class="hljs-number">100</span>,<span class="hljs-string">&#x27;%&#x27;</span>)<br></code></pre></td></tr></table></figure><p>如果可以正常使用，大概率是这样的</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs 输出结果">CUDA版本: 11.7 <br>Pytorch版本: 1.13.1+cu117 <br>显卡是否可用: 可用 <br>显卡数量: 1 <br>是否支持BF16数字格式: 不支持 <br>当前显卡型号: NVIDIA GeForce GTX 960M <br>当前显卡的CUDA算力: (5, 0) <br>当前显卡的总显存: 3.9998779296875 GB <br>是否支持TensorCore: 不支持 <br>当前显卡的显存使用率: 0.0 %<br></code></pre></td></tr></table></figure><hr /><p>代码逐行剖析：</p><ol type="1"><li><p><code>torch.version.cuda</code></p><p>会输出当前CUDA的版本，一般来说，会有 <strong>11.7</strong> 和<strong>11.3</strong>（更老的版本可能会出现兼容性问题，建议大家去更新一下，直接到<code>Nvidia</code> 官网就可以）</p></li></ol><hr /><ol start="2" type="1"><li><p><code>torch.__version__</code> .</p><p>会输出当前 Pytorch 的版本， 对于<code>1.13.1+cu117</code></p></li></ol><ul><li><p><code>1.13.0</code> 表示当前Pytorch的大版本，目前主流的版本大约在<code>1.8.0</code> -<code>1.13.0</code>，当大家开始复现代码时，就会发现自己要在电脑上同时装好多个Pytorch版本，所以用<code>Conda</code>去管理虚拟环境是很有必要的一件事哦~，大家对<code>Conda虚拟环境管理</code>感兴趣的话，不妨点个赞，默子看看下期要不要出。</p></li><li><p><code>cu113</code> 表示当前 Pytorch是GPU的，CUDA版本是11.3，如果是 <code>cp39</code> 表示当前 Pytorch是CPU版本，Python版本是3.9.X</p></li><li><p>有的同学会看到<code>dev</code>开头的一串序号，<code>dev20230114</code>表示是开发构建版（Pytorch.Nightly），具体构建日期为2023年1月14日，没有的话则是稳定版（Pytorch.Stable）。</p></li></ul><hr /><ol start="3" type="1"><li><p><code>torch.cuda.is_available()</code></p><p>返回GPU是否可用，可用为<code>True</code>，不可用为<code>False</code></p></li></ol><hr /><ol start="4" type="1"><li><p><code>torch.cuda.device_count()</code></p><p>返回显卡数量，大家的电脑一般都是 <code>1</code>啦，哈哈哈（友情提示：如果电脑是多GPU的，上述代码只能列出第一个GPU设备的部分信息，并不能列出全部GPU的信息。如果想获取全部信息，可以先获取GPU列表，然后循环输出每个GPU）</p></li></ol><hr /><ol start="5" type="1"><li><p><code>torch.cuda.is_bf16_supported()</code></p><p>显卡是否支持BF16计算，支持为<code>True</code>，不支持为<code>False</code> &gt; BF16，有时也被称为BFloat16或BrainFloat16，是一种针对人工智能与深度学习应用程序进行优化的新数字格式。它在谷歌、 英特尔 、 Arm和许多其他公司的人工智能加速器得到了广泛的应用。使用BF16主要是因为，神经网络对指数的大小比尾数敏感得多，所以不必使用传统尾数精度更高的FP64或者是FP32。默子的960M是肯定不支持BF16的，目前支持BF16的显卡有很多，比较大众化的应该就是NVIDIA<ahref="https://baike.baidu.com/item/%E9%BB%84%E4%BB%81%E5%8B%8B/6343558">老黄</a>家<sup>NVIDIA创始人兼首席执行官</sup>的RTX3060 和 RTX3070了。至于专业的深度学习卡，绝大部分都是支持的。</p></li></ol><hr /><ol start="6" type="1"><li><p><code>torch.cuda.get_device_capability()</code></p><p>获取GPU的算力 <strong>（CUDA Capability Major/Minor versionnumber）</strong> ，对于N卡来说，查看全部型号显卡的算力请访问 <ahref="https://developer.nvidia.com/cuda-gpus#compute">https://developer.nvidia.com/cuda-gpus#compute</a>（其余显卡请读者自行搜索吧） &gt;在官方给出的文档中，如果进行神经网络的训练，建议GPU此数值在 5.0以上（默子的卡刚刚及格，呜呜呜）</p></li></ol><hr /><ol start="7" type="1"><li><code>torch.cuda.get_device_properties(0).total_memory</code></li></ol><p>该条命令可以获取到当前GPU的总显存大小。详细信息可参考Pytorch官方文档<ahref="https://pytorch.org/docs/stable/generated/torch.cuda.get_device_properties.html">https://pytorch.org/docs/stable/generated/torch.cuda.get_device_properties.html</a></p><hr /><ol start="8" type="1"><li><code>TensorCore</code> 能力</li></ol><p>传统的N卡GPU都会有<code>CUDA</code>核心，用来处理大量的浮点运算。而<code>Tensor</code>核心能加速处于深度学习神经网络训练和推理运算核心的矩阵计算，能够在维持超低精度损失的同时大幅加速推理吞吐效率。不过，最近几年的卡才会搭载<code>TensorCore</code>，这个会直接体现在显卡的算力等级上，大于<code>7</code>的显卡才会有搭载<code>TensorCore</code>。</p><blockquote><p>具体是如何加速的，以及具体会加速多少，这个涉及到CUDA和Tensor核心的底层原理与深度学习相关知识。默子就不在这里展开阐述了，感兴趣的同学可以找一些文章、视频去看看。但就一句话，在深度学习方面，<code>TensorCore</code>吊打<code>CUDACore</code>。</p></blockquote><hr /><h4 id="section">$$</h4>]]></content>
+    <content type="html"><![CDATA[<h1id="检测cudacudnnpytorch是否可用">检测CUDA、cuDNN、Pytorch是否可用</h1><p>大家看完代码不妨看一下后文的详解哦~</p><p>默子在原有基础上增加了很多新的内容。</p><p><strong>解释的更加详细，更加具体，更加新颖！</strong></p><p>废话不多说，我们直接开始。</p><hr /><p>复制下列代码到IDE中运行</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> torch<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;CUDA版本:&#x27;</span>,torch.version.cuda)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;Pytorch版本:&#x27;</span>,torch.__version__)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;显卡是否可用:&#x27;</span>,<span class="hljs-string">&#x27;可用&#x27;</span> <span class="hljs-keyword">if</span>(torch.cuda.is_available()) <span class="hljs-keyword">else</span> <span class="hljs-string">&#x27;不可用&#x27;</span>)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;显卡数量:&#x27;</span>,torch.cuda.device_count())<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;是否支持BF16数字格式:&#x27;</span>,<span class="hljs-string">&#x27;支持&#x27;</span> <span class="hljs-keyword">if</span> (torch.cuda.is_bf16_supported()) <span class="hljs-keyword">else</span> <span class="hljs-string">&#x27;不支持&#x27;</span>)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;当前显卡型号:&#x27;</span>,torch.cuda.get_device_name())<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;当前显卡的CUDA算力:&#x27;</span>,torch.cuda.get_device_capability())<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;当前显卡的总显存:&#x27;</span>,torch.cuda.get_device_properties(<span class="hljs-number">0</span>).total_memory/<span class="hljs-number">1024</span>/<span class="hljs-number">1024</span>/<span class="hljs-number">1024</span>,<span class="hljs-string">&#x27;GB&#x27;</span>)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;是否支持TensorCore:&#x27;</span>,<span class="hljs-string">&#x27;支持&#x27;</span> <span class="hljs-keyword">if</span> (torch.cuda.get_device_properties(<span class="hljs-number">0</span>).major &gt;= <span class="hljs-number">7</span>) <span class="hljs-keyword">else</span> <span class="hljs-string">&#x27;不支持&#x27;</span>)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;当前显卡的显存使用率:&#x27;</span>,torch.cuda.memory_allocated(<span class="hljs-number">0</span>)/torch.cuda.get_device_properties(<span class="hljs-number">0</span>).total_memory*<span class="hljs-number">100</span>,<span class="hljs-string">&#x27;%&#x27;</span>)<br></code></pre></td></tr></table></figure><p>如果可以正常使用，大概率是这样的</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs 输出结果">CUDA版本: 11.7<br>Pytorch版本: 1.13.1+cu117<br>显卡是否可用: 可用<br>显卡数量: 1<br>是否支持BF16数字格式: 不支持<br>当前显卡型号: NVIDIA GeForce GTX 960M<br>当前显卡的CUDA算力: (5, 0)<br>当前显卡的总显存: 3.9998779296875 GB<br>是否支持TensorCore: 不支持<br>当前显卡的显存使用率: 0.0 %<br></code></pre></td></tr></table></figure><hr /><p>代码逐行剖析：</p><ol type="1"><li><p><code>torch.version.cuda</code></p><p>会输出当前CUDA的版本，一般来说，会有 <strong>11.7</strong> 和<strong>11.3</strong>（更老的版本可能会出现兼容性问题，建议大家去更新一下，直接到<code>Nvidia</code> 官网就可以）</p></li></ol><hr /><ol start="2" type="1"><li><p><code>torch.__version__</code> .</p><p>会输出当前 Pytorch 的版本， 对于<code>1.13.1+cu117</code></p></li></ol><ul><li><p><code>1.13.0</code> 表示当前Pytorch的大版本，目前主流的版本大约在<code>1.8.0</code> -<code>1.13.0</code>，当大家开始复现代码时，就会发现自己要在电脑上同时装好多个Pytorch版本，所以用<code>Conda</code>去管理虚拟环境是很有必要的一件事哦~，大家对<code>Conda虚拟环境管理</code>感兴趣的话，不妨点个赞，默子看看下期要不要出。</p></li><li><p><code>cu113</code> 表示当前 Pytorch是GPU的，CUDA版本是11.3，如果是 <code>cp39</code> 表示当前 Pytorch是CPU版本，Python版本是3.9.X</p></li><li><p>有的同学会看到<code>dev</code>开头的一串序号，<code>dev20230114</code>表示是开发构建版（Pytorch.Nightly），具体构建日期为2023年1月14日，没有的话则是稳定版（Pytorch.Stable）。</p></li></ul><hr /><ol start="3" type="1"><li><p><code>torch.cuda.is_available()</code></p><p>返回GPU是否可用，可用为<code>True</code>，不可用为<code>False</code></p></li></ol><hr /><ol start="4" type="1"><li><p><code>torch.cuda.device_count()</code></p><p>返回显卡数量，大家的电脑一般都是 <code>1</code>啦，哈哈哈（友情提示：如果电脑是多GPU的，上述代码只能列出第一个GPU设备的部分信息，并不能列出全部GPU的信息。如果想获取全部信息，可以先获取GPU列表，然后循环输出每个GPU）</p></li></ol><hr /><ol start="5" type="1"><li><p><code>torch.cuda.is_bf16_supported()</code></p><p>显卡是否支持BF16计算，支持为<code>True</code>，不支持为<code>False</code> &gt; BF16，有时也被称为BFloat16或BrainFloat16，是一种针对人工智能与深度学习应用程序进行优化的新数字格式。它在谷歌、 英特尔 、 Arm和许多其他公司的人工智能加速器得到了广泛的应用。使用BF16主要是因为，神经网络对指数的大小比尾数敏感得多，所以不必使用传统尾数精度更高的FP64或者是FP32。默子的960M是肯定不支持BF16的，目前支持BF16的显卡有很多，比较大众化的应该就是NVIDIA<ahref="https://baike.baidu.com/item/%E9%BB%84%E4%BB%81%E5%8B%8B/6343558">老黄</a>家<sup>NVIDIA创始人兼首席执行官</sup>的RTX3060 和 RTX3070了。至于专业的深度学习卡，绝大部分都是支持的。</p></li></ol><hr /><ol start="6" type="1"><li><p><code>torch.cuda.get_device_capability()</code></p><p>获取GPU的算力 <strong>（CUDA Capability Major/Minor versionnumber）</strong> ，对于N卡来说，查看全部型号显卡的算力请访问 <ahref="https://developer.nvidia.com/cuda-gpus#compute">https://developer.nvidia.com/cuda-gpus#compute</a>（其余显卡请读者自行搜索吧） &gt;在官方给出的文档中，如果进行神经网络的训练，建议GPU此数值在 5.0以上（默子的卡刚刚及格，呜呜呜）</p></li></ol><hr /><ol start="7" type="1"><li><code>torch.cuda.get_device_properties(0).total_memory</code></li></ol><p>该条命令可以获取到当前GPU的总显存大小。详细信息可参考Pytorch官方文档<ahref="https://pytorch.org/docs/stable/generated/torch.cuda.get_device_properties.html">https://pytorch.org/docs/stable/generated/torch.cuda.get_device_properties.html</a></p><hr /><ol start="8" type="1"><li><code>TensorCore</code> 能力</li></ol><p>传统的N卡GPU都会有<code>CUDA</code>核心，用来处理大量的浮点运算。而<code>Tensor</code>核心能加速处于深度学习神经网络训练和推理运算核心的矩阵计算，能够在维持超低精度损失的同时大幅加速推理吞吐效率。不过，最近几年的卡才会搭载<code>TensorCore</code>，这个会直接体现在显卡的算力等级上，大于<code>7</code>的显卡才会有搭载<code>TensorCore</code>。</p><blockquote><p>具体是如何加速的，以及具体会加速多少，这个涉及到CUDA和Tensor核心的底层原理与深度学习相关知识。默子就不在这里展开阐述了，感兴趣的同学可以找一些文章、视频去看看。但就一句话，在深度学习方面，<code>TensorCore</code>吊打<code>CUDACore</code>。</p></blockquote><hr /><h4 id="section">$$</h4>]]></content>
     
     
     
@@ -106,6 +106,10 @@
     
     <tags>
       
+      <tag>洛谷</tag>
+      
+      <tag>题解</tag>
+      
       <tag>数据结构</tag>
       
       <tag>平衡树</tag>
@@ -113,10 +117,6 @@
       <tag>Treap</tag>
       
       <tag>模板</tag>
-      
-      <tag>洛谷</tag>
-      
-      <tag>题解</tag>
       
     </tags>
     
@@ -172,11 +172,11 @@
     
     <tags>
       
-      <tag>洛谷</tag>
-      
       <tag>杂记</tag>
       
       <tag>日常</tag>
+      
+      <tag>洛谷</tag>
       
       <tag>ST表</tag>
       
@@ -223,22 +223,38 @@
   
   
   
-  
-  
-  
   <entry>
-    <title>404，默子丢啦</title>
-    <link href="/"/>
-    <url>/</url>
+    <title>【洛谷题解】P1104 生日</title>
+    <link href="/2019/09/2b2e6ad9/"/>
+    <url>/2019/09/2b2e6ad9/</url>
     
-    <content type="html"><![CDATA[]]></content>
+    <content type="html"><![CDATA[<p><del>蒟蒻第一次发题解</del> 望大佬们海涵</p><p>看到这题的瞬间，我想到了一个鬼点子。</p><p>（翻了翻看到有类似题解，不过稍稍还是有点出入）</p><p>倘若把每个人的出生日期看做他的死亡日期。把出生日期设为公元第一年一月一日的话……</p><p>那就计算他从公元 1.1.1 — xxxx.x.xx一共有多少天就好了，<del>然后排序输出</del></p><p><del>（每个人都是千年老妖，有点恐怖）</del></p><p>从公元到死亡的日子 = 年×365+月×30+日;</p><p>排序什么的随便啦（<del>本蒟蒻冒泡</del>）</p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;bits/stdc++.h&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-keyword">struct</span> <span class="hljs-title class_">sr</span>&#123;<br>string name;<br><span class="hljs-type">int</span> n,y,r;<br>&#125;xs[<span class="hljs-number">120</span>];<span class="hljs-comment">//结构体，nian年，yue月，ri日。一目了然的变量名，哈哈</span><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span></span>&#123;<br><span class="hljs-type">int</span> k,i,j,temp1,temp2;<br>cin&gt;&gt;k;<br><span class="hljs-keyword">for</span>(i = <span class="hljs-number">0</span>;i&lt;k;i++)cin&gt;&gt;xs[i].name&gt;&gt;xs[i].n&gt;&gt;xs[i].y&gt;&gt;xs[i].r;<span class="hljs-comment">//输入每个人的信息</span><br><span class="hljs-keyword">for</span>(i = <span class="hljs-number">0</span>;i&lt;k;i++)&#123;<br><span class="hljs-keyword">for</span>(j = <span class="hljs-number">0</span>;j&lt;k;j++)&#123;<br>temp1 = xs[i].n*<span class="hljs-number">365</span>+xs[i].y*<span class="hljs-number">30</span>+xs[i].r;<br>temp2 = xs[j].n*<span class="hljs-number">365</span>+xs[j].y*<span class="hljs-number">30</span>+xs[j].r;<br><span class="hljs-keyword">if</span>(temp1&lt;=temp2)<span class="hljs-built_in">swap</span>(xs[i],xs[j]);<br>&#125;<span class="hljs-comment">//蒟蒻的冒泡排序</span><br>&#125;<br><span class="hljs-keyword">for</span>(i = <span class="hljs-number">0</span>;i&lt;k;i++)cout&lt;&lt;xs[i].name&lt;&lt;endl;<span class="hljs-comment">//输出就好了</span><br><span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>题解</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>洛谷</tag>
+      
+      <tag>题解</tag>
+      
+    </tags>
     
   </entry>
   
   
   
+  
+  
+  
   <entry>
-    <title>关于默子</title>
+    <title>404，默子丢啦</title>
     <link href="/"/>
     <url>/</url>
     
@@ -271,7 +287,7 @@
   
   
   <entry>
-    <title>友情链接</title>
+    <title>分类</title>
     <link href="/"/>
     <url>/</url>
     
@@ -282,7 +298,18 @@
   
   
   <entry>
-    <title>分类</title>
+    <title>关于默子</title>
+    <link href="/"/>
+    <url>/</url>
+    
+    <content type="html"><![CDATA[]]></content>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>友情链接</title>
     <link href="/"/>
     <url>/</url>
     
