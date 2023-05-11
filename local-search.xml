@@ -135,6 +135,8 @@
     
     <tags>
       
+      <tag>洛谷</tag>
+      
       <tag>数据结构</tag>
       
       <tag>平衡树</tag>
@@ -142,8 +144,6 @@
       <tag>Treap</tag>
       
       <tag>模板</tag>
-      
-      <tag>洛谷</tag>
       
       <tag>题解</tag>
       
@@ -201,8 +201,6 @@
     
     <tags>
       
-      <tag>洛谷</tag>
-      
       <tag>杂记</tag>
       
       <tag>日常</tag>
@@ -214,6 +212,8 @@
       <tag>Fibonacci数</tag>
       
       <tag>Catalan数</tag>
+      
+      <tag>洛谷</tag>
       
     </tags>
     
@@ -296,7 +296,7 @@
   
   
   <entry>
-    <title>分类</title>
+    <title>友情链接</title>
     <link href="/"/>
     <url>/</url>
     
@@ -318,17 +318,6 @@
   
   
   <entry>
-    <title>标签</title>
-    <link href="/"/>
-    <url>/</url>
-    
-    <content type="html"><![CDATA[]]></content>
-    
-  </entry>
-  
-  
-  
-  <entry>
     <title>Myschedule - Histone</title>
     <link href="/"/>
     <url>/</url>
@@ -340,7 +329,18 @@
   
   
   <entry>
-    <title>友情链接</title>
+    <title>标签</title>
+    <link href="/"/>
+    <url>/</url>
+    
+    <content type="html"><![CDATA[]]></content>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>分类</title>
     <link href="/"/>
     <url>/</url>
     
