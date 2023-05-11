@@ -4,6 +4,35 @@
   
   
   <entry>
+    <title>【洛谷题解】P1317【低洼地】</title>
+    <link href="/2023/05/10bb2d7d/"/>
+    <url>/2023/05/10bb2d7d/</url>
+    
+    <content type="html"><![CDATA[<p>看到好多dalao用什么山峰山谷除二啊,还有各种去重。</p><p>本蒟蒻一时间真的没看懂啊。。（My vegetable has exploded）</p><p>只好把我 <del>看完题便无脑</del> 写出来的代码放上来了</p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-type">int</span> nu[<span class="hljs-number">10521</span>];<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span></span>&#123;<br><span class="hljs-type">int</span> n,i,ans = <span class="hljs-number">-1</span>;<span class="hljs-comment">//因为保证首尾都是0，所以-1</span><br>    <br>cin&gt;&gt;n;<br><span class="hljs-keyword">for</span>(i=<span class="hljs-number">0</span>;i&lt;n;i++)cin&gt;&gt;nu[i];<span class="hljs-comment">//输入</span><br>    <br><span class="hljs-keyword">for</span>(i=<span class="hljs-number">1</span>;i&lt;n<span class="hljs-number">-1</span>;i++)<span class="hljs-comment">/*上面-1的原因，因为下面统计的是波峰=_=，波峰-1 = 波谷（具体证明就不放上来了）*/</span><br><span class="hljs-keyword">if</span>(nu[i<span class="hljs-number">-1</span>]&lt;nu[i]&amp;&amp;nu[i]&gt;nu[i+<span class="hljs-number">1</span>])ans++;<br>cout&lt;&lt;ans;<br><span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure><p>！！当你把代码上交（submit）的时候，会惊讶的发现，居然<strong>只有80分</strong>。</p><p>什么地方出了问题呢？？</p><p>稍加思索……</p><p>让我们跑一下，以下数据：</p><hr /><p><strong>8</strong></p><p><strong>0 5 2 3 3 1 5 0</strong></p><hr /><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><br> *    *<br> *    *<br> * ** *<br> **** *<br> ******<br>********<br><span class="hljs-number">05233150</span><br></code></pre></td></tr></table></figure><p>显而易见的两个低洼地，但是让我们瞅瞅输出：</p><hr /><p><strong>1</strong></p><hr /><p><del>哦，我的天啊，看看这个输出，居然是一个“1”，这简直是上帝的不耻，耶稣的羞愧啊！！！</del></p><p>怎么会是“1”，<strong>哪里出了问题</strong>。</p><p>首先，我们想想上面代码的<strong>原理</strong></p><p><strong>波谷数 = 山峰数-1</strong></p><p>很明显，原理是没毛病的，那就可能是<strong>实现</strong>出了问题</p><p>思前向后，卡了223秒。</p><p><strong>在统计山峰的时候，有部分譬如2331的平台山峰没有统计到</strong></p><p>废话不多说，直接上代码</p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;string&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-type">int</span> nu[<span class="hljs-number">10521</span>];<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span></span>&#123;<br><span class="hljs-type">int</span> n,i,p,ans = <span class="hljs-number">-1</span>;<br>cin&gt;&gt;n;<br><span class="hljs-keyword">for</span>(i=<span class="hljs-number">0</span>;i&lt;n;i++)&#123;<br>cin&gt;&gt;p;<br><span class="hljs-keyword">if</span>(i&amp;&amp;p==nu[i<span class="hljs-number">-1</span>])&#123;i--;n--;<span class="hljs-keyword">continue</span>;&#125;<br>nu[i] = p;<br>&#125;<span class="hljs-comment">/*输入时，删掉前后高度相同的，合并为一个山峰*/</span><br><span class="hljs-keyword">for</span>(i=<span class="hljs-number">1</span>;i&lt;n<span class="hljs-number">-1</span>;i++)<br><span class="hljs-keyword">if</span>(nu[i<span class="hljs-number">-1</span>]&lt;nu[i]&amp;&amp;nu[i]&gt;nu[i+<span class="hljs-number">1</span>])ans++;<br>cout&lt;&lt;ans;<br><span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure><p>蒟蒻第二篇题解</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>题解</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>洛谷</tag>
+      
+      <tag>题解</tag>
+      
+      <tag>C++</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>【计科漫谈】都2023了，你还不会使用Markdown？</title>
     <link href="/2023/05/1d0b3c6c/"/>
     <url>/2023/05/1d0b3c6c/</url>
@@ -224,7 +253,7 @@
   
   
   <entry>
-    <title>【洛谷题解】P1104生日</title>
+    <title>【洛谷题解】P1104【生日】</title>
     <link href="/2019/09/2b2e6ad9/"/>
     <url>/2019/09/2b2e6ad9/</url>
     
@@ -244,23 +273,14 @@
       
       <tag>题解</tag>
       
+      <tag>C++</tag>
+      
     </tags>
     
   </entry>
   
   
   
-  
-  
-  
-  <entry>
-    <title>关于默子</title>
-    <link href="/"/>
-    <url>/</url>
-    
-    <content type="html"><![CDATA[]]></content>
-    
-  </entry>
   
   
   
@@ -276,11 +296,22 @@
   
   
   <entry>
-    <title>Myschedule - Histone</title>
+    <title>分类</title>
     <link href="/"/>
     <url>/</url>
     
-    <content type="html"><![CDATA[<p>你好</p>]]></content>
+    <content type="html"><![CDATA[]]></content>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>关于默子</title>
+    <link href="/"/>
+    <url>/</url>
+    
+    <content type="html"><![CDATA[]]></content>
     
   </entry>
   
@@ -298,11 +329,11 @@
   
   
   <entry>
-    <title>分类</title>
+    <title>Myschedule - Histone</title>
     <link href="/"/>
     <url>/</url>
     
-    <content type="html"><![CDATA[]]></content>
+    <content type="html"><![CDATA[<p>你好</p>]]></content>
     
   </entry>
   
