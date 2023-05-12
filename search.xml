@@ -1,1387 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>【博客】利用abbrlink插件生成唯一且简洁的URL</title>
-    <url>/2022/02/73c99e17/</url>
-    <content><![CDATA[<h2 id="前言">前言</h2>
-<p>利用abbrlink插件生成唯一且简洁的URL</p>
-<p>abbrlink的作者是 <a
-href="https://github.com/rozbo"><strong>rozbo</strong></a></p>
-<p>这里是abbrlink的Github项目地址</p>
-<p><a
-href="https://github.com/rozbo/hexo-abbrlink">https://github.com/rozbo/hexo-abbrlink</a></p>
-<p>使用abbrlink的几个可能： -
-当你的<code>链接太长</code>或者是<code>含有中文</code>时，分享链接时会很丑，不易阅读
-- 改变了文章标题或名字可能导致搜索引擎收录失败，原有链接失效，404警告 -
-文章名冲突，或者是想为同一篇文章写不同版本</p>
-<p>abbrlink的原理： &gt; 文章标题+创建时间 利用CRC16/32算法 最终生成
-唯一的文章链接</p>
-<h2 id="安装">安装</h2>
-<p>打开Hexo根目录，运行 <code>Git Bash</code></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">npm install hexo-abbrlink --save<br></code></pre></td></tr></table></figure>
-<p>安装之后，输出类似这样</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">added 5 packages, and audited 273 packages <span class="hljs-keyword">in</span> 3s<br><br>19 packages are looking <span class="hljs-keyword">for</span> funding<br>  run `npm fund` <span class="hljs-keyword">for</span> details<br>  <br>found 0 vulnerabilities<br></code></pre></td></tr></table></figure>
-<h2 id="配置">配置</h2>
-<p>打开Hexo根目录下的 <code>_config.yml</code></p>
-<p>寻找到配置文件中的 <code>permalink</code></p>
-<figure class="highlight yml"><table><tr><td class="code"><pre><code class="hljs yml"><span class="hljs-attr">permalink:</span> <span class="hljs-string">:year/:month/:day/:title/</span><br><span class="hljs-attr">permalink_defaults:</span><br><span class="hljs-attr">pretty_urls:</span><br>  <span class="hljs-attr">trailing_index:</span> <span class="hljs-literal">true</span><br>  <span class="hljs-attr">trailing_html:</span> <span class="hljs-literal">true</span><br></code></pre></td></tr></table></figure>
-<p>解释一下默认链接设置的含义</p>
-<figure class="highlight yml"><table><tr><td class="code"><pre><code class="hljs yml"><span class="hljs-attr">permalink:</span> <span class="hljs-string">:year/:month/:day/:title/</span><br><span class="hljs-comment"># :year 文章发表的年份</span><br><span class="hljs-comment"># :month 文章发表的月份</span><br><span class="hljs-comment"># :day 文章发表的月份</span><br><span class="hljs-comment"># :title 文章文件名</span><br></code></pre></td></tr></table></figure>
-<p>比如你在2022年5月20日时建立了一个名称为<code>How_To_Code.md</code>的文章</p>
-<p>那么生成的链接将会是这样的</p>
-<p><code>http://&lt;你的网站网址&gt;/2022/05/20/How_To_Code</code></p>
-<p>附上链接属性参考表：</p>
-<table>
-<thead>
-<tr class="header">
-<th>属性</th>
-<th>含义</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><strong><code>:abbrlink</code></strong></td>
-<td><strong>abbrlink 插件提供，生成唯一且简洁的link</strong></td>
-</tr>
-<tr class="even">
-<td><code>:year</code></td>
-<td>文章的发表年份（4 位数）</td>
-</tr>
-<tr class="odd">
-<td><code>:month</code></td>
-<td>文章的发表月份（2 位数）</td>
-</tr>
-<tr class="even">
-<td><code>:i_month</code></td>
-<td>文章的发表月份（无前置 <code>0</code>）</td>
-</tr>
-<tr class="odd">
-<td><code>:day</code></td>
-<td>文章的发表日期 (2 位数)</td>
-</tr>
-<tr class="even">
-<td><code>:i_day</code></td>
-<td>文章的发表日期（无前置 <code>0</code>）</td>
-</tr>
-<tr class="odd">
-<td><code>:hour</code></td>
-<td>文章发表时的小时 (2 位数)</td>
-</tr>
-<tr class="even">
-<td><code>:minute</code></td>
-<td>文章发表时的分钟 (2 位数)</td>
-</tr>
-<tr class="odd">
-<td><code>:second</code></td>
-<td>文章发表时的秒钟 (2 位数)</td>
-</tr>
-<tr class="even">
-<td><code>:title</code></td>
-<td>文件名称（包含目录）</td>
-</tr>
-<tr class="odd">
-<td><code>:name</code></td>
-<td>文件名称 （单文件名）</td>
-</tr>
-<tr class="even">
-<td><code>:post_title</code></td>
-<td>文章标题</td>
-</tr>
-<tr class="odd">
-<td><code>:id</code></td>
-<td>文章 ID (<code>hexo clean</code> 后会改变)</td>
-</tr>
-<tr class="even">
-<td><code>:category</code></td>
-<td>文章分类</td>
-</tr>
-<tr class="odd">
-<td><code>:hash</code></td>
-<td>基于 <code>文件名称</code> 与 <code>文章发布日期</code>
-的12位哈希值</td>
-</tr>
-</tbody>
-</table>
-<p>更多样例可以到官方文档中查阅 <a
-href="https://hexo.io/docs/permalinks.html">hexo.io/docs/permalinks</a></p>
-<p>修改Hexo根目录下的 <code>_config.yml</code> 为 <figure class="highlight yml"><table><tr><td class="code"><pre><code class="hljs yml"><span class="hljs-attr">permalink:</span> <span class="hljs-string">:year/:month/:abbrlink/</span><br><span class="hljs-comment"># 这里为默子的配置，你可以根据自己的喜好来修改</span><br><span class="hljs-comment"># 如果不了解下面的配置，请勿漏掉最后的&#x27;/&#x27;号，否则F5刷新会导致浏览器发送错误的MIME类型，进行下载操作</span><br><span class="hljs-attr">permalink_defaults:</span><br><span class="hljs-attr">pretty_urls:</span><br>  <span class="hljs-attr">trailing_index:</span> <span class="hljs-literal">true</span><br>  <span class="hljs-attr">trailing_html:</span> <span class="hljs-literal">true</span><br></code></pre></td></tr></table></figure></p>
-<p>最后，在设置文件中添加如下语句</p>
-<figure class="highlight yml"><table><tr><td class="code"><pre><code class="hljs yml"><span class="hljs-attr">abbrlink:</span><br>    <span class="hljs-attr">alg:</span> <span class="hljs-string">crc32</span><br>    <span class="hljs-comment"># alg可以选crc32或者是crc16 具体差别请参考原Github项目</span><br>    <span class="hljs-comment"># 这里推荐crc32</span><br>    <span class="hljs-attr">rep:</span> <span class="hljs-string">hex</span><br>    <span class="hljs-comment"># rep可以选hex(16进制)或者是dec(十进制) 具体差别请参考原Github项目</span><br>    <span class="hljs-comment"># 这里推荐hex(16进制)</span><br></code></pre></td></tr></table></figure>
-<h2 id="启用">启用</h2>
-<p>清除Hexo缓存，重新渲染网页并本地运行</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">hexo cl &amp;&amp; hexo g &amp;&amp; hexo s<br></code></pre></td></tr></table></figure>
-<p>这时你的所有文章中会加入 <code>:abbrlink</code> 的关键字</p>
-<figure class="highlight yml"><table><tr><td class="code"><pre><code class="hljs yml"><span class="hljs-meta">---</span><br><span class="hljs-attr">title:</span> <span class="hljs-string">HowToCode</span><br><span class="hljs-attr">tags:</span><br>  <span class="hljs-bullet">-</span> <span class="hljs-string">实用分享</span><br><span class="hljs-attr">abbrlink:</span> <span class="hljs-string">f23cd173</span><br><span class="hljs-attr">date:</span> <span class="hljs-number">2022-05-20 13:14:00</span><br><span class="hljs-meta">---</span><br></code></pre></td></tr></table></figure>
-<p>温馨提醒：请不要删除该关键字，删除后可能会改变你的链接</p>
-<h2 id="结尾">结尾</h2>
-<p>今天的教程就到这里结束了</p>
-<p>还有什么问题可以访问我的个人网站 <a
-href="https://histone.top/"><strong><code>histone.top</code></strong></a></p>
-<p>或者在评论区留言，默子看到会回复的</p>
-<h2 id="renext系列">ReNexT系列：</h2>
-<ul>
-<li><a
-href="https://histone.top/2022/02/73c99e17/">ReNexT：利用abbrlink插件生成唯一且简洁的URL</a></li>
-</ul>
-]]></content>
-      <categories>
-        <category>博客</category>
-      </categories>
-      <tags>
-        <tag>Abbrlink</tag>
-        <tag>博客</tag>
-        <tag>URL</tag>
-        <tag>crc32</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【博客】运维日记</title>
-    <url>/1999/12/52e88311/</url>
-    <content><![CDATA[<h2 id="section">2023.5.12</h2>
-<ol type="1">
-<li><code>更改</code>
-全站图片均交给了SM.MS图床托管，并且本地留有了备份</li>
-<li><code>更改</code> 代码高亮为 Paraiso Dark 与 Paraiso Light</li>
-<li><code>删除</code>
-Github库里原有的照片，节省空间并提速博客访问速度</li>
-<li><code>新增</code> 博客的运维日记，方便后续查看更改与变动</li>
-<li><code>新增</code> 图片库，方便来快速查找上传到图床的照片</li>
-</ol>
-]]></content>
-      <categories>
-        <category>博客</category>
-      </categories>
-      <tags>
-        <tag>运维</tag>
-        <tag>日记</tag>
-        <tag>图床</tag>
-        <tag>Hexo</tag>
-        <tag>Fluid</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【图论】Cayley定理</title>
-    <url>/2022/04/5d57d8bd/</url>
-    <content><![CDATA[<p><a
-href="https://en.wikipedia.org/wiki/Cayley%27s_theorem">Cayley定理</a>
-于1854年在 <a href="https://en.wikipedia.org/wiki/Arthur_Cayley">Arthur
-Cayley</a> 的论文中首次被提到。</p>
-<p>本文简单讲述了Cayley定理在图论中的应用，并用普吕弗序列做了简单证明</p>
-<span id="more"></span>
-<p>一般的表述：</p>
-<blockquote>
-<p><strong>每个群 <span class="math inline">\(G\)</span> 同构于
-对称群的子群</strong></p>
-</blockquote>
-<hr />
-<p>而在图论与组合数学中，该定理被用来计算 <a
-href="https://en.wikipedia.org/wiki/Complete_graph">完全图</a> 的 <a
-href="https://en.wikipedia.org/wiki/Spanning_tree">生成树</a>
-的总数。</p>
-<p>图论中的表述：</p>
-<blockquote>
-<p><strong>假如某一完全图有 <span class="math inline">\(n\)</span>
-个顶点，那么该图的生成树的数量为 <span
-class="math inline">\(n^{n-2}\)</span> 个。</strong></p>
-</blockquote>
-<p>Cayley定理 的证明方法大概有三种，这里讲述最简单也是最直观的一种方法
-利用 <a
-href="https://en.wikipedia.org/wiki/Pr%C3%BCfer_sequence">普吕弗序列</a>
-来证明 Cayley定理。</p>
-<hr />
-<p>设 <span class="math inline">\(T\)</span> 为一颗标号树，共有 <span
-class="math inline">\(n\)</span> 个顶点，分别标号为 <span
-class="math inline">\(a_1,a_2,a_3, \cdots ,a_{n}\)</span></p>
-<p>每次取出标号最小的叶子，记为 <span class="math inline">\(a_1\)</span>
-，而 <span class="math inline">\(a_1\)</span>的邻接点记为 <span
-class="math inline">\(b_1\)</span> 。注意：此时 叶子 <span
-class="math inline">\(a_1\)</span> 不一定为 标号为 <span
-class="math inline">\(1\)</span> 的叶子。</p>
-<p>将顶点 <span class="math inline">\(a_1\)</span> 与 边 ( <span
-class="math inline">\(a_1 , b_1\)</span> ) 从树中删去。注意：此时 <span
-class="math inline">\(b_1\)</span> 不一定会变成叶子。</p>
-<p>设一个 普吕弗序列 <span class="math inline">\(B\)</span> ，将 <span
-class="math inline">\(b_1\)</span> 加入到序列 <span
-class="math inline">\(B\)</span> 中。</p>
-<p>如此往复，执行操作共 <span class="math inline">\(n-2\)</span>
-次，直到树 <span class="math inline">\(T\)</span> 只剩一条边。</p>
-<p>我们便可以得到一个普吕弗序列 <span
-class="math inline">\(B\)</span></p>
-<p><span class="math display">\[b_1,b_2,b_3,\cdots ,b_{n-2}\]</span></p>
-<p>我们可以用该序列重新构造出 树 <span
-class="math inline">\(T\)</span></p>
-<p>我们先写一个从 <span class="math inline">\(1\)</span> 到 <span
-class="math inline">\(n\)</span> 的有序序列 <span
-class="math inline">\(C\)</span></p>
-<p><span class="math display">\[1,2,3,\cdots ,n\]</span></p>
-<p>然后每次从 序列 <span class="math inline">\(C\)</span>
-中找到第一个不出现在序列 <span class="math inline">\(B\)</span>
-中的元素，记为 <span class="math inline">\(c_1\)</span></p>
-<p>将 <span class="math inline">\(c_1\)</span> 与 <span
-class="math inline">\(b_1\)</span> 分别从序列中删去，并在树 <span
-class="math inline">\(T\)</span> 中加入这两个顶点与他们之间的边 (<span
-class="math inline">\(c_1,b_1\)</span>)</p>
-<p>如此往复，执行操作共 <span class="math inline">\(n-2\)</span>
-次，序列 <span class="math inline">\(C\)</span> 中仅剩两个元素，分别设为
-<span class="math inline">\(c_{n-1},c_{n}\)</span></p>
-<p>在树 <span class="math inline">\(T\)</span> 中加入最后一条边 ( <span
-class="math inline">\(c_{n-1},c_{n}\)</span> )
-，我们便从普吕弗序列中将树 <span class="math inline">\(T\)</span>
-构建了回来。</p>
-<hr />
-<p>经过上述推导，在构建普吕弗序列时，我们可以得知 <span
-class="math inline">\(B\)</span> 序列中一共有 <span
-class="math inline">\(n-2\)</span> 个元素，<span
-class="math inline">\(b_i \in [1,n] 且 b_i \in Z^{+}\)</span></p>
-<p><span class="math display">\[\begin{matrix}n-2\\\overbrace{n \times
-n\times \cdots \times n}\end{matrix} = n^{n-2}\]</span></p>
-<p>所以便可以证明得</p>
-<blockquote>
-<p><strong>假如某一完全图有 <span class="math inline">\(n\)</span>
-个顶点，那么该图的生成树的数量为 <span
-class="math inline">\(n^{n-2}\)</span> 个。</strong></p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>图论</category>
-      </categories>
-      <tags>
-        <tag>图论</tag>
-        <tag>Cayley定理</tag>
-        <tag>完全图</tag>
-        <tag>生成树</tag>
-        <tag>普吕弗序列</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【杂记】2020年3月28日</title>
-    <url>/2020/03/14f0aad4/</url>
-    <content><![CDATA[<blockquote>
-<h3
-id="这是默子几年前写的博客仅留作纪念">这是默子几年前写的博客，仅留作纪念！</h3>
-</blockquote>
-<p><strong>打开电脑→打开OJ→浏览题目→浏览博客→“颓”→关闭电脑</strong></p>
-<p>按理说，过了凌晨，2020-03-28就已经来到了。</p>
-<p>CCF的通知上说的，今天就是省选的Day1</p>
-<p>疫情的来临使得咕咕F更咕了些，至今未通知何时省选。</p>
-<p><del>（发邮件给特派员也不回，23333）</del></p>
-<p>现在每天都感觉自己非常蒟蒻</p>
-<p>今天看了一部电影《贫民窟里的百万富翁》</p>
-<p>给我感触最深的是，这个电影并没有讲金钱意义上的百万富翁。</p>
-<p>而是讲述了主人公从小到大的经历，正是这种经历才使得主人公成为了百万富翁。</p>
-<figure>
-<img src="https://s2.loli.net/2023/05/12/ZHk2SspEobgy1hd.webp"
-alt="贫民窟里的百万富翁剧照" />
-<figcaption aria-hidden="true">贫民窟里的百万富翁剧照</figcaption>
-</figure>
-<p>或许我希望是这样吧。</p>
-<hr />
-<p>停课去搞OI，真的需要很大的勇气与毅力。</p>
-<p>老师不理解，学校不理解，同学不理解。他们很难想象我居然为了一个看不见摸不着的OI放弃两个月的文化课。</p>
-<p>但我真的是非常喜欢OI，从小学六年级接触到易语言时，我就感受到了编程的魅力。</p>
-<p>从那之后，自学了Java，Python，C++……，可惜高中前学的都是语言</p>
-<p>直到高一，我才真正意义上接触到OI，仗着年轻气盛，憨批的我参加了2018NOIP</p>
-<p>那肯定爆零了啊，直接提高，我还是全市唯一一个C语言的……23333</p>
-<p>然后呢，我在文化课里颓了一年，由普通班升到了重点班（可惜不是最重点）</p>
-<hr />
-<p>直到2019年9月13日，我才惊醒到，原来我还有OI。</p>
-<p>于是拼命肝了两个月，2019CSP-TG 捞了一个弱省二等</p>
-<p>之后，我发现我彻底爱上了OI，解题的快乐，AC的那一瞬间</p>
-<hr />
-<p>假期去清北学堂集训了一次
-<del>（最心疼的是钱，对于贫困家庭来说，支出不小）</del></p>
-<p>也没认识许多大佬，大部分水平还是差不多了，其实是真正的大佬不屑和我这个蒟蒻交朋友</p>
-<p>由于在弱省，省选竞争不是很大，二等也可以混进去考一下。</p>
-<p>但是……我想进队</p>
-<p>于是就开启了停课，疯狂刷题阶段。</p>
-<hr />
-<p>进了队，我就继续停课，至少要打个Ag回来</p>
-<p>没进队，就滚回去学文化课，2020再考最后一次NOIP，正式AFO~</p>
-<p>怎么说呢，文笔很烂，感觉跟流水账似的。</p>
-<hr />
-<p><strong>PS：话说2020省选啥时候通知啊，我TM直接自闭好不好，就算推迟，给个通知啊！！！</strong></p>
-<blockquote>
-<p>后日记：当时真的好急，换做现在的默子会说：<code>我知道你很急，但你先别急</code></p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>杂记</category>
-      </categories>
-      <tags>
-        <tag>杂记</tag>
-        <tag>日常</tag>
-        <tag>省选</tag>
-        <tag>颓废</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【博客】照片库</title>
-    <url>/2023/05/b5e6212e/</url>
-    <content><![CDATA[<h2 id="为什么要建立照片库">1. 为什么要建立照片库</h2>
-<p>在写博客的时候，经常需要插入一些图片，但是由于图片的大小限制，所以不能直接插入图片，而是需要先上传到一个图床，然后再插入图片。</p>
-<p>上传的多了，就会忘掉，所以，建立一个照片库，可以方便的查找图片。</p>
-<p>至于如果存了上千张图片，如何加载，如何查找，这个没想，哈哈哈哈</p>
-<p>等体量上来了再说！~</p>
-<hr />
-<p>后面就全部都是图片了</p>
-<p>目前总计21张图片，共计3.85MB</p>
-<figure>
-<img src="https://s2.loli.net/2023/05/12/M56HQhReN9quJDj.jpg"
-alt="wallhaven-yx5kml.jpg" />
-<figcaption aria-hidden="true">wallhaven-yx5kml.jpg</figcaption>
-</figure>
-<figure>
-<img src="https://s2.loli.net/2023/05/12/TbOch3HsoXNqAEI.jpg"
-alt="wallhaven-d63voj.jpg" />
-<figcaption aria-hidden="true">wallhaven-d63voj.jpg</figcaption>
-</figure>
-<figure>
-<img src="https://s2.loli.net/2023/05/12/RY8GyqKvujeATCn.jpg"
-alt="wallhaven-kx1kp1.jpg" />
-<figcaption aria-hidden="true">wallhaven-kx1kp1.jpg</figcaption>
-</figure>
-<figure>
-<img src="https://s2.loli.net/2023/05/12/HN4Yw1L7hdX6eAy.jpg"
-alt="wallhaven-jx1ex5.jpg" />
-<figcaption aria-hidden="true">wallhaven-jx1ex5.jpg</figcaption>
-</figure>
-<figure>
-<img src="https://s2.loli.net/2023/05/12/M5nXydprt6Ebzem.png"
-alt="wallhaven-yjee7d.png" />
-<figcaption aria-hidden="true">wallhaven-yjee7d.png</figcaption>
-</figure>
-<figure>
-<img src="https://s2.loli.net/2023/05/12/lAoSswud5DJZnOI.jpg"
-alt="wallhaven-yxeojg.jpg" />
-<figcaption aria-hidden="true">wallhaven-yxeojg.jpg</figcaption>
-</figure>
-<figure>
-<img src="https://s2.loli.net/2023/05/12/OW4XcjdhyElpG9a.png"
-alt="wallhaven-7pje5o.png" />
-<figcaption aria-hidden="true">wallhaven-7pje5o.png</figcaption>
-</figure>
-<figure>
-<img src="https://s2.loli.net/2023/05/12/QKUmxaEr4ObAgjw.jpg"
-alt="wallhaven-x67zko.jpg" />
-<figcaption aria-hidden="true">wallhaven-x67zko.jpg</figcaption>
-</figure>
-<figure>
-<img src="https://s2.loli.net/2023/05/12/EdPu5AxmlKYOGiI.jpg"
-alt="wallhaven-qz3m87.jpg" />
-<figcaption aria-hidden="true">wallhaven-qz3m87.jpg</figcaption>
-</figure>
-<figure>
-<img src="https://s2.loli.net/2023/05/12/AcgIWMqQ3d4v5BH.jpg"
-alt="wallhaven-yxe85x.jpg" />
-<figcaption aria-hidden="true">wallhaven-yxe85x.jpg</figcaption>
-</figure>
-<figure>
-<img src="https://s2.loli.net/2023/05/12/EQXOa6PD8Cd5rNV.jpg"
-alt="wallhaven-g7dxoe.jpg" />
-<figcaption aria-hidden="true">wallhaven-g7dxoe.jpg</figcaption>
-</figure>
-<figure>
-<img src="https://s2.loli.net/2023/05/12/H27QE4n1ZuzvXBN.jpg"
-alt="wallhaven-o5137m.jpg" />
-<figcaption aria-hidden="true">wallhaven-o5137m.jpg</figcaption>
-</figure>
-<figure>
-<img src="https://s2.loli.net/2023/05/12/8i7ZLgufaYC6EFe.jpg"
-alt="wallhaven-q66z35.jpg" />
-<figcaption aria-hidden="true">wallhaven-q66z35.jpg</figcaption>
-</figure>
-<figure>
-<img src="https://s2.loli.net/2023/05/12/l7M51KgesPORJZb.jpg"
-alt="wallhaven-qz33p7.jpg" />
-<figcaption aria-hidden="true">wallhaven-qz33p7.jpg</figcaption>
-</figure>
-<figure>
-<img src="https://s2.loli.net/2023/05/12/qKmokHEQpJacGCX.jpg"
-alt="wallhaven-p8w6pj.jpg" />
-<figcaption aria-hidden="true">wallhaven-p8w6pj.jpg</figcaption>
-</figure>
-<figure>
-<img src="https://s2.loli.net/2023/05/12/vFiIg3blVOyLdrp.png"
-alt="wallhaven-zyqx1v.png" />
-<figcaption aria-hidden="true">wallhaven-zyqx1v.png</figcaption>
-</figure>
-<figure>
-<img src="https://s2.loli.net/2023/05/12/IrL6wJ5tFnu89a7.jpg"
-alt="wallhaven-d6k2wm.jpg" />
-<figcaption aria-hidden="true">wallhaven-d6k2wm.jpg</figcaption>
-</figure>
-<figure>
-<img src="https://s2.loli.net/2023/05/12/Bw4lgktY5Jac36D.jpg"
-alt="wallhaven-yxeojg.jpg" />
-<figcaption aria-hidden="true">wallhaven-yxeojg.jpg</figcaption>
-</figure>
-<figure>
-<img src="https://s2.loli.net/2023/05/12/e8Lbaf3mW9XtP7y.png"
-alt="wallhaven-pkrpkm.png" />
-<figcaption aria-hidden="true">wallhaven-pkrpkm.png</figcaption>
-</figure>
-<figure>
-<img src="https://s2.loli.net/2023/05/12/bd5MaOw8IJrpuB4.png"
-alt="wallhaven-l8wzr2.png" />
-<figcaption aria-hidden="true">wallhaven-l8wzr2.png</figcaption>
-</figure>
-<figure>
-<img src="https://s2.loli.net/2023/05/12/BipL6zsf4SwMVYo.jpg"
-alt="wallhaven-9mvyl8.jpg" />
-<figcaption aria-hidden="true">wallhaven-9mvyl8.jpg</figcaption>
-</figure>
-<figure>
-<img src="https://s2.loli.net/2023/05/12/yhwniTmQWVILeFN.webp"
-alt="1683870598004.webp" />
-<figcaption aria-hidden="true">1683870598004.webp</figcaption>
-</figure>
-<figure>
-<img src="https://s2.loli.net/2023/05/12/JTQwElDnSiOda9H.jpg"
-alt="tx.jpg" />
-<figcaption aria-hidden="true">tx.jpg</figcaption>
-</figure>
-<figure>
-<img src="https://s2.loli.net/2023/05/12/L5WKhFyB2jTA9f4.jpg"
-alt="wechat.jpg" />
-<figcaption aria-hidden="true">wechat.jpg</figcaption>
-</figure>
-]]></content>
-      <categories>
-        <category>博客</category>
-      </categories>
-      <tags>
-        <tag>博客</tag>
-        <tag>运维</tag>
-        <tag>照片库</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【杂记】2020年3月8日</title>
-    <url>/2020/03/e8c50af6/</url>
-    <content><![CDATA[<blockquote>
-<h3
-id="这是默子几年前写的博客仅留作纪念">这是默子几年前写的博客，仅留作纪念！</h3>
-</blockquote>
-<h3 id="早上-930">早上 9：30</h3>
-<p>迷迷糊糊地吃了一碗方便面，又打开了电脑。</p>
-<p><strong>熟悉的洛谷，熟悉的DevCpp</strong></p>
-<p>第一件事是，用民间数据把昨天NOI Online的代码测试了下</p>
-<p>25+0+0</p>
-<p>哇，心态瞬间<strong>爆炸</strong>……</p>
-<p><del>（第一题明明有50的啊，第二题怎么又爆0了，第三题意料之中）</del></p>
-<p>还是要调整好自己的心态，毕竟自己是真的蒟蒻,</p>
-<p>短时间菜一点可以容忍，但绝不能容忍长时间的菜！！！</p>
-<hr />
-<h3 id="上午-1030">上午 10：30</h3>
-<p>今天距离<strong>省选</strong>还有——<strong>21</strong>天啊</p>
-<p>调整好心态继续加油。。。</p>
-<p>学着学着，突然发现，树状数组给我整蒙圈了</p>
-<p>以前就是<strong>会打板子</strong>，今天花了我好长时间总于搞懂<strong>其中的原理的lowbit操作</strong>是个什么鬼了！</p>
-<p>众所周知，树状数组可以维护区间和</p>
-<p>比如给我们一个 <strong>num[ ]</strong> 数组，长度为
-<strong>n</strong>。</p>
-<p>并且我们打算把它加到我们的树状数组 <strong>tree[ ]</strong> 中去</p>
-<p><strong>如下图</strong></p>
-<p><a href="https://imgchr.com/i/3zyxPA"><img
-src="https://s2.ax1x.com/2020/03/08/3zyxPA.png"
-alt="3zyxPA.png" /></a></p>
-<h4 id="树状数组修改插入操作">树状数组修改插入操作</h4>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">update</span><span class="hljs-params">(<span class="hljs-type">int</span> x,<span class="hljs-type">int</span> a)</span></span>&#123;<br>    <span class="hljs-comment">//x是插入的位置</span><br>    <span class="hljs-comment">//a是要插入的值</span><br>    <span class="hljs-keyword">while</span>(x&lt;=n)&#123;<br>        tree[x]+=a;<br>        x += <span class="hljs-built_in">lowbit</span>(x);<br>        <span class="hljs-comment">//也就是 x = x&amp;-x</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
-<p>假设 <span class="math inline">\(x=1\)</span>，<span
-class="math inline">\(n=8\)</span>，<span
-class="math inline">\(a=5\)</span>，则</p>
-<figure class="highlight apache"><table><tr><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">tree</span>[<span class="hljs-number">1</span>] += <span class="hljs-number">5</span><br><span class="hljs-attribute">tree</span>[<span class="hljs-number">2</span>] += <span class="hljs-number">5</span><br><span class="hljs-attribute">tree</span>[<span class="hljs-number">4</span>] += <span class="hljs-number">5</span><br><span class="hljs-attribute">tree</span>[<span class="hljs-number">8</span>] += <span class="hljs-number">5</span><br></code></pre></td></tr></table></figure>
-<p><code>lowbit()</code> 返回的是 <span class="math inline">\(x\)</span>
-在二进制表示下，末尾第一个遇到的 1 和在该位置之前的 0 的情况，比如：</p>
-<figure class="highlight basic"><table><tr><td class="code"><pre><code class="hljs basic"><span class="hljs-symbol">0001 </span>  <span class="hljs-number">1</span>   lowbit(<span class="hljs-number">1</span>) = <span class="hljs-number">1</span><br><span class="hljs-symbol">0010 </span>  <span class="hljs-number">2</span>   lowbit(<span class="hljs-number">2</span>) = <span class="hljs-number">2</span><br><span class="hljs-symbol">0011 </span>  <span class="hljs-number">3</span>   lowbit(<span class="hljs-number">3</span>) = <span class="hljs-number">1</span><br><span class="hljs-symbol">0100 </span>  <span class="hljs-number">4</span>   lowbit(<span class="hljs-number">4</span>) = <span class="hljs-number">4</span><br><span class="hljs-symbol">0101 </span>  <span class="hljs-number">5</span>   lowbit(<span class="hljs-number">5</span>) = <span class="hljs-number">1</span><br><span class="hljs-symbol">0110 </span>  <span class="hljs-number">6</span>   lowbit(<span class="hljs-number">6</span>) = <span class="hljs-number">2</span><br><span class="hljs-symbol">0111 </span>  <span class="hljs-number">7</span>   lowbit(<span class="hljs-number">7</span>) = <span class="hljs-number">1</span><br><span class="hljs-symbol">1000 </span>  <span class="hljs-number">8</span>   lowbit(<span class="hljs-number">8</span>) = <span class="hljs-number">8</span><br></code></pre></td></tr></table></figure>
-<p>给定一个数字 5201314，</p>
-<p>其二进制表示为 <code>100 1111 0101 1101 1010 0010</code>，</p>
-<p>关心最后两位 <code>100 1111 0101 1101 1010 00**10**</code>，</p>
-<p>即二进制的 2。因此，<code>lowbit(5201314) = 2</code>。</p>
-<p>至于具体的运算参考手边二进制运算课本，<del>没有？那百度啊</del></p>
-<p><strong>什么，你要求和5到12区间内的和？？？</strong></p>
-<p>树状数组区间求和(从x到1)操作如下</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">sum</span><span class="hljs-params">(<span class="hljs-type">int</span> x)</span></span>&#123;<br>    <span class="hljs-comment">//x还是位置</span><br>	<span class="hljs-type">int</span> ans = <span class="hljs-number">0</span>;<br>	<span class="hljs-keyword">while</span>(x)&#123;<br>		ans += treen[x];<br>		x -= <span class="hljs-built_in">lowbit</span>(x);<br>	&#125;<br>	<span class="hljs-keyword">return</span> ans;<br>&#125;<br><br>ans = <span class="hljs-built_in">sum</span>(<span class="hljs-number">12</span>) - <span class="hljs-built_in">sum</span>(<span class="hljs-number">5</span><span class="hljs-number">-1</span>); <span class="hljs-comment">//这样就可以求出5到12区间内的和了</span><br></code></pre></td></tr></table></figure>
-<p><del>很颓很颓的一上午，虽然我知道我可能上面没太讲清</del></p>
-<p><del>但是那又有什么关系呢，这只是一篇类似于 <strong>日记</strong>
-的东东</del></p>
-<blockquote>
-<p>后日记：这里的讲解还是进行了一定的修改，使其更加通顺易读。同时改成了<span
-class="math inline">\(\LaTeX\)</span>的数学公式，更加美观了。</p>
-</blockquote>
-<hr />
-<h3 id="中午-1320">中午 13：20</h3>
-<p>吃了一大盘鸡肉+两碗米饭 <del>(具体菜名叫不上来)</del></p>
-<p>来了客人，家里把以前的旧车卖了，来的是买车的人</p>
-<p>说实话，他们都认识我，我不认识他们，233333</p>
-<p>关上卧室门，逍遥自在</p>
-<blockquote>
-<p>后日记：真的好能吃</p>
-</blockquote>
-<hr />
-<h3 id="下午-1400">下午 14：00</h3>
-<p>刚准备打开游戏，看看沙雕可爱的 <strong>羽羽音小鸟(はばね
-ことり)</strong></p>
-<p>以及开朗温柔的 <strong>姫城扬羽(ひめぎ あげは)</strong></p>
-<p>突然想起来有洛谷月赛啊……淦！</p>
-<p>(因为我太弱，所以只做了Div2)</p>
-<p><strong>T1</strong>
-第一眼还以为是八皇后问题，但仔细一看……什么嘛，入门组水题</p>
-<p>20分钟愉快切掉 <del>(中间边界条件搞错WA了两次)</del></p>
-<p><strong>T2</strong>
-明显是道数学结论题，一开始写了个O(K)的算法上去</p>
-<p>果不其然，TLE掉最后一组数据</p>
-<p>思考了好久，推了下式子</p>
-<p><span class="math inline">\(\text{(n+1) * pow(2,k)}\)</span></p>
-<p>鉴于k比较大，写个快速幂水过去了</p>
-<p><strong>T3</strong> 卡了 我两个小时</p>
-<p>各种瞎搞算法都用过，好像是DP，但是也用前缀和搞过</p>
-<p>最后DFS暴力14分，果断滚粗</p>
-<p><strong>T4</strong> 没看……</p>
-<blockquote>
-<p>当时居然连T3都刷不过去，ε=(´ο｀*)))唉，虽然现在也刷不过去，甚至有可能T2都刷不过去，阿巴巴。</p>
-</blockquote>
-<hr />
-<h3 id="傍晚-1900">傍晚 19：00</h3>
-<p>打开了Steam，心不在焉地玩着 <strong>If My Heart Had
-Wings</strong></p>
-<figure>
-<img src="https://s2.loli.net/2023/05/12/vsKX7jynlztAfCr.png"
-alt="羽羽音小鸟(はばね ことり)" />
-<figcaption aria-hidden="true">羽羽音小鸟(はばね ことり)</figcaption>
-</figure>
-<p>无聊中解答了几个问题，推进了下剧情</p>
-<p>记忆化搜索？(×)</p>
-<p>瞎搞 (√)</p>
-<hr />
-<h3 id="晚上-2200">晚上 22：00</h3>
-<p>关掉了游戏，写下博客</p>
-<p>决定当个日更博客主</p>
-<blockquote>
-<p>后来，还是没有日更成功，哈哈哈哈哈</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>杂记</category>
-      </categories>
-      <tags>
-        <tag>杂记</tag>
-        <tag>日常</tag>
-        <tag>树状数组</tag>
-        <tag>NOI省选</tag>
-        <tag>Galgame</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【数据结构】普通平衡树</title>
-    <url>/2020/03/6734e3c6/</url>
-    <content><![CDATA[<h2 id="来自刚刚学会treap的蒟蒻">来自刚刚学会Treap的蒟蒻</h2>
-<p>题目链接： - <a href="https://www.luogu.com.cn/problem/P6136">P6136
-【模板】普通平衡树（数据加强版）</a> - 弱化版 <a
-href="https://www.luogu.com.cn/problem/P3369">P6136
-【模板】普通平衡树</a></p>
-<p>特别不习惯用一堆数组，结构体多香啊</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">struct</span> <span class="hljs-title class_">node</span>&#123;<br>    <span class="hljs-type">int</span> son[<span class="hljs-number">2</span>];<span class="hljs-comment">//son[</span><br>    <span class="hljs-type">int</span> size,cnt;<br>    <span class="hljs-type">int</span> val,rd;<br>&#125;trp[<span class="hljs-number">1500000</span>];<br><span class="hljs-type">int</span> tot,root;<br></code></pre></td></tr></table></figure>
-<p>其实完整代码里都有~ 只不过无聊，单独拿出来~ <figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">rrand</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span></span>&#123;<br>    <span class="hljs-keyword">return</span> seed=(<span class="hljs-type">int</span>)((<span class="hljs-type">long</span> <span class="hljs-type">long</span>)(seed)*<span class="hljs-number">974485642LL</span>%<span class="hljs-number">21474836LL</span>);<br>    <span class="hljs-comment">/*手写rand()取随机数*/</span><br>&#125;<br></code></pre></td></tr></table></figure></p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;bits/stdc++.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> re register</span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> rd(x) x=read()</span><br><span class="hljs-keyword">struct</span> <span class="hljs-title class_">node</span>&#123;<br>    <span class="hljs-type">int</span> son[<span class="hljs-number">2</span>];<span class="hljs-comment">//son[0]左儿子，son[1]右儿子</span><br>    <span class="hljs-type">int</span> size,cnt;<br>    <span class="hljs-comment">//因为treap不希望出现值相同的节点，（想想为什么）</span><br>    <span class="hljs-comment">//所以用cnt统计相同的值</span><br>    <span class="hljs-type">int</span> val,rd;<br>    <span class="hljs-comment">//rd 是随机的权值，整个树按照这个打乱</span><br>    <span class="hljs-comment">//当然，rd也可以被称为该节点的优先级</span><br>&#125;trp[<span class="hljs-number">1500000</span>];<br><span class="hljs-type">int</span> tot,root;<br><span class="hljs-type">int</span> seed=<span class="hljs-number">5201314</span>;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">rrand</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span></span>&#123;<br>    <span class="hljs-keyword">return</span> seed=(<span class="hljs-type">int</span>)((<span class="hljs-type">long</span> <span class="hljs-type">long</span>)(seed)*<span class="hljs-number">974485642LL</span>%<span class="hljs-number">21474836LL</span>);<br>    <span class="hljs-comment">/*手写rand()取随机数*/</span><br>&#125;<br><br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">newnode</span><span class="hljs-params">(<span class="hljs-type">int</span> &amp;now,<span class="hljs-type">int</span> val)</span></span>&#123;<br>    <span class="hljs-comment">/*</span><br><span class="hljs-comment">    val = val</span><br><span class="hljs-comment">    size = 1</span><br><span class="hljs-comment">    cnt = 1;</span><br><span class="hljs-comment">    rd rand()</span><br><span class="hljs-comment">    */</span><br>    <span class="hljs-comment">/*基础的新建节点，没毛病*/</span><br>    now = ++tot;<br>    trp[now].val = val;<br>    trp[now].size = trp[now].cnt = <span class="hljs-number">1</span>;<br>    trp[now].rd = <span class="hljs-built_in">rrand</span>();<br>    <span class="hljs-comment">/*这里吐槽下,treap真的是看脸的算法啊*/</span><br>&#125;<br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">update</span><span class="hljs-params">(<span class="hljs-type">int</span> now)</span></span>&#123;<br>    <span class="hljs-comment">/*更新新节点，很简单，这里没啥问题 */</span><br>    trp[now].size = trp[trp[now].son[<span class="hljs-number">0</span>]].size+trp[trp[now].son[<span class="hljs-number">1</span>]].size+trp[now].cnt;<br>&#125;<br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">rotate</span><span class="hljs-params">(<span class="hljs-type">int</span> &amp;now,<span class="hljs-type">int</span> d)</span></span>&#123;<br>    <span class="hljs-comment">/*</span><br><span class="hljs-comment">    自闭了十分钟的旋转操作，</span><br><span class="hljs-comment">    位运算理解成左右儿子切换或者左右方向切换就好。</span><br><span class="hljs-comment">    */</span><br>    <span class="hljs-type">int</span> son = trp[now].son[d^<span class="hljs-number">1</span>];<br>    trp[now].son[d^<span class="hljs-number">1</span>] = trp[son].son[d];<br>    trp[son].son[d] = now;<br>    now = son;<br>    <span class="hljs-comment">/*注意，从下到上更新，先更新旋转后节点的d儿子，最后更新旋转的now节点*/</span><br>    <span class="hljs-built_in">update</span>(trp[now].son[d]);<br>    <span class="hljs-built_in">update</span>(now);<br>&#125;<br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">insert</span><span class="hljs-params">(<span class="hljs-type">int</span> &amp;now,<span class="hljs-type">int</span> val)</span></span>&#123;<br>    <span class="hljs-keyword">if</span>(!now)&#123;<br>        <span class="hljs-built_in">newnode</span>(now,val);<span class="hljs-comment">//终于可以插入新节点了</span><br>        <span class="hljs-keyword">return</span>;<br>    &#125;<span class="hljs-comment">//在那之前，我们需要找到在何处插</span><br>    ++trp[now].size;<br>    <span class="hljs-keyword">if</span>(trp[now].val==val)&#123;<br>        trp[now].cnt++;<span class="hljs-comment">//前面提到的计数器，相同的值直接统计数量就好</span><br>        <span class="hljs-built_in">update</span>(now);<span class="hljs-comment">//我还在思考这里要不要update一下</span><br>        <span class="hljs-keyword">return</span>;<br>    &#125;<br>    <span class="hljs-keyword">if</span>(trp[now].val&gt;val)&#123;<br>        <span class="hljs-built_in">insert</span>(trp[now].son[<span class="hljs-number">0</span>],val);<br>        <span class="hljs-keyword">if</span>(trp[now].rd&lt;trp[trp[now].son[<span class="hljs-number">0</span>]].rd)<br>            <span class="hljs-built_in">rotate</span>(now,<span class="hljs-number">1</span>);<br>    &#125;<span class="hljs-comment">//左右分头，记住一点，这棵树中，越往上rd越大，所以我们if比较里的内容其实很简单</span><br>    <span class="hljs-comment">//如果遇到儿子的rd比父辈大的时候，我们就旋转一下</span><br>    <span class="hljs-keyword">else</span>&#123;<br>        <span class="hljs-built_in">insert</span>(trp[now].son[<span class="hljs-number">1</span>],val);<br>        <span class="hljs-keyword">if</span>(trp[now].rd&lt;trp[trp[now].son[<span class="hljs-number">1</span>]].rd)<br>            <span class="hljs-built_in">rotate</span>(now,<span class="hljs-number">0</span>);<br>    &#125;<br>    <span class="hljs-built_in">update</span>(now);<br>&#125;<br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">del</span><span class="hljs-params">(<span class="hljs-type">int</span> &amp;now,<span class="hljs-type">int</span> val)</span></span>&#123;<br>    <span class="hljs-keyword">if</span>(!now)<span class="hljs-keyword">return</span>;<span class="hljs-comment">//都没节点了，你删个锤子，可以加返回值判断是否删成功</span><br>    ++trp[now].size;<br>    <span class="hljs-keyword">if</span>(trp[now].val==val)&#123;<br>        <span class="hljs-keyword">if</span>(trp[now].cnt&gt;<span class="hljs-number">1</span>)&#123;<br>            trp[now].cnt--;<br>            <span class="hljs-built_in">update</span>(now);<br>            <span class="hljs-keyword">return</span>;<br>        &#125;<br>        <span class="hljs-keyword">if</span>(trp[now].son[<span class="hljs-number">0</span>]||trp[now].son[<span class="hljs-number">1</span>])&#123;<br>            <span class="hljs-keyword">if</span>(!trp[now].son[<span class="hljs-number">1</span>]||trp[trp[now].son[<span class="hljs-number">0</span>]].rd&gt;trp[trp[now].son[<span class="hljs-number">1</span>]].rd)<br>                <span class="hljs-built_in">rotate</span>(now,<span class="hljs-number">1</span>),<span class="hljs-built_in">del</span>(trp[now].son[<span class="hljs-number">1</span>],val);<br>            <span class="hljs-keyword">else</span><br>                <span class="hljs-built_in">rotate</span>(now,<span class="hljs-number">0</span>),<span class="hljs-built_in">del</span>(trp[now].son[<span class="hljs-number">0</span>],val);<br>        &#125;<span class="hljs-comment">//删除这段其实用手画三四张模拟就懂了</span><br>        <span class="hljs-keyword">else</span> now = <span class="hljs-number">0</span>;<br>    &#125;<span class="hljs-comment">//蒟蒻的我可能会在B站录个视频什么的</span><br>    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(trp[now].val&gt;val)<br>        <span class="hljs-built_in">del</span>(trp[now].son[<span class="hljs-number">0</span>],val);<br>    <span class="hljs-keyword">else</span> <span class="hljs-built_in">del</span>(trp[now].son[<span class="hljs-number">1</span>],val);<br>    <span class="hljs-built_in">update</span>(now);<br>&#125;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">find_rank</span><span class="hljs-params">(<span class="hljs-type">int</span> now,<span class="hljs-type">int</span> val)</span></span>&#123; <span class="hljs-comment">//找到val的排名</span><br>    <span class="hljs-keyword">if</span>(!now)<br>        <span class="hljs-keyword">return</span> INT_MIN;<br>    <span class="hljs-keyword">if</span>(trp[now].val==val)<br>        <span class="hljs-keyword">return</span> trp[trp[now].son[<span class="hljs-number">0</span>]].size+<span class="hljs-number">1</span>;<br>    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(trp[now].val&gt;val)<br>        <span class="hljs-keyword">return</span> <span class="hljs-built_in">find_rank</span>(trp[now].son[<span class="hljs-number">0</span>],val);<br>    <span class="hljs-keyword">else</span><br>        <span class="hljs-keyword">return</span> trp[trp[now].son[<span class="hljs-number">0</span>]].size + trp[now].cnt + <span class="hljs-built_in">find_rank</span>(trp[now].son[<span class="hljs-number">1</span>],val);<br>&#125;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">find_val</span><span class="hljs-params">(<span class="hljs-type">int</span> now,<span class="hljs-type">int</span> rank)</span></span>&#123; <span class="hljs-comment">//找到排名为rank的值</span><br>    <span class="hljs-keyword">if</span>(!now)<br>        <span class="hljs-keyword">return</span> INT_MAX;<br>    <span class="hljs-keyword">if</span>(trp[trp[now].son[<span class="hljs-number">0</span>]].size&gt;=rank)<br>        <span class="hljs-keyword">return</span> <span class="hljs-built_in">find_val</span>(trp[now].son[<span class="hljs-number">0</span>],rank);<br>    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(trp[trp[now].son[<span class="hljs-number">0</span>]].size+trp[now].cnt&gt;=rank)<br>        <span class="hljs-keyword">return</span> trp[now].val;<br>    <span class="hljs-keyword">else</span><br>        <span class="hljs-keyword">return</span> <span class="hljs-built_in">find_val</span>(trp[now].son[<span class="hljs-number">1</span>],rank-trp[trp[now].son[<span class="hljs-number">0</span>]].size-trp[now].cnt);<br>&#125;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">find_pre</span><span class="hljs-params">(<span class="hljs-type">int</span> val)</span></span>&#123; <span class="hljs-comment">//找到val的前驱</span><br>    re <span class="hljs-type">int</span> now = root,pre = <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">while</span>(now)&#123;<br>        <span class="hljs-keyword">if</span>(trp[now].val&lt;val)<br>            pre = trp[now].val,now = trp[now].son[<span class="hljs-number">1</span>];<br>        <span class="hljs-keyword">else</span><br>            now = trp[now].son[<span class="hljs-number">0</span>];<br>    &#125;<br>    <span class="hljs-keyword">return</span> pre;<br>&#125;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">find_nex</span><span class="hljs-params">(<span class="hljs-type">int</span> val)</span></span>&#123;  <span class="hljs-comment">//找到val的后继</span><br>    re <span class="hljs-type">int</span> now = root,nex = <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">while</span>(now)&#123;<br>        <span class="hljs-keyword">if</span>(trp[now].val&gt;val)<br>            nex = trp[now].val,now = trp[now].son[<span class="hljs-number">0</span>];<br>        <span class="hljs-keyword">else</span><br>            now = trp[now].son[<span class="hljs-number">1</span>];<br>    &#125;<br>    <span class="hljs-keyword">return</span> nex;<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">int</span> <span class="hljs-title">read</span><span class="hljs-params">()</span></span>&#123; <span class="hljs-comment">//读入优化</span><br>    re <span class="hljs-type">int</span> ans = <span class="hljs-number">0</span>;<br>    re <span class="hljs-type">bool</span> f = <span class="hljs-number">1</span>;<br>    re <span class="hljs-type">char</span> ch = <span class="hljs-built_in">getchar</span>();<br>    <span class="hljs-keyword">while</span>(ch&lt;<span class="hljs-string">&#x27;0&#x27;</span>||ch&gt;<span class="hljs-string">&#x27;9&#x27;</span>)ch==<span class="hljs-string">&#x27;-&#x27;</span>?f=<span class="hljs-number">0</span>,ch=<span class="hljs-built_in">getchar</span>():ch=<span class="hljs-built_in">getchar</span>();<br>    <span class="hljs-keyword">while</span>(ch&gt;=<span class="hljs-string">&#x27;0&#x27;</span>&amp;&amp;ch&lt;=<span class="hljs-string">&#x27;9&#x27;</span>)ans =(ans&lt;&lt;<span class="hljs-number">3</span>)+(ans&lt;&lt;<span class="hljs-number">1</span>)+(ch^<span class="hljs-number">48</span>),ch = <span class="hljs-built_in">getchar</span>(); <br>    <span class="hljs-keyword">return</span> f?ans:-ans;<br>&#125; <br><span class="hljs-function"><span class="hljs-type">signed</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span></span>&#123;<br>    <span class="hljs-type">int</span> n,m,last = <span class="hljs-number">0</span>,ans = <span class="hljs-number">0</span>,ooo;<br>    n = <span class="hljs-built_in">read</span>();m = <span class="hljs-built_in">read</span>();++n;++m;<br>    <span class="hljs-keyword">while</span>(--n)&#123;<br>        ooo = <span class="hljs-built_in">read</span>();<br>        <span class="hljs-built_in">insert</span>(root,ooo);<br>    &#125;<br>    <span class="hljs-keyword">while</span>(--m)&#123;<br>        <span class="hljs-type">int</span> opt,x;<br>        opt = <span class="hljs-built_in">read</span>();<br>        x = <span class="hljs-built_in">read</span>();<br>        <span class="hljs-keyword">switch</span>(opt)&#123; <span class="hljs-comment">//这里就是一个简单的switch语句，我就不多说了</span><br>            <span class="hljs-keyword">case</span> <span class="hljs-number">1</span>:<br>                <span class="hljs-built_in">insert</span>(root,x^last);<br>                <span class="hljs-keyword">break</span>;<br>            <span class="hljs-keyword">case</span> <span class="hljs-number">2</span>:<br>                <span class="hljs-built_in">del</span>(root,x^last);<br>                <span class="hljs-keyword">break</span>;<br>            <span class="hljs-keyword">case</span> <span class="hljs-number">3</span>:<br>                ans ^= (last = <span class="hljs-built_in">find_rank</span>(root,x^last));<br>                <span class="hljs-keyword">break</span>;<br>            <span class="hljs-keyword">case</span> <span class="hljs-number">4</span>:<br>                ans ^= (last = <span class="hljs-built_in">find_val</span>(root,x^last));<br>                <span class="hljs-keyword">break</span>;<br>            <span class="hljs-keyword">case</span> <span class="hljs-number">5</span>:<br>                ans ^= (last = <span class="hljs-built_in">find_pre</span>(x^last));<br>                <span class="hljs-keyword">break</span>;<br>            <span class="hljs-keyword">case</span> <span class="hljs-number">6</span>:<br>                ans ^= (last = <span class="hljs-built_in">find_nex</span>(x^last));<br>                <span class="hljs-keyword">break</span>;<br>        &#125;<br>    &#125;<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d&quot;</span>,ans);<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
-<p>感谢观看，如有不懂欢迎评论，博主全年365天无休，24小时内必回</p>
-<p>嘿嘿，点个关注推荐呗 ~</p>
-]]></content>
-      <categories>
-        <category>数据结构</category>
-        <category>题解</category>
-      </categories>
-      <tags>
-        <tag>数据结构</tag>
-        <tag>平衡树</tag>
-        <tag>Treap</tag>
-        <tag>模板</tag>
-        <tag>洛谷</tag>
-        <tag>题解</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【洛谷题解】P1317【低洼地】</title>
-    <url>/2019/10/10bb2d7d/</url>
-    <content><![CDATA[<p>看到好多dalao用什么山峰山谷除二啊,还有各种去重。</p>
-<p>本蒟蒻一时间真的没看懂啊。。（My vegetable has exploded）</p>
-<p>只好把我 <del>看完题便无脑</del> 写出来的代码放上来了</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-type">int</span> nu[<span class="hljs-number">10521</span>];<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span></span>&#123;<br>	<span class="hljs-type">int</span> n,i,ans = <span class="hljs-number">-1</span>;<span class="hljs-comment">//因为保证首尾都是0，所以-1</span><br>    <br>	cin&gt;&gt;n;<br>	<span class="hljs-keyword">for</span>(i=<span class="hljs-number">0</span>;i&lt;n;i++)cin&gt;&gt;nu[i];<span class="hljs-comment">//输入</span><br>    <br>	<span class="hljs-keyword">for</span>(i=<span class="hljs-number">1</span>;i&lt;n<span class="hljs-number">-1</span>;i++)<span class="hljs-comment">/*上面-1的原因，因为下面统计的是波峰=_=，波峰-1 = 波谷（具体证明就不放上来了）*/</span><br>		<span class="hljs-keyword">if</span>(nu[i<span class="hljs-number">-1</span>]&lt;nu[i]&amp;&amp;nu[i]&gt;nu[i+<span class="hljs-number">1</span>])ans++;<br>	cout&lt;&lt;ans;<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
-<p>！！当你把代码上交（submit）的时候，会惊讶的发现，居然<strong>只有80分</strong>。</p>
-<p>什么地方出了问题呢？？</p>
-<p>稍加思索……</p>
-<p>让我们跑一下，以下数据：</p>
-<hr />
-<p><strong>8</strong></p>
-<p><strong>0 5 2 3 3 1 5 0</strong></p>
-<hr />
-<figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><br> *    *<br> *    *<br> * ** *<br> **** *<br> ******<br>********<br><span class="hljs-number">05233150</span><br></code></pre></td></tr></table></figure>
-<p>显而易见的两个低洼地，但是让我们瞅瞅输出：</p>
-<hr />
-<p><strong>1</strong></p>
-<hr />
-<p><del>哦，我的天啊，看看这个输出，
-居然是一个“1”，这简直是上帝的不耻，耶稣的羞愧啊！！！</del></p>
-<p>怎么会是“1”，<strong>哪里出了问题</strong>。</p>
-<p>首先，我们想想上面代码的<strong>原理</strong></p>
-<p><strong>波谷数 = 山峰数-1</strong></p>
-<p>很明显，原理是没毛病的，那就可能是<strong>实现</strong>出了问题</p>
-<p>思前向后，卡了223秒。</p>
-<p><strong>在统计山峰的时候，有部分譬如2331的平台山峰没有统计到</strong></p>
-<p>废话不多说，直接上代码</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;string&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-type">int</span> nu[<span class="hljs-number">10521</span>];<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span></span>&#123;<br>	<span class="hljs-type">int</span> n,i,p,ans = <span class="hljs-number">-1</span>;<br>	cin&gt;&gt;n;<br>	<span class="hljs-keyword">for</span>(i=<span class="hljs-number">0</span>;i&lt;n;i++)&#123;<br>		cin&gt;&gt;p;<br>		<span class="hljs-keyword">if</span>(i&amp;&amp;p==nu[i<span class="hljs-number">-1</span>])&#123;i--;n--;<span class="hljs-keyword">continue</span>;&#125;<br>		nu[i] = p;<br>	&#125;<span class="hljs-comment">/*输入时，删掉前后高度相同的，合并为一个山峰*/</span><br>	<span class="hljs-keyword">for</span>(i=<span class="hljs-number">1</span>;i&lt;n<span class="hljs-number">-1</span>;i++)<br>		<span class="hljs-keyword">if</span>(nu[i<span class="hljs-number">-1</span>]&lt;nu[i]&amp;&amp;nu[i]&gt;nu[i+<span class="hljs-number">1</span>])ans++;<br>	cout&lt;&lt;ans;<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
-<p>蒟蒻第二篇题解</p>
-]]></content>
-      <categories>
-        <category>题解</category>
-      </categories>
-      <tags>
-        <tag>洛谷</tag>
-        <tag>题解</tag>
-        <tag>C++</tag>
-        <tag>枚举</tag>
-        <tag>模拟</tag>
-        <tag>排序</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【杂记】2020年3月9日</title>
-    <url>/2020/03/50796d93/</url>
-    <content><![CDATA[<blockquote>
-<h3
-id="这是默子几年前写的博客仅留作纪念">这是默子几年前写的博客，仅留作纪念！</h3>
-</blockquote>
-<p>又是很颓的一天啊……</p>
-<p>日常肝题，奇怪的是今天居然没有玩游戏</p>
-<h2 id="上午1030">上午10:30</h2>
-<p>其实醒来有很长时间了</p>
-<p>但是一直懒在床上没有动，看了会
-<strong>许胤龙的《组合数学引论》</strong></p>
-<p><del>怎么可能看懂，这个东西简直需要两个脑子</del></p>
-<p>对<strong>Fibonacci数</strong>和<strong>Catalan数</strong>有了更深刻的认识。</p>
-<p>但是还有些不太明白，明天再看看书吧……</p>
-<p>唉，当一个蒟蒻的快乐是大佬们永远体验不到的</p>
-<p>新知识的海洋在向蒟蒻招手。</p>
-<p>至于大佬呢？大佬们忙着发现新的类地星球，不屑于在地表游玩。</p>
-<h3
-id="安利一款超棒的游戏坎巴拉的太空计划">安利一款超棒的游戏《坎巴拉的太空计划》</h3>
-<blockquote>
-<p>虽然我还不怎么会玩，勉强靠着新手教程发射了第一次火箭</p>
-</blockquote>
-<blockquote>
-<p>但是游戏真的超棒，物理、航天、宇宙爱好者的最佳选择</p>
-</blockquote>
-<blockquote>
-<p>这里贴一段游戏评论</p>
-</blockquote>
-<p><strong>本游戏百小时都出不了新手村</strong></p>
-<p>但是作为一个太空模拟它做到了尽可能的真实（相比其他游戏</p>
-<p>没有什么超光速引擎，没有跃迁，没有虫洞</p>
-<p>你用最笨拙的方式——燃料和引力飞向星空</p>
-<p>在其他游戏里习惯了线性一样的移动后，回过头来看看这个游戏</p>
-<p>它真正代表了人类对太空在历史上的探索</p>
-<figure>
-<img src="https://s2.ax1x.com/2020/03/09/89xvXn.jpg"
-alt="坎巴拉的太空计划-游戏截图" />
-<figcaption aria-hidden="true">坎巴拉的太空计划-游戏截图</figcaption>
-</figure>
-<p>听说最近出系列2了，如果有机会的话，夏天入手，<strong>112RMB</strong></p>
-<p>学生党伤不起啊……</p>
-<hr />
-<h2 id="中午1230">中午12：30</h2>
-<p>麻婆豆腐香啊，三碗米饭????是日常操作。</p>
-<p>写到这里，我觉得我该减肥了????????????</p>
-<p>嗯，从明天开始做一些运动吧……</p>
-<p>不过，现在吃饱了才有力气明天减肥嘛<code>负罪感--</code></p>
-<h2 id="下午1800">下午18：00</h2>
-<p>午觉愣是睡成了下午觉！！！</p>
-<p>打开手机，本想着逛一会B站，但是看了看日历</p>
-<p>今天距离<strong>省选</strong>还有——<strong>20</strong>天啊。</p>
-<p>算了，学习吧。</p>
-<p><strong>熟悉的洛谷，熟悉的味道</strong></p>
-<h3 id="st表的原理以及实现">ST表的原理以及实现</h3>
-<p>今天搞了一下快忘掉的一些数据结构和算法</p>
-<p>众所周知，在维护区间最值的时候，我们常用两种算法，一种叫ST表，一种叫线段树</p>
-<p>这里主要说下<strong>ST表(Sparse Table)</strong></p>
-<p><strong>预处理时间复杂度<code>O(nlogn)</code></strong></p>
-<p><strong>查询时间复杂度<code>O(1)</code></strong></p>
-<p>我们首先定义一个初始数据数组和二维的ST表数组</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">//n为数据大小</span><br><span class="hljs-type">int</span> a[n]    存初始数据<br><span class="hljs-comment">//21后面具体再解释,其实当你看完原理也就懂了</span><br><span class="hljs-type">int</span> st[n][<span class="hljs-number">21</span>]    存ST表<br></code></pre></td></tr></table></figure>
-<p><span class="math inline">\(st[ i ][ j ]表示的是区间[ i , i+2^j-1
-]里的最大值\)</span></p>
-<p><span class="math inline">\(所以，st[ i ][ j ] = max(st[ i ][ j-1 ] ,
-st[ i+2^(j-1) ][ j-1 ])\)</span></p>
-<p><span
-class="math inline">\(这里以维护区间最大值来举例，最大值最小值其实都一样，只有\)</span><strong>max</strong><span
-class="math inline">\(和\)</span><strong>min</strong><span
-class="math inline">\(的区别\)</span></p>
-<h3 id="初始化st表">初始化ST表</h3>
-<p>怎么来的呢？</p>
-<p>个人觉得，简单来说就是一个 <code>二分+分治</code> 的思想</p>
-<p><strong>我们要求区间 <span class="math inline">\([ i , i+2^j-1
-]\)</span> 里的最大值</strong></p>
-<p><strong>可以先求区间 <span class="math inline">\([ i , i+2^(j-1)-1
-]\)</span> 里的最大值</strong></p>
-<p><strong>再求区间 <span class="math inline">\([ i+2^(j-1) , i+2^j-1
-]\)</span> 里的最大值</strong></p>
-<p><strong>最后取这两个区间的最大值</strong></p>
-<p>所以，<span class="math inline">\(st[ i ][ j ] = max(st[ i ][ j-1 ] ,
-st[ i+2^(j-1) ][ j-1 ])\)</span></p>
-<p>如果还是不理解的话，再看一下st数组的含义</p>
-<p><span class="math inline">\(st[ i ][ j ]\)</span>表示的是区间<span
-class="math inline">\([ i , i+2^j-1 ]\)</span>里的最大值</p>
-<p>初始化最小单元，也就是 <span class="math inline">\(st[ i ][ 0
-]\)</span> ，也就是区间 <span class="math inline">\([ i , i ]\)</span>
-里的最大值</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++)<br>    st[i][<span class="hljs-number">0</span>]=a[i];<br></code></pre></td></tr></table></figure>
-<p>初始化剩余部分，这里用到了位运算节约时间开销</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j=<span class="hljs-number">1</span>;(<span class="hljs-number">1</span>&lt;&lt;j)&lt;=n;j++)<br>    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i+(<span class="hljs-number">1</span>&lt;&lt;j)&lt;=n;i++)<br>        st[i][j] = <span class="hljs-built_in">max</span>(st[i][j<span class="hljs-number">-1</span>],st[i+(<span class="hljs-number">1</span>&lt;&lt;(j<span class="hljs-number">-1</span>))][j<span class="hljs-number">-1</span>]);<br></code></pre></td></tr></table></figure>
-<h3 id="查询st表">查询ST表</h3>
-<p>ST表的查询许多萌新上来会迷惑的一个操作</p>
-<p>比如，我们要查询区间 <span class="math inline">\([ l , r ]\)</span>
-里的最大值</p>
-<p>如果这个区间恰好是<strong>ST表</strong>里的一个区间 <span
-class="math inline">\([ i , i+2^j-1 ]\)</span> ，那么我们就可以直接访问
-<span class="math inline">\(st[i][j]\)</span></p>
-<p>可惜大多时候都不是，那么我们怎么做呢？我们可以这样做</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-type">int</span> k = <span class="hljs-built_in">log</span>(r-l+<span class="hljs-number">1</span>)/<span class="hljs-built_in">log</span>(<span class="hljs-number">2</span>));<br><span class="hljs-type">int</span> ans = <span class="hljs-built_in">max</span>(st[l][k],st[y-(<span class="hljs-number">1</span>&lt;&lt;k)+<span class="hljs-number">1</span>][k]);<br></code></pre></td></tr></table></figure>
-<p>这里的 <span class="math inline">\(y\)</span> 是什么呢？ <span
-class="math inline">\(y\)</span> 是满足 <span
-class="math inline">\(y-(1&lt;&lt;k)+1&lt;=r\)</span> 的最大值</p>
-<p><span class="math inline">\(k\)</span>是什么呢？<span
-class="math inline">\(k\)</span> 是满足 <span
-class="math inline">\(2^k&lt;=r-l+1\)</span> 的最大值</p>
-<p>最后比较的两个区间 <span class="math inline">\([l,l+2^k]\)</span> 和
-<span class="math inline">\([r-2^k,r]\)</span>
-有可能是重合的，但是答案是唯一的</p>
-<p><del><strong>板子还是要自己打，不然怎么才能背会呢？</strong></del></p>
-<h2 id="晚上2230">晚上22：30</h2>
-<p>刷题的日子总是这么朴实无华且枯燥</p>
-<p>写完博客，一看表居然已经12点了</p>
-<p>看来我还是太菜，一篇杂记类博客居然要写一个半小时。</p>
-<p>今天AK洛谷第一页黄题，明天继续肝吧，绿题蓝题要提上日程了</p>
-<p>之前有位大佬建议我刷满2页蓝，……太犇了。</p>
-<p>继续加油吧，不忘初心。</p>
-]]></content>
-      <categories>
-        <category>杂记</category>
-      </categories>
-      <tags>
-        <tag>杂记</tag>
-        <tag>日常</tag>
-        <tag>洛谷</tag>
-        <tag>ST表</tag>
-        <tag>坎巴拉的太空计划</tag>
-        <tag>Fibonacci数</tag>
-        <tag>Catalan数</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【洛谷题解】P1104【生日】</title>
-    <url>/2019/09/2b2e6ad9/</url>
-    <content><![CDATA[<p><del>蒟蒻第一次发题解</del> 望大佬们海涵</p>
-<p>看到这题的瞬间，我想到了一个鬼点子。</p>
-<p>（翻了翻看到有类似题解，不过稍稍还是有点出入）</p>
-<p>倘若把每个人的出生日期看做他的死亡日期。
-把出生日期设为公元第一年一月一日的话……</p>
-<p>那就计算他从公元 1.1.1 — xxxx.x.xx
-一共有多少天就好了，<del>然后排序输出</del></p>
-<p><del>（每个人都是千年老妖，有点恐怖）</del></p>
-<p>从公元到死亡的日子 = 年×365+月×30+日;</p>
-<p>排序什么的随便啦（<del>本蒟蒻冒泡</del>）</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;bits/stdc++.h&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-keyword">struct</span> <span class="hljs-title class_">sr</span>&#123;<br>	string name;<br>	<span class="hljs-type">int</span> n,y,r;<br>&#125;xs[<span class="hljs-number">120</span>];<span class="hljs-comment">//结构体，nian年，yue月，ri日。一目了然的变量名，哈哈</span><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span></span>&#123;<br>	<span class="hljs-type">int</span> k,i,j,temp1,temp2;<br>	cin&gt;&gt;k;<br>	<span class="hljs-keyword">for</span>(i = <span class="hljs-number">0</span>;i&lt;k;i++)cin&gt;&gt;xs[i].name&gt;&gt;xs[i].n&gt;&gt;xs[i].y&gt;&gt;xs[i].r;<span class="hljs-comment">//输入每个人的信息</span><br>	<span class="hljs-keyword">for</span>(i = <span class="hljs-number">0</span>;i&lt;k;i++)&#123;<br>		<span class="hljs-keyword">for</span>(j = <span class="hljs-number">0</span>;j&lt;k;j++)&#123;<br>			temp1 = xs[i].n*<span class="hljs-number">365</span>+xs[i].y*<span class="hljs-number">30</span>+xs[i].r;<br>			temp2 = xs[j].n*<span class="hljs-number">365</span>+xs[j].y*<span class="hljs-number">30</span>+xs[j].r;<br>			<span class="hljs-keyword">if</span>(temp1&lt;=temp2)<span class="hljs-built_in">swap</span>(xs[i],xs[j]);		<br>		&#125;<span class="hljs-comment">//蒟蒻的冒泡排序</span><br>	&#125;<br>	<span class="hljs-keyword">for</span>(i = <span class="hljs-number">0</span>;i&lt;k;i++)cout&lt;&lt;xs[i].name&lt;&lt;endl;<span class="hljs-comment">//输出就好了</span><br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>题解</category>
-      </categories>
-      <tags>
-        <tag>洛谷</tag>
-        <tag>题解</tag>
-        <tag>C++</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【洛谷题解】P4305【[JLOI2011]不重复数字】</title>
-    <url>/2020/02/a03fb6d6/</url>
-    <content><![CDATA[<p><del>有的时间复杂度是真的玄学</del></p>
-<p>思路很暴力，<del>只需要小学二年级思维</del> ___</p>
-<h3 id="大致思路">大致思路:</h3>
-<p><span
-class="math inline">\(\color{green}\text{我们建一个结构体数组，存每个数字的值和出现的位置,}\)</span>
-<span
-class="math inline">\(\color{green}\text{先把数字按照值排序一遍（值相同的话，按照位置由前到后排序）}\)</span>
-<span
-class="math inline">\(\color{green}\text{排序后方便去除重复的数字，每个数字只需要保留位置最靠前的那个便可（简单粗暴）}\)</span>
-<span
-class="math inline">\(\color{green}\text{然后我们再按照数字的位置排一下序，顺序输出我们保留的数字即可}\)</span></p>
-<p>首先建一个结构体 $</p>
-]]></content>
-      <categories>
-        <category>题解</category>
-      </categories>
-      <tags>
-        <tag>题解</tag>
-        <tag>C++</tag>
-        <tag>模拟</tag>
-        <tag>排序</tag>
-        <tag>Hash</tag>
-        <tag>STL</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【深度学习】检测CUDA、cuDNN、Pytorch是否可用</title>
-    <url>/2023/01/4de6703a/</url>
-    <content><![CDATA[<h1
-id="检测cudacudnnpytorch是否可用">检测CUDA、cuDNN、Pytorch是否可用</h1>
-<p>大家看完代码不妨看一下后文的详解哦~</p>
-<p>默子在原有基础上增加了很多新的内容。</p>
-<p><strong>解释的更加详细，更加具体，更加新颖！</strong></p>
-<p>废话不多说，我们直接开始。</p>
-<hr />
-<p>复制下列代码到IDE中运行</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> torch<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;CUDA版本:&#x27;</span>,torch.version.cuda)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;Pytorch版本:&#x27;</span>,torch.__version__)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;显卡是否可用:&#x27;</span>,<span class="hljs-string">&#x27;可用&#x27;</span> <span class="hljs-keyword">if</span>(torch.cuda.is_available()) <span class="hljs-keyword">else</span> <span class="hljs-string">&#x27;不可用&#x27;</span>)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;显卡数量:&#x27;</span>,torch.cuda.device_count())<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;是否支持BF16数字格式:&#x27;</span>,<span class="hljs-string">&#x27;支持&#x27;</span> <span class="hljs-keyword">if</span> (torch.cuda.is_bf16_supported()) <span class="hljs-keyword">else</span> <span class="hljs-string">&#x27;不支持&#x27;</span>)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;当前显卡型号:&#x27;</span>,torch.cuda.get_device_name())<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;当前显卡的CUDA算力:&#x27;</span>,torch.cuda.get_device_capability())<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;当前显卡的总显存:&#x27;</span>,torch.cuda.get_device_properties(<span class="hljs-number">0</span>).total_memory/<span class="hljs-number">1024</span>/<span class="hljs-number">1024</span>/<span class="hljs-number">1024</span>,<span class="hljs-string">&#x27;GB&#x27;</span>)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;是否支持TensorCore:&#x27;</span>,<span class="hljs-string">&#x27;支持&#x27;</span> <span class="hljs-keyword">if</span> (torch.cuda.get_device_properties(<span class="hljs-number">0</span>).major &gt;= <span class="hljs-number">7</span>) <span class="hljs-keyword">else</span> <span class="hljs-string">&#x27;不支持&#x27;</span>)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;当前显卡的显存使用率:&#x27;</span>,torch.cuda.memory_allocated(<span class="hljs-number">0</span>)/torch.cuda.get_device_properties(<span class="hljs-number">0</span>).total_memory*<span class="hljs-number">100</span>,<span class="hljs-string">&#x27;%&#x27;</span>)<br></code></pre></td></tr></table></figure>
-<p>如果可以正常使用，大概率是这样的</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs 输出结果">CUDA版本: 11.7<br>Pytorch版本: 1.13.1+cu117<br>显卡是否可用: 可用<br>显卡数量: 1<br>是否支持BF16数字格式: 不支持<br>当前显卡型号: NVIDIA GeForce GTX 960M<br>当前显卡的CUDA算力: (5, 0)<br>当前显卡的总显存: 3.9998779296875 GB<br>是否支持TensorCore: 不支持<br>当前显卡的显存使用率: 0.0 %<br></code></pre></td></tr></table></figure>
-<hr />
-<p>代码逐行剖析：</p>
-<ol type="1">
-<li><p><code>torch.version.cuda</code></p>
-<p>会输出当前CUDA的版本，一般来说，会有 <strong>11.7</strong> 和
-<strong>11.3</strong>
-（更老的版本可能会出现兼容性问题，建议大家去更新一下，直接到
-<code>Nvidia</code> 官网就可以）</p></li>
-</ol>
-<hr />
-<ol start="2" type="1">
-<li><p><code>torch.__version__</code> .</p>
-<p>会输出当前 Pytorch 的版本， 对于<code>1.13.1+cu117</code></p></li>
-</ol>
-<ul>
-<li><p><code>1.13.0</code> 表示当前Pytorch的大版本，目前主流的版本大约在
-<code>1.8.0</code> -
-<code>1.13.0</code>，当大家开始复现代码时，就会发现自己要在电脑上同时装好多个Pytorch版本，所以用
-<code>Conda</code>
-去管理虚拟环境是很有必要的一件事哦~，大家对<code>Conda虚拟环境管理</code>
-感兴趣的话，不妨点个赞，默子看看下期要不要出。</p></li>
-<li><p><code>cu113</code> 表示当前 Pytorch
-是GPU的，CUDA版本是11.3，如果是 <code>cp39</code> 表示当前 Pytorch
-是CPU版本，Python版本是3.9.X</p></li>
-<li><p>有的同学会看到<code>dev</code>开头的一串序号，<code>dev20230114</code>
-表示是开发构建版（Pytorch.Nightly），具体构建日期为2023年1月14日，没有的话则是稳定版（Pytorch.Stable）。</p></li>
-</ul>
-<hr />
-<ol start="3" type="1">
-<li><p><code>torch.cuda.is_available()</code></p>
-<p>返回GPU是否可用，可用为<code>True</code>，不可用为
-<code>False</code></p></li>
-</ol>
-<hr />
-<ol start="4" type="1">
-<li><p><code>torch.cuda.device_count()</code></p>
-<p>返回显卡数量，大家的电脑一般都是 <code>1</code>
-啦，哈哈哈（友情提示：如果电脑是多GPU的，上述代码只能列出第一个GPU设备的部分信息，并不能列出全部GPU的信息。如果想获取全部信息，可以先获取GPU列表，然后循环输出每个GPU）</p></li>
-</ol>
-<hr />
-<ol start="5" type="1">
-<li><p><code>torch.cuda.is_bf16_supported()</code></p>
-<p>显卡是否支持BF16计算，支持为<code>True</code>，不支持为
-<code>False</code> &gt; BF16，有时也被称为BFloat16或Brain
-Float16，是一种针对人工智能与深度学习应用程序进行优化的新数字格式。
-它在谷歌、 英特尔 、 Arm
-和许多其他公司的人工智能加速器得到了广泛的应用。使用BF16主要是因为，神经网络对指数的大小比尾数敏感得多，所以不必使用传统尾数精度更高的FP64或者是FP32。
-默子的960M是肯定不支持BF16的，目前支持BF16的显卡有很多，比较大众化的应该就是NVIDIA
-<a
-href="https://baike.baidu.com/item/%E9%BB%84%E4%BB%81%E5%8B%8B/6343558">老黄</a>家<sup>NVIDIA创始人兼首席执行官</sup>的
-RTX3060 和 RTX3070
-了。至于专业的深度学习卡，绝大部分都是支持的。</p></li>
-</ol>
-<hr />
-<ol start="6" type="1">
-<li><p><code>torch.cuda.get_device_capability()</code></p>
-<p>获取GPU的算力 <strong>（CUDA Capability Major/Minor version
-number）</strong> ，对于N卡来说，查看全部型号显卡的算力请访问 <a
-href="https://developer.nvidia.com/cuda-gpus#compute">https://developer.nvidia.com/cuda-gpus#compute</a>
-（其余显卡请读者自行搜索吧） &gt;
-在官方给出的文档中，如果进行神经网络的训练，建议GPU此数值在 5.0
-以上（默子的卡刚刚及格，呜呜呜）</p></li>
-</ol>
-<hr />
-<ol start="7" type="1">
-<li><code>torch.cuda.get_device_properties(0).total_memory</code></li>
-</ol>
-<p>该条命令可以获取到当前GPU的总显存大小。详细信息可参考Pytorch官方文档<a
-href="https://pytorch.org/docs/stable/generated/torch.cuda.get_device_properties.html">https://pytorch.org/docs/stable/generated/torch.cuda.get_device_properties.html</a></p>
-<hr />
-<ol start="8" type="1">
-<li><code>TensorCore</code> 能力</li>
-</ol>
-<p>传统的N卡GPU都会有<code>CUDA</code>核心，用来处理大量的浮点运算。而
-<code>Tensor</code>核心能加速处于深度学习神经网络训练和推理运算核心的矩阵计算，能够在维持超低精度损失的同时大幅加速推理吞吐效率。不过，最近几年的卡才会搭载<code>TensorCore</code>，这个会直接体现在显卡的算力等级上，大于<code>7</code>的显卡才会有搭载
-<code>TensorCore</code>。</p>
-<blockquote>
-<p>具体是如何加速的，以及具体会加速多少，这个涉及到CUDA和Tensor核心的底层原理与深度学习相关知识。默子就不在这里展开阐述了，感兴趣的同学可以找一些文章、视频去看看。但就一句话，在深度学习方面，<code>TensorCore</code>吊打
-<code>CUDACore</code>。</p>
-</blockquote>
-<hr />
-<h4 id="section">$$</h4>
-]]></content>
-      <categories>
-        <category>深度学习</category>
-      </categories>
-      <tags>
-        <tag>深度学习</tag>
-        <tag>CUDA</tag>
-        <tag>cuDNN</tag>
-        <tag>Pytorch</tag>
-        <tag>机器学习</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【深度学习】ViT入门（1）MNIST数据集练手</title>
-    <url>/2023/05/e81b37fc/</url>
-    <content><![CDATA[<h1
-id="深度学习vit入门1mnist数据集练手">【深度学习】ViT入门（1）MNIST数据集练手</h1>
-<h2 id="简介视觉领域的transformer-vit">简介：视觉领域的Transformer ——
-ViT</h2>
-<h3 id="什么是vit">什么是ViT</h3>
-<p>默子要和大家分享一款在计算机视觉领域非常火热的技术——ViT，也就是Vision
-Transformer的缩写。</p>
-<figure>
-<img src="https://s2.loli.net/2023/05/12/F8ENLUH1tfJd9Vu.png"
-alt="image.png" />
-<figcaption aria-hidden="true">image.png</figcaption>
-</figure>
-<p><strong>虽然是几年前的图了，但这个图很明显，ViT强于传统的ResNet等一系列模型。</strong></p>
-<p>我们今天要学习的，就是 ViT</p>
-<p>相信大家对Transformer这个名词并不陌生吧，它是一种革命性的深度学习模型，在自然语言处理领域取得了巨大的成功。</p>
-<figure>
-<img src="https://s2.loli.net/2023/05/12/SafO6cIqFVY9E1u.png"
-alt="image.png" />
-<figcaption aria-hidden="true">image.png</figcaption>
-</figure>
-<p>那么，什么是ViT呢？简单来说，ViT是一种基于Transformer架构的模型，它能够处理图像数据。</p>
-<p>通常情况下，在处理图像时会使用卷积神经网络（Convolutional Neural
-Network，CNN），但是ViT却采用了和NLP领域中处理序列数据的Transformer相同的思路。</p>
-<p><strong>Transformer是一种基于自注意力机制（Self-Attention）的深度学习模型。</strong></p>
-<p>它不同于传统的卷积或者循环神经网络，而是通过全局的自注意力机制来学习序列之间的关系。</p>
-<p>这种注意力机制允许模型在处理输入序列时能够对序列中不同位置的元素赋予不同的权重，从而捕捉到更丰富的上下文信息。</p>
-<figure>
-<img src="https://s2.loli.net/2023/05/12/m6ZnHd451tPlfaN.png"
-alt="image.png" />
-<figcaption aria-hidden="true">image.png</figcaption>
-</figure>
-<p>在ViT中，我们将图像视为一种特殊的序列数据，其中每个位置代表图像的一个小块区域，被称为<code>补丁(patch)</code>。这些补丁将被展平成向量形式，并作为输入序列传递给Transformer模型。</p>
-<figure>
-<img src="https://s2.loli.net/2023/05/12/PFxAIw74lV8Jfep.png"
-alt="image.png" />
-<figcaption aria-hidden="true">image.png</figcaption>
-</figure>
-<p>通过这种方式，ViT能够捕捉到图像中不同区域之间的上下文关系，从而实现对图像的理解和分析。</p>
-<figure>
-<img src="https://s2.loli.net/2023/05/12/CSR7VZ3O6ksxrEy.png"
-alt="image.png" />
-<figcaption aria-hidden="true">image.png</figcaption>
-</figure>
-<h3 id="vit训练过程">ViT训练过程</h3>
-<p>ViT模型的训练分为两个阶段：预训练和微调。在预训练阶段，模型会使用大规模的图像数据进行自监督学习，通过学习图像的不同补丁之间的关系来构建视觉表示。</p>
-<figure>
-<img src="https://s2.loli.net/2023/05/12/QEkr3NgqPMpwlWc.png"
-alt="image.png" />
-<figcaption aria-hidden="true">image.png</figcaption>
-</figure>
-<p>在微调阶段，使用有标签的数据对模型进行进一步的训练，以适应具体的视觉任务，如图像分类、目标检测等。</p>
-<figure>
-<img src="https://s2.loli.net/2023/05/12/jPuZStNhe9rnaHU.png"
-alt="image.png" />
-<figcaption aria-hidden="true">image.png</figcaption>
-</figure>
-<h3 id="优点">优点</h3>
-<p>ViT在计算机视觉领域取得了惊人的成绩，甚至在一些任务上超越了传统的卷积神经网络。它的优势之一是能够处理全局的上下文信息，而不仅仅局限于局部区域。</p>
-<p>此外，ViT还具有良好的可解释性，可以通过可视化自注意力权重来理解模型在图像中关注的区域。这对于理解模型的决策过程和解释结果非常有帮助。</p>
-<p>此外，ViT还能够处理不同尺寸和分辨率的图像，而无需进行特定的调整或修改网络结构。这种灵活性使得ViT在处理多样化的图像数据时更加方便。</p>
-<h3 id="限制与挑战">限制与挑战</h3>
-<p>当然，ViT也有一些挑战和限制。由于图像在序列化过程中丢失了空间信息，ViT可能无法充分捕捉到像素级别的细节。此外，ViT的计算成本较高，尤其是对于大型图像和复杂任务来说，需要更多的计算资源和时间。</p>
-<p>不过，尽管存在这些挑战，ViT作为一种全新的视觉模型正在不断演进和发展。研究人员和工程师们正在努力改进ViT的性能，并将其应用于各种计算机视觉任务中。</p>
-<hr />
-<h2 id="在mnist数据集上实现vit">在MNIST数据集上实现ViT</h2>
-<p>如何在MNIST数据集上实现ViT，默子将通过一个简单的例子来介绍。</p>
-<blockquote>
-<p>提示：代码肯定跑不起来，但是可以作为参考。后面有放参考资料</p>
-</blockquote>
-<p>首先，我们需要导入所需的库。我们将使用PyTorch来构建和训练我们的ViT模型，同时还需要导入一些辅助库来处理数据和可视化结果。</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs Python"><span class="hljs-comment"># 导入PyTorch相关库</span><br><span class="hljs-keyword">import</span> torch<br><span class="hljs-comment"># 导入PyTorch的神经网络模块</span><br><span class="hljs-keyword">import</span> torch.nn <span class="hljs-keyword">as</span> nn<br><span class="hljs-comment"># 导入PyTorch的优化模块</span><br><span class="hljs-keyword">import</span> torch.optim <span class="hljs-keyword">as</span> optim<br><span class="hljs-comment"># 导入PyTorch的数据加载模块</span><br><span class="hljs-keyword">from</span> torch.utils.data <span class="hljs-keyword">import</span> DataLoader<br><span class="hljs-comment"># 导入PyTorch的视觉模块</span><br><span class="hljs-keyword">from</span> torchvision <span class="hljs-keyword">import</span> datasets, transforms<br><span class="hljs-comment"># 导入Matplotlib绘图库</span><br><span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt<br></code></pre></td></tr></table></figure>
-<p>接下来，我们定义一些超参数，例如批大小、学习率、迭代次数等。你可以根据需要进行调整。</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs Python">batch_size = <span class="hljs-number">64</span>  <span class="hljs-comment"># 每个批次的样本数量</span><br>learning_rate = <span class="hljs-number">0.001</span>  <span class="hljs-comment"># 学习率</span><br>num_epochs = <span class="hljs-number">10</span>  <span class="hljs-comment"># 训练的轮数（迭代次数）</span><br></code></pre></td></tr></table></figure>
-<p>现在，我们需要准备我们的数据集。MNIST数据集包含手写数字的灰度图像，每个图像都是28x28像素。我们将使用torchvision库来加载和预处理数据集。</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs Python">transform = transforms.Compose([<br>    transforms.ToTensor(),  <span class="hljs-comment"># 将图像转换为Tensor类型</span><br>    transforms.Normalize((<span class="hljs-number">0.5</span>,), (<span class="hljs-number">0.5</span>,))  <span class="hljs-comment"># 对图像进行标准化处理</span><br>])<br><br>train_dataset = datasets.MNIST(root=<span class="hljs-string">&#x27;./data&#x27;</span>, train=<span class="hljs-literal">True</span>, transform=transform, download=<span class="hljs-literal">True</span>)  <span class="hljs-comment"># 加载训练数据集</span><br>test_dataset = datasets.MNIST(root=<span class="hljs-string">&#x27;./data&#x27;</span>, train=<span class="hljs-literal">False</span>, transform=transform)  <span class="hljs-comment"># 加载测试数据集</span><br><br>train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=<span class="hljs-literal">True</span>)  <span class="hljs-comment"># 创建训练数据加载器</span><br>test_loader = DataLoader(test_dataset, batch_size=batch_size, shuffle=<span class="hljs-literal">False</span>)  <span class="hljs-comment"># 创建测试数据加载器</span><br></code></pre></td></tr></table></figure>
-<p>现在我们来定义我们的ViT模型。在这个例子中，我们简化了ViT模型的结构，仅使用了一个Transformer编码器和一个全连接层作为输出。</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs Python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">ViT</span>(nn.Module):<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, input_dim, hidden_dim, num_classes, num_heads, num_layers</span>):<br>        <span class="hljs-built_in">super</span>(ViT, self).__init__()<br>        self.embedding = nn.Linear(input_dim, hidden_dim)  <span class="hljs-comment"># 输入层，将输入数据进行线性变换</span><br>        self.transformer_encoder = nn.TransformerEncoder(nn.TransformerEncoderLayer(hidden_dim, num_heads), num_layers)  <span class="hljs-comment"># Transformer编码器层</span><br>        self.fc = nn.Linear(hidden_dim, num_classes)  <span class="hljs-comment"># 全连接层，将隐藏层输出映射到类别数量上</span><br>        <br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">forward</span>(<span class="hljs-params">self, x</span>):<br>        x = self.embedding(x)  <span class="hljs-comment"># 嵌入层</span><br>        x = x.permute(<span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">2</span>)  <span class="hljs-comment"># 重新排列张量的维度，将batch_size和seq_len交换位置 (seq_len, batch_size, hidden_dim)</span><br>        output = self.transformer_encoder(x)  <span class="hljs-comment"># Transformer编码器层的输出</span><br>        output = output.mean(dim=<span class="hljs-number">0</span>)  <span class="hljs-comment"># 沿着序列长度的维度进行平均</span><br>        output = self.fc(output)  <span class="hljs-comment"># 全连接层的输出</span><br>        <span class="hljs-keyword">return</span> output<br><br></code></pre></td></tr></table></figure>
-<p>接下来，我们实例化我们的ViT模型，并定义损失函数和优化器。</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs Python">input_dim = <span class="hljs-number">28</span> * <span class="hljs-number">28</span>  <span class="hljs-comment"># 输入维度为图像的大小（28x28）</span><br>hidden_dim = <span class="hljs-number">256</span>  <span class="hljs-comment"># 隐藏层维度</span><br>num_classes = <span class="hljs-number">10</span>  <span class="hljs-comment"># 类别数量（0-9）</span><br>num_heads = <span class="hljs-number">8</span>  <span class="hljs-comment"># Transformer中的注意力头数</span><br>num_layers = <span class="hljs-number">4</span>  <span class="hljs-comment"># Transformer编码器层数</span><br><br>model = ViT(input_dim, hidden_dim, num_classes, num_heads, num_layers)  <span class="hljs-comment"># 创建ViT模型实例</span><br>criterion = nn.CrossEntropyLoss()  <span class="hljs-comment"># 定义损失函数</span><br>optimizer = optim.Adam(model.parameters(), lr=learning_rate)  <span class="hljs-comment"># 定义优化器，将模型参数传入进行优化</span><br><br></code></pre></td></tr></table></figure>
-<p>现在我们可以开始训练我们的模型了。我们将使用训练集进行模型的训练，并在每个epoch结束后使用测试集评估模型的性能。</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs Python">device = torch.device(<span class="hljs-string">&quot;cuda&quot;</span> <span class="hljs-keyword">if</span> torch.cuda.is_available() <span class="hljs-keyword">else</span> <span class="hljs-string">&quot;cpu&quot;</span>)  <span class="hljs-comment"># 检查是否有可用的GPU，如果有则使用GPU，否则使用CPU</span><br>model.to(device)  <span class="hljs-comment"># 将模型移动到相应的设备上</span><br><br><span class="hljs-keyword">for</span> epoch <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(num_epochs):<br>    train_loss = <span class="hljs-number">0.0</span><br>    train_correct = <span class="hljs-number">0</span><br>    <br>    model.train()  <span class="hljs-comment"># 设置模型为训练模式</span><br>    <span class="hljs-keyword">for</span> images, labels <span class="hljs-keyword">in</span> train_loader:<br>        images = images.view(-<span class="hljs-number">1</span>, input_dim).to(device)  <span class="hljs-comment"># 转换输入数据的维度并将其移动到设备上</span><br>        labels = labels.to(device)<br>        <br>        optimizer.zero_grad()  <span class="hljs-comment"># 梯度置零</span><br>        <br>        outputs = model(images)  <span class="hljs-comment"># 前向传播</span><br>        loss = criterion(outputs, labels)  <span class="hljs-comment"># 计算损失</span><br>        loss.backward()  <span class="hljs-comment"># 反向传播</span><br>        optimizer.step()  <span class="hljs-comment"># 更新模型参数</span><br>        <br>        train_loss += loss.item() * images.size(<span class="hljs-number">0</span>)<br>        _, predicted = torch.<span class="hljs-built_in">max</span>(outputs.data, <span class="hljs-number">1</span>)<br>        train_correct += (predicted == labels).<span class="hljs-built_in">sum</span>().item()<br>    <br>    train_loss = train_loss / <span class="hljs-built_in">len</span>(train_loader.dataset)<br>    train_accuracy = train_correct / <span class="hljs-built_in">len</span>(train_loader.dataset)<br>    <br>    test_loss = <span class="hljs-number">0.0</span><br>    test_correct = <span class="hljs-number">0</span><br>    <br>    model.<span class="hljs-built_in">eval</span>()  <span class="hljs-comment"># 设置模型为评估模式</span><br>    <span class="hljs-keyword">with</span> torch.no_grad():<br>        <span class="hljs-keyword">for</span> images, labels <span class="hljs-keyword">in</span> test_loader:<br>            images = images.view(-<span class="hljs-number">1</span>, input_dim).to(device)<br>            labels = labels.to(device)<br>            <br>            outputs = model(images)<br>            loss = criterion(outputs, labels)<br>            <br>            test_loss += loss.item() * images.size(<span class="hljs-number">0</span>)<br>            _, predicted = torch.<span class="hljs-built_in">max</span>(outputs.data, <span class="hljs-number">1</span>)<br>            test_correct += (predicted == labels).<span class="hljs-built_in">sum</span>().item()<br>    <br>    test_loss = test_loss / <span class="hljs-built_in">len</span>(test_loader.dataset)<br>    test_accuracy = test_correct / <span class="hljs-built_in">len</span>(test_loader.dataset)<br>    <br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;Epoch <span class="hljs-subst">&#123;epoch+<span class="hljs-number">1</span>&#125;</span>/<span class="hljs-subst">&#123;num_epochs&#125;</span>: Train Loss: <span class="hljs-subst">&#123;train_loss:<span class="hljs-number">.4</span>f&#125;</span>, Train Accuracy: <span class="hljs-subst">&#123;train_accuracy:<span class="hljs-number">.4</span>f&#125;</span>, Test Loss: <span class="hljs-subst">&#123;test_loss:<span class="hljs-number">.4</span>f&#125;</span>, Test Accuracy: <span class="hljs-subst">&#123;test_accuracy:<span class="hljs-number">.4</span>f&#125;</span>&quot;</span>)<br><br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Training finished!&quot;</span>)<br><br></code></pre></td></tr></table></figure>
-<h2 id="参考资料">参考资料</h2>
-<p><a
-href="https://zhuanlan.zhihu.com/p/486360853">https://zhuanlan.zhihu.com/p/486360853</a></p>
-<p><a
-href="https://blog.csdn.net/weixin_50295745/article/details/127554480">https://blog.csdn.net/weixin_50295745/article/details/127554480</a></p>
-<p><a
-href="https://blog.csdn.net/weixin_51331359/article/details/124514770">https://blog.csdn.net/weixin_51331359/article/details/124514770</a></p>
-<p><a
-href="https://blog.csdn.net/zqwwwm/article/details/124265975">https://blog.csdn.net/zqwwwm/article/details/124265975</a></p>
-<p><a
-href="https://zhuanlan.zhihu.com/p/364710161">https://zhuanlan.zhihu.com/p/364710161</a></p>
-]]></content>
-      <categories>
-        <category>深度学习</category>
-      </categories>
-      <tags>
-        <tag>深度学习</tag>
-        <tag>Pytorch</tag>
-        <tag>ViT</tag>
-        <tag>MNIST</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【计科漫谈】都2023了，你还不会使用Markdown？</title>
-    <url>/2023/05/1d0b3c6c/</url>
-    <content><![CDATA[<p>【计科漫谈】<strong>都2023了，你还不会使用Markdown？</strong></p>
-<p>虽然这个标题有些攻击性，但相信默子，绝对不是有意的。</p>
-<p>2023的第二周马上要过去了，大年三十也已经在来的路上了。在这闲暇但也不太闲暇的日子里，学点Markdown为2023助助力吧！</p>
-<p><strong>相信它会成为你新一年学习工作的好助手哒！</strong></p>
-<hr />
-<h2 id="markdown-是什么">Markdown 是什么</h2>
-<p>Wikipedia 词条 <a
-href="https://en.wikipedia.org/wiki/Markdown">Markdown</a></p>
-<p>Markdown
-是一种轻量级的标记语言，可用于在<strong>纯文本文档</strong>中添加<strong>格式化元素</strong>。Markdown
-由 John Gruber 于 2004
-年创建，如今已成为世界上<strong>最受欢迎</strong>的标记语言之一。</p>
-<p>默子个人觉得，Markdown是一种 ==学习成本超低==
-，但是带来的<strong>回报率超高</strong>的一种标记语言。可以只用一些简单的符号，做到格式化文本，排版文章，做表插图。</p>
-<hr />
-<h2 id="markdown-用在何处">Markdown 用在何处</h2>
-<ol type="1">
-<li>==用来写技术博客==，记录学习笔记，常见的写作平台有CSDN、Github、掘金等。还可以在期末时直接将笔记作为报告。</li>
-<li>Obsidian知识管理，知识的输入与输出，构建数字大脑（使用的语法是Markdown）</li>
-</ol>
-<blockquote>
-<p>一般来说，Markdown
-在非程序员的圈子里知名度其实不高，而且即使很多程序员菜鸟，也要一两年才会接触到
-Markdown</p>
-<p>但是Markdown的优点真的是数不胜数，默子可以列举很多</p>
-</blockquote>
-<hr />
-<h2 id="markdown的优点">Markdown的优点</h2>
-<ul>
-<li>==绝对的跨平台==，因为
-Markdown的文件本身就是一个文本文件，<code>.md</code>
-可以用任意的文本编辑器打开，不存在兼容性的问题。最多是不同Markdown的渲染器渲染出来的效果不一样罢了。</li>
-<li>==格式设置简洁优美==，在传统排版软件Word中需要很多操作才可以完成的内容，在Markdown中就是多敲几个字符的事情。</li>
-<li>==让写作者更专注于内容的输出==，不会被复杂的排版，恼人的乱码困扰，记住十几个特定的字符，比在Word里面频繁的操作要省事的多。（其实就是追求的一种极简主义，简化不重要的边角，强化内容的核心）</li>
-<li>支持 <span class="math inline">\(\LaTeX\)</span>
-数学公式，让数学公式编辑不再折磨。</li>
-</ul>
-<hr />
-<h2 id="markdown-基础语法">Markdown 基础语法</h2>
-<p>Markdown里的基本语法不多，这里将介绍最主要的语法。更多扩展语法，默子会放出官方全面的网站，供大家收藏，日后方便查阅。</p>
-<blockquote>
-<p>标题、加粗、斜体、粗斜体、高亮、删除线、下划线、引用、链接、图片插入</p>
-</blockquote>
-<h4
-id="标题用-表示标题一级标题一个-二级标题两个-最高有六级标题">标题：用
-<code>#</code> 表示标题，一级标题一个 <code>#</code> ，二级标题两个
-<code>#</code> ，最高有六级标题。</h4>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><code class="hljs markdown"><span class="hljs-section"># 1级标题</span><br><span class="hljs-section">## 2级标题</span><br><span class="hljs-section">### 3级标题</span><br><span class="hljs-section">#### 4级标题</span><br><span class="hljs-section">##### 5级标题</span><br><span class="hljs-section">###### 6级标题</span><br></code></pre></td></tr></table></figure>
-<h4 id="加粗用-内容-包裹起来字体加粗">加粗：用 <code>**内容**</code>
-包裹起来，字体加粗</h4>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><code class="hljs markdown"><span class="hljs-strong">**加粗的内容**</span><br></code></pre></td></tr></table></figure>
-<p><strong>加粗的内容</strong></p>
-<h4 id="斜体用-内容-包裹起来字体倾斜">斜体：用 <code>*内容*</code>
-包裹起来，字体倾斜</h4>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><code class="hljs markdown"><span class="hljs-emphasis">*斜体的内容*</span><br></code></pre></td></tr></table></figure>
-<p><em>斜体的内容</em></p>
-<h4 id="粗斜体用-内容-包裹起来字体加粗倾斜">粗斜体：用
-<code>***内容***</code> 包裹起来，字体加粗倾斜</h4>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><code class="hljs markdown"><span class="hljs-strong">**<span class="hljs-emphasis">*粗斜体的内容*</span>**</span><br></code></pre></td></tr></table></figure>
-<p><strong><em>粗斜体的内容</em></strong></p>
-<h4 id="高亮用-内容-包裹起来字体背景高亮">高亮：用 <code>==内容==</code>
-包裹起来，字体背景高亮</h4>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><code class="hljs markdown">==高亮的内容==<br></code></pre></td></tr></table></figure>
-<p>==高亮的内容==</p>
-<h4 id="下划线用-u内容u-包裹起来添加下划线">下划线：用
-<code>&lt;u&gt;内容&lt;/u&gt;</code> 包裹起来，添加下划线</h4>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><code class="hljs markdown"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">u</span>&gt;</span></span>下划线的内容<span class="language-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">u</span>&gt;</span></span><br></code></pre></td></tr></table></figure>
-<p><u>下划线的内容</u></p>
-<h4 id="删除线用-内容-包裹起来添加删除线">删除线：用
-<code>~~内容~~</code> 包裹起来，添加删除线</h4>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><code class="hljs markdown">~~删除线的内容~~<br></code></pre></td></tr></table></figure>
-<p><del>删除线的内容</del></p>
-<h4 id="引用每一行的开始使用-表示引用">引用：每一行的开始使用
-<code>&gt;</code> 表示引用</h4>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><code class="hljs markdown"><span class="hljs-quote">&gt; 我爱你，以身，以心，以血，以命！以沉默，以眼泪！以唯一，以终结！以漂泊的灵魂，以永恒的死亡！</span><br></code></pre></td></tr></table></figure>
-<blockquote>
-<p>我爱你，以身，以心，以血，以命！以沉默，以眼泪！以唯一，以终结！以漂泊的灵魂，以永恒的死亡！</p>
-</blockquote>
-<p>多层嵌套引用可以用 <code>&gt;&gt;</code> 来表示</p>
-<blockquote>
-<p>外层引用</p>
-<blockquote>
-<p>内层引用1</p>
-</blockquote>
-<p>可以引用多行</p>
-<blockquote>
-<p>内层引用2</p>
-</blockquote>
-</blockquote>
-<h4
-id="链接用链接名称链接地址来表示一个链接">链接：用<code>[链接名称](链接地址)</code>来表示一个链接</h4>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><code class="hljs markdown">[<span class="hljs-string">链接名称</span>](<span class="hljs-link">链接地址</span>)<br>[<span class="hljs-string">Markdown - Wikipedia</span>](<span class="hljs-link">https://en.wikipedia.org/wiki/Markdown</span>)<br></code></pre></td></tr></table></figure>
-<p><a href="链接地址">链接名称</a></p>
-<p><a href="https://en.wikipedia.org/wiki/Markdown">Markdown -
-Wikipedia</a></p>
-<h4
-id="图片插入用图片描述图片地址来在文章中插入图片">图片插入：用<code>![图片描述](图片地址)</code>来在文章中插入图片</h4>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><code class="hljs markdown">![](<span class="hljs-link">https://profile.csdnimg.cn/3/5/3/1_qq_35657309</span>)<br></code></pre></td></tr></table></figure>
-<p><img
-src="https://img-blog.csdnimg.cn/img_convert/bfd1b8a6278d4576e183dbea48401416.png" /></p>
-<p>以上就是Markdown最基础的语法啦！相信大家应该都已经学会了叭。</p>
-<p>默子一直是秉持着，<code>先用起来，再不断巩固拓展。</code></p>
-<p>所以，其实上面的Markdown语法已经足够大家日常使用了。</p>
-<p>如果有更多的需求，不妨看看默子下方推荐的学习资料哦！</p>
-<hr />
-<h2 id="markdown-参考学习资料">Markdown 参考学习资料</h2>
-<ol type="1">
-<li><a href="https://www.markdownguide.org/getting-started/">Getting
-Started | Markdown Guide</a></li>
-</ol>
-<blockquote>
-<p>Markdown Guide
-官方的英文教程，大家英文水平如果OK的话，不妨去看一下（可能国内访问会比较困难）</p>
-</blockquote>
-<ol start="2" type="1">
-<li><a href="https://www.runoob.com/markdown/md-tutorial.html">Markdown
-教程 | 菜鸟教程 (runoob.com)</a></li>
-</ol>
-<blockquote>
-<p>菜鸟的中文教程，讲的十分详细清晰，建议小伙伴们看这个，同时有
-[[VSCode]] 的详细操作教程，对于零基础小伙伴来说十分友好。</p>
-</blockquote>
-<ol start="3" type="1">
-<li><a
-href="https://markdown.com.cn/intro.html#markdown-%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F">Markdown
-入门基础 | Markdown 官方教程</a></li>
-</ol>
-<blockquote>
-<p>官方中文教程，十分详细，但是可能其中的内容并不适合所有的初学者了解，
-比如 <a
-href="https://markdown.com.cn/intro.html#markdown-%E6%9C%89%E4%BB%80%E4%B9%88%E7%94%A8%EF%BC%9F">Markdown
-的工作原理</a></p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>计科漫谈</category>
-      </categories>
-      <tags>
-        <tag>Markdown</tag>
-        <tag>计科漫谈</tag>
-        <tag>技术之外</tag>
-        <tag>笔记系统</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【洛谷题解】P3611【[USACO17JAN]Cow Dance Show S】</title>
-    <url>/2020/03/7add4492/</url>
-    <content><![CDATA[<p>这是一道<strong>优先队列+二分</strong>的题</p>
-<p>要选出最优的<span class="math inline">\(K\)</span>，满足时间小于<span
-class="math inline">\(T_{max}\)</span></p>
-<p>我们要在区间 <strong><span class="math inline">\([ 1 , n
-]\)</span></strong> 里二分答案</p>
-<p>大致流程很简单：</p>
-<ul>
-<li><p>二分一个 <span class="math inline">\(K\)</span></p></li>
-<li><p>利用优先队列模拟跳舞流程，判断<span
-class="math inline">\(K\)</span>是否合理</p></li>
-</ul>
-<p>代码如下：</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;bits/stdc++.h&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-type">int</span> n,t,num[<span class="hljs-number">10005</span>];<br><span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">c</span><span class="hljs-params">(<span class="hljs-type">int</span> x)</span></span>&#123;<br>	<span class="hljs-comment">/*利用优先队列模拟跳舞情况*/</span> <br>	<span class="hljs-type">int</span> at = <span class="hljs-number">0</span>;<span class="hljs-comment">//当前k的耗时</span><br>	priority_queue &lt; <span class="hljs-type">int</span>,vector&lt;<span class="hljs-type">int</span>&gt;,greater&lt;<span class="hljs-type">int</span>&gt; &gt; q;<br>	<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=x;i++)q.<span class="hljs-built_in">push</span>(num[i]);<br>	<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=x+<span class="hljs-number">1</span>;i&lt;=n;i++)&#123;<br>		<span class="hljs-type">int</span> temp = q.<span class="hljs-built_in">top</span>();q.<span class="hljs-built_in">pop</span>();<br>		q.<span class="hljs-built_in">push</span>(temp+num[i]);<br>	&#125;<br>	<span class="hljs-keyword">while</span>(!q.<span class="hljs-built_in">empty</span>())&#123;<br>		at = q.<span class="hljs-built_in">top</span>();q.<span class="hljs-built_in">pop</span>();<br>	&#125;<br>	<span class="hljs-keyword">return</span> at&lt;=t;<br>&#125;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span></span>&#123;<br>	<span class="hljs-comment">/*输入不解释*/</span><br>	cin&gt;&gt;n&gt;&gt;t;<br>	<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++)<br>		cin&gt;&gt;num[i];<br>	<br>	<span class="hljs-comment">/*二分答案*/</span>	<br>	<span class="hljs-type">int</span> l=<span class="hljs-number">0</span>,r=n,mid;<br>	<span class="hljs-keyword">while</span>(l&lt;=r)&#123;<br>		mid = (l+r)&gt;&gt;<span class="hljs-number">1</span>;<br>		<span class="hljs-keyword">if</span>(<span class="hljs-built_in">c</span>(mid))r = mid<span class="hljs-number">-1</span>;<br>		<span class="hljs-keyword">else</span> l = mid+<span class="hljs-number">1</span>;<br>	&#125;<br>	cout&lt;&lt;l;<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
-<p>当然，如果大家觉得二分太麻烦的话。</p>
-<p><span class="math inline">\(K\)</span>值直接从<span
-class="math inline">\(1\)</span>枚举到<span
-class="math inline">\(n\)</span>也是可以的</p>
-<p><a href="https://www.luogu.com.cn/record/31867554">测试详情</a></p>
-<p>直接枚举的代码：</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;bits/stdc++.h&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-type">int</span> n,t,num[<span class="hljs-number">10005</span>];<br><span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">c</span><span class="hljs-params">(<span class="hljs-type">int</span> x)</span></span>&#123;<br>	<span class="hljs-comment">/*这里其实就是利用优先队列模拟跳舞情况*/</span> <br>	<span class="hljs-type">int</span> at = <span class="hljs-number">0</span>;<br>	priority_queue &lt; <span class="hljs-type">int</span>,vector&lt;<span class="hljs-type">int</span>&gt;,greater&lt;<span class="hljs-type">int</span>&gt; &gt; q;<br>	<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=x;i++)q.<span class="hljs-built_in">push</span>(num[i]);<br>	<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=x+<span class="hljs-number">1</span>;i&lt;=n;i++)&#123;<br>		<span class="hljs-type">int</span> temp = q.<span class="hljs-built_in">top</span>();q.<span class="hljs-built_in">pop</span>();<br>		q.<span class="hljs-built_in">push</span>(temp+num[i]);<br>	&#125;<br>	<span class="hljs-keyword">while</span>(!q.<span class="hljs-built_in">empty</span>())&#123;<br>		at = q.<span class="hljs-built_in">top</span>();q.<span class="hljs-built_in">pop</span>();<br>	&#125;<br>	<span class="hljs-keyword">return</span> at&lt;=t;<br>&#125;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span></span>&#123;<br>	<span class="hljs-comment">/*输入不解释*/</span><br>	cin&gt;&gt;n&gt;&gt;t;<br>	<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++)<br>		cin&gt;&gt;num[i];<br>	<span class="hljs-type">int</span> ans = <span class="hljs-number">0</span>;<br>    <span class="hljs-comment">/*直接暴力枚举！*/</span><br>	<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++)&#123;<br>		<span class="hljs-keyword">if</span>(<span class="hljs-built_in">c</span>(i))&#123;<br>			ans = i;<span class="hljs-keyword">break</span>;<br>		&#125;<br>	&#125;<br>	cout&lt;&lt;ans;<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
-<p>当然，<del>这题数据较水</del></p>
-<p>结束</p>
-<p>各位看官，如果觉得还可以的话，点个赞吧~</p>
-]]></content>
-      <categories>
-        <category>题解</category>
-      </categories>
-      <tags>
-        <tag>题解</tag>
-        <tag>C++</tag>
-        <tag>模拟</tag>
-        <tag>STL</tag>
-        <tag>优先队列</tag>
-        <tag>二分</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【软件教程】TexLive超详细安装指南（Windows）</title>
-    <url>/2023/05/ef1f5b3c/</url>
-    <content><![CDATA[<blockquote>
-<p>本文将详细介绍如何安装TexLive，使用TexLive编译LaTeX文档。让你在Windows上也能愉快的使用LaTeX，体验到LaTeX的魅力。</p>
-</blockquote>
-<p>想必大家都或多或少知道LaTeX究竟是个什么东西</p>
-<h2 id="什么是texlive">什么是TexLive</h2>
-<p><strong>TexLive是一个免费、开源的TeX发行版，它包含了用于排版各种类型文档的TeX系统和许多相关工具、字体、宏包和文档。</strong>
-TeX是一种专业的排版系统，用于创建高质量的科技论文、书籍、期刊和其他技术文档，它在学术界和出版业广泛使用。</p>
-<p>TexLive包含了许多与TeX相关的软件包和工具，<strong>包括LaTeX、ConTeXt、MetaPost、pdfTeX、LuaTeX等等。</strong>
-它是一个跨平台的软件，可以在不同的操作系统上使用，例如Windows、Linux、MacOS等。</p>
-<p><strong>简而言之：当你需要写一份专业的科技论文、书籍、期刊或其他技术文档时，排版是非常重要的一步。TeX是一种专业的排版系统，可以让你创建高质量的文档，它在学术界和出版业广泛使用。</strong></p>
-<h2 id="为什么要使用texlive">为什么要使用TexLive</h2>
-<p>其实，TexLive并不是唯一的TeX发行版，还有许多其他的发行版，例如MiKTeX、MacTeX等等。那么，为什么要使用TexLive呢？</p>
-<p>TexLive是一个跨平台的软件，可以在不同的操作系统上使用，例如Windows、Linux、MacOS等。而其他的TeX发行版，例如MiKTeX、MacTeX等，只能在特定的操作系统上使用，例如MiKTeX只能在Windows上使用，MacTeX只能在MacOS上使用。</p>
-<h2 id="国内texlive下载">国内TexLive下载</h2>
-<p>首选清华大学开源软件镜像站：<a
-href="https://mirrors.tuna.tsinghua.edu.cn/CTAN/systems/texlive/Images/">点我下载</a>、</p>
-<p>打开后选择最新的版本，例如这个2023年0313版本：</p>
-<p><img src="https://s2.loli.net/2023/05/05/VGIQ6b95wWHn4Xk.png" /></p>
-<p>这个<code>TexLive</code>有四五个G，看来下载要等一会儿了。</p>
-<p>如果对下载速度有要求的同学可以尝试一下
-<code>IDM</code>、<code>FDM</code> 等多线程加速的下载器。</p>
-<p>不过几分钟，我们的下载就完成啦~</p>
-<p>接下来的任务是安装</p>
-<hr />
-<h2 id="安装texlivewindows">安装TexLive（Windows）</h2>
-<p>双击我们刚刚下载好的文件</p>
-<p><img src="https://s2.loli.net/2023/05/05/Y7k3fOxsC9LFHqG.png" /></p>
-<p>会弹出一个选择应用打开的窗口</p>
-<p><img src="https://s2.loli.net/2023/05/05/vs9FckBGqRPYz7x.png" /></p>
-<p>我们选择资源管理器即可</p>
-<p>这时候，<code>我的计算机</code> 里会多出来一个软驱（DVD驱动器）</p>
-<p><img src="https://s2.loli.net/2023/05/05/QafUJpcZCFVNT5b.png" /></p>
-<p>我们打开后看到的就是TexLive的全部文件</p>
-<p>这里选择打开 <code>install-tl-windows.bat</code></p>
-<p><img src="https://s2.loli.net/2023/05/05/dAD6IwP7bipVEMg.png" /></p>
-<p>打开后，稍等一会儿，我们就可以看到我们的安装窗口</p>
-<p><img src="https://s2.loli.net/2023/05/05/9iSW5oRPuQL6fgk.png" /></p>
-<p>安装窗口大概长这样</p>
-<p>如果不是中文界面的小伙伴可以选择菜单里的 <code>GUI Languaga</code>
-来修改界面的语言</p>
-<p><img src="https://s2.loli.net/2023/05/05/lA58RHTx3rs1pbi.png" /></p>
-<p>这里默子肯定是选到中文滴</p>
-<p>然后我们修改一下安装的硬盘分区（可选）</p>
-<p>点击界面上路径后面的 <code>修改</code> 按钮</p>
-<p>会弹出一个选择路径的界面</p>
-<p><img src="https://s2.loli.net/2023/05/05/fbcxk2l7rWZOend.png" /></p>
-<p>这里默子就选择改装到H盘去了，毕竟如果都装C盘的话，C盘迟早变
-<code>血红战神</code></p>
-<blockquote>
-<p>默子暴论：如果可以自定义路径的软件还装C盘，那就是xx</p>
-</blockquote>
-<p>一切都确定后，就可以点击安装啦！</p>
-<p><strong>注意，这个安装可能会耗时1个小时。所以确保1个小时内，电脑都可以持续正常工作，不要装一半了突然笔记本没电关机，那就尴尬了。</strong></p>
-<p><img src="https://s2.loli.net/2023/05/05/iB1KbkLNAIE7a9F.png" /></p>
-<p>安装界面这里经常会出现一些问题，比如可能有的同学会闪退，我们后面再讨论这里报错的问题。</p>
-<p>等到这个4490出现（反正是差不多的数字就行），说明我们的安装开始进行了。</p>
-<p>后面有剩余时间的估计，不过这个时间经常是不准的，一般安装时间都要持续<code>40min</code></p>
-<p><strong>默子是13900HX的CPU，开了性能模式，安装了大概51min吧</strong></p>
-<p>安装好后的提示如图</p>
-<p><img src="https://s2.loli.net/2023/05/05/HOBuf9wEGNM4Q8R.png" /></p>
-<p>自此，我们的TexLive就已经成功安装完毕</p>
-<p>后续默子再来讲一讲，如何在VSCode里配置我们最舒适的LaTeX编码环境</p>
-<p>让我们的生产效率 UP UP ~</p>
-<p><a href="/">【施工中】TexLive与VSCode能碰撞出怎样的火花</a></p>
-<p><a href="/">【施工中】让人工智能辅助我们创作优秀的排版作品</a></p>
-<p><a href="/">【施工中】最舒适的TeX编写指南</a></p>
-<h2 id="参考资料">参考资料</h2>
-<p>中文LaTeX社区：<a
-href="https://www.latexstudio.net/">LaTeX工作室</a></p>
-<p>更多关于TeX的知识，可以参考这篇文章：<a
-href="https://www.latexstudio.net/texdoc/#/28?page_id=133">TeX
-家族与基础概念</a></p>
-<p>更多关于其他发行版的知识，可以参考这篇文章：<a
-href="https://www.latexstudio.net/texdoc/#/28?page_id=114">LaTeX
-发行版与下载</a></p>
-]]></content>
-      <categories>
-        <category>软件教程</category>
-      </categories>
-      <tags>
-        <tag>教程</tag>
-        <tag>LaTeX</tag>
-        <tag>TexLive</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【软件推荐】图压——最方便的批量图片压缩软件</title>
-    <url>/2023/05/f62290ce/</url>
-    <content><![CDATA[<h2 id="压缩图片的必要性">压缩图片的必要性</h2>
-<p>在撰写博客的过程中，我们经常会遇到图文排版和网页加载速度的问题。一张大小为
-<span class="math inline">\(80KB\)</span> 的图片和一张大小为 <span
-class="math inline">\(2.5MB\)</span> 的图片之间存在着巨大的差异。</p>
-<p>为了让读者能够更快地打开博客并查看内容，默子的博客网站规定所有图片的大小不超过
-<span class="math inline">\(700KB\)</span>。</p>
-<p>当然，如果需要使用大尺寸的原始图片，默子会直接提供链接，而不是让浏览器请求加载过多的图片，从而减少读者的本地加载时间。</p>
-<hr />
-<p>然而，在我们平常接触的图片中，有许多图片的大小往往超过几兆字节。那么，我们应该如何减小图片的大小呢？答案就是<strong>图片压缩</strong>。</p>
-<p>通过对图片进行稍微损失一些画质的压缩，我们可以获得更小的文件尺寸和更快的加载速度，这是一种性价比更高的权衡方法。</p>
-<p>--</p>
-<h2
-id="图压最方便的批量图片压缩软件">图压——最方便的批量图片压缩软件</h2>
-<p>你可以在官网下载图压软件：<a
-href="https://tuya.xinxiao.tech/">https://tuya.xinxiao.tech/</a></p>
-<p>下载完成后，双击安装图压软件（省略安装步骤）。</p>
-<p>安装完成后，打开图压软件，你会看到一个非常简洁的主界面，只需要将图片拖拽到界面中即可进行压缩。</p>
-<figure>
-<img src="https://s2.loli.net/2023/05/12/k6hsG3iylbETagF.png"
-alt="图压主界面" />
-<figcaption aria-hidden="true">图压主界面</figcaption>
-</figure>
-<p>默子一般会让图片的<code>宽度保持在1920</code>左右。</p>
-<p>这样既不会让图片太大，也不会让图片完全失去原有的细节。</p>
-<h3 id="一些设置">一些设置：</h3>
-<ol type="1">
-<li><code>压缩强度 4~6 之间是最优的</code></li>
-<li><code>目标格式为了放在博客里，尽量都会选择.WebP</code></li>
-<li><code>保存路径一般就是源文件夹或者是覆盖源文件</code></li>
-</ol>
-<h3 id="一些注意的点">一些注意的点</h3>
-<ol type="1">
-<li>为什么选择<code>.WebP？</code></li>
-</ol>
-<p>因为<code>.WebP</code> 更高效且适合Web使用</p>
-<p><code>.WebP</code> 是一种现代的图像文件格式，相较于 PNG 和
-JPEG，它具有更高的压缩效率和更好的图像质量。通过先进的压缩算法，<code>.WebP</code>
-图像通常比同等质量的 JPEG 图像小 25% 到 34%。</p>
-<blockquote>
-<p>此外，<code>.WebP</code>
-还支持透明度和动画功能，可以创建具有透明背景和逐帧动画效果的图像。它能够快速解码和显示，提供更快的网页加载速度和更好的用户体验。</p>
-<p>尽管支持程度可能会有所差异，但在现代浏览器中，<code>.WebP</code>
-得到了广泛支持，并且可以通过提供备用图像来确保在不支持
-<code>.WebP</code> 的情况下正常显示。</p>
-</blockquote>
-<ol start="2" type="1">
-<li>如果要覆盖源文件，请选择原格式</li>
-</ol>
-<p>这个很奇怪，可能是设计的一个小<code>Bug</code>吧，如果选择了覆盖源文件，但是源文件与目标格式不一样，那就会直接生成新的文件，不会覆盖掉源文件。</p>
-<p>我猜开发程序员应该是直接以文件名来判断源文件的，然后先生成了和源文件一样的名字，再在保存的时候修改了后缀（当然，生成的图片编码格式是不一样的，后缀只是给人看的罢了）</p>
-<ol start="3" type="1">
-<li>不支持 <code>.WebP</code> 的导入压缩，但是支持 <code>.WebP</code>
-的导出</li>
-</ol>
-<p>这个很奇怪，反正当尝试把一个 <code>.WebP</code>
-的文件丢进去的时候，会提示不支持的格式。</p>
-<p>但是对图片不做修改，仅仅把后缀改为 <code>.png</code>
-，这个软件就可以压缩了。（小技巧Get）</p>
-<hr />
-<p>重点是这款软件免费且高效啊。还不快去下载起来？ 哈哈哈哈</p>
-]]></content>
-  </entry>
-  <entry>
     <title>【博客】一些想说的话</title>
     <url>/2023/05/81817ba7/</url>
     <content><![CDATA[<h2 id="一些关于博客想说的话">一些关于博客想说的话</h2>
@@ -1557,6 +176,1387 @@ Class08 <--> C2: Cool label</pre>
         <tag>Hexo</tag>
         <tag>Github</tag>
         <tag>Next</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【博客】利用abbrlink插件生成唯一且简洁的URL</title>
+    <url>/2022/02/73c99e17/</url>
+    <content><![CDATA[<h2 id="前言">前言</h2>
+<p>利用abbrlink插件生成唯一且简洁的URL</p>
+<p>abbrlink的作者是 <a
+href="https://github.com/rozbo"><strong>rozbo</strong></a></p>
+<p>这里是abbrlink的Github项目地址</p>
+<p><a
+href="https://github.com/rozbo/hexo-abbrlink">https://github.com/rozbo/hexo-abbrlink</a></p>
+<p>使用abbrlink的几个可能： -
+当你的<code>链接太长</code>或者是<code>含有中文</code>时，分享链接时会很丑，不易阅读
+- 改变了文章标题或名字可能导致搜索引擎收录失败，原有链接失效，404警告 -
+文章名冲突，或者是想为同一篇文章写不同版本</p>
+<p>abbrlink的原理： &gt; 文章标题+创建时间 利用CRC16/32算法 最终生成
+唯一的文章链接</p>
+<h2 id="安装">安装</h2>
+<p>打开Hexo根目录，运行 <code>Git Bash</code></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">npm install hexo-abbrlink --save<br></code></pre></td></tr></table></figure>
+<p>安装之后，输出类似这样</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">added 5 packages, and audited 273 packages <span class="hljs-keyword">in</span> 3s<br><br>19 packages are looking <span class="hljs-keyword">for</span> funding<br>  run `npm fund` <span class="hljs-keyword">for</span> details<br>  <br>found 0 vulnerabilities<br></code></pre></td></tr></table></figure>
+<h2 id="配置">配置</h2>
+<p>打开Hexo根目录下的 <code>_config.yml</code></p>
+<p>寻找到配置文件中的 <code>permalink</code></p>
+<figure class="highlight yml"><table><tr><td class="code"><pre><code class="hljs yml"><span class="hljs-attr">permalink:</span> <span class="hljs-string">:year/:month/:day/:title/</span><br><span class="hljs-attr">permalink_defaults:</span><br><span class="hljs-attr">pretty_urls:</span><br>  <span class="hljs-attr">trailing_index:</span> <span class="hljs-literal">true</span><br>  <span class="hljs-attr">trailing_html:</span> <span class="hljs-literal">true</span><br></code></pre></td></tr></table></figure>
+<p>解释一下默认链接设置的含义</p>
+<figure class="highlight yml"><table><tr><td class="code"><pre><code class="hljs yml"><span class="hljs-attr">permalink:</span> <span class="hljs-string">:year/:month/:day/:title/</span><br><span class="hljs-comment"># :year 文章发表的年份</span><br><span class="hljs-comment"># :month 文章发表的月份</span><br><span class="hljs-comment"># :day 文章发表的月份</span><br><span class="hljs-comment"># :title 文章文件名</span><br></code></pre></td></tr></table></figure>
+<p>比如你在2022年5月20日时建立了一个名称为<code>How_To_Code.md</code>的文章</p>
+<p>那么生成的链接将会是这样的</p>
+<p><code>http://&lt;你的网站网址&gt;/2022/05/20/How_To_Code</code></p>
+<p>附上链接属性参考表：</p>
+<table>
+<thead>
+<tr class="header">
+<th>属性</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong><code>:abbrlink</code></strong></td>
+<td><strong>abbrlink 插件提供，生成唯一且简洁的link</strong></td>
+</tr>
+<tr class="even">
+<td><code>:year</code></td>
+<td>文章的发表年份（4 位数）</td>
+</tr>
+<tr class="odd">
+<td><code>:month</code></td>
+<td>文章的发表月份（2 位数）</td>
+</tr>
+<tr class="even">
+<td><code>:i_month</code></td>
+<td>文章的发表月份（无前置 <code>0</code>）</td>
+</tr>
+<tr class="odd">
+<td><code>:day</code></td>
+<td>文章的发表日期 (2 位数)</td>
+</tr>
+<tr class="even">
+<td><code>:i_day</code></td>
+<td>文章的发表日期（无前置 <code>0</code>）</td>
+</tr>
+<tr class="odd">
+<td><code>:hour</code></td>
+<td>文章发表时的小时 (2 位数)</td>
+</tr>
+<tr class="even">
+<td><code>:minute</code></td>
+<td>文章发表时的分钟 (2 位数)</td>
+</tr>
+<tr class="odd">
+<td><code>:second</code></td>
+<td>文章发表时的秒钟 (2 位数)</td>
+</tr>
+<tr class="even">
+<td><code>:title</code></td>
+<td>文件名称（包含目录）</td>
+</tr>
+<tr class="odd">
+<td><code>:name</code></td>
+<td>文件名称 （单文件名）</td>
+</tr>
+<tr class="even">
+<td><code>:post_title</code></td>
+<td>文章标题</td>
+</tr>
+<tr class="odd">
+<td><code>:id</code></td>
+<td>文章 ID (<code>hexo clean</code> 后会改变)</td>
+</tr>
+<tr class="even">
+<td><code>:category</code></td>
+<td>文章分类</td>
+</tr>
+<tr class="odd">
+<td><code>:hash</code></td>
+<td>基于 <code>文件名称</code> 与 <code>文章发布日期</code>
+的12位哈希值</td>
+</tr>
+</tbody>
+</table>
+<p>更多样例可以到官方文档中查阅 <a
+href="https://hexo.io/docs/permalinks.html">hexo.io/docs/permalinks</a></p>
+<p>修改Hexo根目录下的 <code>_config.yml</code> 为 <figure class="highlight yml"><table><tr><td class="code"><pre><code class="hljs yml"><span class="hljs-attr">permalink:</span> <span class="hljs-string">:year/:month/:abbrlink/</span><br><span class="hljs-comment"># 这里为默子的配置，你可以根据自己的喜好来修改</span><br><span class="hljs-comment"># 如果不了解下面的配置，请勿漏掉最后的&#x27;/&#x27;号，否则F5刷新会导致浏览器发送错误的MIME类型，进行下载操作</span><br><span class="hljs-attr">permalink_defaults:</span><br><span class="hljs-attr">pretty_urls:</span><br>  <span class="hljs-attr">trailing_index:</span> <span class="hljs-literal">true</span><br>  <span class="hljs-attr">trailing_html:</span> <span class="hljs-literal">true</span><br></code></pre></td></tr></table></figure></p>
+<p>最后，在设置文件中添加如下语句</p>
+<figure class="highlight yml"><table><tr><td class="code"><pre><code class="hljs yml"><span class="hljs-attr">abbrlink:</span><br>    <span class="hljs-attr">alg:</span> <span class="hljs-string">crc32</span><br>    <span class="hljs-comment"># alg可以选crc32或者是crc16 具体差别请参考原Github项目</span><br>    <span class="hljs-comment"># 这里推荐crc32</span><br>    <span class="hljs-attr">rep:</span> <span class="hljs-string">hex</span><br>    <span class="hljs-comment"># rep可以选hex(16进制)或者是dec(十进制) 具体差别请参考原Github项目</span><br>    <span class="hljs-comment"># 这里推荐hex(16进制)</span><br></code></pre></td></tr></table></figure>
+<h2 id="启用">启用</h2>
+<p>清除Hexo缓存，重新渲染网页并本地运行</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">hexo cl &amp;&amp; hexo g &amp;&amp; hexo s<br></code></pre></td></tr></table></figure>
+<p>这时你的所有文章中会加入 <code>:abbrlink</code> 的关键字</p>
+<figure class="highlight yml"><table><tr><td class="code"><pre><code class="hljs yml"><span class="hljs-meta">---</span><br><span class="hljs-attr">title:</span> <span class="hljs-string">HowToCode</span><br><span class="hljs-attr">tags:</span><br>  <span class="hljs-bullet">-</span> <span class="hljs-string">实用分享</span><br><span class="hljs-attr">abbrlink:</span> <span class="hljs-string">f23cd173</span><br><span class="hljs-attr">date:</span> <span class="hljs-number">2022-05-20 13:14:00</span><br><span class="hljs-meta">---</span><br></code></pre></td></tr></table></figure>
+<p>温馨提醒：请不要删除该关键字，删除后可能会改变你的链接</p>
+<h2 id="结尾">结尾</h2>
+<p>今天的教程就到这里结束了</p>
+<p>还有什么问题可以访问我的个人网站 <a
+href="https://histone.top/"><strong><code>histone.top</code></strong></a></p>
+<p>或者在评论区留言，默子看到会回复的</p>
+<h2 id="renext系列">ReNexT系列：</h2>
+<ul>
+<li><a
+href="https://histone.top/2022/02/73c99e17/">ReNexT：利用abbrlink插件生成唯一且简洁的URL</a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>博客</category>
+      </categories>
+      <tags>
+        <tag>博客</tag>
+        <tag>Abbrlink</tag>
+        <tag>URL</tag>
+        <tag>crc32</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【杂记】2020年3月28日</title>
+    <url>/2020/03/14f0aad4/</url>
+    <content><![CDATA[<blockquote>
+<h3
+id="这是默子几年前写的博客仅留作纪念">这是默子几年前写的博客，仅留作纪念！</h3>
+</blockquote>
+<p><strong>打开电脑→打开OJ→浏览题目→浏览博客→“颓”→关闭电脑</strong></p>
+<p>按理说，过了凌晨，2020-03-28就已经来到了。</p>
+<p>CCF的通知上说的，今天就是省选的Day1</p>
+<p>疫情的来临使得咕咕F更咕了些，至今未通知何时省选。</p>
+<p><del>（发邮件给特派员也不回，23333）</del></p>
+<p>现在每天都感觉自己非常蒟蒻</p>
+<p>今天看了一部电影《贫民窟里的百万富翁》</p>
+<p>给我感触最深的是，这个电影并没有讲金钱意义上的百万富翁。</p>
+<p>而是讲述了主人公从小到大的经历，正是这种经历才使得主人公成为了百万富翁。</p>
+<figure>
+<img src="https://s2.loli.net/2023/05/12/ZHk2SspEobgy1hd.webp"
+alt="贫民窟里的百万富翁剧照" />
+<figcaption aria-hidden="true">贫民窟里的百万富翁剧照</figcaption>
+</figure>
+<p>或许我希望是这样吧。</p>
+<hr />
+<p>停课去搞OI，真的需要很大的勇气与毅力。</p>
+<p>老师不理解，学校不理解，同学不理解。他们很难想象我居然为了一个看不见摸不着的OI放弃两个月的文化课。</p>
+<p>但我真的是非常喜欢OI，从小学六年级接触到易语言时，我就感受到了编程的魅力。</p>
+<p>从那之后，自学了Java，Python，C++……，可惜高中前学的都是语言</p>
+<p>直到高一，我才真正意义上接触到OI，仗着年轻气盛，憨批的我参加了2018NOIP</p>
+<p>那肯定爆零了啊，直接提高，我还是全市唯一一个C语言的……23333</p>
+<p>然后呢，我在文化课里颓了一年，由普通班升到了重点班（可惜不是最重点）</p>
+<hr />
+<p>直到2019年9月13日，我才惊醒到，原来我还有OI。</p>
+<p>于是拼命肝了两个月，2019CSP-TG 捞了一个弱省二等</p>
+<p>之后，我发现我彻底爱上了OI，解题的快乐，AC的那一瞬间</p>
+<hr />
+<p>假期去清北学堂集训了一次
+<del>（最心疼的是钱，对于贫困家庭来说，支出不小）</del></p>
+<p>也没认识许多大佬，大部分水平还是差不多了，其实是真正的大佬不屑和我这个蒟蒻交朋友</p>
+<p>由于在弱省，省选竞争不是很大，二等也可以混进去考一下。</p>
+<p>但是……我想进队</p>
+<p>于是就开启了停课，疯狂刷题阶段。</p>
+<hr />
+<p>进了队，我就继续停课，至少要打个Ag回来</p>
+<p>没进队，就滚回去学文化课，2020再考最后一次NOIP，正式AFO~</p>
+<p>怎么说呢，文笔很烂，感觉跟流水账似的。</p>
+<hr />
+<p><strong>PS：话说2020省选啥时候通知啊，我TM直接自闭好不好，就算推迟，给个通知啊！！！</strong></p>
+<blockquote>
+<p>后日记：当时真的好急，换做现在的默子会说：<code>我知道你很急，但你先别急</code></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>杂记</category>
+      </categories>
+      <tags>
+        <tag>杂记</tag>
+        <tag>日常</tag>
+        <tag>省选</tag>
+        <tag>颓废</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【博客】运维日记</title>
+    <url>/1999/12/52e88311/</url>
+    <content><![CDATA[<h2 id="section">2023.5.12</h2>
+<ol type="1">
+<li><code>更改</code>
+全站图片均交给了SM.MS图床托管，并且本地留有了备份</li>
+<li><code>更改</code> 代码高亮为 Paraiso Dark 与 Paraiso Light</li>
+<li><code>删除</code>
+Github库里原有的照片，节省空间并提速博客访问速度</li>
+<li><code>新增</code> 博客的运维日记，方便后续查看更改与变动</li>
+<li><code>新增</code> 图片库，方便来快速查找上传到图床的照片</li>
+</ol>
+]]></content>
+      <categories>
+        <category>博客</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+        <tag>运维</tag>
+        <tag>日记</tag>
+        <tag>图床</tag>
+        <tag>Fluid</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【图论】Cayley定理</title>
+    <url>/2022/04/5d57d8bd/</url>
+    <content><![CDATA[<p><a
+href="https://en.wikipedia.org/wiki/Cayley%27s_theorem">Cayley定理</a>
+于1854年在 <a href="https://en.wikipedia.org/wiki/Arthur_Cayley">Arthur
+Cayley</a> 的论文中首次被提到。</p>
+<p>本文简单讲述了Cayley定理在图论中的应用，并用普吕弗序列做了简单证明</p>
+<span id="more"></span>
+<p>一般的表述：</p>
+<blockquote>
+<p><strong>每个群 <span class="math inline">\(G\)</span> 同构于
+对称群的子群</strong></p>
+</blockquote>
+<hr />
+<p>而在图论与组合数学中，该定理被用来计算 <a
+href="https://en.wikipedia.org/wiki/Complete_graph">完全图</a> 的 <a
+href="https://en.wikipedia.org/wiki/Spanning_tree">生成树</a>
+的总数。</p>
+<p>图论中的表述：</p>
+<blockquote>
+<p><strong>假如某一完全图有 <span class="math inline">\(n\)</span>
+个顶点，那么该图的生成树的数量为 <span
+class="math inline">\(n^{n-2}\)</span> 个。</strong></p>
+</blockquote>
+<p>Cayley定理 的证明方法大概有三种，这里讲述最简单也是最直观的一种方法
+利用 <a
+href="https://en.wikipedia.org/wiki/Pr%C3%BCfer_sequence">普吕弗序列</a>
+来证明 Cayley定理。</p>
+<hr />
+<p>设 <span class="math inline">\(T\)</span> 为一颗标号树，共有 <span
+class="math inline">\(n\)</span> 个顶点，分别标号为 <span
+class="math inline">\(a_1,a_2,a_3, \cdots ,a_{n}\)</span></p>
+<p>每次取出标号最小的叶子，记为 <span class="math inline">\(a_1\)</span>
+，而 <span class="math inline">\(a_1\)</span>的邻接点记为 <span
+class="math inline">\(b_1\)</span> 。注意：此时 叶子 <span
+class="math inline">\(a_1\)</span> 不一定为 标号为 <span
+class="math inline">\(1\)</span> 的叶子。</p>
+<p>将顶点 <span class="math inline">\(a_1\)</span> 与 边 ( <span
+class="math inline">\(a_1 , b_1\)</span> ) 从树中删去。注意：此时 <span
+class="math inline">\(b_1\)</span> 不一定会变成叶子。</p>
+<p>设一个 普吕弗序列 <span class="math inline">\(B\)</span> ，将 <span
+class="math inline">\(b_1\)</span> 加入到序列 <span
+class="math inline">\(B\)</span> 中。</p>
+<p>如此往复，执行操作共 <span class="math inline">\(n-2\)</span>
+次，直到树 <span class="math inline">\(T\)</span> 只剩一条边。</p>
+<p>我们便可以得到一个普吕弗序列 <span
+class="math inline">\(B\)</span></p>
+<p><span class="math display">\[b_1,b_2,b_3,\cdots ,b_{n-2}\]</span></p>
+<p>我们可以用该序列重新构造出 树 <span
+class="math inline">\(T\)</span></p>
+<p>我们先写一个从 <span class="math inline">\(1\)</span> 到 <span
+class="math inline">\(n\)</span> 的有序序列 <span
+class="math inline">\(C\)</span></p>
+<p><span class="math display">\[1,2,3,\cdots ,n\]</span></p>
+<p>然后每次从 序列 <span class="math inline">\(C\)</span>
+中找到第一个不出现在序列 <span class="math inline">\(B\)</span>
+中的元素，记为 <span class="math inline">\(c_1\)</span></p>
+<p>将 <span class="math inline">\(c_1\)</span> 与 <span
+class="math inline">\(b_1\)</span> 分别从序列中删去，并在树 <span
+class="math inline">\(T\)</span> 中加入这两个顶点与他们之间的边 (<span
+class="math inline">\(c_1,b_1\)</span>)</p>
+<p>如此往复，执行操作共 <span class="math inline">\(n-2\)</span>
+次，序列 <span class="math inline">\(C\)</span> 中仅剩两个元素，分别设为
+<span class="math inline">\(c_{n-1},c_{n}\)</span></p>
+<p>在树 <span class="math inline">\(T\)</span> 中加入最后一条边 ( <span
+class="math inline">\(c_{n-1},c_{n}\)</span> )
+，我们便从普吕弗序列中将树 <span class="math inline">\(T\)</span>
+构建了回来。</p>
+<hr />
+<p>经过上述推导，在构建普吕弗序列时，我们可以得知 <span
+class="math inline">\(B\)</span> 序列中一共有 <span
+class="math inline">\(n-2\)</span> 个元素，<span
+class="math inline">\(b_i \in [1,n] 且 b_i \in Z^{+}\)</span></p>
+<p><span class="math display">\[\begin{matrix}n-2\\\overbrace{n \times
+n\times \cdots \times n}\end{matrix} = n^{n-2}\]</span></p>
+<p>所以便可以证明得</p>
+<blockquote>
+<p><strong>假如某一完全图有 <span class="math inline">\(n\)</span>
+个顶点，那么该图的生成树的数量为 <span
+class="math inline">\(n^{n-2}\)</span> 个。</strong></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>图论</category>
+      </categories>
+      <tags>
+        <tag>图论</tag>
+        <tag>Cayley定理</tag>
+        <tag>完全图</tag>
+        <tag>生成树</tag>
+        <tag>普吕弗序列</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【杂记】2020年3月9日</title>
+    <url>/2020/03/50796d93/</url>
+    <content><![CDATA[<blockquote>
+<h3
+id="这是默子几年前写的博客仅留作纪念">这是默子几年前写的博客，仅留作纪念！</h3>
+</blockquote>
+<p>又是很颓的一天啊……</p>
+<p>日常肝题，奇怪的是今天居然没有玩游戏</p>
+<h2 id="上午1030">上午10:30</h2>
+<p>其实醒来有很长时间了</p>
+<p>但是一直懒在床上没有动，看了会
+<strong>许胤龙的《组合数学引论》</strong></p>
+<p><del>怎么可能看懂，这个东西简直需要两个脑子</del></p>
+<p>对<strong>Fibonacci数</strong>和<strong>Catalan数</strong>有了更深刻的认识。</p>
+<p>但是还有些不太明白，明天再看看书吧……</p>
+<p>唉，当一个蒟蒻的快乐是大佬们永远体验不到的</p>
+<p>新知识的海洋在向蒟蒻招手。</p>
+<p>至于大佬呢？大佬们忙着发现新的类地星球，不屑于在地表游玩。</p>
+<h3
+id="安利一款超棒的游戏坎巴拉的太空计划">安利一款超棒的游戏《坎巴拉的太空计划》</h3>
+<blockquote>
+<p>虽然我还不怎么会玩，勉强靠着新手教程发射了第一次火箭</p>
+</blockquote>
+<blockquote>
+<p>但是游戏真的超棒，物理、航天、宇宙爱好者的最佳选择</p>
+</blockquote>
+<blockquote>
+<p>这里贴一段游戏评论</p>
+</blockquote>
+<p><strong>本游戏百小时都出不了新手村</strong></p>
+<p>但是作为一个太空模拟它做到了尽可能的真实（相比其他游戏</p>
+<p>没有什么超光速引擎，没有跃迁，没有虫洞</p>
+<p>你用最笨拙的方式——燃料和引力飞向星空</p>
+<p>在其他游戏里习惯了线性一样的移动后，回过头来看看这个游戏</p>
+<p>它真正代表了人类对太空在历史上的探索</p>
+<figure>
+<img src="https://s2.ax1x.com/2020/03/09/89xvXn.jpg"
+alt="坎巴拉的太空计划-游戏截图" />
+<figcaption aria-hidden="true">坎巴拉的太空计划-游戏截图</figcaption>
+</figure>
+<p>听说最近出系列2了，如果有机会的话，夏天入手，<strong>112RMB</strong></p>
+<p>学生党伤不起啊……</p>
+<hr />
+<h2 id="中午1230">中午12：30</h2>
+<p>麻婆豆腐香啊，三碗米饭????是日常操作。</p>
+<p>写到这里，我觉得我该减肥了????????????</p>
+<p>嗯，从明天开始做一些运动吧……</p>
+<p>不过，现在吃饱了才有力气明天减肥嘛<code>负罪感--</code></p>
+<h2 id="下午1800">下午18：00</h2>
+<p>午觉愣是睡成了下午觉！！！</p>
+<p>打开手机，本想着逛一会B站，但是看了看日历</p>
+<p>今天距离<strong>省选</strong>还有——<strong>20</strong>天啊。</p>
+<p>算了，学习吧。</p>
+<p><strong>熟悉的洛谷，熟悉的味道</strong></p>
+<h3 id="st表的原理以及实现">ST表的原理以及实现</h3>
+<p>今天搞了一下快忘掉的一些数据结构和算法</p>
+<p>众所周知，在维护区间最值的时候，我们常用两种算法，一种叫ST表，一种叫线段树</p>
+<p>这里主要说下<strong>ST表(Sparse Table)</strong></p>
+<p><strong>预处理时间复杂度<code>O(nlogn)</code></strong></p>
+<p><strong>查询时间复杂度<code>O(1)</code></strong></p>
+<p>我们首先定义一个初始数据数组和二维的ST表数组</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">//n为数据大小</span><br><span class="hljs-type">int</span> a[n]    存初始数据<br><span class="hljs-comment">//21后面具体再解释,其实当你看完原理也就懂了</span><br><span class="hljs-type">int</span> st[n][<span class="hljs-number">21</span>]    存ST表<br></code></pre></td></tr></table></figure>
+<p><span class="math inline">\(st[ i ][ j ]表示的是区间[ i , i+2^j-1
+]里的最大值\)</span></p>
+<p><span class="math inline">\(所以，st[ i ][ j ] = max(st[ i ][ j-1 ] ,
+st[ i+2^(j-1) ][ j-1 ])\)</span></p>
+<p><span
+class="math inline">\(这里以维护区间最大值来举例，最大值最小值其实都一样，只有\)</span><strong>max</strong><span
+class="math inline">\(和\)</span><strong>min</strong><span
+class="math inline">\(的区别\)</span></p>
+<h3 id="初始化st表">初始化ST表</h3>
+<p>怎么来的呢？</p>
+<p>个人觉得，简单来说就是一个 <code>二分+分治</code> 的思想</p>
+<p><strong>我们要求区间 <span class="math inline">\([ i , i+2^j-1
+]\)</span> 里的最大值</strong></p>
+<p><strong>可以先求区间 <span class="math inline">\([ i , i+2^(j-1)-1
+]\)</span> 里的最大值</strong></p>
+<p><strong>再求区间 <span class="math inline">\([ i+2^(j-1) , i+2^j-1
+]\)</span> 里的最大值</strong></p>
+<p><strong>最后取这两个区间的最大值</strong></p>
+<p>所以，<span class="math inline">\(st[ i ][ j ] = max(st[ i ][ j-1 ] ,
+st[ i+2^(j-1) ][ j-1 ])\)</span></p>
+<p>如果还是不理解的话，再看一下st数组的含义</p>
+<p><span class="math inline">\(st[ i ][ j ]\)</span>表示的是区间<span
+class="math inline">\([ i , i+2^j-1 ]\)</span>里的最大值</p>
+<p>初始化最小单元，也就是 <span class="math inline">\(st[ i ][ 0
+]\)</span> ，也就是区间 <span class="math inline">\([ i , i ]\)</span>
+里的最大值</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++)<br>    st[i][<span class="hljs-number">0</span>]=a[i];<br></code></pre></td></tr></table></figure>
+<p>初始化剩余部分，这里用到了位运算节约时间开销</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j=<span class="hljs-number">1</span>;(<span class="hljs-number">1</span>&lt;&lt;j)&lt;=n;j++)<br>    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i+(<span class="hljs-number">1</span>&lt;&lt;j)&lt;=n;i++)<br>        st[i][j] = <span class="hljs-built_in">max</span>(st[i][j<span class="hljs-number">-1</span>],st[i+(<span class="hljs-number">1</span>&lt;&lt;(j<span class="hljs-number">-1</span>))][j<span class="hljs-number">-1</span>]);<br></code></pre></td></tr></table></figure>
+<h3 id="查询st表">查询ST表</h3>
+<p>ST表的查询许多萌新上来会迷惑的一个操作</p>
+<p>比如，我们要查询区间 <span class="math inline">\([ l , r ]\)</span>
+里的最大值</p>
+<p>如果这个区间恰好是<strong>ST表</strong>里的一个区间 <span
+class="math inline">\([ i , i+2^j-1 ]\)</span> ，那么我们就可以直接访问
+<span class="math inline">\(st[i][j]\)</span></p>
+<p>可惜大多时候都不是，那么我们怎么做呢？我们可以这样做</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-type">int</span> k = <span class="hljs-built_in">log</span>(r-l+<span class="hljs-number">1</span>)/<span class="hljs-built_in">log</span>(<span class="hljs-number">2</span>));<br><span class="hljs-type">int</span> ans = <span class="hljs-built_in">max</span>(st[l][k],st[y-(<span class="hljs-number">1</span>&lt;&lt;k)+<span class="hljs-number">1</span>][k]);<br></code></pre></td></tr></table></figure>
+<p>这里的 <span class="math inline">\(y\)</span> 是什么呢？ <span
+class="math inline">\(y\)</span> 是满足 <span
+class="math inline">\(y-(1&lt;&lt;k)+1&lt;=r\)</span> 的最大值</p>
+<p><span class="math inline">\(k\)</span>是什么呢？<span
+class="math inline">\(k\)</span> 是满足 <span
+class="math inline">\(2^k&lt;=r-l+1\)</span> 的最大值</p>
+<p>最后比较的两个区间 <span class="math inline">\([l,l+2^k]\)</span> 和
+<span class="math inline">\([r-2^k,r]\)</span>
+有可能是重合的，但是答案是唯一的</p>
+<p><del><strong>板子还是要自己打，不然怎么才能背会呢？</strong></del></p>
+<h2 id="晚上2230">晚上22：30</h2>
+<p>刷题的日子总是这么朴实无华且枯燥</p>
+<p>写完博客，一看表居然已经12点了</p>
+<p>看来我还是太菜，一篇杂记类博客居然要写一个半小时。</p>
+<p>今天AK洛谷第一页黄题，明天继续肝吧，绿题蓝题要提上日程了</p>
+<p>之前有位大佬建议我刷满2页蓝，……太犇了。</p>
+<p>继续加油吧，不忘初心。</p>
+]]></content>
+      <categories>
+        <category>杂记</category>
+      </categories>
+      <tags>
+        <tag>杂记</tag>
+        <tag>日常</tag>
+        <tag>ST表</tag>
+        <tag>坎巴拉的太空计划</tag>
+        <tag>Fibonacci数</tag>
+        <tag>Catalan数</tag>
+        <tag>洛谷</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【杂记】2020年3月8日</title>
+    <url>/2020/03/e8c50af6/</url>
+    <content><![CDATA[<blockquote>
+<h3
+id="这是默子几年前写的博客仅留作纪念">这是默子几年前写的博客，仅留作纪念！</h3>
+</blockquote>
+<h3 id="早上-930">早上 9：30</h3>
+<p>迷迷糊糊地吃了一碗方便面，又打开了电脑。</p>
+<p><strong>熟悉的洛谷，熟悉的DevCpp</strong></p>
+<p>第一件事是，用民间数据把昨天NOI Online的代码测试了下</p>
+<p>25+0+0</p>
+<p>哇，心态瞬间<strong>爆炸</strong>……</p>
+<p><del>（第一题明明有50的啊，第二题怎么又爆0了，第三题意料之中）</del></p>
+<p>还是要调整好自己的心态，毕竟自己是真的蒟蒻,</p>
+<p>短时间菜一点可以容忍，但绝不能容忍长时间的菜！！！</p>
+<hr />
+<h3 id="上午-1030">上午 10：30</h3>
+<p>今天距离<strong>省选</strong>还有——<strong>21</strong>天啊</p>
+<p>调整好心态继续加油。。。</p>
+<p>学着学着，突然发现，树状数组给我整蒙圈了</p>
+<p>以前就是<strong>会打板子</strong>，今天花了我好长时间总于搞懂<strong>其中的原理的lowbit操作</strong>是个什么鬼了！</p>
+<p>众所周知，树状数组可以维护区间和</p>
+<p>比如给我们一个 <strong>num[ ]</strong> 数组，长度为
+<strong>n</strong>。</p>
+<p>并且我们打算把它加到我们的树状数组 <strong>tree[ ]</strong> 中去</p>
+<p><strong>如下图</strong></p>
+<p><a href="https://imgchr.com/i/3zyxPA"><img
+src="https://s2.ax1x.com/2020/03/08/3zyxPA.png"
+alt="3zyxPA.png" /></a></p>
+<h4 id="树状数组修改插入操作">树状数组修改插入操作</h4>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">update</span><span class="hljs-params">(<span class="hljs-type">int</span> x,<span class="hljs-type">int</span> a)</span></span>&#123;<br>    <span class="hljs-comment">//x是插入的位置</span><br>    <span class="hljs-comment">//a是要插入的值</span><br>    <span class="hljs-keyword">while</span>(x&lt;=n)&#123;<br>        tree[x]+=a;<br>        x += <span class="hljs-built_in">lowbit</span>(x);<br>        <span class="hljs-comment">//也就是 x = x&amp;-x</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>假设 <span class="math inline">\(x=1\)</span>，<span
+class="math inline">\(n=8\)</span>，<span
+class="math inline">\(a=5\)</span>，则</p>
+<figure class="highlight apache"><table><tr><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">tree</span>[<span class="hljs-number">1</span>] += <span class="hljs-number">5</span><br><span class="hljs-attribute">tree</span>[<span class="hljs-number">2</span>] += <span class="hljs-number">5</span><br><span class="hljs-attribute">tree</span>[<span class="hljs-number">4</span>] += <span class="hljs-number">5</span><br><span class="hljs-attribute">tree</span>[<span class="hljs-number">8</span>] += <span class="hljs-number">5</span><br></code></pre></td></tr></table></figure>
+<p><code>lowbit()</code> 返回的是 <span class="math inline">\(x\)</span>
+在二进制表示下，末尾第一个遇到的 1 和在该位置之前的 0 的情况，比如：</p>
+<figure class="highlight basic"><table><tr><td class="code"><pre><code class="hljs basic"><span class="hljs-symbol">0001 </span>  <span class="hljs-number">1</span>   lowbit(<span class="hljs-number">1</span>) = <span class="hljs-number">1</span><br><span class="hljs-symbol">0010 </span>  <span class="hljs-number">2</span>   lowbit(<span class="hljs-number">2</span>) = <span class="hljs-number">2</span><br><span class="hljs-symbol">0011 </span>  <span class="hljs-number">3</span>   lowbit(<span class="hljs-number">3</span>) = <span class="hljs-number">1</span><br><span class="hljs-symbol">0100 </span>  <span class="hljs-number">4</span>   lowbit(<span class="hljs-number">4</span>) = <span class="hljs-number">4</span><br><span class="hljs-symbol">0101 </span>  <span class="hljs-number">5</span>   lowbit(<span class="hljs-number">5</span>) = <span class="hljs-number">1</span><br><span class="hljs-symbol">0110 </span>  <span class="hljs-number">6</span>   lowbit(<span class="hljs-number">6</span>) = <span class="hljs-number">2</span><br><span class="hljs-symbol">0111 </span>  <span class="hljs-number">7</span>   lowbit(<span class="hljs-number">7</span>) = <span class="hljs-number">1</span><br><span class="hljs-symbol">1000 </span>  <span class="hljs-number">8</span>   lowbit(<span class="hljs-number">8</span>) = <span class="hljs-number">8</span><br></code></pre></td></tr></table></figure>
+<p>给定一个数字 5201314，</p>
+<p>其二进制表示为 <code>100 1111 0101 1101 1010 0010</code>，</p>
+<p>关心最后两位 <code>100 1111 0101 1101 1010 00**10**</code>，</p>
+<p>即二进制的 2。因此，<code>lowbit(5201314) = 2</code>。</p>
+<p>至于具体的运算参考手边二进制运算课本，<del>没有？那百度啊</del></p>
+<p><strong>什么，你要求和5到12区间内的和？？？</strong></p>
+<p>树状数组区间求和(从x到1)操作如下</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">sum</span><span class="hljs-params">(<span class="hljs-type">int</span> x)</span></span>&#123;<br>    <span class="hljs-comment">//x还是位置</span><br>	<span class="hljs-type">int</span> ans = <span class="hljs-number">0</span>;<br>	<span class="hljs-keyword">while</span>(x)&#123;<br>		ans += treen[x];<br>		x -= <span class="hljs-built_in">lowbit</span>(x);<br>	&#125;<br>	<span class="hljs-keyword">return</span> ans;<br>&#125;<br><br>ans = <span class="hljs-built_in">sum</span>(<span class="hljs-number">12</span>) - <span class="hljs-built_in">sum</span>(<span class="hljs-number">5</span><span class="hljs-number">-1</span>); <span class="hljs-comment">//这样就可以求出5到12区间内的和了</span><br></code></pre></td></tr></table></figure>
+<p><del>很颓很颓的一上午，虽然我知道我可能上面没太讲清</del></p>
+<p><del>但是那又有什么关系呢，这只是一篇类似于 <strong>日记</strong>
+的东东</del></p>
+<blockquote>
+<p>后日记：这里的讲解还是进行了一定的修改，使其更加通顺易读。同时改成了<span
+class="math inline">\(\LaTeX\)</span>的数学公式，更加美观了。</p>
+</blockquote>
+<hr />
+<h3 id="中午-1320">中午 13：20</h3>
+<p>吃了一大盘鸡肉+两碗米饭 <del>(具体菜名叫不上来)</del></p>
+<p>来了客人，家里把以前的旧车卖了，来的是买车的人</p>
+<p>说实话，他们都认识我，我不认识他们，233333</p>
+<p>关上卧室门，逍遥自在</p>
+<blockquote>
+<p>后日记：真的好能吃</p>
+</blockquote>
+<hr />
+<h3 id="下午-1400">下午 14：00</h3>
+<p>刚准备打开游戏，看看沙雕可爱的 <strong>羽羽音小鸟(はばね
+ことり)</strong></p>
+<p>以及开朗温柔的 <strong>姫城扬羽(ひめぎ あげは)</strong></p>
+<p>突然想起来有洛谷月赛啊……淦！</p>
+<p>(因为我太弱，所以只做了Div2)</p>
+<p><strong>T1</strong>
+第一眼还以为是八皇后问题，但仔细一看……什么嘛，入门组水题</p>
+<p>20分钟愉快切掉 <del>(中间边界条件搞错WA了两次)</del></p>
+<p><strong>T2</strong>
+明显是道数学结论题，一开始写了个O(K)的算法上去</p>
+<p>果不其然，TLE掉最后一组数据</p>
+<p>思考了好久，推了下式子</p>
+<p><span class="math inline">\(\text{(n+1) * pow(2,k)}\)</span></p>
+<p>鉴于k比较大，写个快速幂水过去了</p>
+<p><strong>T3</strong> 卡了 我两个小时</p>
+<p>各种瞎搞算法都用过，好像是DP，但是也用前缀和搞过</p>
+<p>最后DFS暴力14分，果断滚粗</p>
+<p><strong>T4</strong> 没看……</p>
+<blockquote>
+<p>当时居然连T3都刷不过去，ε=(´ο｀*)))唉，虽然现在也刷不过去，甚至有可能T2都刷不过去，阿巴巴。</p>
+</blockquote>
+<hr />
+<h3 id="傍晚-1900">傍晚 19：00</h3>
+<p>打开了Steam，心不在焉地玩着 <strong>If My Heart Had
+Wings</strong></p>
+<figure>
+<img src="https://s2.loli.net/2023/05/12/vsKX7jynlztAfCr.png"
+alt="羽羽音小鸟(はばね ことり)" />
+<figcaption aria-hidden="true">羽羽音小鸟(はばね ことり)</figcaption>
+</figure>
+<p>无聊中解答了几个问题，推进了下剧情</p>
+<p>记忆化搜索？(×)</p>
+<p>瞎搞 (√)</p>
+<hr />
+<h3 id="晚上-2200">晚上 22：00</h3>
+<p>关掉了游戏，写下博客</p>
+<p>决定当个日更博客主</p>
+<blockquote>
+<p>后来，还是没有日更成功，哈哈哈哈哈</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>杂记</category>
+      </categories>
+      <tags>
+        <tag>杂记</tag>
+        <tag>日常</tag>
+        <tag>树状数组</tag>
+        <tag>NOI省选</tag>
+        <tag>Galgame</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【博客】照片库</title>
+    <url>/2023/05/b5e6212e/</url>
+    <content><![CDATA[<h2 id="为什么要建立照片库">1. 为什么要建立照片库</h2>
+<p>在写博客的时候，经常需要插入一些图片，但是由于图片的大小限制，所以不能直接插入图片，而是需要先上传到一个图床，然后再插入图片。</p>
+<p>上传的多了，就会忘掉，所以，建立一个照片库，可以方便的查找图片。</p>
+<p>至于如果存了上千张图片，如何加载，如何查找，这个没想，哈哈哈哈</p>
+<p>等体量上来了再说！~</p>
+<hr />
+<p>后面就全部都是图片了</p>
+<p>目前总计21张图片，共计3.85MB</p>
+<figure>
+<img src="https://s2.loli.net/2023/05/12/M56HQhReN9quJDj.jpg"
+alt="wallhaven-yx5kml.jpg" />
+<figcaption aria-hidden="true">wallhaven-yx5kml.jpg</figcaption>
+</figure>
+<figure>
+<img src="https://s2.loli.net/2023/05/12/TbOch3HsoXNqAEI.jpg"
+alt="wallhaven-d63voj.jpg" />
+<figcaption aria-hidden="true">wallhaven-d63voj.jpg</figcaption>
+</figure>
+<figure>
+<img src="https://s2.loli.net/2023/05/12/RY8GyqKvujeATCn.jpg"
+alt="wallhaven-kx1kp1.jpg" />
+<figcaption aria-hidden="true">wallhaven-kx1kp1.jpg</figcaption>
+</figure>
+<figure>
+<img src="https://s2.loli.net/2023/05/12/HN4Yw1L7hdX6eAy.jpg"
+alt="wallhaven-jx1ex5.jpg" />
+<figcaption aria-hidden="true">wallhaven-jx1ex5.jpg</figcaption>
+</figure>
+<figure>
+<img src="https://s2.loli.net/2023/05/12/M5nXydprt6Ebzem.png"
+alt="wallhaven-yjee7d.png" />
+<figcaption aria-hidden="true">wallhaven-yjee7d.png</figcaption>
+</figure>
+<figure>
+<img src="https://s2.loli.net/2023/05/12/lAoSswud5DJZnOI.jpg"
+alt="wallhaven-yxeojg.jpg" />
+<figcaption aria-hidden="true">wallhaven-yxeojg.jpg</figcaption>
+</figure>
+<figure>
+<img src="https://s2.loli.net/2023/05/12/OW4XcjdhyElpG9a.png"
+alt="wallhaven-7pje5o.png" />
+<figcaption aria-hidden="true">wallhaven-7pje5o.png</figcaption>
+</figure>
+<figure>
+<img src="https://s2.loli.net/2023/05/12/QKUmxaEr4ObAgjw.jpg"
+alt="wallhaven-x67zko.jpg" />
+<figcaption aria-hidden="true">wallhaven-x67zko.jpg</figcaption>
+</figure>
+<figure>
+<img src="https://s2.loli.net/2023/05/12/EdPu5AxmlKYOGiI.jpg"
+alt="wallhaven-qz3m87.jpg" />
+<figcaption aria-hidden="true">wallhaven-qz3m87.jpg</figcaption>
+</figure>
+<figure>
+<img src="https://s2.loli.net/2023/05/12/AcgIWMqQ3d4v5BH.jpg"
+alt="wallhaven-yxe85x.jpg" />
+<figcaption aria-hidden="true">wallhaven-yxe85x.jpg</figcaption>
+</figure>
+<figure>
+<img src="https://s2.loli.net/2023/05/12/EQXOa6PD8Cd5rNV.jpg"
+alt="wallhaven-g7dxoe.jpg" />
+<figcaption aria-hidden="true">wallhaven-g7dxoe.jpg</figcaption>
+</figure>
+<figure>
+<img src="https://s2.loli.net/2023/05/12/H27QE4n1ZuzvXBN.jpg"
+alt="wallhaven-o5137m.jpg" />
+<figcaption aria-hidden="true">wallhaven-o5137m.jpg</figcaption>
+</figure>
+<figure>
+<img src="https://s2.loli.net/2023/05/12/8i7ZLgufaYC6EFe.jpg"
+alt="wallhaven-q66z35.jpg" />
+<figcaption aria-hidden="true">wallhaven-q66z35.jpg</figcaption>
+</figure>
+<figure>
+<img src="https://s2.loli.net/2023/05/12/l7M51KgesPORJZb.jpg"
+alt="wallhaven-qz33p7.jpg" />
+<figcaption aria-hidden="true">wallhaven-qz33p7.jpg</figcaption>
+</figure>
+<figure>
+<img src="https://s2.loli.net/2023/05/12/qKmokHEQpJacGCX.jpg"
+alt="wallhaven-p8w6pj.jpg" />
+<figcaption aria-hidden="true">wallhaven-p8w6pj.jpg</figcaption>
+</figure>
+<figure>
+<img src="https://s2.loli.net/2023/05/12/vFiIg3blVOyLdrp.png"
+alt="wallhaven-zyqx1v.png" />
+<figcaption aria-hidden="true">wallhaven-zyqx1v.png</figcaption>
+</figure>
+<figure>
+<img src="https://s2.loli.net/2023/05/12/IrL6wJ5tFnu89a7.jpg"
+alt="wallhaven-d6k2wm.jpg" />
+<figcaption aria-hidden="true">wallhaven-d6k2wm.jpg</figcaption>
+</figure>
+<figure>
+<img src="https://s2.loli.net/2023/05/12/Bw4lgktY5Jac36D.jpg"
+alt="wallhaven-yxeojg.jpg" />
+<figcaption aria-hidden="true">wallhaven-yxeojg.jpg</figcaption>
+</figure>
+<figure>
+<img src="https://s2.loli.net/2023/05/12/e8Lbaf3mW9XtP7y.png"
+alt="wallhaven-pkrpkm.png" />
+<figcaption aria-hidden="true">wallhaven-pkrpkm.png</figcaption>
+</figure>
+<figure>
+<img src="https://s2.loli.net/2023/05/12/bd5MaOw8IJrpuB4.png"
+alt="wallhaven-l8wzr2.png" />
+<figcaption aria-hidden="true">wallhaven-l8wzr2.png</figcaption>
+</figure>
+<figure>
+<img src="https://s2.loli.net/2023/05/12/BipL6zsf4SwMVYo.jpg"
+alt="wallhaven-9mvyl8.jpg" />
+<figcaption aria-hidden="true">wallhaven-9mvyl8.jpg</figcaption>
+</figure>
+<figure>
+<img src="https://s2.loli.net/2023/05/12/yhwniTmQWVILeFN.webp"
+alt="1683870598004.webp" />
+<figcaption aria-hidden="true">1683870598004.webp</figcaption>
+</figure>
+<figure>
+<img src="https://s2.loli.net/2023/05/12/JTQwElDnSiOda9H.jpg"
+alt="tx.jpg" />
+<figcaption aria-hidden="true">tx.jpg</figcaption>
+</figure>
+<figure>
+<img src="https://s2.loli.net/2023/05/12/L5WKhFyB2jTA9f4.jpg"
+alt="wechat.jpg" />
+<figcaption aria-hidden="true">wechat.jpg</figcaption>
+</figure>
+]]></content>
+      <categories>
+        <category>博客</category>
+      </categories>
+      <tags>
+        <tag>博客</tag>
+        <tag>运维</tag>
+        <tag>照片库</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【数据结构】普通平衡树</title>
+    <url>/2020/03/6734e3c6/</url>
+    <content><![CDATA[<h2 id="来自刚刚学会treap的蒟蒻">来自刚刚学会Treap的蒟蒻</h2>
+<p>题目链接： - <a href="https://www.luogu.com.cn/problem/P6136">P6136
+【模板】普通平衡树（数据加强版）</a> - 弱化版 <a
+href="https://www.luogu.com.cn/problem/P3369">P6136
+【模板】普通平衡树</a></p>
+<p>特别不习惯用一堆数组，结构体多香啊</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">struct</span> <span class="hljs-title class_">node</span>&#123;<br>    <span class="hljs-type">int</span> son[<span class="hljs-number">2</span>];<span class="hljs-comment">//son[</span><br>    <span class="hljs-type">int</span> size,cnt;<br>    <span class="hljs-type">int</span> val,rd;<br>&#125;trp[<span class="hljs-number">1500000</span>];<br><span class="hljs-type">int</span> tot,root;<br></code></pre></td></tr></table></figure>
+<p>其实完整代码里都有~ 只不过无聊，单独拿出来~ <figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">rrand</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span></span>&#123;<br>    <span class="hljs-keyword">return</span> seed=(<span class="hljs-type">int</span>)((<span class="hljs-type">long</span> <span class="hljs-type">long</span>)(seed)*<span class="hljs-number">974485642LL</span>%<span class="hljs-number">21474836LL</span>);<br>    <span class="hljs-comment">/*手写rand()取随机数*/</span><br>&#125;<br></code></pre></td></tr></table></figure></p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;bits/stdc++.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> re register</span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> rd(x) x=read()</span><br><span class="hljs-keyword">struct</span> <span class="hljs-title class_">node</span>&#123;<br>    <span class="hljs-type">int</span> son[<span class="hljs-number">2</span>];<span class="hljs-comment">//son[0]左儿子，son[1]右儿子</span><br>    <span class="hljs-type">int</span> size,cnt;<br>    <span class="hljs-comment">//因为treap不希望出现值相同的节点，（想想为什么）</span><br>    <span class="hljs-comment">//所以用cnt统计相同的值</span><br>    <span class="hljs-type">int</span> val,rd;<br>    <span class="hljs-comment">//rd 是随机的权值，整个树按照这个打乱</span><br>    <span class="hljs-comment">//当然，rd也可以被称为该节点的优先级</span><br>&#125;trp[<span class="hljs-number">1500000</span>];<br><span class="hljs-type">int</span> tot,root;<br><span class="hljs-type">int</span> seed=<span class="hljs-number">5201314</span>;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">rrand</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span></span>&#123;<br>    <span class="hljs-keyword">return</span> seed=(<span class="hljs-type">int</span>)((<span class="hljs-type">long</span> <span class="hljs-type">long</span>)(seed)*<span class="hljs-number">974485642LL</span>%<span class="hljs-number">21474836LL</span>);<br>    <span class="hljs-comment">/*手写rand()取随机数*/</span><br>&#125;<br><br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">newnode</span><span class="hljs-params">(<span class="hljs-type">int</span> &amp;now,<span class="hljs-type">int</span> val)</span></span>&#123;<br>    <span class="hljs-comment">/*</span><br><span class="hljs-comment">    val = val</span><br><span class="hljs-comment">    size = 1</span><br><span class="hljs-comment">    cnt = 1;</span><br><span class="hljs-comment">    rd rand()</span><br><span class="hljs-comment">    */</span><br>    <span class="hljs-comment">/*基础的新建节点，没毛病*/</span><br>    now = ++tot;<br>    trp[now].val = val;<br>    trp[now].size = trp[now].cnt = <span class="hljs-number">1</span>;<br>    trp[now].rd = <span class="hljs-built_in">rrand</span>();<br>    <span class="hljs-comment">/*这里吐槽下,treap真的是看脸的算法啊*/</span><br>&#125;<br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">update</span><span class="hljs-params">(<span class="hljs-type">int</span> now)</span></span>&#123;<br>    <span class="hljs-comment">/*更新新节点，很简单，这里没啥问题 */</span><br>    trp[now].size = trp[trp[now].son[<span class="hljs-number">0</span>]].size+trp[trp[now].son[<span class="hljs-number">1</span>]].size+trp[now].cnt;<br>&#125;<br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">rotate</span><span class="hljs-params">(<span class="hljs-type">int</span> &amp;now,<span class="hljs-type">int</span> d)</span></span>&#123;<br>    <span class="hljs-comment">/*</span><br><span class="hljs-comment">    自闭了十分钟的旋转操作，</span><br><span class="hljs-comment">    位运算理解成左右儿子切换或者左右方向切换就好。</span><br><span class="hljs-comment">    */</span><br>    <span class="hljs-type">int</span> son = trp[now].son[d^<span class="hljs-number">1</span>];<br>    trp[now].son[d^<span class="hljs-number">1</span>] = trp[son].son[d];<br>    trp[son].son[d] = now;<br>    now = son;<br>    <span class="hljs-comment">/*注意，从下到上更新，先更新旋转后节点的d儿子，最后更新旋转的now节点*/</span><br>    <span class="hljs-built_in">update</span>(trp[now].son[d]);<br>    <span class="hljs-built_in">update</span>(now);<br>&#125;<br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">insert</span><span class="hljs-params">(<span class="hljs-type">int</span> &amp;now,<span class="hljs-type">int</span> val)</span></span>&#123;<br>    <span class="hljs-keyword">if</span>(!now)&#123;<br>        <span class="hljs-built_in">newnode</span>(now,val);<span class="hljs-comment">//终于可以插入新节点了</span><br>        <span class="hljs-keyword">return</span>;<br>    &#125;<span class="hljs-comment">//在那之前，我们需要找到在何处插</span><br>    ++trp[now].size;<br>    <span class="hljs-keyword">if</span>(trp[now].val==val)&#123;<br>        trp[now].cnt++;<span class="hljs-comment">//前面提到的计数器，相同的值直接统计数量就好</span><br>        <span class="hljs-built_in">update</span>(now);<span class="hljs-comment">//我还在思考这里要不要update一下</span><br>        <span class="hljs-keyword">return</span>;<br>    &#125;<br>    <span class="hljs-keyword">if</span>(trp[now].val&gt;val)&#123;<br>        <span class="hljs-built_in">insert</span>(trp[now].son[<span class="hljs-number">0</span>],val);<br>        <span class="hljs-keyword">if</span>(trp[now].rd&lt;trp[trp[now].son[<span class="hljs-number">0</span>]].rd)<br>            <span class="hljs-built_in">rotate</span>(now,<span class="hljs-number">1</span>);<br>    &#125;<span class="hljs-comment">//左右分头，记住一点，这棵树中，越往上rd越大，所以我们if比较里的内容其实很简单</span><br>    <span class="hljs-comment">//如果遇到儿子的rd比父辈大的时候，我们就旋转一下</span><br>    <span class="hljs-keyword">else</span>&#123;<br>        <span class="hljs-built_in">insert</span>(trp[now].son[<span class="hljs-number">1</span>],val);<br>        <span class="hljs-keyword">if</span>(trp[now].rd&lt;trp[trp[now].son[<span class="hljs-number">1</span>]].rd)<br>            <span class="hljs-built_in">rotate</span>(now,<span class="hljs-number">0</span>);<br>    &#125;<br>    <span class="hljs-built_in">update</span>(now);<br>&#125;<br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">del</span><span class="hljs-params">(<span class="hljs-type">int</span> &amp;now,<span class="hljs-type">int</span> val)</span></span>&#123;<br>    <span class="hljs-keyword">if</span>(!now)<span class="hljs-keyword">return</span>;<span class="hljs-comment">//都没节点了，你删个锤子，可以加返回值判断是否删成功</span><br>    ++trp[now].size;<br>    <span class="hljs-keyword">if</span>(trp[now].val==val)&#123;<br>        <span class="hljs-keyword">if</span>(trp[now].cnt&gt;<span class="hljs-number">1</span>)&#123;<br>            trp[now].cnt--;<br>            <span class="hljs-built_in">update</span>(now);<br>            <span class="hljs-keyword">return</span>;<br>        &#125;<br>        <span class="hljs-keyword">if</span>(trp[now].son[<span class="hljs-number">0</span>]||trp[now].son[<span class="hljs-number">1</span>])&#123;<br>            <span class="hljs-keyword">if</span>(!trp[now].son[<span class="hljs-number">1</span>]||trp[trp[now].son[<span class="hljs-number">0</span>]].rd&gt;trp[trp[now].son[<span class="hljs-number">1</span>]].rd)<br>                <span class="hljs-built_in">rotate</span>(now,<span class="hljs-number">1</span>),<span class="hljs-built_in">del</span>(trp[now].son[<span class="hljs-number">1</span>],val);<br>            <span class="hljs-keyword">else</span><br>                <span class="hljs-built_in">rotate</span>(now,<span class="hljs-number">0</span>),<span class="hljs-built_in">del</span>(trp[now].son[<span class="hljs-number">0</span>],val);<br>        &#125;<span class="hljs-comment">//删除这段其实用手画三四张模拟就懂了</span><br>        <span class="hljs-keyword">else</span> now = <span class="hljs-number">0</span>;<br>    &#125;<span class="hljs-comment">//蒟蒻的我可能会在B站录个视频什么的</span><br>    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(trp[now].val&gt;val)<br>        <span class="hljs-built_in">del</span>(trp[now].son[<span class="hljs-number">0</span>],val);<br>    <span class="hljs-keyword">else</span> <span class="hljs-built_in">del</span>(trp[now].son[<span class="hljs-number">1</span>],val);<br>    <span class="hljs-built_in">update</span>(now);<br>&#125;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">find_rank</span><span class="hljs-params">(<span class="hljs-type">int</span> now,<span class="hljs-type">int</span> val)</span></span>&#123; <span class="hljs-comment">//找到val的排名</span><br>    <span class="hljs-keyword">if</span>(!now)<br>        <span class="hljs-keyword">return</span> INT_MIN;<br>    <span class="hljs-keyword">if</span>(trp[now].val==val)<br>        <span class="hljs-keyword">return</span> trp[trp[now].son[<span class="hljs-number">0</span>]].size+<span class="hljs-number">1</span>;<br>    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(trp[now].val&gt;val)<br>        <span class="hljs-keyword">return</span> <span class="hljs-built_in">find_rank</span>(trp[now].son[<span class="hljs-number">0</span>],val);<br>    <span class="hljs-keyword">else</span><br>        <span class="hljs-keyword">return</span> trp[trp[now].son[<span class="hljs-number">0</span>]].size + trp[now].cnt + <span class="hljs-built_in">find_rank</span>(trp[now].son[<span class="hljs-number">1</span>],val);<br>&#125;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">find_val</span><span class="hljs-params">(<span class="hljs-type">int</span> now,<span class="hljs-type">int</span> rank)</span></span>&#123; <span class="hljs-comment">//找到排名为rank的值</span><br>    <span class="hljs-keyword">if</span>(!now)<br>        <span class="hljs-keyword">return</span> INT_MAX;<br>    <span class="hljs-keyword">if</span>(trp[trp[now].son[<span class="hljs-number">0</span>]].size&gt;=rank)<br>        <span class="hljs-keyword">return</span> <span class="hljs-built_in">find_val</span>(trp[now].son[<span class="hljs-number">0</span>],rank);<br>    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(trp[trp[now].son[<span class="hljs-number">0</span>]].size+trp[now].cnt&gt;=rank)<br>        <span class="hljs-keyword">return</span> trp[now].val;<br>    <span class="hljs-keyword">else</span><br>        <span class="hljs-keyword">return</span> <span class="hljs-built_in">find_val</span>(trp[now].son[<span class="hljs-number">1</span>],rank-trp[trp[now].son[<span class="hljs-number">0</span>]].size-trp[now].cnt);<br>&#125;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">find_pre</span><span class="hljs-params">(<span class="hljs-type">int</span> val)</span></span>&#123; <span class="hljs-comment">//找到val的前驱</span><br>    re <span class="hljs-type">int</span> now = root,pre = <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">while</span>(now)&#123;<br>        <span class="hljs-keyword">if</span>(trp[now].val&lt;val)<br>            pre = trp[now].val,now = trp[now].son[<span class="hljs-number">1</span>];<br>        <span class="hljs-keyword">else</span><br>            now = trp[now].son[<span class="hljs-number">0</span>];<br>    &#125;<br>    <span class="hljs-keyword">return</span> pre;<br>&#125;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">find_nex</span><span class="hljs-params">(<span class="hljs-type">int</span> val)</span></span>&#123;  <span class="hljs-comment">//找到val的后继</span><br>    re <span class="hljs-type">int</span> now = root,nex = <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">while</span>(now)&#123;<br>        <span class="hljs-keyword">if</span>(trp[now].val&gt;val)<br>            nex = trp[now].val,now = trp[now].son[<span class="hljs-number">0</span>];<br>        <span class="hljs-keyword">else</span><br>            now = trp[now].son[<span class="hljs-number">1</span>];<br>    &#125;<br>    <span class="hljs-keyword">return</span> nex;<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">int</span> <span class="hljs-title">read</span><span class="hljs-params">()</span></span>&#123; <span class="hljs-comment">//读入优化</span><br>    re <span class="hljs-type">int</span> ans = <span class="hljs-number">0</span>;<br>    re <span class="hljs-type">bool</span> f = <span class="hljs-number">1</span>;<br>    re <span class="hljs-type">char</span> ch = <span class="hljs-built_in">getchar</span>();<br>    <span class="hljs-keyword">while</span>(ch&lt;<span class="hljs-string">&#x27;0&#x27;</span>||ch&gt;<span class="hljs-string">&#x27;9&#x27;</span>)ch==<span class="hljs-string">&#x27;-&#x27;</span>?f=<span class="hljs-number">0</span>,ch=<span class="hljs-built_in">getchar</span>():ch=<span class="hljs-built_in">getchar</span>();<br>    <span class="hljs-keyword">while</span>(ch&gt;=<span class="hljs-string">&#x27;0&#x27;</span>&amp;&amp;ch&lt;=<span class="hljs-string">&#x27;9&#x27;</span>)ans =(ans&lt;&lt;<span class="hljs-number">3</span>)+(ans&lt;&lt;<span class="hljs-number">1</span>)+(ch^<span class="hljs-number">48</span>),ch = <span class="hljs-built_in">getchar</span>(); <br>    <span class="hljs-keyword">return</span> f?ans:-ans;<br>&#125; <br><span class="hljs-function"><span class="hljs-type">signed</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span></span>&#123;<br>    <span class="hljs-type">int</span> n,m,last = <span class="hljs-number">0</span>,ans = <span class="hljs-number">0</span>,ooo;<br>    n = <span class="hljs-built_in">read</span>();m = <span class="hljs-built_in">read</span>();++n;++m;<br>    <span class="hljs-keyword">while</span>(--n)&#123;<br>        ooo = <span class="hljs-built_in">read</span>();<br>        <span class="hljs-built_in">insert</span>(root,ooo);<br>    &#125;<br>    <span class="hljs-keyword">while</span>(--m)&#123;<br>        <span class="hljs-type">int</span> opt,x;<br>        opt = <span class="hljs-built_in">read</span>();<br>        x = <span class="hljs-built_in">read</span>();<br>        <span class="hljs-keyword">switch</span>(opt)&#123; <span class="hljs-comment">//这里就是一个简单的switch语句，我就不多说了</span><br>            <span class="hljs-keyword">case</span> <span class="hljs-number">1</span>:<br>                <span class="hljs-built_in">insert</span>(root,x^last);<br>                <span class="hljs-keyword">break</span>;<br>            <span class="hljs-keyword">case</span> <span class="hljs-number">2</span>:<br>                <span class="hljs-built_in">del</span>(root,x^last);<br>                <span class="hljs-keyword">break</span>;<br>            <span class="hljs-keyword">case</span> <span class="hljs-number">3</span>:<br>                ans ^= (last = <span class="hljs-built_in">find_rank</span>(root,x^last));<br>                <span class="hljs-keyword">break</span>;<br>            <span class="hljs-keyword">case</span> <span class="hljs-number">4</span>:<br>                ans ^= (last = <span class="hljs-built_in">find_val</span>(root,x^last));<br>                <span class="hljs-keyword">break</span>;<br>            <span class="hljs-keyword">case</span> <span class="hljs-number">5</span>:<br>                ans ^= (last = <span class="hljs-built_in">find_pre</span>(x^last));<br>                <span class="hljs-keyword">break</span>;<br>            <span class="hljs-keyword">case</span> <span class="hljs-number">6</span>:<br>                ans ^= (last = <span class="hljs-built_in">find_nex</span>(x^last));<br>                <span class="hljs-keyword">break</span>;<br>        &#125;<br>    &#125;<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d&quot;</span>,ans);<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>感谢观看，如有不懂欢迎评论，博主全年365天无休，24小时内必回</p>
+<p>嘿嘿，点个关注推荐呗 ~</p>
+]]></content>
+      <categories>
+        <category>数据结构</category>
+        <category>题解</category>
+      </categories>
+      <tags>
+        <tag>洛谷</tag>
+        <tag>数据结构</tag>
+        <tag>平衡树</tag>
+        <tag>Treap</tag>
+        <tag>模板</tag>
+        <tag>题解</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【洛谷题解】P1317【低洼地】</title>
+    <url>/2019/10/10bb2d7d/</url>
+    <content><![CDATA[<p>看到好多dalao用什么山峰山谷除二啊,还有各种去重。</p>
+<p>本蒟蒻一时间真的没看懂啊。。（My vegetable has exploded）</p>
+<p>只好把我 <del>看完题便无脑</del> 写出来的代码放上来了</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-type">int</span> nu[<span class="hljs-number">10521</span>];<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span></span>&#123;<br>	<span class="hljs-type">int</span> n,i,ans = <span class="hljs-number">-1</span>;<span class="hljs-comment">//因为保证首尾都是0，所以-1</span><br>    <br>	cin&gt;&gt;n;<br>	<span class="hljs-keyword">for</span>(i=<span class="hljs-number">0</span>;i&lt;n;i++)cin&gt;&gt;nu[i];<span class="hljs-comment">//输入</span><br>    <br>	<span class="hljs-keyword">for</span>(i=<span class="hljs-number">1</span>;i&lt;n<span class="hljs-number">-1</span>;i++)<span class="hljs-comment">/*上面-1的原因，因为下面统计的是波峰=_=，波峰-1 = 波谷（具体证明就不放上来了）*/</span><br>		<span class="hljs-keyword">if</span>(nu[i<span class="hljs-number">-1</span>]&lt;nu[i]&amp;&amp;nu[i]&gt;nu[i+<span class="hljs-number">1</span>])ans++;<br>	cout&lt;&lt;ans;<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>！！当你把代码上交（submit）的时候，会惊讶的发现，居然<strong>只有80分</strong>。</p>
+<p>什么地方出了问题呢？？</p>
+<p>稍加思索……</p>
+<p>让我们跑一下，以下数据：</p>
+<hr />
+<p><strong>8</strong></p>
+<p><strong>0 5 2 3 3 1 5 0</strong></p>
+<hr />
+<figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><br> *    *<br> *    *<br> * ** *<br> **** *<br> ******<br>********<br><span class="hljs-number">05233150</span><br></code></pre></td></tr></table></figure>
+<p>显而易见的两个低洼地，但是让我们瞅瞅输出：</p>
+<hr />
+<p><strong>1</strong></p>
+<hr />
+<p><del>哦，我的天啊，看看这个输出，
+居然是一个“1”，这简直是上帝的不耻，耶稣的羞愧啊！！！</del></p>
+<p>怎么会是“1”，<strong>哪里出了问题</strong>。</p>
+<p>首先，我们想想上面代码的<strong>原理</strong></p>
+<p><strong>波谷数 = 山峰数-1</strong></p>
+<p>很明显，原理是没毛病的，那就可能是<strong>实现</strong>出了问题</p>
+<p>思前向后，卡了223秒。</p>
+<p><strong>在统计山峰的时候，有部分譬如2331的平台山峰没有统计到</strong></p>
+<p>废话不多说，直接上代码</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;string&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-type">int</span> nu[<span class="hljs-number">10521</span>];<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span></span>&#123;<br>	<span class="hljs-type">int</span> n,i,p,ans = <span class="hljs-number">-1</span>;<br>	cin&gt;&gt;n;<br>	<span class="hljs-keyword">for</span>(i=<span class="hljs-number">0</span>;i&lt;n;i++)&#123;<br>		cin&gt;&gt;p;<br>		<span class="hljs-keyword">if</span>(i&amp;&amp;p==nu[i<span class="hljs-number">-1</span>])&#123;i--;n--;<span class="hljs-keyword">continue</span>;&#125;<br>		nu[i] = p;<br>	&#125;<span class="hljs-comment">/*输入时，删掉前后高度相同的，合并为一个山峰*/</span><br>	<span class="hljs-keyword">for</span>(i=<span class="hljs-number">1</span>;i&lt;n<span class="hljs-number">-1</span>;i++)<br>		<span class="hljs-keyword">if</span>(nu[i<span class="hljs-number">-1</span>]&lt;nu[i]&amp;&amp;nu[i]&gt;nu[i+<span class="hljs-number">1</span>])ans++;<br>	cout&lt;&lt;ans;<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>蒟蒻第二篇题解</p>
+]]></content>
+      <categories>
+        <category>题解</category>
+      </categories>
+      <tags>
+        <tag>洛谷</tag>
+        <tag>题解</tag>
+        <tag>C++</tag>
+        <tag>枚举</tag>
+        <tag>模拟</tag>
+        <tag>排序</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【洛谷题解】P1104【生日】</title>
+    <url>/2019/09/2b2e6ad9/</url>
+    <content><![CDATA[<p><del>蒟蒻第一次发题解</del> 望大佬们海涵</p>
+<p>看到这题的瞬间，我想到了一个鬼点子。</p>
+<p>（翻了翻看到有类似题解，不过稍稍还是有点出入）</p>
+<p>倘若把每个人的出生日期看做他的死亡日期。
+把出生日期设为公元第一年一月一日的话……</p>
+<p>那就计算他从公元 1.1.1 — xxxx.x.xx
+一共有多少天就好了，<del>然后排序输出</del></p>
+<p><del>（每个人都是千年老妖，有点恐怖）</del></p>
+<p>从公元到死亡的日子 = 年×365+月×30+日;</p>
+<p>排序什么的随便啦（<del>本蒟蒻冒泡</del>）</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;bits/stdc++.h&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-keyword">struct</span> <span class="hljs-title class_">sr</span>&#123;<br>	string name;<br>	<span class="hljs-type">int</span> n,y,r;<br>&#125;xs[<span class="hljs-number">120</span>];<span class="hljs-comment">//结构体，nian年，yue月，ri日。一目了然的变量名，哈哈</span><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span></span>&#123;<br>	<span class="hljs-type">int</span> k,i,j,temp1,temp2;<br>	cin&gt;&gt;k;<br>	<span class="hljs-keyword">for</span>(i = <span class="hljs-number">0</span>;i&lt;k;i++)cin&gt;&gt;xs[i].name&gt;&gt;xs[i].n&gt;&gt;xs[i].y&gt;&gt;xs[i].r;<span class="hljs-comment">//输入每个人的信息</span><br>	<span class="hljs-keyword">for</span>(i = <span class="hljs-number">0</span>;i&lt;k;i++)&#123;<br>		<span class="hljs-keyword">for</span>(j = <span class="hljs-number">0</span>;j&lt;k;j++)&#123;<br>			temp1 = xs[i].n*<span class="hljs-number">365</span>+xs[i].y*<span class="hljs-number">30</span>+xs[i].r;<br>			temp2 = xs[j].n*<span class="hljs-number">365</span>+xs[j].y*<span class="hljs-number">30</span>+xs[j].r;<br>			<span class="hljs-keyword">if</span>(temp1&lt;=temp2)<span class="hljs-built_in">swap</span>(xs[i],xs[j]);		<br>		&#125;<span class="hljs-comment">//蒟蒻的冒泡排序</span><br>	&#125;<br>	<span class="hljs-keyword">for</span>(i = <span class="hljs-number">0</span>;i&lt;k;i++)cout&lt;&lt;xs[i].name&lt;&lt;endl;<span class="hljs-comment">//输出就好了</span><br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>题解</category>
+      </categories>
+      <tags>
+        <tag>洛谷</tag>
+        <tag>题解</tag>
+        <tag>C++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【洛谷题解】P3611【[USACO17JAN]Cow Dance Show S】</title>
+    <url>/2020/03/7add4492/</url>
+    <content><![CDATA[<p>这是一道<strong>优先队列+二分</strong>的题</p>
+<p>要选出最优的<span class="math inline">\(K\)</span>，满足时间小于<span
+class="math inline">\(T_{max}\)</span></p>
+<p>我们要在区间 <strong><span class="math inline">\([ 1 , n
+]\)</span></strong> 里二分答案</p>
+<p>大致流程很简单：</p>
+<ul>
+<li><p>二分一个 <span class="math inline">\(K\)</span></p></li>
+<li><p>利用优先队列模拟跳舞流程，判断<span
+class="math inline">\(K\)</span>是否合理</p></li>
+</ul>
+<p>代码如下：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;bits/stdc++.h&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-type">int</span> n,t,num[<span class="hljs-number">10005</span>];<br><span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">c</span><span class="hljs-params">(<span class="hljs-type">int</span> x)</span></span>&#123;<br>	<span class="hljs-comment">/*利用优先队列模拟跳舞情况*/</span> <br>	<span class="hljs-type">int</span> at = <span class="hljs-number">0</span>;<span class="hljs-comment">//当前k的耗时</span><br>	priority_queue &lt; <span class="hljs-type">int</span>,vector&lt;<span class="hljs-type">int</span>&gt;,greater&lt;<span class="hljs-type">int</span>&gt; &gt; q;<br>	<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=x;i++)q.<span class="hljs-built_in">push</span>(num[i]);<br>	<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=x+<span class="hljs-number">1</span>;i&lt;=n;i++)&#123;<br>		<span class="hljs-type">int</span> temp = q.<span class="hljs-built_in">top</span>();q.<span class="hljs-built_in">pop</span>();<br>		q.<span class="hljs-built_in">push</span>(temp+num[i]);<br>	&#125;<br>	<span class="hljs-keyword">while</span>(!q.<span class="hljs-built_in">empty</span>())&#123;<br>		at = q.<span class="hljs-built_in">top</span>();q.<span class="hljs-built_in">pop</span>();<br>	&#125;<br>	<span class="hljs-keyword">return</span> at&lt;=t;<br>&#125;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span></span>&#123;<br>	<span class="hljs-comment">/*输入不解释*/</span><br>	cin&gt;&gt;n&gt;&gt;t;<br>	<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++)<br>		cin&gt;&gt;num[i];<br>	<br>	<span class="hljs-comment">/*二分答案*/</span>	<br>	<span class="hljs-type">int</span> l=<span class="hljs-number">0</span>,r=n,mid;<br>	<span class="hljs-keyword">while</span>(l&lt;=r)&#123;<br>		mid = (l+r)&gt;&gt;<span class="hljs-number">1</span>;<br>		<span class="hljs-keyword">if</span>(<span class="hljs-built_in">c</span>(mid))r = mid<span class="hljs-number">-1</span>;<br>		<span class="hljs-keyword">else</span> l = mid+<span class="hljs-number">1</span>;<br>	&#125;<br>	cout&lt;&lt;l;<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>当然，如果大家觉得二分太麻烦的话。</p>
+<p><span class="math inline">\(K\)</span>值直接从<span
+class="math inline">\(1\)</span>枚举到<span
+class="math inline">\(n\)</span>也是可以的</p>
+<p><a href="https://www.luogu.com.cn/record/31867554">测试详情</a></p>
+<p>直接枚举的代码：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;bits/stdc++.h&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-type">int</span> n,t,num[<span class="hljs-number">10005</span>];<br><span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">c</span><span class="hljs-params">(<span class="hljs-type">int</span> x)</span></span>&#123;<br>	<span class="hljs-comment">/*这里其实就是利用优先队列模拟跳舞情况*/</span> <br>	<span class="hljs-type">int</span> at = <span class="hljs-number">0</span>;<br>	priority_queue &lt; <span class="hljs-type">int</span>,vector&lt;<span class="hljs-type">int</span>&gt;,greater&lt;<span class="hljs-type">int</span>&gt; &gt; q;<br>	<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=x;i++)q.<span class="hljs-built_in">push</span>(num[i]);<br>	<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=x+<span class="hljs-number">1</span>;i&lt;=n;i++)&#123;<br>		<span class="hljs-type">int</span> temp = q.<span class="hljs-built_in">top</span>();q.<span class="hljs-built_in">pop</span>();<br>		q.<span class="hljs-built_in">push</span>(temp+num[i]);<br>	&#125;<br>	<span class="hljs-keyword">while</span>(!q.<span class="hljs-built_in">empty</span>())&#123;<br>		at = q.<span class="hljs-built_in">top</span>();q.<span class="hljs-built_in">pop</span>();<br>	&#125;<br>	<span class="hljs-keyword">return</span> at&lt;=t;<br>&#125;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span></span>&#123;<br>	<span class="hljs-comment">/*输入不解释*/</span><br>	cin&gt;&gt;n&gt;&gt;t;<br>	<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++)<br>		cin&gt;&gt;num[i];<br>	<span class="hljs-type">int</span> ans = <span class="hljs-number">0</span>;<br>    <span class="hljs-comment">/*直接暴力枚举！*/</span><br>	<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++)&#123;<br>		<span class="hljs-keyword">if</span>(<span class="hljs-built_in">c</span>(i))&#123;<br>			ans = i;<span class="hljs-keyword">break</span>;<br>		&#125;<br>	&#125;<br>	cout&lt;&lt;ans;<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>当然，<del>这题数据较水</del></p>
+<p>结束</p>
+<p>各位看官，如果觉得还可以的话，点个赞吧~</p>
+]]></content>
+      <categories>
+        <category>题解</category>
+      </categories>
+      <tags>
+        <tag>题解</tag>
+        <tag>C++</tag>
+        <tag>模拟</tag>
+        <tag>优先队列</tag>
+        <tag>二分</tag>
+        <tag>STL</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【洛谷题解】P4305【[JLOI2011]不重复数字】</title>
+    <url>/2020/02/a03fb6d6/</url>
+    <content><![CDATA[<p><del>有的时间复杂度是真的玄学</del></p>
+<p>思路很暴力，<del>只需要小学二年级思维</del> ___</p>
+<h3 id="大致思路">大致思路:</h3>
+<p><span
+class="math inline">\(\color{green}\text{我们建一个结构体数组，存每个数字的值和出现的位置,}\)</span>
+<span
+class="math inline">\(\color{green}\text{先把数字按照值排序一遍（值相同的话，按照位置由前到后排序）}\)</span>
+<span
+class="math inline">\(\color{green}\text{排序后方便去除重复的数字，每个数字只需要保留位置最靠前的那个便可（简单粗暴）}\)</span>
+<span
+class="math inline">\(\color{green}\text{然后我们再按照数字的位置排一下序，顺序输出我们保留的数字即可}\)</span></p>
+<p>首先建一个结构体 $</p>
+]]></content>
+      <categories>
+        <category>题解</category>
+      </categories>
+      <tags>
+        <tag>题解</tag>
+        <tag>C++</tag>
+        <tag>模拟</tag>
+        <tag>排序</tag>
+        <tag>STL</tag>
+        <tag>Hash</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【深度学习】ViT入门（1）MNIST数据集练手</title>
+    <url>/2023/05/e81b37fc/</url>
+    <content><![CDATA[<h1
+id="深度学习vit入门1mnist数据集练手">【深度学习】ViT入门（1）MNIST数据集练手</h1>
+<h2 id="简介视觉领域的transformer-vit">简介：视觉领域的Transformer ——
+ViT</h2>
+<h3 id="什么是vit">什么是ViT</h3>
+<p>默子要和大家分享一款在计算机视觉领域非常火热的技术——ViT，也就是Vision
+Transformer的缩写。</p>
+<figure>
+<img src="https://s2.loli.net/2023/05/12/F8ENLUH1tfJd9Vu.png"
+alt="image.png" />
+<figcaption aria-hidden="true">image.png</figcaption>
+</figure>
+<p><strong>虽然是几年前的图了，但这个图很明显，ViT强于传统的ResNet等一系列模型。</strong></p>
+<p>我们今天要学习的，就是 ViT</p>
+<p>相信大家对Transformer这个名词并不陌生吧，它是一种革命性的深度学习模型，在自然语言处理领域取得了巨大的成功。</p>
+<figure>
+<img src="https://s2.loli.net/2023/05/12/SafO6cIqFVY9E1u.png"
+alt="image.png" />
+<figcaption aria-hidden="true">image.png</figcaption>
+</figure>
+<p>那么，什么是ViT呢？简单来说，ViT是一种基于Transformer架构的模型，它能够处理图像数据。</p>
+<p>通常情况下，在处理图像时会使用卷积神经网络（Convolutional Neural
+Network，CNN），但是ViT却采用了和NLP领域中处理序列数据的Transformer相同的思路。</p>
+<p><strong>Transformer是一种基于自注意力机制（Self-Attention）的深度学习模型。</strong></p>
+<p>它不同于传统的卷积或者循环神经网络，而是通过全局的自注意力机制来学习序列之间的关系。</p>
+<p>这种注意力机制允许模型在处理输入序列时能够对序列中不同位置的元素赋予不同的权重，从而捕捉到更丰富的上下文信息。</p>
+<figure>
+<img src="https://s2.loli.net/2023/05/12/m6ZnHd451tPlfaN.png"
+alt="image.png" />
+<figcaption aria-hidden="true">image.png</figcaption>
+</figure>
+<p>在ViT中，我们将图像视为一种特殊的序列数据，其中每个位置代表图像的一个小块区域，被称为<code>补丁(patch)</code>。这些补丁将被展平成向量形式，并作为输入序列传递给Transformer模型。</p>
+<figure>
+<img src="https://s2.loli.net/2023/05/12/PFxAIw74lV8Jfep.png"
+alt="image.png" />
+<figcaption aria-hidden="true">image.png</figcaption>
+</figure>
+<p>通过这种方式，ViT能够捕捉到图像中不同区域之间的上下文关系，从而实现对图像的理解和分析。</p>
+<figure>
+<img src="https://s2.loli.net/2023/05/12/CSR7VZ3O6ksxrEy.png"
+alt="image.png" />
+<figcaption aria-hidden="true">image.png</figcaption>
+</figure>
+<h3 id="vit训练过程">ViT训练过程</h3>
+<p>ViT模型的训练分为两个阶段：预训练和微调。在预训练阶段，模型会使用大规模的图像数据进行自监督学习，通过学习图像的不同补丁之间的关系来构建视觉表示。</p>
+<figure>
+<img src="https://s2.loli.net/2023/05/12/QEkr3NgqPMpwlWc.png"
+alt="image.png" />
+<figcaption aria-hidden="true">image.png</figcaption>
+</figure>
+<p>在微调阶段，使用有标签的数据对模型进行进一步的训练，以适应具体的视觉任务，如图像分类、目标检测等。</p>
+<figure>
+<img src="https://s2.loli.net/2023/05/12/jPuZStNhe9rnaHU.png"
+alt="image.png" />
+<figcaption aria-hidden="true">image.png</figcaption>
+</figure>
+<h3 id="优点">优点</h3>
+<p>ViT在计算机视觉领域取得了惊人的成绩，甚至在一些任务上超越了传统的卷积神经网络。它的优势之一是能够处理全局的上下文信息，而不仅仅局限于局部区域。</p>
+<p>此外，ViT还具有良好的可解释性，可以通过可视化自注意力权重来理解模型在图像中关注的区域。这对于理解模型的决策过程和解释结果非常有帮助。</p>
+<p>此外，ViT还能够处理不同尺寸和分辨率的图像，而无需进行特定的调整或修改网络结构。这种灵活性使得ViT在处理多样化的图像数据时更加方便。</p>
+<h3 id="限制与挑战">限制与挑战</h3>
+<p>当然，ViT也有一些挑战和限制。由于图像在序列化过程中丢失了空间信息，ViT可能无法充分捕捉到像素级别的细节。此外，ViT的计算成本较高，尤其是对于大型图像和复杂任务来说，需要更多的计算资源和时间。</p>
+<p>不过，尽管存在这些挑战，ViT作为一种全新的视觉模型正在不断演进和发展。研究人员和工程师们正在努力改进ViT的性能，并将其应用于各种计算机视觉任务中。</p>
+<hr />
+<h2 id="在mnist数据集上实现vit">在MNIST数据集上实现ViT</h2>
+<p>如何在MNIST数据集上实现ViT，默子将通过一个简单的例子来介绍。</p>
+<blockquote>
+<p>提示：代码肯定跑不起来，但是可以作为参考。后面有放参考资料</p>
+</blockquote>
+<p>首先，我们需要导入所需的库。我们将使用PyTorch来构建和训练我们的ViT模型，同时还需要导入一些辅助库来处理数据和可视化结果。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs Python"><span class="hljs-comment"># 导入PyTorch相关库</span><br><span class="hljs-keyword">import</span> torch<br><span class="hljs-comment"># 导入PyTorch的神经网络模块</span><br><span class="hljs-keyword">import</span> torch.nn <span class="hljs-keyword">as</span> nn<br><span class="hljs-comment"># 导入PyTorch的优化模块</span><br><span class="hljs-keyword">import</span> torch.optim <span class="hljs-keyword">as</span> optim<br><span class="hljs-comment"># 导入PyTorch的数据加载模块</span><br><span class="hljs-keyword">from</span> torch.utils.data <span class="hljs-keyword">import</span> DataLoader<br><span class="hljs-comment"># 导入PyTorch的视觉模块</span><br><span class="hljs-keyword">from</span> torchvision <span class="hljs-keyword">import</span> datasets, transforms<br><span class="hljs-comment"># 导入Matplotlib绘图库</span><br><span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt<br></code></pre></td></tr></table></figure>
+<p>接下来，我们定义一些超参数，例如批大小、学习率、迭代次数等。你可以根据需要进行调整。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs Python">batch_size = <span class="hljs-number">64</span>  <span class="hljs-comment"># 每个批次的样本数量</span><br>learning_rate = <span class="hljs-number">0.001</span>  <span class="hljs-comment"># 学习率</span><br>num_epochs = <span class="hljs-number">10</span>  <span class="hljs-comment"># 训练的轮数（迭代次数）</span><br></code></pre></td></tr></table></figure>
+<p>现在，我们需要准备我们的数据集。MNIST数据集包含手写数字的灰度图像，每个图像都是28x28像素。我们将使用torchvision库来加载和预处理数据集。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs Python">transform = transforms.Compose([<br>    transforms.ToTensor(),  <span class="hljs-comment"># 将图像转换为Tensor类型</span><br>    transforms.Normalize((<span class="hljs-number">0.5</span>,), (<span class="hljs-number">0.5</span>,))  <span class="hljs-comment"># 对图像进行标准化处理</span><br>])<br><br>train_dataset = datasets.MNIST(root=<span class="hljs-string">&#x27;./data&#x27;</span>, train=<span class="hljs-literal">True</span>, transform=transform, download=<span class="hljs-literal">True</span>)  <span class="hljs-comment"># 加载训练数据集</span><br>test_dataset = datasets.MNIST(root=<span class="hljs-string">&#x27;./data&#x27;</span>, train=<span class="hljs-literal">False</span>, transform=transform)  <span class="hljs-comment"># 加载测试数据集</span><br><br>train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=<span class="hljs-literal">True</span>)  <span class="hljs-comment"># 创建训练数据加载器</span><br>test_loader = DataLoader(test_dataset, batch_size=batch_size, shuffle=<span class="hljs-literal">False</span>)  <span class="hljs-comment"># 创建测试数据加载器</span><br></code></pre></td></tr></table></figure>
+<p>现在我们来定义我们的ViT模型。在这个例子中，我们简化了ViT模型的结构，仅使用了一个Transformer编码器和一个全连接层作为输出。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs Python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">ViT</span>(nn.Module):<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, input_dim, hidden_dim, num_classes, num_heads, num_layers</span>):<br>        <span class="hljs-built_in">super</span>(ViT, self).__init__()<br>        self.embedding = nn.Linear(input_dim, hidden_dim)  <span class="hljs-comment"># 输入层，将输入数据进行线性变换</span><br>        self.transformer_encoder = nn.TransformerEncoder(nn.TransformerEncoderLayer(hidden_dim, num_heads), num_layers)  <span class="hljs-comment"># Transformer编码器层</span><br>        self.fc = nn.Linear(hidden_dim, num_classes)  <span class="hljs-comment"># 全连接层，将隐藏层输出映射到类别数量上</span><br>        <br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">forward</span>(<span class="hljs-params">self, x</span>):<br>        x = self.embedding(x)  <span class="hljs-comment"># 嵌入层</span><br>        x = x.permute(<span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">2</span>)  <span class="hljs-comment"># 重新排列张量的维度，将batch_size和seq_len交换位置 (seq_len, batch_size, hidden_dim)</span><br>        output = self.transformer_encoder(x)  <span class="hljs-comment"># Transformer编码器层的输出</span><br>        output = output.mean(dim=<span class="hljs-number">0</span>)  <span class="hljs-comment"># 沿着序列长度的维度进行平均</span><br>        output = self.fc(output)  <span class="hljs-comment"># 全连接层的输出</span><br>        <span class="hljs-keyword">return</span> output<br><br></code></pre></td></tr></table></figure>
+<p>接下来，我们实例化我们的ViT模型，并定义损失函数和优化器。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs Python">input_dim = <span class="hljs-number">28</span> * <span class="hljs-number">28</span>  <span class="hljs-comment"># 输入维度为图像的大小（28x28）</span><br>hidden_dim = <span class="hljs-number">256</span>  <span class="hljs-comment"># 隐藏层维度</span><br>num_classes = <span class="hljs-number">10</span>  <span class="hljs-comment"># 类别数量（0-9）</span><br>num_heads = <span class="hljs-number">8</span>  <span class="hljs-comment"># Transformer中的注意力头数</span><br>num_layers = <span class="hljs-number">4</span>  <span class="hljs-comment"># Transformer编码器层数</span><br><br>model = ViT(input_dim, hidden_dim, num_classes, num_heads, num_layers)  <span class="hljs-comment"># 创建ViT模型实例</span><br>criterion = nn.CrossEntropyLoss()  <span class="hljs-comment"># 定义损失函数</span><br>optimizer = optim.Adam(model.parameters(), lr=learning_rate)  <span class="hljs-comment"># 定义优化器，将模型参数传入进行优化</span><br><br></code></pre></td></tr></table></figure>
+<p>现在我们可以开始训练我们的模型了。我们将使用训练集进行模型的训练，并在每个epoch结束后使用测试集评估模型的性能。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs Python">device = torch.device(<span class="hljs-string">&quot;cuda&quot;</span> <span class="hljs-keyword">if</span> torch.cuda.is_available() <span class="hljs-keyword">else</span> <span class="hljs-string">&quot;cpu&quot;</span>)  <span class="hljs-comment"># 检查是否有可用的GPU，如果有则使用GPU，否则使用CPU</span><br>model.to(device)  <span class="hljs-comment"># 将模型移动到相应的设备上</span><br><br><span class="hljs-keyword">for</span> epoch <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(num_epochs):<br>    train_loss = <span class="hljs-number">0.0</span><br>    train_correct = <span class="hljs-number">0</span><br>    <br>    model.train()  <span class="hljs-comment"># 设置模型为训练模式</span><br>    <span class="hljs-keyword">for</span> images, labels <span class="hljs-keyword">in</span> train_loader:<br>        images = images.view(-<span class="hljs-number">1</span>, input_dim).to(device)  <span class="hljs-comment"># 转换输入数据的维度并将其移动到设备上</span><br>        labels = labels.to(device)<br>        <br>        optimizer.zero_grad()  <span class="hljs-comment"># 梯度置零</span><br>        <br>        outputs = model(images)  <span class="hljs-comment"># 前向传播</span><br>        loss = criterion(outputs, labels)  <span class="hljs-comment"># 计算损失</span><br>        loss.backward()  <span class="hljs-comment"># 反向传播</span><br>        optimizer.step()  <span class="hljs-comment"># 更新模型参数</span><br>        <br>        train_loss += loss.item() * images.size(<span class="hljs-number">0</span>)<br>        _, predicted = torch.<span class="hljs-built_in">max</span>(outputs.data, <span class="hljs-number">1</span>)<br>        train_correct += (predicted == labels).<span class="hljs-built_in">sum</span>().item()<br>    <br>    train_loss = train_loss / <span class="hljs-built_in">len</span>(train_loader.dataset)<br>    train_accuracy = train_correct / <span class="hljs-built_in">len</span>(train_loader.dataset)<br>    <br>    test_loss = <span class="hljs-number">0.0</span><br>    test_correct = <span class="hljs-number">0</span><br>    <br>    model.<span class="hljs-built_in">eval</span>()  <span class="hljs-comment"># 设置模型为评估模式</span><br>    <span class="hljs-keyword">with</span> torch.no_grad():<br>        <span class="hljs-keyword">for</span> images, labels <span class="hljs-keyword">in</span> test_loader:<br>            images = images.view(-<span class="hljs-number">1</span>, input_dim).to(device)<br>            labels = labels.to(device)<br>            <br>            outputs = model(images)<br>            loss = criterion(outputs, labels)<br>            <br>            test_loss += loss.item() * images.size(<span class="hljs-number">0</span>)<br>            _, predicted = torch.<span class="hljs-built_in">max</span>(outputs.data, <span class="hljs-number">1</span>)<br>            test_correct += (predicted == labels).<span class="hljs-built_in">sum</span>().item()<br>    <br>    test_loss = test_loss / <span class="hljs-built_in">len</span>(test_loader.dataset)<br>    test_accuracy = test_correct / <span class="hljs-built_in">len</span>(test_loader.dataset)<br>    <br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;Epoch <span class="hljs-subst">&#123;epoch+<span class="hljs-number">1</span>&#125;</span>/<span class="hljs-subst">&#123;num_epochs&#125;</span>: Train Loss: <span class="hljs-subst">&#123;train_loss:<span class="hljs-number">.4</span>f&#125;</span>, Train Accuracy: <span class="hljs-subst">&#123;train_accuracy:<span class="hljs-number">.4</span>f&#125;</span>, Test Loss: <span class="hljs-subst">&#123;test_loss:<span class="hljs-number">.4</span>f&#125;</span>, Test Accuracy: <span class="hljs-subst">&#123;test_accuracy:<span class="hljs-number">.4</span>f&#125;</span>&quot;</span>)<br><br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Training finished!&quot;</span>)<br><br></code></pre></td></tr></table></figure>
+<h2 id="参考资料">参考资料</h2>
+<p><a
+href="https://zhuanlan.zhihu.com/p/486360853">https://zhuanlan.zhihu.com/p/486360853</a></p>
+<p><a
+href="https://blog.csdn.net/weixin_50295745/article/details/127554480">https://blog.csdn.net/weixin_50295745/article/details/127554480</a></p>
+<p><a
+href="https://blog.csdn.net/weixin_51331359/article/details/124514770">https://blog.csdn.net/weixin_51331359/article/details/124514770</a></p>
+<p><a
+href="https://blog.csdn.net/zqwwwm/article/details/124265975">https://blog.csdn.net/zqwwwm/article/details/124265975</a></p>
+<p><a
+href="https://zhuanlan.zhihu.com/p/364710161">https://zhuanlan.zhihu.com/p/364710161</a></p>
+]]></content>
+      <categories>
+        <category>深度学习</category>
+      </categories>
+      <tags>
+        <tag>深度学习</tag>
+        <tag>Pytorch</tag>
+        <tag>ViT</tag>
+        <tag>MNIST</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【深度学习】检测CUDA、cuDNN、Pytorch是否可用</title>
+    <url>/2023/01/4de6703a/</url>
+    <content><![CDATA[<h1
+id="检测cudacudnnpytorch是否可用">检测CUDA、cuDNN、Pytorch是否可用</h1>
+<p>大家看完代码不妨看一下后文的详解哦~</p>
+<p>默子在原有基础上增加了很多新的内容。</p>
+<p><strong>解释的更加详细，更加具体，更加新颖！</strong></p>
+<p>废话不多说，我们直接开始。</p>
+<hr />
+<p>复制下列代码到IDE中运行</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> torch<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;CUDA版本:&#x27;</span>,torch.version.cuda)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;Pytorch版本:&#x27;</span>,torch.__version__)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;显卡是否可用:&#x27;</span>,<span class="hljs-string">&#x27;可用&#x27;</span> <span class="hljs-keyword">if</span>(torch.cuda.is_available()) <span class="hljs-keyword">else</span> <span class="hljs-string">&#x27;不可用&#x27;</span>)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;显卡数量:&#x27;</span>,torch.cuda.device_count())<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;是否支持BF16数字格式:&#x27;</span>,<span class="hljs-string">&#x27;支持&#x27;</span> <span class="hljs-keyword">if</span> (torch.cuda.is_bf16_supported()) <span class="hljs-keyword">else</span> <span class="hljs-string">&#x27;不支持&#x27;</span>)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;当前显卡型号:&#x27;</span>,torch.cuda.get_device_name())<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;当前显卡的CUDA算力:&#x27;</span>,torch.cuda.get_device_capability())<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;当前显卡的总显存:&#x27;</span>,torch.cuda.get_device_properties(<span class="hljs-number">0</span>).total_memory/<span class="hljs-number">1024</span>/<span class="hljs-number">1024</span>/<span class="hljs-number">1024</span>,<span class="hljs-string">&#x27;GB&#x27;</span>)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;是否支持TensorCore:&#x27;</span>,<span class="hljs-string">&#x27;支持&#x27;</span> <span class="hljs-keyword">if</span> (torch.cuda.get_device_properties(<span class="hljs-number">0</span>).major &gt;= <span class="hljs-number">7</span>) <span class="hljs-keyword">else</span> <span class="hljs-string">&#x27;不支持&#x27;</span>)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;当前显卡的显存使用率:&#x27;</span>,torch.cuda.memory_allocated(<span class="hljs-number">0</span>)/torch.cuda.get_device_properties(<span class="hljs-number">0</span>).total_memory*<span class="hljs-number">100</span>,<span class="hljs-string">&#x27;%&#x27;</span>)<br></code></pre></td></tr></table></figure>
+<p>如果可以正常使用，大概率是这样的</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs 输出结果">CUDA版本: 11.7<br>Pytorch版本: 1.13.1+cu117<br>显卡是否可用: 可用<br>显卡数量: 1<br>是否支持BF16数字格式: 不支持<br>当前显卡型号: NVIDIA GeForce GTX 960M<br>当前显卡的CUDA算力: (5, 0)<br>当前显卡的总显存: 3.9998779296875 GB<br>是否支持TensorCore: 不支持<br>当前显卡的显存使用率: 0.0 %<br></code></pre></td></tr></table></figure>
+<hr />
+<p>代码逐行剖析：</p>
+<ol type="1">
+<li><p><code>torch.version.cuda</code></p>
+<p>会输出当前CUDA的版本，一般来说，会有 <strong>11.7</strong> 和
+<strong>11.3</strong>
+（更老的版本可能会出现兼容性问题，建议大家去更新一下，直接到
+<code>Nvidia</code> 官网就可以）</p></li>
+</ol>
+<hr />
+<ol start="2" type="1">
+<li><p><code>torch.__version__</code> .</p>
+<p>会输出当前 Pytorch 的版本， 对于<code>1.13.1+cu117</code></p></li>
+</ol>
+<ul>
+<li><p><code>1.13.0</code> 表示当前Pytorch的大版本，目前主流的版本大约在
+<code>1.8.0</code> -
+<code>1.13.0</code>，当大家开始复现代码时，就会发现自己要在电脑上同时装好多个Pytorch版本，所以用
+<code>Conda</code>
+去管理虚拟环境是很有必要的一件事哦~，大家对<code>Conda虚拟环境管理</code>
+感兴趣的话，不妨点个赞，默子看看下期要不要出。</p></li>
+<li><p><code>cu113</code> 表示当前 Pytorch
+是GPU的，CUDA版本是11.3，如果是 <code>cp39</code> 表示当前 Pytorch
+是CPU版本，Python版本是3.9.X</p></li>
+<li><p>有的同学会看到<code>dev</code>开头的一串序号，<code>dev20230114</code>
+表示是开发构建版（Pytorch.Nightly），具体构建日期为2023年1月14日，没有的话则是稳定版（Pytorch.Stable）。</p></li>
+</ul>
+<hr />
+<ol start="3" type="1">
+<li><p><code>torch.cuda.is_available()</code></p>
+<p>返回GPU是否可用，可用为<code>True</code>，不可用为
+<code>False</code></p></li>
+</ol>
+<hr />
+<ol start="4" type="1">
+<li><p><code>torch.cuda.device_count()</code></p>
+<p>返回显卡数量，大家的电脑一般都是 <code>1</code>
+啦，哈哈哈（友情提示：如果电脑是多GPU的，上述代码只能列出第一个GPU设备的部分信息，并不能列出全部GPU的信息。如果想获取全部信息，可以先获取GPU列表，然后循环输出每个GPU）</p></li>
+</ol>
+<hr />
+<ol start="5" type="1">
+<li><p><code>torch.cuda.is_bf16_supported()</code></p>
+<p>显卡是否支持BF16计算，支持为<code>True</code>，不支持为
+<code>False</code> &gt; BF16，有时也被称为BFloat16或Brain
+Float16，是一种针对人工智能与深度学习应用程序进行优化的新数字格式。
+它在谷歌、 英特尔 、 Arm
+和许多其他公司的人工智能加速器得到了广泛的应用。使用BF16主要是因为，神经网络对指数的大小比尾数敏感得多，所以不必使用传统尾数精度更高的FP64或者是FP32。
+默子的960M是肯定不支持BF16的，目前支持BF16的显卡有很多，比较大众化的应该就是NVIDIA
+<a
+href="https://baike.baidu.com/item/%E9%BB%84%E4%BB%81%E5%8B%8B/6343558">老黄</a>家<sup>NVIDIA创始人兼首席执行官</sup>的
+RTX3060 和 RTX3070
+了。至于专业的深度学习卡，绝大部分都是支持的。</p></li>
+</ol>
+<hr />
+<ol start="6" type="1">
+<li><p><code>torch.cuda.get_device_capability()</code></p>
+<p>获取GPU的算力 <strong>（CUDA Capability Major/Minor version
+number）</strong> ，对于N卡来说，查看全部型号显卡的算力请访问 <a
+href="https://developer.nvidia.com/cuda-gpus#compute">https://developer.nvidia.com/cuda-gpus#compute</a>
+（其余显卡请读者自行搜索吧） &gt;
+在官方给出的文档中，如果进行神经网络的训练，建议GPU此数值在 5.0
+以上（默子的卡刚刚及格，呜呜呜）</p></li>
+</ol>
+<hr />
+<ol start="7" type="1">
+<li><code>torch.cuda.get_device_properties(0).total_memory</code></li>
+</ol>
+<p>该条命令可以获取到当前GPU的总显存大小。详细信息可参考Pytorch官方文档<a
+href="https://pytorch.org/docs/stable/generated/torch.cuda.get_device_properties.html">https://pytorch.org/docs/stable/generated/torch.cuda.get_device_properties.html</a></p>
+<hr />
+<ol start="8" type="1">
+<li><code>TensorCore</code> 能力</li>
+</ol>
+<p>传统的N卡GPU都会有<code>CUDA</code>核心，用来处理大量的浮点运算。而
+<code>Tensor</code>核心能加速处于深度学习神经网络训练和推理运算核心的矩阵计算，能够在维持超低精度损失的同时大幅加速推理吞吐效率。不过，最近几年的卡才会搭载<code>TensorCore</code>，这个会直接体现在显卡的算力等级上，大于<code>7</code>的显卡才会有搭载
+<code>TensorCore</code>。</p>
+<blockquote>
+<p>具体是如何加速的，以及具体会加速多少，这个涉及到CUDA和Tensor核心的底层原理与深度学习相关知识。默子就不在这里展开阐述了，感兴趣的同学可以找一些文章、视频去看看。但就一句话，在深度学习方面，<code>TensorCore</code>吊打
+<code>CUDACore</code>。</p>
+</blockquote>
+<hr />
+<h4 id="section">$$</h4>
+]]></content>
+      <categories>
+        <category>深度学习</category>
+      </categories>
+      <tags>
+        <tag>深度学习</tag>
+        <tag>Pytorch</tag>
+        <tag>CUDA</tag>
+        <tag>cuDNN</tag>
+        <tag>机器学习</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【计科漫谈】都2023了，你还不会使用Markdown？</title>
+    <url>/2023/05/1d0b3c6c/</url>
+    <content><![CDATA[<p>【计科漫谈】<strong>都2023了，你还不会使用Markdown？</strong></p>
+<p>虽然这个标题有些攻击性，但相信默子，绝对不是有意的。</p>
+<p>2023的第二周马上要过去了，大年三十也已经在来的路上了。在这闲暇但也不太闲暇的日子里，学点Markdown为2023助助力吧！</p>
+<p><strong>相信它会成为你新一年学习工作的好助手哒！</strong></p>
+<hr />
+<h2 id="markdown-是什么">Markdown 是什么</h2>
+<p>Wikipedia 词条 <a
+href="https://en.wikipedia.org/wiki/Markdown">Markdown</a></p>
+<p>Markdown
+是一种轻量级的标记语言，可用于在<strong>纯文本文档</strong>中添加<strong>格式化元素</strong>。Markdown
+由 John Gruber 于 2004
+年创建，如今已成为世界上<strong>最受欢迎</strong>的标记语言之一。</p>
+<p>默子个人觉得，Markdown是一种 ==学习成本超低==
+，但是带来的<strong>回报率超高</strong>的一种标记语言。可以只用一些简单的符号，做到格式化文本，排版文章，做表插图。</p>
+<hr />
+<h2 id="markdown-用在何处">Markdown 用在何处</h2>
+<ol type="1">
+<li>==用来写技术博客==，记录学习笔记，常见的写作平台有CSDN、Github、掘金等。还可以在期末时直接将笔记作为报告。</li>
+<li>Obsidian知识管理，知识的输入与输出，构建数字大脑（使用的语法是Markdown）</li>
+</ol>
+<blockquote>
+<p>一般来说，Markdown
+在非程序员的圈子里知名度其实不高，而且即使很多程序员菜鸟，也要一两年才会接触到
+Markdown</p>
+<p>但是Markdown的优点真的是数不胜数，默子可以列举很多</p>
+</blockquote>
+<hr />
+<h2 id="markdown的优点">Markdown的优点</h2>
+<ul>
+<li>==绝对的跨平台==，因为
+Markdown的文件本身就是一个文本文件，<code>.md</code>
+可以用任意的文本编辑器打开，不存在兼容性的问题。最多是不同Markdown的渲染器渲染出来的效果不一样罢了。</li>
+<li>==格式设置简洁优美==，在传统排版软件Word中需要很多操作才可以完成的内容，在Markdown中就是多敲几个字符的事情。</li>
+<li>==让写作者更专注于内容的输出==，不会被复杂的排版，恼人的乱码困扰，记住十几个特定的字符，比在Word里面频繁的操作要省事的多。（其实就是追求的一种极简主义，简化不重要的边角，强化内容的核心）</li>
+<li>支持 <span class="math inline">\(\LaTeX\)</span>
+数学公式，让数学公式编辑不再折磨。</li>
+</ul>
+<hr />
+<h2 id="markdown-基础语法">Markdown 基础语法</h2>
+<p>Markdown里的基本语法不多，这里将介绍最主要的语法。更多扩展语法，默子会放出官方全面的网站，供大家收藏，日后方便查阅。</p>
+<blockquote>
+<p>标题、加粗、斜体、粗斜体、高亮、删除线、下划线、引用、链接、图片插入</p>
+</blockquote>
+<h4
+id="标题用-表示标题一级标题一个-二级标题两个-最高有六级标题">标题：用
+<code>#</code> 表示标题，一级标题一个 <code>#</code> ，二级标题两个
+<code>#</code> ，最高有六级标题。</h4>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><code class="hljs markdown"><span class="hljs-section"># 1级标题</span><br><span class="hljs-section">## 2级标题</span><br><span class="hljs-section">### 3级标题</span><br><span class="hljs-section">#### 4级标题</span><br><span class="hljs-section">##### 5级标题</span><br><span class="hljs-section">###### 6级标题</span><br></code></pre></td></tr></table></figure>
+<h4 id="加粗用-内容-包裹起来字体加粗">加粗：用 <code>**内容**</code>
+包裹起来，字体加粗</h4>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><code class="hljs markdown"><span class="hljs-strong">**加粗的内容**</span><br></code></pre></td></tr></table></figure>
+<p><strong>加粗的内容</strong></p>
+<h4 id="斜体用-内容-包裹起来字体倾斜">斜体：用 <code>*内容*</code>
+包裹起来，字体倾斜</h4>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><code class="hljs markdown"><span class="hljs-emphasis">*斜体的内容*</span><br></code></pre></td></tr></table></figure>
+<p><em>斜体的内容</em></p>
+<h4 id="粗斜体用-内容-包裹起来字体加粗倾斜">粗斜体：用
+<code>***内容***</code> 包裹起来，字体加粗倾斜</h4>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><code class="hljs markdown"><span class="hljs-strong">**<span class="hljs-emphasis">*粗斜体的内容*</span>**</span><br></code></pre></td></tr></table></figure>
+<p><strong><em>粗斜体的内容</em></strong></p>
+<h4 id="高亮用-内容-包裹起来字体背景高亮">高亮：用 <code>==内容==</code>
+包裹起来，字体背景高亮</h4>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><code class="hljs markdown">==高亮的内容==<br></code></pre></td></tr></table></figure>
+<p>==高亮的内容==</p>
+<h4 id="下划线用-u内容u-包裹起来添加下划线">下划线：用
+<code>&lt;u&gt;内容&lt;/u&gt;</code> 包裹起来，添加下划线</h4>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><code class="hljs markdown"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">u</span>&gt;</span></span>下划线的内容<span class="language-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">u</span>&gt;</span></span><br></code></pre></td></tr></table></figure>
+<p><u>下划线的内容</u></p>
+<h4 id="删除线用-内容-包裹起来添加删除线">删除线：用
+<code>~~内容~~</code> 包裹起来，添加删除线</h4>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><code class="hljs markdown">~~删除线的内容~~<br></code></pre></td></tr></table></figure>
+<p><del>删除线的内容</del></p>
+<h4 id="引用每一行的开始使用-表示引用">引用：每一行的开始使用
+<code>&gt;</code> 表示引用</h4>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><code class="hljs markdown"><span class="hljs-quote">&gt; 我爱你，以身，以心，以血，以命！以沉默，以眼泪！以唯一，以终结！以漂泊的灵魂，以永恒的死亡！</span><br></code></pre></td></tr></table></figure>
+<blockquote>
+<p>我爱你，以身，以心，以血，以命！以沉默，以眼泪！以唯一，以终结！以漂泊的灵魂，以永恒的死亡！</p>
+</blockquote>
+<p>多层嵌套引用可以用 <code>&gt;&gt;</code> 来表示</p>
+<blockquote>
+<p>外层引用</p>
+<blockquote>
+<p>内层引用1</p>
+</blockquote>
+<p>可以引用多行</p>
+<blockquote>
+<p>内层引用2</p>
+</blockquote>
+</blockquote>
+<h4
+id="链接用链接名称链接地址来表示一个链接">链接：用<code>[链接名称](链接地址)</code>来表示一个链接</h4>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><code class="hljs markdown">[<span class="hljs-string">链接名称</span>](<span class="hljs-link">链接地址</span>)<br>[<span class="hljs-string">Markdown - Wikipedia</span>](<span class="hljs-link">https://en.wikipedia.org/wiki/Markdown</span>)<br></code></pre></td></tr></table></figure>
+<p><a href="链接地址">链接名称</a></p>
+<p><a href="https://en.wikipedia.org/wiki/Markdown">Markdown -
+Wikipedia</a></p>
+<h4
+id="图片插入用图片描述图片地址来在文章中插入图片">图片插入：用<code>![图片描述](图片地址)</code>来在文章中插入图片</h4>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><code class="hljs markdown">![](<span class="hljs-link">https://profile.csdnimg.cn/3/5/3/1_qq_35657309</span>)<br></code></pre></td></tr></table></figure>
+<p><img
+src="https://img-blog.csdnimg.cn/img_convert/bfd1b8a6278d4576e183dbea48401416.png" /></p>
+<p>以上就是Markdown最基础的语法啦！相信大家应该都已经学会了叭。</p>
+<p>默子一直是秉持着，<code>先用起来，再不断巩固拓展。</code></p>
+<p>所以，其实上面的Markdown语法已经足够大家日常使用了。</p>
+<p>如果有更多的需求，不妨看看默子下方推荐的学习资料哦！</p>
+<hr />
+<h2 id="markdown-参考学习资料">Markdown 参考学习资料</h2>
+<ol type="1">
+<li><a href="https://www.markdownguide.org/getting-started/">Getting
+Started | Markdown Guide</a></li>
+</ol>
+<blockquote>
+<p>Markdown Guide
+官方的英文教程，大家英文水平如果OK的话，不妨去看一下（可能国内访问会比较困难）</p>
+</blockquote>
+<ol start="2" type="1">
+<li><a href="https://www.runoob.com/markdown/md-tutorial.html">Markdown
+教程 | 菜鸟教程 (runoob.com)</a></li>
+</ol>
+<blockquote>
+<p>菜鸟的中文教程，讲的十分详细清晰，建议小伙伴们看这个，同时有
+[[VSCode]] 的详细操作教程，对于零基础小伙伴来说十分友好。</p>
+</blockquote>
+<ol start="3" type="1">
+<li><a
+href="https://markdown.com.cn/intro.html#markdown-%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F">Markdown
+入门基础 | Markdown 官方教程</a></li>
+</ol>
+<blockquote>
+<p>官方中文教程，十分详细，但是可能其中的内容并不适合所有的初学者了解，
+比如 <a
+href="https://markdown.com.cn/intro.html#markdown-%E6%9C%89%E4%BB%80%E4%B9%88%E7%94%A8%EF%BC%9F">Markdown
+的工作原理</a></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>计科漫谈</category>
+      </categories>
+      <tags>
+        <tag>Markdown</tag>
+        <tag>计科漫谈</tag>
+        <tag>技术之外</tag>
+        <tag>笔记系统</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【软件推荐】图压——最方便的批量图片压缩软件</title>
+    <url>/2023/05/f62290ce/</url>
+    <content><![CDATA[<h2 id="压缩图片的必要性">压缩图片的必要性</h2>
+<p>在撰写博客的过程中，我们经常会遇到图文排版和网页加载速度的问题。一张大小为
+<span class="math inline">\(80KB\)</span> 的图片和一张大小为 <span
+class="math inline">\(2.5MB\)</span> 的图片之间存在着巨大的差异。</p>
+<p>为了让读者能够更快地打开博客并查看内容，默子的博客网站规定所有图片的大小不超过
+<span class="math inline">\(700KB\)</span>。</p>
+<p>当然，如果需要使用大尺寸的原始图片，默子会直接提供链接，而不是让浏览器请求加载过多的图片，从而减少读者的本地加载时间。</p>
+<hr />
+<p>然而，在我们平常接触的图片中，有许多图片的大小往往超过几兆字节。那么，我们应该如何减小图片的大小呢？答案就是<strong>图片压缩</strong>。</p>
+<p>通过对图片进行稍微损失一些画质的压缩，我们可以获得更小的文件尺寸和更快的加载速度，这是一种性价比更高的权衡方法。</p>
+<p>--</p>
+<h2
+id="图压最方便的批量图片压缩软件">图压——最方便的批量图片压缩软件</h2>
+<p>你可以在官网下载图压软件：<a
+href="https://tuya.xinxiao.tech/">https://tuya.xinxiao.tech/</a></p>
+<p>下载完成后，双击安装图压软件（省略安装步骤）。</p>
+<p>安装完成后，打开图压软件，你会看到一个非常简洁的主界面，只需要将图片拖拽到界面中即可进行压缩。</p>
+<figure>
+<img src="https://s2.loli.net/2023/05/12/k6hsG3iylbETagF.png"
+alt="图压主界面" />
+<figcaption aria-hidden="true">图压主界面</figcaption>
+</figure>
+<p>默子一般会让图片的<code>宽度保持在1920</code>左右。</p>
+<p>这样既不会让图片太大，也不会让图片完全失去原有的细节。</p>
+<h3 id="一些设置">一些设置：</h3>
+<ol type="1">
+<li><code>压缩强度 4~6 之间是最优的</code></li>
+<li><code>目标格式为了放在博客里，尽量都会选择.WebP</code></li>
+<li><code>保存路径一般就是源文件夹或者是覆盖源文件</code></li>
+</ol>
+<h3 id="一些注意的点">一些注意的点</h3>
+<ol type="1">
+<li>为什么选择<code>.WebP？</code></li>
+</ol>
+<p>因为<code>.WebP</code> 更高效且适合Web使用</p>
+<p><code>.WebP</code> 是一种现代的图像文件格式，相较于 PNG 和
+JPEG，它具有更高的压缩效率和更好的图像质量。通过先进的压缩算法，<code>.WebP</code>
+图像通常比同等质量的 JPEG 图像小 25% 到 34%。</p>
+<blockquote>
+<p>此外，<code>.WebP</code>
+还支持透明度和动画功能，可以创建具有透明背景和逐帧动画效果的图像。它能够快速解码和显示，提供更快的网页加载速度和更好的用户体验。</p>
+<p>尽管支持程度可能会有所差异，但在现代浏览器中，<code>.WebP</code>
+得到了广泛支持，并且可以通过提供备用图像来确保在不支持
+<code>.WebP</code> 的情况下正常显示。</p>
+</blockquote>
+<ol start="2" type="1">
+<li>如果要覆盖源文件，请选择原格式</li>
+</ol>
+<p>这个很奇怪，可能是设计的一个小<code>Bug</code>吧，如果选择了覆盖源文件，但是源文件与目标格式不一样，那就会直接生成新的文件，不会覆盖掉源文件。</p>
+<p>我猜开发程序员应该是直接以文件名来判断源文件的，然后先生成了和源文件一样的名字，再在保存的时候修改了后缀（当然，生成的图片编码格式是不一样的，后缀只是给人看的罢了）</p>
+<ol start="3" type="1">
+<li>不支持 <code>.WebP</code> 的导入压缩，但是支持 <code>.WebP</code>
+的导出</li>
+</ol>
+<p>这个很奇怪，反正当尝试把一个 <code>.WebP</code>
+的文件丢进去的时候，会提示不支持的格式。</p>
+<p>但是对图片不做修改，仅仅把后缀改为 <code>.png</code>
+，这个软件就可以压缩了。（小技巧Get）</p>
+<hr />
+<p>重点是这款软件免费且高效啊。还不快去下载起来？ 哈哈哈哈</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>【软件教程】TexLive超详细安装指南（Windows）</title>
+    <url>/2023/05/ef1f5b3c/</url>
+    <content><![CDATA[<blockquote>
+<p>本文将详细介绍如何安装TexLive，使用TexLive编译LaTeX文档。让你在Windows上也能愉快的使用LaTeX，体验到LaTeX的魅力。</p>
+</blockquote>
+<p>想必大家都或多或少知道LaTeX究竟是个什么东西</p>
+<h2 id="什么是texlive">什么是TexLive</h2>
+<p><strong>TexLive是一个免费、开源的TeX发行版，它包含了用于排版各种类型文档的TeX系统和许多相关工具、字体、宏包和文档。</strong>
+TeX是一种专业的排版系统，用于创建高质量的科技论文、书籍、期刊和其他技术文档，它在学术界和出版业广泛使用。</p>
+<p>TexLive包含了许多与TeX相关的软件包和工具，<strong>包括LaTeX、ConTeXt、MetaPost、pdfTeX、LuaTeX等等。</strong>
+它是一个跨平台的软件，可以在不同的操作系统上使用，例如Windows、Linux、MacOS等。</p>
+<p><strong>简而言之：当你需要写一份专业的科技论文、书籍、期刊或其他技术文档时，排版是非常重要的一步。TeX是一种专业的排版系统，可以让你创建高质量的文档，它在学术界和出版业广泛使用。</strong></p>
+<h2 id="为什么要使用texlive">为什么要使用TexLive</h2>
+<p>其实，TexLive并不是唯一的TeX发行版，还有许多其他的发行版，例如MiKTeX、MacTeX等等。那么，为什么要使用TexLive呢？</p>
+<p>TexLive是一个跨平台的软件，可以在不同的操作系统上使用，例如Windows、Linux、MacOS等。而其他的TeX发行版，例如MiKTeX、MacTeX等，只能在特定的操作系统上使用，例如MiKTeX只能在Windows上使用，MacTeX只能在MacOS上使用。</p>
+<h2 id="国内texlive下载">国内TexLive下载</h2>
+<p>首选清华大学开源软件镜像站：<a
+href="https://mirrors.tuna.tsinghua.edu.cn/CTAN/systems/texlive/Images/">点我下载</a>、</p>
+<p>打开后选择最新的版本，例如这个2023年0313版本：</p>
+<p><img src="https://s2.loli.net/2023/05/05/VGIQ6b95wWHn4Xk.png" /></p>
+<p>这个<code>TexLive</code>有四五个G，看来下载要等一会儿了。</p>
+<p>如果对下载速度有要求的同学可以尝试一下
+<code>IDM</code>、<code>FDM</code> 等多线程加速的下载器。</p>
+<p>不过几分钟，我们的下载就完成啦~</p>
+<p>接下来的任务是安装</p>
+<hr />
+<h2 id="安装texlivewindows">安装TexLive（Windows）</h2>
+<p>双击我们刚刚下载好的文件</p>
+<p><img src="https://s2.loli.net/2023/05/05/Y7k3fOxsC9LFHqG.png" /></p>
+<p>会弹出一个选择应用打开的窗口</p>
+<p><img src="https://s2.loli.net/2023/05/05/vs9FckBGqRPYz7x.png" /></p>
+<p>我们选择资源管理器即可</p>
+<p>这时候，<code>我的计算机</code> 里会多出来一个软驱（DVD驱动器）</p>
+<p><img src="https://s2.loli.net/2023/05/05/QafUJpcZCFVNT5b.png" /></p>
+<p>我们打开后看到的就是TexLive的全部文件</p>
+<p>这里选择打开 <code>install-tl-windows.bat</code></p>
+<p><img src="https://s2.loli.net/2023/05/05/dAD6IwP7bipVEMg.png" /></p>
+<p>打开后，稍等一会儿，我们就可以看到我们的安装窗口</p>
+<p><img src="https://s2.loli.net/2023/05/05/9iSW5oRPuQL6fgk.png" /></p>
+<p>安装窗口大概长这样</p>
+<p>如果不是中文界面的小伙伴可以选择菜单里的 <code>GUI Languaga</code>
+来修改界面的语言</p>
+<p><img src="https://s2.loli.net/2023/05/05/lA58RHTx3rs1pbi.png" /></p>
+<p>这里默子肯定是选到中文滴</p>
+<p>然后我们修改一下安装的硬盘分区（可选）</p>
+<p>点击界面上路径后面的 <code>修改</code> 按钮</p>
+<p>会弹出一个选择路径的界面</p>
+<p><img src="https://s2.loli.net/2023/05/05/fbcxk2l7rWZOend.png" /></p>
+<p>这里默子就选择改装到H盘去了，毕竟如果都装C盘的话，C盘迟早变
+<code>血红战神</code></p>
+<blockquote>
+<p>默子暴论：如果可以自定义路径的软件还装C盘，那就是xx</p>
+</blockquote>
+<p>一切都确定后，就可以点击安装啦！</p>
+<p><strong>注意，这个安装可能会耗时1个小时。所以确保1个小时内，电脑都可以持续正常工作，不要装一半了突然笔记本没电关机，那就尴尬了。</strong></p>
+<p><img src="https://s2.loli.net/2023/05/05/iB1KbkLNAIE7a9F.png" /></p>
+<p>安装界面这里经常会出现一些问题，比如可能有的同学会闪退，我们后面再讨论这里报错的问题。</p>
+<p>等到这个4490出现（反正是差不多的数字就行），说明我们的安装开始进行了。</p>
+<p>后面有剩余时间的估计，不过这个时间经常是不准的，一般安装时间都要持续<code>40min</code></p>
+<p><strong>默子是13900HX的CPU，开了性能模式，安装了大概51min吧</strong></p>
+<p>安装好后的提示如图</p>
+<p><img src="https://s2.loli.net/2023/05/05/HOBuf9wEGNM4Q8R.png" /></p>
+<p>自此，我们的TexLive就已经成功安装完毕</p>
+<p>后续默子再来讲一讲，如何在VSCode里配置我们最舒适的LaTeX编码环境</p>
+<p>让我们的生产效率 UP UP ~</p>
+<p><a href="/">【施工中】TexLive与VSCode能碰撞出怎样的火花</a></p>
+<p><a href="/">【施工中】让人工智能辅助我们创作优秀的排版作品</a></p>
+<p><a href="/">【施工中】最舒适的TeX编写指南</a></p>
+<h2 id="参考资料">参考资料</h2>
+<p>中文LaTeX社区：<a
+href="https://www.latexstudio.net/">LaTeX工作室</a></p>
+<p>更多关于TeX的知识，可以参考这篇文章：<a
+href="https://www.latexstudio.net/texdoc/#/28?page_id=133">TeX
+家族与基础概念</a></p>
+<p>更多关于其他发行版的知识，可以参考这篇文章：<a
+href="https://www.latexstudio.net/texdoc/#/28?page_id=114">LaTeX
+发行版与下载</a></p>
+]]></content>
+      <categories>
+        <category>软件教程</category>
+      </categories>
+      <tags>
+        <tag>教程</tag>
+        <tag>LaTeX</tag>
+        <tag>TexLive</tag>
       </tags>
   </entry>
 </search>
