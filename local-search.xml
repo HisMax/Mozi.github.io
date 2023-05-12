@@ -186,11 +186,11 @@
       
       <tag>深度学习</tag>
       
+      <tag>Pytorch</tag>
+      
       <tag>CUDA</tag>
       
       <tag>cuDNN</tag>
-      
-      <tag>Pytorch</tag>
       
       <tag>机器学习</tag>
       
@@ -250,9 +250,9 @@
     
     <tags>
       
-      <tag>博客</tag>
-      
       <tag>Abbrlink</tag>
+      
+      <tag>博客</tag>
       
       <tag>URL</tag>
       
@@ -573,17 +573,6 @@
   
   
   <entry>
-    <title>关于默子</title>
-    <link href="/"/>
-    <url>/</url>
-    
-    <content type="html"><![CDATA[]]></content>
-    
-  </entry>
-  
-  
-  
-  <entry>
     <title>404，默子丢啦</title>
     <link href="/"/>
     <url>/</url>
@@ -595,7 +584,18 @@
   
   
   <entry>
-    <title>分类</title>
+    <title>关于默子</title>
+    <link href="/"/>
+    <url>/</url>
+    
+    <content type="html"><![CDATA[]]></content>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>友情链接</title>
     <link href="/"/>
     <url>/</url>
     
@@ -628,7 +628,7 @@
   
   
   <entry>
-    <title>友情链接</title>
+    <title>分类</title>
     <link href="/"/>
     <url>/</url>
     
