@@ -18,29 +18,29 @@
   <meta name="author" content="默子">
   <meta name="keywords" content="">
   
-    <meta name="description" content="颓废的一天，没什么好看的。">
+    <meta name="description" content="这是一道优先队列+二分的题 要选出最优的\(K\)，满足时间小于\(T_{max}\) 我们要在区间 \([ 1 , n ]\) 里二分答案 大致流程很简单：  二分一个 \(K\) 利用优先队列模拟跳舞流程，判断\(K\)是否合理  代码如下： 123456789101112131415161718192021222324252627282930313233#include&amp;">
 <meta property="og:type" content="article">
-<meta property="og:title" content="【杂记】2020年3月28日">
-<meta property="og:url" content="https://histone.top/2020/03/14f0aad4/index.html">
+<meta property="og:title" content="【洛谷题解】P3611【[USACO17JAN]Cow Dance Show S】">
+<meta property="og:url" content="https://histone.top/2020/03/7add4492/index.html">
 <meta property="og:site_name" content="Mozi is Watching You">
-<meta property="og:description" content="颓废的一天，没什么好看的。">
+<meta property="og:description" content="这是一道优先队列+二分的题 要选出最优的\(K\)，满足时间小于\(T_{max}\) 我们要在区间 \([ 1 , n ]\) 里二分答案 大致流程很简单：  二分一个 \(K\) 利用优先队列模拟跳舞流程，判断\(K\)是否合理  代码如下： 123456789101112131415161718192021222324252627282930313233#include&amp;">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://s2.loli.net/2023/05/12/ZHk2SspEobgy1hd.webp">
-<meta property="article:published_time" content="2020-03-28T04:20:13.000Z">
-<meta property="article:modified_time" content="2023-05-12T01:05:15.807Z">
+<meta property="article:published_time" content="2020-03-17T16:18:51.000Z">
+<meta property="article:modified_time" content="2023-05-12T05:42:10.940Z">
 <meta property="article:author" content="默子">
-<meta property="article:tag" content="杂记">
-<meta property="article:tag" content="日常">
-<meta property="article:tag" content="省选">
-<meta property="article:tag" content="颓废">
+<meta property="article:tag" content="题解">
+<meta property="article:tag" content="C++">
+<meta property="article:tag" content="优先队列">
+<meta property="article:tag" content="二分">
+<meta property="article:tag" content="STL">
+<meta property="article:tag" content="模拟">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://s2.loli.net/2023/05/12/ZHk2SspEobgy1hd.webp">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>【杂记】2020年3月28日 - Mozi is Watching You</title>
+  <title>【洛谷题解】P3611【[USACO17JAN]Cow Dance Show S】 - Mozi is Watching You</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -212,13 +212,13 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('https://s2.loli.net/2023/05/12/ZHk2SspEobgy1hd.webp') no-repeat center center; background-size: cover;">
+     style="background: url('https://s2.loli.net/2023/05/12/BipL6zsf4SwMVYo.jpg') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.1)">
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle">【杂记】2020年3月28日</span>
+            <span id="subtitle">【洛谷题解】P3611【[USACO17JAN]Cow Dance Show S】</span>
           
         </div>
 
@@ -229,8 +229,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2020-03-28 12:20" pubdate>
-          星期六, 三月 28日 2020, 12:20 中午
+        <time datetime="2020-03-18 00:18" pubdate>
+          星期三, 三月 18日 2020, 12:18 凌晨
         </time>
       </span>
     
@@ -241,7 +241,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          861 字
+          1.5k 字
         
       </span>
     
@@ -252,7 +252,7 @@
         
         
         
-          6 分钟
+          10 分钟
         
       </span>
     
@@ -302,12 +302,12 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">【杂记】2020年3月28日</h1>
+            <h1 style="display: none">【洛谷题解】P3611【[USACO17JAN]Cow Dance Show S】</h1>
             
               <p class="note note-info">
                 
                   
-                    本文最后更新于：5 小时前
+                    本文最后更新于：几秒前
                   
                 
               </p>
@@ -315,53 +315,29 @@
             
               <div class="markdown-body">
                 
-                <blockquote>
-<h3
-id="这是默子几年前写的博客仅留作纪念">这是默子几年前写的博客，仅留作纪念！</h3>
-</blockquote>
-<p><strong>打开电脑→打开OJ→浏览题目→浏览博客→“颓”→关闭电脑</strong></p>
-<p>按理说，过了凌晨，2020-03-28就已经来到了。</p>
-<p>CCF的通知上说的，今天就是省选的Day1</p>
-<p>疫情的来临使得咕咕F更咕了些，至今未通知何时省选。</p>
-<p><del>（发邮件给特派员也不回，23333）</del></p>
-<p>现在每天都感觉自己非常蒟蒻</p>
-<p>今天看了一部电影《贫民窟里的百万富翁》</p>
-<p>给我感触最深的是，这个电影并没有讲金钱意义上的百万富翁。</p>
-<p>而是讲述了主人公从小到大的经历，正是这种经历才使得主人公成为了百万富翁。</p>
-<figure>
-<img src="https://s2.loli.net/2023/05/12/ZHk2SspEobgy1hd.webp" srcset="/img/loading.gif" lazyload
-alt="贫民窟里的百万富翁剧照" />
-<figcaption aria-hidden="true">贫民窟里的百万富翁剧照</figcaption>
-</figure>
-<p>或许我希望是这样吧。</p>
-<hr />
-<p>停课去搞OI，真的需要很大的勇气与毅力。</p>
-<p>老师不理解，学校不理解，同学不理解。他们很难想象我居然为了一个看不见摸不着的OI放弃两个月的文化课。</p>
-<p>但我真的是非常喜欢OI，从小学六年级接触到易语言时，我就感受到了编程的魅力。</p>
-<p>从那之后，自学了Java，Python，C++……，可惜高中前学的都是语言</p>
-<p>直到高一，我才真正意义上接触到OI，仗着年轻气盛，憨批的我参加了2018NOIP</p>
-<p>那肯定爆零了啊，直接提高，我还是全市唯一一个C语言的……23333</p>
-<p>然后呢，我在文化课里颓了一年，由普通班升到了重点班（可惜不是最重点）</p>
-<hr />
-<p>直到2019年9月13日，我才惊醒到，原来我还有OI。</p>
-<p>于是拼命肝了两个月，2019CSP-TG 捞了一个弱省二等</p>
-<p>之后，我发现我彻底爱上了OI，解题的快乐，AC的那一瞬间</p>
-<hr />
-<p>假期去清北学堂集训了一次
-<del>（最心疼的是钱，对于贫困家庭来说，支出不小）</del></p>
-<p>也没认识许多大佬，大部分水平还是差不多了，其实是真正的大佬不屑和我这个蒟蒻交朋友</p>
-<p>由于在弱省，省选竞争不是很大，二等也可以混进去考一下。</p>
-<p>但是……我想进队</p>
-<p>于是就开启了停课，疯狂刷题阶段。</p>
-<hr />
-<p>进了队，我就继续停课，至少要打个Ag回来</p>
-<p>没进队，就滚回去学文化课，2020再考最后一次NOIP，正式AFO~</p>
-<p>怎么说呢，文笔很烂，感觉跟流水账似的。</p>
-<hr />
-<p><strong>PS：话说2020省选啥时候通知啊，我TM直接自闭好不好，就算推迟，给个通知啊！！！</strong></p>
-<blockquote>
-<p>后日记：当时真的好急，换做现在的默子会说：<code>我知道你很急，但你先别急</code></p>
-</blockquote>
+                <p>这是一道<strong>优先队列+二分</strong>的题</p>
+<p>要选出最优的<span class="math inline">\(K\)</span>，满足时间小于<span
+class="math inline">\(T_{max}\)</span></p>
+<p>我们要在区间 <strong><span class="math inline">\([ 1 , n
+]\)</span></strong> 里二分答案</p>
+<p>大致流程很简单：</p>
+<ul>
+<li><p>二分一个 <span class="math inline">\(K\)</span></p></li>
+<li><p>利用优先队列模拟跳舞流程，判断<span
+class="math inline">\(K\)</span>是否合理</p></li>
+</ul>
+<p>代码如下：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;bits/stdc++.h&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-type">int</span> n,t,num[<span class="hljs-number">10005</span>];<br><span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">c</span><span class="hljs-params">(<span class="hljs-type">int</span> x)</span></span>&#123;<br>	<span class="hljs-comment">/*利用优先队列模拟跳舞情况*/</span> <br>	<span class="hljs-type">int</span> at = <span class="hljs-number">0</span>;<span class="hljs-comment">//当前k的耗时</span><br>	priority_queue &lt; <span class="hljs-type">int</span>,vector&lt;<span class="hljs-type">int</span>&gt;,greater&lt;<span class="hljs-type">int</span>&gt; &gt; q;<br>	<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=x;i++)q.<span class="hljs-built_in">push</span>(num[i]);<br>	<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=x+<span class="hljs-number">1</span>;i&lt;=n;i++)&#123;<br>		<span class="hljs-type">int</span> temp = q.<span class="hljs-built_in">top</span>();q.<span class="hljs-built_in">pop</span>();<br>		q.<span class="hljs-built_in">push</span>(temp+num[i]);<br>	&#125;<br>	<span class="hljs-keyword">while</span>(!q.<span class="hljs-built_in">empty</span>())&#123;<br>		at = q.<span class="hljs-built_in">top</span>();q.<span class="hljs-built_in">pop</span>();<br>	&#125;<br>	<span class="hljs-keyword">return</span> at&lt;=t;<br>&#125;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span></span>&#123;<br>	<span class="hljs-comment">/*输入不解释*/</span><br>	cin&gt;&gt;n&gt;&gt;t;<br>	<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++)<br>		cin&gt;&gt;num[i];<br>	<br>	<span class="hljs-comment">/*二分答案*/</span>	<br>	<span class="hljs-type">int</span> l=<span class="hljs-number">0</span>,r=n,mid;<br>	<span class="hljs-keyword">while</span>(l&lt;=r)&#123;<br>		mid = (l+r)&gt;&gt;<span class="hljs-number">1</span>;<br>		<span class="hljs-keyword">if</span>(<span class="hljs-built_in">c</span>(mid))r = mid<span class="hljs-number">-1</span>;<br>		<span class="hljs-keyword">else</span> l = mid+<span class="hljs-number">1</span>;<br>	&#125;<br>	cout&lt;&lt;l;<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>当然，如果大家觉得二分太麻烦的话。</p>
+<p><span class="math inline">\(K\)</span>值直接从<span
+class="math inline">\(1\)</span>枚举到<span
+class="math inline">\(n\)</span>也是可以的</p>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/record/31867554">测试详情</a></p>
+<p>直接枚举的代码：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;bits/stdc++.h&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-type">int</span> n,t,num[<span class="hljs-number">10005</span>];<br><span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">c</span><span class="hljs-params">(<span class="hljs-type">int</span> x)</span></span>&#123;<br>	<span class="hljs-comment">/*这里其实就是利用优先队列模拟跳舞情况*/</span> <br>	<span class="hljs-type">int</span> at = <span class="hljs-number">0</span>;<br>	priority_queue &lt; <span class="hljs-type">int</span>,vector&lt;<span class="hljs-type">int</span>&gt;,greater&lt;<span class="hljs-type">int</span>&gt; &gt; q;<br>	<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=x;i++)q.<span class="hljs-built_in">push</span>(num[i]);<br>	<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=x+<span class="hljs-number">1</span>;i&lt;=n;i++)&#123;<br>		<span class="hljs-type">int</span> temp = q.<span class="hljs-built_in">top</span>();q.<span class="hljs-built_in">pop</span>();<br>		q.<span class="hljs-built_in">push</span>(temp+num[i]);<br>	&#125;<br>	<span class="hljs-keyword">while</span>(!q.<span class="hljs-built_in">empty</span>())&#123;<br>		at = q.<span class="hljs-built_in">top</span>();q.<span class="hljs-built_in">pop</span>();<br>	&#125;<br>	<span class="hljs-keyword">return</span> at&lt;=t;<br>&#125;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span></span>&#123;<br>	<span class="hljs-comment">/*输入不解释*/</span><br>	cin&gt;&gt;n&gt;&gt;t;<br>	<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++)<br>		cin&gt;&gt;num[i];<br>	<span class="hljs-type">int</span> ans = <span class="hljs-number">0</span>;<br>    <span class="hljs-comment">/*直接暴力枚举！*/</span><br>	<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++)&#123;<br>		<span class="hljs-keyword">if</span>(<span class="hljs-built_in">c</span>(i))&#123;<br>			ans = i;<span class="hljs-keyword">break</span>;<br>		&#125;<br>	&#125;<br>	cout&lt;&lt;ans;<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>当然，<del>这题数据较水</del></p>
+<p>结束</p>
+<p>各位看官，如果觉得还可以的话，点个赞吧~</p>
 
                 
               </div>
@@ -380,7 +356,7 @@ alt="贫民窟里的百万富翁剧照" />
     
       <span class="category-chain">
         
-  <a href="/categories/%E6%9D%82%E8%AE%B0/" class="category-chain-item">杂记</a>
+  <a href="/categories/%E9%A2%98%E8%A7%A3/" class="category-chain-item">题解</a>
   
   
 
@@ -395,13 +371,17 @@ alt="贫民窟里的百万富翁剧照" />
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/%E6%9D%82%E8%AE%B0/">#杂记</a>
+        <a href="/tags/%E9%A2%98%E8%A7%A3/">#题解</a>
       
-        <a href="/tags/%E6%97%A5%E5%B8%B8/">#日常</a>
+        <a href="/tags/C/">#C++</a>
       
-        <a href="/tags/%E7%9C%81%E9%80%89/">#省选</a>
+        <a href="/tags/%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97/">#优先队列</a>
       
-        <a href="/tags/%E9%A2%93%E5%BA%9F/">#颓废</a>
+        <a href="/tags/%E4%BA%8C%E5%88%86/">#二分</a>
+      
+        <a href="/tags/STL/">#STL</a>
+      
+        <a href="/tags/%E6%A8%A1%E6%8B%9F/">#模拟</a>
       
     </div>
   
@@ -413,8 +393,8 @@ alt="贫民窟里的百万富翁剧照" />
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>【杂记】2020年3月28日</div>
-      <div>https://histone.top/2020/03/14f0aad4/</div>
+      <div>【洛谷题解】P3611【[USACO17JAN]Cow Dance Show S】</div>
+      <div>https://histone.top/2020/03/7add4492/</div>
     </div>
     <div class="license-meta">
       
@@ -426,7 +406,7 @@ alt="贫民窟里的百万富翁剧照" />
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2020年3月28日 12:20</div>
+          <div>2020年3月18日 00:18</div>
         </div>
       
       
@@ -470,9 +450,9 @@ alt="贫民窟里的百万富翁剧照" />
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2020/03/6734e3c6/" title="【数据结构】普通平衡树">
+                      <a href="/2020/03/14f0aad4/" title="【杂记】2020年3月28日">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">【数据结构】普通平衡树</span>
+                        <span class="hidden-mobile">【杂记】2020年3月28日</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -480,8 +460,8 @@ alt="贫民窟里的百万富翁剧照" />
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2020/03/7add4492/" title="【洛谷题解】P3611【[USACO17JAN]Cow Dance Show S】">
-                        <span class="hidden-mobile">【洛谷题解】P3611【[USACO17JAN]Cow Dance Show S】</span>
+                      <a href="/2020/03/50796d93/" title="【杂记】2020年3月9日">
+                        <span class="hidden-mobile">【杂记】2020年3月9日</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

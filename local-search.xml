@@ -77,41 +77,6 @@
   
   
   <entry>
-    <title>【洛谷题解】P1317【低洼地】</title>
-    <link href="/2023/05/10bb2d7d/"/>
-    <url>/2023/05/10bb2d7d/</url>
-    
-    <content type="html"><![CDATA[<p>看到好多dalao用什么山峰山谷除二啊,还有各种去重。</p><p>本蒟蒻一时间真的没看懂啊。。（My vegetable has exploded）</p><p>只好把我 <del>看完题便无脑</del> 写出来的代码放上来了</p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-type">int</span> nu[<span class="hljs-number">10521</span>];<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span></span>&#123;<br><span class="hljs-type">int</span> n,i,ans = <span class="hljs-number">-1</span>;<span class="hljs-comment">//因为保证首尾都是0，所以-1</span><br>    <br>cin&gt;&gt;n;<br><span class="hljs-keyword">for</span>(i=<span class="hljs-number">0</span>;i&lt;n;i++)cin&gt;&gt;nu[i];<span class="hljs-comment">//输入</span><br>    <br><span class="hljs-keyword">for</span>(i=<span class="hljs-number">1</span>;i&lt;n<span class="hljs-number">-1</span>;i++)<span class="hljs-comment">/*上面-1的原因，因为下面统计的是波峰=_=，波峰-1 = 波谷（具体证明就不放上来了）*/</span><br><span class="hljs-keyword">if</span>(nu[i<span class="hljs-number">-1</span>]&lt;nu[i]&amp;&amp;nu[i]&gt;nu[i+<span class="hljs-number">1</span>])ans++;<br>cout&lt;&lt;ans;<br><span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure><p>！！当你把代码上交（submit）的时候，会惊讶的发现，居然<strong>只有80分</strong>。</p><p>什么地方出了问题呢？？</p><p>稍加思索……</p><p>让我们跑一下，以下数据：</p><hr /><p><strong>8</strong></p><p><strong>0 5 2 3 3 1 5 0</strong></p><hr /><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><br> *    *<br> *    *<br> * ** *<br> **** *<br> ******<br>********<br><span class="hljs-number">05233150</span><br></code></pre></td></tr></table></figure><p>显而易见的两个低洼地，但是让我们瞅瞅输出：</p><hr /><p><strong>1</strong></p><hr /><p><del>哦，我的天啊，看看这个输出，居然是一个“1”，这简直是上帝的不耻，耶稣的羞愧啊！！！</del></p><p>怎么会是“1”，<strong>哪里出了问题</strong>。</p><p>首先，我们想想上面代码的<strong>原理</strong></p><p><strong>波谷数 = 山峰数-1</strong></p><p>很明显，原理是没毛病的，那就可能是<strong>实现</strong>出了问题</p><p>思前向后，卡了223秒。</p><p><strong>在统计山峰的时候，有部分譬如2331的平台山峰没有统计到</strong></p><p>废话不多说，直接上代码</p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;string&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-type">int</span> nu[<span class="hljs-number">10521</span>];<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span></span>&#123;<br><span class="hljs-type">int</span> n,i,p,ans = <span class="hljs-number">-1</span>;<br>cin&gt;&gt;n;<br><span class="hljs-keyword">for</span>(i=<span class="hljs-number">0</span>;i&lt;n;i++)&#123;<br>cin&gt;&gt;p;<br><span class="hljs-keyword">if</span>(i&amp;&amp;p==nu[i<span class="hljs-number">-1</span>])&#123;i--;n--;<span class="hljs-keyword">continue</span>;&#125;<br>nu[i] = p;<br>&#125;<span class="hljs-comment">/*输入时，删掉前后高度相同的，合并为一个山峰*/</span><br><span class="hljs-keyword">for</span>(i=<span class="hljs-number">1</span>;i&lt;n<span class="hljs-number">-1</span>;i++)<br><span class="hljs-keyword">if</span>(nu[i<span class="hljs-number">-1</span>]&lt;nu[i]&amp;&amp;nu[i]&gt;nu[i+<span class="hljs-number">1</span>])ans++;<br>cout&lt;&lt;ans;<br><span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure><p>蒟蒻第二篇题解</p>]]></content>
-    
-    
-    <categories>
-      
-      <category>题解</category>
-      
-    </categories>
-    
-    
-    <tags>
-      
-      <tag>洛谷</tag>
-      
-      <tag>题解</tag>
-      
-      <tag>C++</tag>
-      
-      <tag>枚举</tag>
-      
-      <tag>模拟</tag>
-      
-      <tag>排序</tag>
-      
-    </tags>
-    
-  </entry>
-  
-  
-  
-  <entry>
     <title>【计科漫谈】都2023了，你还不会使用Markdown？</title>
     <link href="/2023/05/1d0b3c6c/"/>
     <url>/2023/05/1d0b3c6c/</url>
@@ -221,11 +186,11 @@
       
       <tag>深度学习</tag>
       
+      <tag>Pytorch</tag>
+      
       <tag>CUDA</tag>
       
       <tag>cuDNN</tag>
-      
-      <tag>Pytorch</tag>
       
       <tag>机器学习</tag>
       
@@ -304,6 +269,41 @@
   
   
   <entry>
+    <title>【洛谷题解】P3611【[USACO17JAN]Cow Dance Show S】</title>
+    <link href="/2020/03/7add4492/"/>
+    <url>/2020/03/7add4492/</url>
+    
+    <content type="html"><![CDATA[<p>这是一道<strong>优先队列+二分</strong>的题</p><p>要选出最优的<span class="math inline">\(K\)</span>，满足时间小于<spanclass="math inline">\(T_{max}\)</span></p><p>我们要在区间 <strong><span class="math inline">\([ 1 , n]\)</span></strong> 里二分答案</p><p>大致流程很简单：</p><ul><li><p>二分一个 <span class="math inline">\(K\)</span></p></li><li><p>利用优先队列模拟跳舞流程，判断<spanclass="math inline">\(K\)</span>是否合理</p></li></ul><p>代码如下：</p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;bits/stdc++.h&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-type">int</span> n,t,num[<span class="hljs-number">10005</span>];<br><span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">c</span><span class="hljs-params">(<span class="hljs-type">int</span> x)</span></span>&#123;<br><span class="hljs-comment">/*利用优先队列模拟跳舞情况*/</span> <br><span class="hljs-type">int</span> at = <span class="hljs-number">0</span>;<span class="hljs-comment">//当前k的耗时</span><br>priority_queue &lt; <span class="hljs-type">int</span>,vector&lt;<span class="hljs-type">int</span>&gt;,greater&lt;<span class="hljs-type">int</span>&gt; &gt; q;<br><span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=x;i++)q.<span class="hljs-built_in">push</span>(num[i]);<br><span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=x+<span class="hljs-number">1</span>;i&lt;=n;i++)&#123;<br><span class="hljs-type">int</span> temp = q.<span class="hljs-built_in">top</span>();q.<span class="hljs-built_in">pop</span>();<br>q.<span class="hljs-built_in">push</span>(temp+num[i]);<br>&#125;<br><span class="hljs-keyword">while</span>(!q.<span class="hljs-built_in">empty</span>())&#123;<br>at = q.<span class="hljs-built_in">top</span>();q.<span class="hljs-built_in">pop</span>();<br>&#125;<br><span class="hljs-keyword">return</span> at&lt;=t;<br>&#125;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span></span>&#123;<br><span class="hljs-comment">/*输入不解释*/</span><br>cin&gt;&gt;n&gt;&gt;t;<br><span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++)<br>cin&gt;&gt;num[i];<br><br><span class="hljs-comment">/*二分答案*/</span><br><span class="hljs-type">int</span> l=<span class="hljs-number">0</span>,r=n,mid;<br><span class="hljs-keyword">while</span>(l&lt;=r)&#123;<br>mid = (l+r)&gt;&gt;<span class="hljs-number">1</span>;<br><span class="hljs-keyword">if</span>(<span class="hljs-built_in">c</span>(mid))r = mid<span class="hljs-number">-1</span>;<br><span class="hljs-keyword">else</span> l = mid+<span class="hljs-number">1</span>;<br>&#125;<br>cout&lt;&lt;l;<br><span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure><p>当然，如果大家觉得二分太麻烦的话。</p><p><span class="math inline">\(K\)</span>值直接从<spanclass="math inline">\(1\)</span>枚举到<spanclass="math inline">\(n\)</span>也是可以的</p><p><a href="https://www.luogu.com.cn/record/31867554">测试详情</a></p><p>直接枚举的代码：</p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;bits/stdc++.h&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-type">int</span> n,t,num[<span class="hljs-number">10005</span>];<br><span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">c</span><span class="hljs-params">(<span class="hljs-type">int</span> x)</span></span>&#123;<br><span class="hljs-comment">/*这里其实就是利用优先队列模拟跳舞情况*/</span> <br><span class="hljs-type">int</span> at = <span class="hljs-number">0</span>;<br>priority_queue &lt; <span class="hljs-type">int</span>,vector&lt;<span class="hljs-type">int</span>&gt;,greater&lt;<span class="hljs-type">int</span>&gt; &gt; q;<br><span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=x;i++)q.<span class="hljs-built_in">push</span>(num[i]);<br><span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=x+<span class="hljs-number">1</span>;i&lt;=n;i++)&#123;<br><span class="hljs-type">int</span> temp = q.<span class="hljs-built_in">top</span>();q.<span class="hljs-built_in">pop</span>();<br>q.<span class="hljs-built_in">push</span>(temp+num[i]);<br>&#125;<br><span class="hljs-keyword">while</span>(!q.<span class="hljs-built_in">empty</span>())&#123;<br>at = q.<span class="hljs-built_in">top</span>();q.<span class="hljs-built_in">pop</span>();<br>&#125;<br><span class="hljs-keyword">return</span> at&lt;=t;<br>&#125;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span></span>&#123;<br><span class="hljs-comment">/*输入不解释*/</span><br>cin&gt;&gt;n&gt;&gt;t;<br><span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++)<br>cin&gt;&gt;num[i];<br><span class="hljs-type">int</span> ans = <span class="hljs-number">0</span>;<br>    <span class="hljs-comment">/*直接暴力枚举！*/</span><br><span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++)&#123;<br><span class="hljs-keyword">if</span>(<span class="hljs-built_in">c</span>(i))&#123;<br>ans = i;<span class="hljs-keyword">break</span>;<br>&#125;<br>&#125;<br>cout&lt;&lt;ans;<br><span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure><p>当然，<del>这题数据较水</del></p><p>结束</p><p>各位看官，如果觉得还可以的话，点个赞吧~</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>题解</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>题解</tag>
+      
+      <tag>C++</tag>
+      
+      <tag>优先队列</tag>
+      
+      <tag>二分</tag>
+      
+      <tag>STL</tag>
+      
+      <tag>模拟</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>【杂记】2020年3月9日</title>
     <link href="/2020/03/50796d93/"/>
     <url>/2020/03/50796d93/</url>
@@ -374,6 +374,76 @@
   
   
   <entry>
+    <title>【洛谷题解】P4305【[JLOI2011]不重复数字】</title>
+    <link href="/2020/02/a03fb6d6/"/>
+    <url>/2020/02/a03fb6d6/</url>
+    
+    <content type="html"><![CDATA[<p><del>有的时间复杂度是真的玄学</del></p><p>思路很暴力，<del>只需要小学二年级思维</del> ___</p><h3 id="大致思路">大致思路:</h3><p><spanclass="math inline">\(\color{green}\text{我们建一个结构体数组，存每个数字的值和出现的位置,}\)</span><spanclass="math inline">\(\color{green}\text{先把数字按照值排序一遍（值相同的话，按照位置由前到后排序）}\)</span><spanclass="math inline">\(\color{green}\text{排序后方便去除重复的数字，每个数字只需要保留位置最靠前的那个便可（简单粗暴）}\)</span><spanclass="math inline">\(\color{green}\text{然后我们再按照数字的位置排一下序，顺序输出我们保留的数字即可}\)</span></p><p>首先建一个结构体 $</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>题解</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>题解</tag>
+      
+      <tag>C++</tag>
+      
+      <tag>STL</tag>
+      
+      <tag>模拟</tag>
+      
+      <tag>排序</tag>
+      
+      <tag>Hash</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>【洛谷题解】P1317【低洼地】</title>
+    <link href="/2019/10/10bb2d7d/"/>
+    <url>/2019/10/10bb2d7d/</url>
+    
+    <content type="html"><![CDATA[<p>看到好多dalao用什么山峰山谷除二啊,还有各种去重。</p><p>本蒟蒻一时间真的没看懂啊。。（My vegetable has exploded）</p><p>只好把我 <del>看完题便无脑</del> 写出来的代码放上来了</p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-type">int</span> nu[<span class="hljs-number">10521</span>];<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span></span>&#123;<br><span class="hljs-type">int</span> n,i,ans = <span class="hljs-number">-1</span>;<span class="hljs-comment">//因为保证首尾都是0，所以-1</span><br>    <br>cin&gt;&gt;n;<br><span class="hljs-keyword">for</span>(i=<span class="hljs-number">0</span>;i&lt;n;i++)cin&gt;&gt;nu[i];<span class="hljs-comment">//输入</span><br>    <br><span class="hljs-keyword">for</span>(i=<span class="hljs-number">1</span>;i&lt;n<span class="hljs-number">-1</span>;i++)<span class="hljs-comment">/*上面-1的原因，因为下面统计的是波峰=_=，波峰-1 = 波谷（具体证明就不放上来了）*/</span><br><span class="hljs-keyword">if</span>(nu[i<span class="hljs-number">-1</span>]&lt;nu[i]&amp;&amp;nu[i]&gt;nu[i+<span class="hljs-number">1</span>])ans++;<br>cout&lt;&lt;ans;<br><span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure><p>！！当你把代码上交（submit）的时候，会惊讶的发现，居然<strong>只有80分</strong>。</p><p>什么地方出了问题呢？？</p><p>稍加思索……</p><p>让我们跑一下，以下数据：</p><hr /><p><strong>8</strong></p><p><strong>0 5 2 3 3 1 5 0</strong></p><hr /><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><br> *    *<br> *    *<br> * ** *<br> **** *<br> ******<br>********<br><span class="hljs-number">05233150</span><br></code></pre></td></tr></table></figure><p>显而易见的两个低洼地，但是让我们瞅瞅输出：</p><hr /><p><strong>1</strong></p><hr /><p><del>哦，我的天啊，看看这个输出，居然是一个“1”，这简直是上帝的不耻，耶稣的羞愧啊！！！</del></p><p>怎么会是“1”，<strong>哪里出了问题</strong>。</p><p>首先，我们想想上面代码的<strong>原理</strong></p><p><strong>波谷数 = 山峰数-1</strong></p><p>很明显，原理是没毛病的，那就可能是<strong>实现</strong>出了问题</p><p>思前向后，卡了223秒。</p><p><strong>在统计山峰的时候，有部分譬如2331的平台山峰没有统计到</strong></p><p>废话不多说，直接上代码</p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;string&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-type">int</span> nu[<span class="hljs-number">10521</span>];<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span></span>&#123;<br><span class="hljs-type">int</span> n,i,p,ans = <span class="hljs-number">-1</span>;<br>cin&gt;&gt;n;<br><span class="hljs-keyword">for</span>(i=<span class="hljs-number">0</span>;i&lt;n;i++)&#123;<br>cin&gt;&gt;p;<br><span class="hljs-keyword">if</span>(i&amp;&amp;p==nu[i<span class="hljs-number">-1</span>])&#123;i--;n--;<span class="hljs-keyword">continue</span>;&#125;<br>nu[i] = p;<br>&#125;<span class="hljs-comment">/*输入时，删掉前后高度相同的，合并为一个山峰*/</span><br><span class="hljs-keyword">for</span>(i=<span class="hljs-number">1</span>;i&lt;n<span class="hljs-number">-1</span>;i++)<br><span class="hljs-keyword">if</span>(nu[i<span class="hljs-number">-1</span>]&lt;nu[i]&amp;&amp;nu[i]&gt;nu[i+<span class="hljs-number">1</span>])ans++;<br>cout&lt;&lt;ans;<br><span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure><p>蒟蒻第二篇题解</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>题解</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>洛谷</tag>
+      
+      <tag>题解</tag>
+      
+      <tag>C++</tag>
+      
+      <tag>模拟</tag>
+      
+      <tag>枚举</tag>
+      
+      <tag>排序</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>【洛谷题解】P1104【生日】</title>
     <link href="/2019/09/2b2e6ad9/"/>
     <url>/2019/09/2b2e6ad9/</url>
@@ -406,33 +476,11 @@
   
   
   <entry>
-    <title>关于默子</title>
-    <link href="/"/>
-    <url>/</url>
-    
-    <content type="html"><![CDATA[]]></content>
-    
-  </entry>
-  
-  
-  
-  <entry>
     <title>404，默子丢啦</title>
     <link href="/"/>
     <url>/</url>
     
     <content type="html"><![CDATA[<p>这里似乎什么都没有，也似乎什么都有</p>]]></content>
-    
-  </entry>
-  
-  
-  
-  <entry>
-    <title>友情链接</title>
-    <link href="/"/>
-    <url>/</url>
-    
-    <content type="html"><![CDATA[]]></content>
     
   </entry>
   
@@ -451,6 +499,28 @@
   
   <entry>
     <title>标签</title>
+    <link href="/"/>
+    <url>/</url>
+    
+    <content type="html"><![CDATA[]]></content>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>友情链接</title>
+    <link href="/"/>
+    <url>/</url>
+    
+    <content type="html"><![CDATA[]]></content>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>关于默子</title>
     <link href="/"/>
     <url>/</url>
     
