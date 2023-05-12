@@ -1330,4 +1330,98 @@ JPEG，它具有更高的压缩效率和更好的图像质量。通过先进的�
 <p>重点是这款软件免费且高效啊。还不快去下载起来？ 哈哈哈哈</p>
 ]]></content>
   </entry>
+  <entry>
+    <title>【图论】Cayley定理</title>
+    <url>/2022/04/5d57d8bd/</url>
+    <content><![CDATA[<p><a
+href="https://en.wikipedia.org/wiki/Cayley%27s_theorem">Cayley定理</a>
+于1854年在 <a href="https://en.wikipedia.org/wiki/Arthur_Cayley">Arthur
+Cayley</a> 的论文中首次被提到。</p>
+<p>本文简单讲述了Cayley定理在图论中的应用，并用普吕弗序列做了简单证明</p>
+<span id="more"></span>
+<p>一般的表述：</p>
+<blockquote>
+<p><strong>每个群 <span class="math inline">\(G\)</span> 同构于
+对称群的子群</strong></p>
+</blockquote>
+<hr />
+<p>而在图论与组合数学中，该定理被用来计算 <a
+href="https://en.wikipedia.org/wiki/Complete_graph">完全图</a> 的 <a
+href="https://en.wikipedia.org/wiki/Spanning_tree">生成树</a>
+的总数。</p>
+<p>图论中的表述：</p>
+<blockquote>
+<p><strong>假如某一完全图有 <span class="math inline">\(n\)</span>
+个顶点，那么该图的生成树的数量为 <span
+class="math inline">\(n^{n-2}\)</span> 个。</strong></p>
+</blockquote>
+<p>Cayley定理 的证明方法大概有三种，这里讲述最简单也是最直观的一种方法
+利用 <a
+href="https://en.wikipedia.org/wiki/Pr%C3%BCfer_sequence">普吕弗序列</a>
+来证明 Cayley定理。</p>
+<hr />
+<p>设 <span class="math inline">\(T\)</span> 为一颗标号树，共有 <span
+class="math inline">\(n\)</span> 个顶点，分别标号为 <span
+class="math inline">\(a_1,a_2,a_3, \cdots ,a_{n}\)</span></p>
+<p>每次取出标号最小的叶子，记为 <span class="math inline">\(a_1\)</span>
+，而 <span class="math inline">\(a_1\)</span>的邻接点记为 <span
+class="math inline">\(b_1\)</span> 。注意：此时 叶子 <span
+class="math inline">\(a_1\)</span> 不一定为 标号为 <span
+class="math inline">\(1\)</span> 的叶子。</p>
+<p>将顶点 <span class="math inline">\(a_1\)</span> 与 边 ( <span
+class="math inline">\(a_1 , b_1\)</span> ) 从树中删去。注意：此时 <span
+class="math inline">\(b_1\)</span> 不一定会变成叶子。</p>
+<p>设一个 普吕弗序列 <span class="math inline">\(B\)</span> ，将 <span
+class="math inline">\(b_1\)</span> 加入到序列 <span
+class="math inline">\(B\)</span> 中。</p>
+<p>如此往复，执行操作共 <span class="math inline">\(n-2\)</span>
+次，直到树 <span class="math inline">\(T\)</span> 只剩一条边。</p>
+<p>我们便可以得到一个普吕弗序列 <span
+class="math inline">\(B\)</span></p>
+<p><span class="math display">\[b_1,b_2,b_3,\cdots ,b_{n-2}\]</span></p>
+<p>我们可以用该序列重新构造出 树 <span
+class="math inline">\(T\)</span></p>
+<p>我们先写一个从 <span class="math inline">\(1\)</span> 到 <span
+class="math inline">\(n\)</span> 的有序序列 <span
+class="math inline">\(C\)</span></p>
+<p><span class="math display">\[1,2,3,\cdots ,n\]</span></p>
+<p>然后每次从 序列 <span class="math inline">\(C\)</span>
+中找到第一个不出现在序列 <span class="math inline">\(B\)</span>
+中的元素，记为 <span class="math inline">\(c_1\)</span></p>
+<p>将 <span class="math inline">\(c_1\)</span> 与 <span
+class="math inline">\(b_1\)</span> 分别从序列中删去，并在树 <span
+class="math inline">\(T\)</span> 中加入这两个顶点与他们之间的边 (<span
+class="math inline">\(c_1,b_1\)</span>)</p>
+<p>如此往复，执行操作共 <span class="math inline">\(n-2\)</span>
+次，序列 <span class="math inline">\(C\)</span> 中仅剩两个元素，分别设为
+<span class="math inline">\(c_{n-1},c_{n}\)</span></p>
+<p>在树 <span class="math inline">\(T\)</span> 中加入最后一条边 ( <span
+class="math inline">\(c_{n-1},c_{n}\)</span> )
+，我们便从普吕弗序列中将树 <span class="math inline">\(T\)</span>
+构建了回来。</p>
+<hr />
+<p>经过上述推导，在构建普吕弗序列时，我们可以得知 <span
+class="math inline">\(B\)</span> 序列中一共有 <span
+class="math inline">\(n-2\)</span> 个元素，<span
+class="math inline">\(b_i \in [1,n] 且 b_i \in Z^{+}\)</span></p>
+<p><span class="math display">\[\begin{matrix}n-2\\\overbrace{n \times
+n\times \cdots \times n}\end{matrix} = n^{n-2}\]</span></p>
+<p>所以便可以证明得</p>
+<blockquote>
+<p><strong>假如某一完全图有 <span class="math inline">\(n\)</span>
+个顶点，那么该图的生成树的数量为 <span
+class="math inline">\(n^{n-2}\)</span> 个。</strong></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>图论</category>
+      </categories>
+      <tags>
+        <tag>图论</tag>
+        <tag>Cayley定理</tag>
+        <tag>完全图</tag>
+        <tag>生成树</tag>
+        <tag>普吕弗序列</tag>
+      </tags>
+  </entry>
 </search>
