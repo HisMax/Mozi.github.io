@@ -4,6 +4,19 @@
   
   
   <entry>
+    <title>【软件推荐】图压——最方便的批量图片压缩软件</title>
+    <link href="/2023/05/f62290ce/"/>
+    <url>/2023/05/f62290ce/</url>
+    
+    <content type="html"><![CDATA[<h2 id="压缩图片的必要性">压缩图片的必要性</h2><p>在撰写博客的过程中，我们经常会遇到图文排版和网页加载速度的问题。一张大小为<span class="math inline">\(80KB\)</span> 的图片和一张大小为 <spanclass="math inline">\(2.5MB\)</span> 的图片之间存在着巨大的差异。</p><p>为了让读者能够更快地打开博客并查看内容，默子的博客网站规定所有图片的大小不超过<span class="math inline">\(700KB\)</span>。</p><p>当然，如果需要使用大尺寸的原始图片，默子会直接提供链接，而不是让浏览器请求加载过多的图片，从而减少读者的本地加载时间。</p><hr /><p>然而，在我们平常接触的图片中，有许多图片的大小往往超过几兆字节。那么，我们应该如何减小图片的大小呢？答案就是<strong>图片压缩</strong>。</p><p>通过对图片进行稍微损失一些画质的压缩，我们可以获得更小的文件尺寸和更快的加载速度，这是一种性价比更高的权衡方法。</p><p>--</p><h2id="图压最方便的批量图片压缩软件">图压——最方便的批量图片压缩软件</h2><p>你可以在官网下载图压软件：<ahref="https://tuya.xinxiao.tech/">https://tuya.xinxiao.tech/</a></p><p>下载完成后，双击安装图压软件（省略安装步骤）。</p><p>安装完成后，打开图压软件，你会看到一个非常简洁的主界面，只需要将图片拖拽到界面中即可进行压缩。</p><figure><img src="https://s2.loli.net/2023/05/12/k6hsG3iylbETagF.png"alt="图压主界面" /><figcaption aria-hidden="true">图压主界面</figcaption></figure><p>默子一般会让图片的<code>宽度保持在1920</code>左右。</p><p>这样既不会让图片太大，也不会让图片完全失去原有的细节。</p><h3 id="一些设置">一些设置：</h3><ol type="1"><li><code>压缩强度 4~6 之间是最优的</code></li><li><code>目标格式为了放在博客里，尽量都会选择.WebP</code></li><li><code>保存路径一般就是源文件夹或者是覆盖源文件</code></li></ol><h3 id="一些注意的点">一些注意的点</h3><ol type="1"><li>为什么选择<code>.WebP？</code></li></ol><p>因为<code>.WebP</code> 更高效且适合Web使用</p><p><code>.WebP</code> 是一种现代的图像文件格式，相较于 PNG 和JPEG，它具有更高的压缩效率和更好的图像质量。通过先进的压缩算法，<code>.WebP</code>图像通常比同等质量的 JPEG 图像小 25% 到 34%。</p><blockquote><p>此外，<code>.WebP</code>还支持透明度和动画功能，可以创建具有透明背景和逐帧动画效果的图像。它能够快速解码和显示，提供更快的网页加载速度和更好的用户体验。</p><p>尽管支持程度可能会有所差异，但在现代浏览器中，<code>.WebP</code>得到了广泛支持，并且可以通过提供备用图像来确保在不支持<code>.WebP</code> 的情况下正常显示。</p></blockquote><ol start="2" type="1"><li>如果要覆盖源文件，请选择原格式</li></ol><p>这个很奇怪，可能是设计的一个小<code>Bug</code>吧，如果选择了覆盖源文件，但是源文件与目标格式不一样，那就会直接生成新的文件，不会覆盖掉源文件。</p><p>我猜开发程序员应该是直接以文件名来判断源文件的，然后先生成了和源文件一样的名字，再在保存的时候修改了后缀（当然，生成的图片编码格式是不一样的，后缀只是给人看的罢了）</p><ol start="3" type="1"><li>不支持 <code>.WebP</code> 的导入压缩，但是支持 <code>.WebP</code>的导出</li></ol><p>这个很奇怪，反正当尝试把一个 <code>.WebP</code>的文件丢进去的时候，会提示不支持的格式。</p><p>但是对图片不做修改，仅仅把后缀改为 <code>.png</code>，这个软件就可以压缩了。（小技巧Get）</p><hr /><p>重点是这款软件免费且高效啊。还不快去下载起来？ 哈哈哈哈</p>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>【深度学习】ViT入门（1）MNIST数据集练手</title>
     <link href="/2023/05/e81b37fc/"/>
     <url>/2023/05/e81b37fc/</url>
@@ -130,7 +143,7 @@
   
   
   <entry>
-    <title>【教程】TexLive超详细安装指南（Windows）</title>
+    <title>【软件教程】TexLive超详细安装指南（Windows）</title>
     <link href="/2023/05/ef1f5b3c/"/>
     <url>/2023/05/ef1f5b3c/</url>
     
@@ -241,6 +254,8 @@
     
     <tags>
       
+      <tag>洛谷</tag>
+      
       <tag>数据结构</tag>
       
       <tag>平衡树</tag>
@@ -248,8 +263,6 @@
       <tag>Treap</tag>
       
       <tag>模板</tag>
-      
-      <tag>洛谷</tag>
       
       <tag>题解</tag>
       
@@ -307,8 +320,6 @@
     
     <tags>
       
-      <tag>洛谷</tag>
-      
       <tag>杂记</tag>
       
       <tag>日常</tag>
@@ -320,6 +331,8 @@
       <tag>Fibonacci数</tag>
       
       <tag>Catalan数</tag>
+      
+      <tag>洛谷</tag>
       
     </tags>
     
@@ -404,17 +417,6 @@
   
   
   <entry>
-    <title>Myschedule - Histone</title>
-    <link href="/"/>
-    <url>/</url>
-    
-    <content type="html"><![CDATA[<p>你好</p>]]></content>
-    
-  </entry>
-  
-  
-  
-  <entry>
     <title>关于默子</title>
     <link href="/"/>
     <url>/</url>
@@ -426,7 +428,18 @@
   
   
   <entry>
-    <title>标签</title>
+    <title>Myschedule - Histone</title>
+    <link href="/"/>
+    <url>/</url>
+    
+    <content type="html"><![CDATA[<p>你好</p>]]></content>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>分类</title>
     <link href="/"/>
     <url>/</url>
     
@@ -437,7 +450,7 @@
   
   
   <entry>
-    <title>分类</title>
+    <title>标签</title>
     <link href="/"/>
     <url>/</url>
     
