@@ -18,29 +18,29 @@
   <meta name="author" content="默子">
   <meta name="keywords" content="">
   
-    <meta name="description" content="这是一道优先队列+二分的题 要选出最优的\(K\)，满足时间小于\(T_{max}\) 我们要在区间 \([ 1 , n ]\) 里二分答案 大致流程很简单：  二分一个 \(K\) 利用优先队列模拟跳舞流程，判断\(K\)是否合理  代码如下： 123456789101112131415161718192021222324252627282930313233#include&amp;">
+    <meta name="description" content="深度学习中有哪些魔改的特征融合方法？ 在以往的许多工作中，融合不同尺度的特征是提高模型性能的一个重要手段。 众所周知，低层特征分辨率更高，包含更多位置、细节信息，但是由于经过的卷积更少，其语义性更低，噪声更多。高层特征具有更强的语义信息，但是分辨率很低，对细节的感知能力较差。如何将两者高效融合，取其长处，弃之糟泊，是改善分割模型的关键 ~ FPN（Feature Pyramid Netwo">
 <meta property="og:type" content="article">
-<meta property="og:title" content="【洛谷题解】P3611【[USACO17JAN]Cow Dance Show S】">
-<meta property="og:url" content="https://histone.top/2020/03/7add4492/index.html">
+<meta property="og:title" content="【深度学习】AI 中有哪些魔改的特征融合方法？">
+<meta property="og:url" content="https://histone.top/2023/05/576fbeb4/index.html">
 <meta property="og:site_name" content="Mozi is Watching You">
-<meta property="og:description" content="这是一道优先队列+二分的题 要选出最优的\(K\)，满足时间小于\(T_{max}\) 我们要在区间 \([ 1 , n ]\) 里二分答案 大致流程很简单：  二分一个 \(K\) 利用优先队列模拟跳舞流程，判断\(K\)是否合理  代码如下： 123456789101112131415161718192021222324252627282930313233#include&amp;">
+<meta property="og:description" content="深度学习中有哪些魔改的特征融合方法？ 在以往的许多工作中，融合不同尺度的特征是提高模型性能的一个重要手段。 众所周知，低层特征分辨率更高，包含更多位置、细节信息，但是由于经过的卷积更少，其语义性更低，噪声更多。高层特征具有更强的语义信息，但是分辨率很低，对细节的感知能力较差。如何将两者高效融合，取其长处，弃之糟泊，是改善分割模型的关键 ~ FPN（Feature Pyramid Netwo">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-03-17T16:18:51.000Z">
-<meta property="article:modified_time" content="2023-05-12T05:42:23.170Z">
+<meta property="article:published_time" content="2023-05-15T09:19:21.000Z">
+<meta property="article:modified_time" content="2023-05-15T09:20:28.272Z">
 <meta property="article:author" content="默子">
-<meta property="article:tag" content="题解">
-<meta property="article:tag" content="C++">
-<meta property="article:tag" content="优先队列">
-<meta property="article:tag" content="二分">
-<meta property="article:tag" content="STL">
-<meta property="article:tag" content="模拟">
+<meta property="article:tag" content="深度学习">
+<meta property="article:tag" content="特征融合">
+<meta property="article:tag" content="FPN">
+<meta property="article:tag" content="PAN">
+<meta property="article:tag" content="ASPP">
+<meta property="article:tag" content="DANet">
 <meta name="twitter:card" content="summary_large_image">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>【洛谷题解】P3611【[USACO17JAN]Cow Dance Show S】 - Mozi is Watching You</title>
+  <title>【深度学习】AI 中有哪些魔改的特征融合方法？ - Mozi is Watching You</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -230,7 +230,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle">【洛谷题解】P3611【[USACO17JAN]Cow Dance Show S】</span> 
+            <span id="subtitle">【深度学习】AI 中有哪些魔改的特征融合方法？</span> 
           
         </div>
 
@@ -241,8 +241,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2020-03-18 00:18" pubdate>
-          星期三, 三月 18日 2020, 12:18 凌晨
+        <time datetime="2023-05-15 17:19" pubdate>
+          星期一, 五月 15日 2023, 5:19 下午
         </time>
       </span>
     
@@ -253,7 +253,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.5k 字
+          1.7k 字
         
       </span>
     
@@ -264,7 +264,7 @@
         
         
         
-          10 分钟
+          11 分钟
         
       </span>
     
@@ -323,12 +323,12 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">【洛谷题解】P3611【[USACO17JAN]Cow Dance Show S】</h1>
+            <h1 style="display: none">【深度学习】AI 中有哪些魔改的特征融合方法？</h1>
             
               <p class="note note-info">
                 
                   
-                    本文最后更新于：3 天前
+                    本文最后更新于：几秒前
                   
                 
               </p>
@@ -336,29 +336,59 @@
             
               <div class="markdown-body">
                 
-                <p>这是一道<strong>优先队列+二分</strong>的题</p>
-<p>要选出最优的<span class="math inline">\(K\)</span>，满足时间小于<span
-class="math inline">\(T_{max}\)</span></p>
-<p>我们要在区间 <strong><span class="math inline">\([ 1 , n
-]\)</span></strong> 里二分答案</p>
-<p>大致流程很简单：</p>
-<ul>
-<li><p>二分一个 <span class="math inline">\(K\)</span></p></li>
-<li><p>利用优先队列模拟跳舞流程，判断<span
-class="math inline">\(K\)</span>是否合理</p></li>
-</ul>
-<p>代码如下：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;bits/stdc++.h&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-type">int</span> n,t,num[<span class="hljs-number">10005</span>];<br><span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">c</span><span class="hljs-params">(<span class="hljs-type">int</span> x)</span></span>&#123;<br>	<span class="hljs-comment">/*利用优先队列模拟跳舞情况*/</span> <br>	<span class="hljs-type">int</span> at = <span class="hljs-number">0</span>;<span class="hljs-comment">//当前k的耗时</span><br>	priority_queue &lt; <span class="hljs-type">int</span>,vector&lt;<span class="hljs-type">int</span>&gt;,greater&lt;<span class="hljs-type">int</span>&gt; &gt; q;<br>	<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=x;i++)q.<span class="hljs-built_in">push</span>(num[i]);<br>	<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=x+<span class="hljs-number">1</span>;i&lt;=n;i++)&#123;<br>		<span class="hljs-type">int</span> temp = q.<span class="hljs-built_in">top</span>();q.<span class="hljs-built_in">pop</span>();<br>		q.<span class="hljs-built_in">push</span>(temp+num[i]);<br>	&#125;<br>	<span class="hljs-keyword">while</span>(!q.<span class="hljs-built_in">empty</span>())&#123;<br>		at = q.<span class="hljs-built_in">top</span>();q.<span class="hljs-built_in">pop</span>();<br>	&#125;<br>	<span class="hljs-keyword">return</span> at&lt;=t;<br>&#125;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span></span>&#123;<br>	<span class="hljs-comment">/*输入不解释*/</span><br>	cin&gt;&gt;n&gt;&gt;t;<br>	<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++)<br>		cin&gt;&gt;num[i];<br>	<br>	<span class="hljs-comment">/*二分答案*/</span>	<br>	<span class="hljs-type">int</span> l=<span class="hljs-number">0</span>,r=n,mid;<br>	<span class="hljs-keyword">while</span>(l&lt;=r)&#123;<br>		mid = (l+r)&gt;&gt;<span class="hljs-number">1</span>;<br>		<span class="hljs-keyword">if</span>(<span class="hljs-built_in">c</span>(mid))r = mid<span class="hljs-number">-1</span>;<br>		<span class="hljs-keyword">else</span> l = mid+<span class="hljs-number">1</span>;<br>	&#125;<br>	cout&lt;&lt;l;<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
-<p>当然，如果大家觉得二分太麻烦的话。</p>
-<p><span class="math inline">\(K\)</span>值直接从<span
-class="math inline">\(1\)</span>枚举到<span
-class="math inline">\(n\)</span>也是可以的</p>
-<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/record/31867554">测试详情</a></p>
-<p>直接枚举的代码：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;bits/stdc++.h&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-type">int</span> n,t,num[<span class="hljs-number">10005</span>];<br><span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">c</span><span class="hljs-params">(<span class="hljs-type">int</span> x)</span></span>&#123;<br>	<span class="hljs-comment">/*这里其实就是利用优先队列模拟跳舞情况*/</span> <br>	<span class="hljs-type">int</span> at = <span class="hljs-number">0</span>;<br>	priority_queue &lt; <span class="hljs-type">int</span>,vector&lt;<span class="hljs-type">int</span>&gt;,greater&lt;<span class="hljs-type">int</span>&gt; &gt; q;<br>	<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=x;i++)q.<span class="hljs-built_in">push</span>(num[i]);<br>	<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=x+<span class="hljs-number">1</span>;i&lt;=n;i++)&#123;<br>		<span class="hljs-type">int</span> temp = q.<span class="hljs-built_in">top</span>();q.<span class="hljs-built_in">pop</span>();<br>		q.<span class="hljs-built_in">push</span>(temp+num[i]);<br>	&#125;<br>	<span class="hljs-keyword">while</span>(!q.<span class="hljs-built_in">empty</span>())&#123;<br>		at = q.<span class="hljs-built_in">top</span>();q.<span class="hljs-built_in">pop</span>();<br>	&#125;<br>	<span class="hljs-keyword">return</span> at&lt;=t;<br>&#125;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span></span>&#123;<br>	<span class="hljs-comment">/*输入不解释*/</span><br>	cin&gt;&gt;n&gt;&gt;t;<br>	<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++)<br>		cin&gt;&gt;num[i];<br>	<span class="hljs-type">int</span> ans = <span class="hljs-number">0</span>;<br>    <span class="hljs-comment">/*直接暴力枚举！*/</span><br>	<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++)&#123;<br>		<span class="hljs-keyword">if</span>(<span class="hljs-built_in">c</span>(i))&#123;<br>			ans = i;<span class="hljs-keyword">break</span>;<br>		&#125;<br>	&#125;<br>	cout&lt;&lt;ans;<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
-<p>当然，<del>这题数据较水</del></p>
-<p>结束</p>
-<p>各位看官，如果觉得还可以的话，点个赞吧~</p>
+                <h1
+id="深度学习中有哪些魔改的特征融合方法">深度学习中有哪些魔改的特征融合方法？</h1>
+<p>在以往的许多工作中，<strong>融合不同尺度的特征是提高模型性能的一个重要手段。</strong>
+众所周知，低层特征分辨率更高，包含更多位置、细节信息，但是由于经过的卷积更少，其语义性更低，噪声更多。高层特征具有更强的语义信息，但是分辨率很低，对细节的感知能力较差。<strong>如何将两者高效融合，取其长处，弃之糟泊，是改善分割模型的关键
+~</strong></p>
+<h2 id="fpnfeature-pyramid-network">FPN（Feature Pyramid Network）</h2>
+<blockquote>
+<p>FPN通过<strong>构建特征金字塔</strong>来提取多个尺度的特征图，然后在不同尺度上进行特征融合。</p>
+</blockquote>
+<p>Feature Pyramid
+Network（FPN）是一种用于解决多尺度物体检测问题的特征金字塔结构。</p>
+<p>它的主要思想是通过多层次的特征融合来生成具有不同分辨率的特征图，从而使得在不同尺度上都可以检测到目标物体。</p>
+<p>FPN的构建是在基础网络上进行的，基础网络通常采用的是深度卷积神经网络（DCNN）。</p>
+<p>FPN的核心是构建一个自下而上的特征金字塔和一个自上而下的特征传播网络,具体实现如下</p>
+<figure>
+<img
+src="https://img-blog.csdnimg.cn/fc2b5c165321432a89e44e08909b82b0.png" srcset="/img/loading.gif" lazyload
+alt="在这里插入图片描述" />
+<figcaption aria-hidden="true">在这里插入图片描述</figcaption>
+</figure>
+<ol type="1">
+<li>自下而上的特征金字塔：基于卷积神经网络，在不同的卷积层生成一组具有不同分辨率的特征图。这组特征图包括<strong>较高分辨率但语义信息较低</strong>的浅层特征（如C1,
+C2等）和<strong>较低分辨率但语义信息较高</strong>的深层特征（如C3, C4,
+C5等）。</li>
+<li>自上而下的特征传播网络：基于自下而上的特征金字塔，在每个尺度上<strong>生成一个额外的特征图</strong>，这个特征图包含了上一层的特征图和下一层的高分辨率特征图的<strong>融合信息</strong>。通过<strong>上采样</strong>和特征融合等操作，实现将不同尺度的特征图进行有效地融合，从而得到具有不同分辨率和语义信息的特征图。<strong>在特征金字塔的顶部，生成的特征图通常是尺度最小的、分辨率最低但语义信息最丰富的特征图。</strong></li>
+<li>特征融合：通过<strong>横向连接和上采样操作</strong>，将自下而上和自上而下生成的特征图进行融合，得到一个更加丰富的特征金字塔结构，这个结构包含了不同尺度的特征信息，并能够有效地用于多尺度物体检测。</li>
+</ol>
+<p>在多尺度目标检测任务中，FPN的优点在于：</p>
+<ol type="1">
+<li><p>可以在多个尺度上对目标进行检测，提高目标检测的召回率；</p></li>
+<li><p>能够提取具有不同分辨率和语义信息的特征，从而能够对不同尺度和复杂度的目标进行检测；</p></li>
+<li><p>具有较高的计算效率和参数效率。</p></li>
+</ol>
+<h2 id="danetv2">DANetv2</h2>
+<blockquote>
+<p>DANetv2是DANet的改进版，引入了两阶段注意力机制。该方法在语义分割任务中取得了较好的效果。</p>
+</blockquote>
+<p>DANetv2是DANet（Dual Attention
+Network）的改进版本，是一种<strong>基于注意力机制的特征融合方法</strong>，它通过学习通道和空间权重来选择每个通道和每个空间位置的重要性，从而提高了模型在图像语义分割任务中的性能。</p>
+<figure>
+<img
+src="https://img-blog.csdnimg.cn/b968390d879340c28671531790747c42.png" srcset="/img/loading.gif" lazyload
+alt="在这里插入图片描述" />
+<figcaption aria-hidden="true">在这里插入图片描述</figcaption>
+</figure>
+<p>DANetv2引入了<strong>两阶段注意力机制</strong>，分别是通道注意力和空间注意力。<strong>在第一阶段，通道注意力模块</strong>对特征图中的每个通道进行自适应加权。它通过学习每个通道的重要性，自适应地调整特征图中每个通道的权重。<strong>在第二阶段，空间注意力模块</strong>对特征图中的每个像素点进行自适应加权。它根据像素点的位置和特征图的上下文信息，自适应地调整特征图中每个像素点的权重。两个注意力机制的组合能够捕获到图像的<strong>全局上下文和局部信息</strong>，进一步提升模型的性能。</p>
+<p>具体地，DANetv2的通道注意力机制<strong>使用全局平均池化</strong>来计算每个通道的重要性，将其作为标量门控单元（Scalar
+Gate
+Unit）的输入。标量门控单元使用一个sigmoid函数将输入转换为一个[0,1]之间的值，表示通道的重要性。然后，通道注意力机制将每个通道乘以其对应的门控值，得到加权后的特征图。</p>
+<p>空间注意力机制使用一个<strong>类似于SENet的方法</strong>来计算每个像素点的权重。它将每个像素点的特征向量通过一个卷积操作转换为两个向量，一个表示该像素点在通道维度上的相关性，一个表示该像素点在空间维度上的相关性。然后，对于每个像素点，空间注意力机制<strong>将通道维度和空间维度的相关性相乘</strong>，得到该像素点的<strong>综合权重</strong>。最后，空间注意力机制将每个像素点乘以其对应的综合权重，得到加权后的<strong>特征图</strong>。</p>
+<p>DANetv2的优点是能够同时捕捉全局上下文和局部信息，避免了只关注全局或只关注局部信息的缺点。在语义分割任务中，DANetv2取得了较好的效果。</p>
+<hr />
+<p>关注默子，学习人工智能可以早睡！</p>
 
                 
               </div>
@@ -377,7 +407,7 @@ class="math inline">\(n\)</span>也是可以的</p>
     
       <span class="category-chain">
         
-  <a href="/categories/%E9%A2%98%E8%A7%A3/" class="category-chain-item">题解</a>
+  <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" class="category-chain-item">深度学习</a>
   
   
 
@@ -392,17 +422,17 @@ class="math inline">\(n\)</span>也是可以的</p>
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/%E9%A2%98%E8%A7%A3/">#题解</a>
+        <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">#深度学习</a>
       
-        <a href="/tags/C/">#C++</a>
+        <a href="/tags/%E7%89%B9%E5%BE%81%E8%9E%8D%E5%90%88/">#特征融合</a>
       
-        <a href="/tags/%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97/">#优先队列</a>
+        <a href="/tags/FPN/">#FPN</a>
       
-        <a href="/tags/%E4%BA%8C%E5%88%86/">#二分</a>
+        <a href="/tags/PAN/">#PAN</a>
       
-        <a href="/tags/STL/">#STL</a>
+        <a href="/tags/ASPP/">#ASPP</a>
       
-        <a href="/tags/%E6%A8%A1%E6%8B%9F/">#模拟</a>
+        <a href="/tags/DANet/">#DANet</a>
       
     </div>
   
@@ -414,8 +444,8 @@ class="math inline">\(n\)</span>也是可以的</p>
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>【洛谷题解】P3611【[USACO17JAN]Cow Dance Show S】</div>
-      <div>https://histone.top/2020/03/7add4492/</div>
+      <div>【深度学习】AI 中有哪些魔改的特征融合方法？</div>
+      <div>https://histone.top/2023/05/576fbeb4/</div>
     </div>
     <div class="license-meta">
       
@@ -427,7 +457,7 @@ class="math inline">\(n\)</span>也是可以的</p>
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2020年3月18日 00:18</div>
+          <div>2023年5月15日 17:19</div>
         </div>
       
       
@@ -471,18 +501,12 @@ class="math inline">\(n\)</span>也是可以的</p>
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2020/03/14f0aad4/" title="【杂记】2020年3月28日">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">【杂记】2020年3月28日</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2020/03/50796d93/" title="【杂记】2020年3月9日">
-                        <span class="hidden-mobile">【杂记】2020年3月9日</span>
+                      <a href="/2023/05/ac93b88a/" title="【影评】漫长的季节">
+                        <span class="hidden-mobile">【影评】漫长的季节</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

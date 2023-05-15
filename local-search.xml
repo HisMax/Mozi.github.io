@@ -4,6 +4,41 @@
   
   
   <entry>
+    <title>【深度学习】AI 中有哪些魔改的特征融合方法？</title>
+    <link href="/2023/05/576fbeb4/"/>
+    <url>/2023/05/576fbeb4/</url>
+    
+    <content type="html"><![CDATA[<h1id="深度学习中有哪些魔改的特征融合方法">深度学习中有哪些魔改的特征融合方法？</h1><p>在以往的许多工作中，<strong>融合不同尺度的特征是提高模型性能的一个重要手段。</strong>众所周知，低层特征分辨率更高，包含更多位置、细节信息，但是由于经过的卷积更少，其语义性更低，噪声更多。高层特征具有更强的语义信息，但是分辨率很低，对细节的感知能力较差。<strong>如何将两者高效融合，取其长处，弃之糟泊，是改善分割模型的关键~</strong></p><h2 id="fpnfeature-pyramid-network">FPN（Feature Pyramid Network）</h2><blockquote><p>FPN通过<strong>构建特征金字塔</strong>来提取多个尺度的特征图，然后在不同尺度上进行特征融合。</p></blockquote><p>Feature PyramidNetwork（FPN）是一种用于解决多尺度物体检测问题的特征金字塔结构。</p><p>它的主要思想是通过多层次的特征融合来生成具有不同分辨率的特征图，从而使得在不同尺度上都可以检测到目标物体。</p><p>FPN的构建是在基础网络上进行的，基础网络通常采用的是深度卷积神经网络（DCNN）。</p><p>FPN的核心是构建一个自下而上的特征金字塔和一个自上而下的特征传播网络,具体实现如下</p><figure><imgsrc="https://img-blog.csdnimg.cn/fc2b5c165321432a89e44e08909b82b0.png"alt="在这里插入图片描述" /><figcaption aria-hidden="true">在这里插入图片描述</figcaption></figure><ol type="1"><li>自下而上的特征金字塔：基于卷积神经网络，在不同的卷积层生成一组具有不同分辨率的特征图。这组特征图包括<strong>较高分辨率但语义信息较低</strong>的浅层特征（如C1,C2等）和<strong>较低分辨率但语义信息较高</strong>的深层特征（如C3, C4,C5等）。</li><li>自上而下的特征传播网络：基于自下而上的特征金字塔，在每个尺度上<strong>生成一个额外的特征图</strong>，这个特征图包含了上一层的特征图和下一层的高分辨率特征图的<strong>融合信息</strong>。通过<strong>上采样</strong>和特征融合等操作，实现将不同尺度的特征图进行有效地融合，从而得到具有不同分辨率和语义信息的特征图。<strong>在特征金字塔的顶部，生成的特征图通常是尺度最小的、分辨率最低但语义信息最丰富的特征图。</strong></li><li>特征融合：通过<strong>横向连接和上采样操作</strong>，将自下而上和自上而下生成的特征图进行融合，得到一个更加丰富的特征金字塔结构，这个结构包含了不同尺度的特征信息，并能够有效地用于多尺度物体检测。</li></ol><p>在多尺度目标检测任务中，FPN的优点在于：</p><ol type="1"><li><p>可以在多个尺度上对目标进行检测，提高目标检测的召回率；</p></li><li><p>能够提取具有不同分辨率和语义信息的特征，从而能够对不同尺度和复杂度的目标进行检测；</p></li><li><p>具有较高的计算效率和参数效率。</p></li></ol><h2 id="danetv2">DANetv2</h2><blockquote><p>DANetv2是DANet的改进版，引入了两阶段注意力机制。该方法在语义分割任务中取得了较好的效果。</p></blockquote><p>DANetv2是DANet（Dual AttentionNetwork）的改进版本，是一种<strong>基于注意力机制的特征融合方法</strong>，它通过学习通道和空间权重来选择每个通道和每个空间位置的重要性，从而提高了模型在图像语义分割任务中的性能。</p><figure><imgsrc="https://img-blog.csdnimg.cn/b968390d879340c28671531790747c42.png"alt="在这里插入图片描述" /><figcaption aria-hidden="true">在这里插入图片描述</figcaption></figure><p>DANetv2引入了<strong>两阶段注意力机制</strong>，分别是通道注意力和空间注意力。<strong>在第一阶段，通道注意力模块</strong>对特征图中的每个通道进行自适应加权。它通过学习每个通道的重要性，自适应地调整特征图中每个通道的权重。<strong>在第二阶段，空间注意力模块</strong>对特征图中的每个像素点进行自适应加权。它根据像素点的位置和特征图的上下文信息，自适应地调整特征图中每个像素点的权重。两个注意力机制的组合能够捕获到图像的<strong>全局上下文和局部信息</strong>，进一步提升模型的性能。</p><p>具体地，DANetv2的通道注意力机制<strong>使用全局平均池化</strong>来计算每个通道的重要性，将其作为标量门控单元（ScalarGateUnit）的输入。标量门控单元使用一个sigmoid函数将输入转换为一个[0,1]之间的值，表示通道的重要性。然后，通道注意力机制将每个通道乘以其对应的门控值，得到加权后的特征图。</p><p>空间注意力机制使用一个<strong>类似于SENet的方法</strong>来计算每个像素点的权重。它将每个像素点的特征向量通过一个卷积操作转换为两个向量，一个表示该像素点在通道维度上的相关性，一个表示该像素点在空间维度上的相关性。然后，对于每个像素点，空间注意力机制<strong>将通道维度和空间维度的相关性相乘</strong>，得到该像素点的<strong>综合权重</strong>。最后，空间注意力机制将每个像素点乘以其对应的综合权重，得到加权后的<strong>特征图</strong>。</p><p>DANetv2的优点是能够同时捕捉全局上下文和局部信息，避免了只关注全局或只关注局部信息的缺点。在语义分割任务中，DANetv2取得了较好的效果。</p><hr /><p>关注默子，学习人工智能可以早睡！</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>深度学习</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>深度学习</tag>
+      
+      <tag>特征融合</tag>
+      
+      <tag>FPN</tag>
+      
+      <tag>PAN</tag>
+      
+      <tag>ASPP</tag>
+      
+      <tag>DANet</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>【影评】漫长的季节</title>
     <link href="/2023/05/ac93b88a/"/>
     <url>/2023/05/ac93b88a/</url>
@@ -95,9 +130,9 @@
       
       <tag>博客</tag>
       
-      <tag>运维</tag>
-      
       <tag>照片库</tag>
+      
+      <tag>运维</tag>
       
     </tags>
     
@@ -215,11 +250,11 @@
       
       <tag>深度学习</tag>
       
-      <tag>Pytorch</tag>
-      
       <tag>CUDA</tag>
       
       <tag>cuDNN</tag>
+      
+      <tag>Pytorch</tag>
       
       <tag>机器学习</tag>
       
@@ -314,10 +349,6 @@
     
     <tags>
       
-      <tag>洛谷</tag>
-      
-      <tag>题解</tag>
-      
       <tag>数据结构</tag>
       
       <tag>平衡树</tag>
@@ -325,6 +356,10 @@
       <tag>Treap</tag>
       
       <tag>模板</tag>
+      
+      <tag>洛谷</tag>
+      
+      <tag>题解</tag>
       
     </tags>
     
@@ -384,13 +419,13 @@
       
       <tag>C++</tag>
       
-      <tag>模拟</tag>
-      
-      <tag>STL</tag>
-      
       <tag>优先队列</tag>
       
       <tag>二分</tag>
+      
+      <tag>STL</tag>
+      
+      <tag>模拟</tag>
       
     </tags>
     
@@ -415,6 +450,8 @@
     
     <tags>
       
+      <tag>洛谷</tag>
+      
       <tag>杂记</tag>
       
       <tag>日常</tag>
@@ -426,8 +463,6 @@
       <tag>Fibonacci数</tag>
       
       <tag>Catalan数</tag>
-      
-      <tag>洛谷</tag>
       
     </tags>
     
@@ -489,13 +524,13 @@
       
       <tag>C++</tag>
       
+      <tag>STL</tag>
+      
       <tag>模拟</tag>
       
       <tag>排序</tag>
       
       <tag>Hash</tag>
-      
-      <tag>STL</tag>
       
     </tags>
     
@@ -526,9 +561,9 @@
       
       <tag>C++</tag>
       
-      <tag>枚举</tag>
-      
       <tag>模拟</tag>
+      
+      <tag>枚举</tag>
       
       <tag>排序</tag>
       
@@ -615,29 +650,18 @@
   
   
   <entry>
-    <title>友情链接</title>
-    <link href="/"/>
-    <url>/</url>
-    
-    <content type="html"><![CDATA[]]></content>
-    
-  </entry>
-  
-  
-  
-  <entry>
-    <title>标签</title>
-    <link href="/"/>
-    <url>/</url>
-    
-    <content type="html"><![CDATA[]]></content>
-    
-  </entry>
-  
-  
-  
-  <entry>
     <title>分类</title>
+    <link href="/"/>
+    <url>/</url>
+    
+    <content type="html"><![CDATA[]]></content>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>友情链接</title>
     <link href="/"/>
     <url>/</url>
     
@@ -664,6 +688,17 @@
     <url>/</url>
     
     <content type="html"><![CDATA[<p>你好</p>]]></content>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>标签</title>
+    <link href="/"/>
+    <url>/</url>
+    
+    <content type="html"><![CDATA[]]></content>
     
   </entry>
   
