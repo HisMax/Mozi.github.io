@@ -93,9 +93,9 @@
     
     <tags>
       
-      <tag>运维</tag>
-      
       <tag>博客</tag>
+      
+      <tag>运维</tag>
       
       <tag>照片库</tag>
       
@@ -182,9 +182,9 @@
     
     <tags>
       
-      <tag>Hexo</tag>
-      
       <tag>博客</tag>
+      
+      <tag>Hexo</tag>
       
       <tag>Github</tag>
       
@@ -263,11 +263,11 @@
   
   
   <entry>
-    <title>【博客】利用abbrlink插件生成唯一且简洁的URL</title>
+    <title>【博客】利用Abbrlink插件生成唯一且简洁的URL</title>
     <link href="/2022/02/73c99e17/"/>
     <url>/2022/02/73c99e17/</url>
     
-    <content type="html"><![CDATA[<h2 id="前言">前言</h2><p>利用abbrlink插件生成唯一且简洁的URL</p><p>abbrlink的作者是 <ahref="https://github.com/rozbo"><strong>rozbo</strong></a></p><p>这里是abbrlink的Github项目地址</p><p><ahref="https://github.com/rozbo/hexo-abbrlink">https://github.com/rozbo/hexo-abbrlink</a></p><p>使用abbrlink的几个可能： -当你的<code>链接太长</code>或者是<code>含有中文</code>时，分享链接时会很丑，不易阅读- 改变了文章标题或名字可能导致搜索引擎收录失败，原有链接失效，404警告 -文章名冲突，或者是想为同一篇文章写不同版本</p><p>abbrlink的原理： &gt; 文章标题+创建时间 利用CRC16/32算法 最终生成唯一的文章链接</p><h2 id="安装">安装</h2><p>打开Hexo根目录，运行 <code>Git Bash</code></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">npm install hexo-abbrlink --save<br></code></pre></td></tr></table></figure><p>安装之后，输出类似这样</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs bash">added 5 packages, and audited 273 packages <span class="hljs-keyword">in</span> 3s<br><br>19 packages are looking <span class="hljs-keyword">for</span> funding<br>  run `npm fund` <span class="hljs-keyword">for</span> details<br>  <br>found 0 vulnerabilities<br></code></pre></td></tr></table></figure><h2 id="配置">配置</h2><p>打开Hexo根目录下的 <code>_config.yml</code></p><p>寻找到配置文件中的 <code>permalink</code></p><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs yml"><span class="hljs-attr">permalink:</span> <span class="hljs-string">:year/:month/:day/:title/</span><br><span class="hljs-attr">permalink_defaults:</span><br><span class="hljs-attr">pretty_urls:</span><br>  <span class="hljs-attr">trailing_index:</span> <span class="hljs-literal">true</span><br>  <span class="hljs-attr">trailing_html:</span> <span class="hljs-literal">true</span><br></code></pre></td></tr></table></figure><p>解释一下默认链接设置的含义</p><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs yml"><span class="hljs-attr">permalink:</span> <span class="hljs-string">:year/:month/:day/:title/</span><br><span class="hljs-comment"># :year 文章发表的年份</span><br><span class="hljs-comment"># :month 文章发表的月份</span><br><span class="hljs-comment"># :day 文章发表的月份</span><br><span class="hljs-comment"># :title 文章文件名</span><br></code></pre></td></tr></table></figure><p>比如你在2022年5月20日时建立了一个名称为<code>How_To_Code.md</code>的文章</p><p>那么生成的链接将会是这样的</p><p><code>http://&lt;你的网站网址&gt;/2022/05/20/How_To_Code</code></p><p>附上链接属性参考表：</p><table><thead><tr class="header"><th>属性</th><th>含义</th></tr></thead><tbody><tr class="odd"><td><strong><code>:abbrlink</code></strong></td><td><strong>abbrlink 插件提供，生成唯一且简洁的link</strong></td></tr><tr class="even"><td><code>:year</code></td><td>文章的发表年份（4 位数）</td></tr><tr class="odd"><td><code>:month</code></td><td>文章的发表月份（2 位数）</td></tr><tr class="even"><td><code>:i_month</code></td><td>文章的发表月份（无前置 <code>0</code>）</td></tr><tr class="odd"><td><code>:day</code></td><td>文章的发表日期 (2 位数)</td></tr><tr class="even"><td><code>:i_day</code></td><td>文章的发表日期（无前置 <code>0</code>）</td></tr><tr class="odd"><td><code>:hour</code></td><td>文章发表时的小时 (2 位数)</td></tr><tr class="even"><td><code>:minute</code></td><td>文章发表时的分钟 (2 位数)</td></tr><tr class="odd"><td><code>:second</code></td><td>文章发表时的秒钟 (2 位数)</td></tr><tr class="even"><td><code>:title</code></td><td>文件名称（包含目录）</td></tr><tr class="odd"><td><code>:name</code></td><td>文件名称 （单文件名）</td></tr><tr class="even"><td><code>:post_title</code></td><td>文章标题</td></tr><tr class="odd"><td><code>:id</code></td><td>文章 ID (<code>hexo clean</code> 后会改变)</td></tr><tr class="even"><td><code>:category</code></td><td>文章分类</td></tr><tr class="odd"><td><code>:hash</code></td><td>基于 <code>文件名称</code> 与 <code>文章发布日期</code>的12位哈希值</td></tr></tbody></table><p>更多样例可以到官方文档中查阅 <ahref="https://hexo.io/docs/permalinks.html">hexo.io/docs/permalinks</a></p><p>修改Hexo根目录下的 <code>_config.yml</code> 为 <figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs yml"><span class="hljs-attr">permalink:</span> <span class="hljs-string">:year/:month/:abbrlink/</span><br><span class="hljs-comment"># 这里为默子的配置，你可以根据自己的喜好来修改</span><br><span class="hljs-comment"># 如果不了解下面的配置，请勿漏掉最后的&#x27;/&#x27;号，否则F5刷新会导致浏览器发送错误的MIME类型，进行下载操作</span><br><span class="hljs-attr">permalink_defaults:</span><br><span class="hljs-attr">pretty_urls:</span><br>  <span class="hljs-attr">trailing_index:</span> <span class="hljs-literal">true</span><br>  <span class="hljs-attr">trailing_html:</span> <span class="hljs-literal">true</span><br></code></pre></td></tr></table></figure></p><p>最后，在设置文件中添加如下语句</p><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs yml"><span class="hljs-attr">abbrlink:</span><br>    <span class="hljs-attr">alg:</span> <span class="hljs-string">crc32</span><br>    <span class="hljs-comment"># alg可以选crc32或者是crc16 具体差别请参考原Github项目</span><br>    <span class="hljs-comment"># 这里推荐crc32</span><br>    <span class="hljs-attr">rep:</span> <span class="hljs-string">hex</span><br>    <span class="hljs-comment"># rep可以选hex(16进制)或者是dec(十进制) 具体差别请参考原Github项目</span><br>    <span class="hljs-comment"># 这里推荐hex(16进制)</span><br></code></pre></td></tr></table></figure><h2 id="启用">启用</h2><p>清除Hexo缓存，重新渲染网页并本地运行</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">hexo cl &amp;&amp; hexo g &amp;&amp; hexo s<br></code></pre></td></tr></table></figure><p>这时你的所有文章中会加入 <code>:abbrlink</code> 的关键字</p><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs yml"><span class="hljs-meta">---</span><br><span class="hljs-attr">title:</span> <span class="hljs-string">HowToCode</span><br><span class="hljs-attr">tags:</span><br>  <span class="hljs-bullet">-</span> <span class="hljs-string">实用分享</span><br><span class="hljs-attr">abbrlink:</span> <span class="hljs-string">f23cd173</span><br><span class="hljs-attr">date:</span> <span class="hljs-number">2022-05-20 13:14:00</span><br><span class="hljs-meta">---</span><br></code></pre></td></tr></table></figure><p>温馨提醒：请不要删除该关键字，删除后可能会改变你的链接</p><h2 id="结尾">结尾</h2><p>今天的教程就到这里结束了</p><p>还有什么问题可以访问我的个人网站 <ahref="https://histone.top/"><strong><code>histone.top</code></strong></a></p><p>或者在评论区留言，默子看到会回复的</p><h2 id="renext系列">ReNexT系列：</h2><ul><li><ahref="https://histone.top/2022/02/73c99e17/">ReNexT：利用abbrlink插件生成唯一且简洁的URL</a></li></ul>]]></content>
+    <content type="html"><![CDATA[<h2 id="前言">前言</h2><p>利用Abbrlink插件生成唯一且简洁的URL</p><p>Abbrlink的作者是 <ahref="https://github.com/rozbo"><strong>rozbo</strong></a></p><p>这里是Abbrlink的Github项目地址</p><p><ahref="https://github.com/rozbo/hexo-abbrlink">https://github.com/rozbo/hexo-abbrlink</a></p><p>使用Abbrlink的几个可能： -当你的<code>链接太长</code>或者是<code>含有中文</code>时，分享链接时会很丑，不易阅读- 改变了文章标题或名字可能导致搜索引擎收录失败，原有链接失效，404警告 -文章名冲突，或者是想为同一篇文章写不同版本</p><p>Abbrlink的原理：</p><blockquote><p>文章标题+创建时间 利用CRC16/32算法 最终生成 唯一的文章链接</p></blockquote><h2 id="安装">安装</h2><p>打开Hexo根目录，运行 <code>Git Bash</code></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">npm install hexo-abbrlink --save<br></code></pre></td></tr></table></figure><p>安装之后，输出类似这样</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs bash">added 5 packages, and audited 273 packages <span class="hljs-keyword">in</span> 3s<br><br>19 packages are looking <span class="hljs-keyword">for</span> funding<br>  run `npm fund` <span class="hljs-keyword">for</span> details<br>  <br>found 0 vulnerabilities<br></code></pre></td></tr></table></figure><h2 id="配置">配置</h2><p>打开Hexo根目录下的 <code>_config.yml</code></p><p>寻找到配置文件中的 <code>permalink</code></p><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs yml"><span class="hljs-string">...</span><br><span class="hljs-attr">permalink:</span> <span class="hljs-string">:year/:month/:day/:title/</span><br><span class="hljs-attr">permalink_defaults:</span><br><span class="hljs-attr">pretty_urls:</span><br>  <span class="hljs-attr">trailing_index:</span> <span class="hljs-literal">true</span><br>  <span class="hljs-attr">trailing_html:</span> <span class="hljs-literal">true</span><br><span class="hljs-string">...</span><br></code></pre></td></tr></table></figure><p>解释一下默认链接设置的含义</p><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs yml"><span class="hljs-attr">permalink:</span> <span class="hljs-string">:year/:month/:day/:title/</span><br><span class="hljs-comment"># :year 文章发表的年份</span><br><span class="hljs-comment"># :month 文章发表的月份</span><br><span class="hljs-comment"># :day 文章发表的月份</span><br><span class="hljs-comment"># :title 文章文件名</span><br></code></pre></td></tr></table></figure><p>比如你在2022年5月20日时建立了一个名称为<code>How_To_Code.md</code>的文章</p><p>那么生成的链接将会是这样的</p><figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs txt">http://&lt;你的网站网址&gt;/2022/05/20/How_To_Code<br></code></pre></td></tr></table></figure><p>附上链接属性参考表：</p><table><thead><tr class="header"><th>属性</th><th>含义</th></tr></thead><tbody><tr class="odd"><td><strong><code>:abbrlink</code></strong></td><td><strong>abbrlink 插件提供，生成唯一且简洁的link</strong></td></tr><tr class="even"><td><code>:year</code></td><td>文章的发表年份（4 位数）</td></tr><tr class="odd"><td><code>:month</code></td><td>文章的发表月份（2 位数）</td></tr><tr class="even"><td><code>:i_month</code></td><td>文章的发表月份（无前置 <code>0</code>）</td></tr><tr class="odd"><td><code>:day</code></td><td>文章的发表日期 (2 位数)</td></tr><tr class="even"><td><code>:i_day</code></td><td>文章的发表日期（无前置 <code>0</code>）</td></tr><tr class="odd"><td><code>:hour</code></td><td>文章发表时的小时 (2 位数)</td></tr><tr class="even"><td><code>:minute</code></td><td>文章发表时的分钟 (2 位数)</td></tr><tr class="odd"><td><code>:second</code></td><td>文章发表时的秒钟 (2 位数)</td></tr><tr class="even"><td><code>:title</code></td><td>文件名称（包含目录）</td></tr><tr class="odd"><td><code>:name</code></td><td>文件名称 （单文件名）</td></tr><tr class="even"><td><code>:post_title</code></td><td>文章标题</td></tr><tr class="odd"><td><code>:id</code></td><td>文章 ID (<code>hexo clean</code> 后会改变)</td></tr><tr class="even"><td><code>:category</code></td><td>文章分类</td></tr><tr class="odd"><td><code>:hash</code></td><td>基于 <code>文件名称</code> 与 <code>文章发布日期</code>的12位哈希值</td></tr></tbody></table><p>更多样例可以到官方文档中查阅 <ahref="https://hexo.io/docs/permalinks.html">官方文档</a></p><p>修改Hexo根目录下的 <code>_config.yml</code> 为 <figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs yml"><span class="hljs-attr">permalink:</span> <span class="hljs-string">:year/:month/:abbrlink/</span><br><span class="hljs-comment"># 这里为默子的配置，你可以根据自己的喜好来修改</span><br><span class="hljs-comment"># 如果不了解下面的配置，请勿漏掉最后的&#x27;/&#x27;号，否则F5刷新会导致浏览器发送错误的MIME类型，进行下载操作</span><br><span class="hljs-attr">permalink_defaults:</span><br><span class="hljs-attr">pretty_urls:</span><br>  <span class="hljs-attr">trailing_index:</span> <span class="hljs-literal">true</span><br>  <span class="hljs-attr">trailing_html:</span> <span class="hljs-literal">true</span><br></code></pre></td></tr></table></figure></p><p>最后，在设置文件中添加如下语句</p><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs yml"><span class="hljs-attr">abbrlink:</span><br>    <span class="hljs-attr">alg:</span> <span class="hljs-string">crc32</span><br>    <span class="hljs-comment"># alg可以选crc32或者是crc16 具体差别请参考原Github项目</span><br>    <span class="hljs-comment"># 这里推荐crc32</span><br>    <span class="hljs-attr">rep:</span> <span class="hljs-string">hex</span><br>    <span class="hljs-comment"># rep可以选hex(16进制)或者是dec(十进制) 具体差别请参考原Github项目</span><br>    <span class="hljs-comment"># 这里推荐hex(16进制)</span><br></code></pre></td></tr></table></figure><h2 id="启用">启用</h2><p>清除Hexo缓存，重新渲染网页并本地运行</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">hexo cl &amp;&amp; hexo g &amp;&amp; hexo s<br></code></pre></td></tr></table></figure><p>这时你的所有文章中会加入 <code>:abbrlink</code> 的关键字</p><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs yml"><span class="hljs-meta">---</span><br><span class="hljs-attr">title:</span> <span class="hljs-string">HowToCode</span><br><span class="hljs-attr">tags:</span><br>  <span class="hljs-bullet">-</span> <span class="hljs-string">实用分享</span><br><span class="hljs-attr">abbrlink:</span> <span class="hljs-string">f23cd173</span><br><span class="hljs-attr">date:</span> <span class="hljs-number">2022-05-20 13:14:00</span><br><span class="hljs-meta">---</span><br></code></pre></td></tr></table></figure><p>温馨提醒：请不要删除该关键字，删除后可能会改变你的链接</p><h2 id="结尾">结尾</h2><p>今天的教程就到这里结束了</p><p>还有什么问题可以访问我的个人网站 <ahref="https://histone.top/"><strong><code>histone.top</code></strong></a></p><p>或者在评论区留言，默子看到会回复的</p><h2 id="renext系列">ReNexT系列：</h2><ul><li><ahref="https://histone.top/2022/02/73c99e17/">ReNexT：利用abbrlink插件生成唯一且简洁的URL</a></li></ul>]]></content>
     
     
     <categories>
@@ -279,9 +279,11 @@
     
     <tags>
       
-      <tag>Abbrlink</tag>
-      
       <tag>博客</tag>
+      
+      <tag>Hexo</tag>
+      
+      <tag>Abbrlink</tag>
       
       <tag>URL</tag>
       
@@ -312,6 +314,10 @@
     
     <tags>
       
+      <tag>洛谷</tag>
+      
+      <tag>题解</tag>
+      
       <tag>数据结构</tag>
       
       <tag>平衡树</tag>
@@ -319,10 +325,6 @@
       <tag>Treap</tag>
       
       <tag>模板</tag>
-      
-      <tag>洛谷</tag>
-      
-      <tag>题解</tag>
       
     </tags>
     
@@ -417,8 +419,6 @@
       
       <tag>日常</tag>
       
-      <tag>洛谷</tag>
-      
       <tag>ST表</tag>
       
       <tag>坎巴拉的太空计划</tag>
@@ -426,6 +426,8 @@
       <tag>Fibonacci数</tag>
       
       <tag>Catalan数</tag>
+      
+      <tag>洛谷</tag>
       
     </tags>
     
@@ -570,7 +572,7 @@
     <link href="/1999/12/52e88311/"/>
     <url>/1999/12/52e88311/</url>
     
-    <content type="html"><![CDATA[<h2 id="section">2023.5.12</h2><ol type="1"><li><code>更改</code>全站图片均交给了SM.MS图床托管，并且本地留有了备份</li><li><code>更改</code> 代码高亮为 Paraiso Dark 与 Paraiso Light</li><li><code>删除</code>Github库里原有的照片，节省空间并提速博客访问速度</li><li><code>新增</code> 博客的运维日记，方便后续查看更改与变动</li><li><code>新增</code> 图片库，方便来快速查找上传到图床的照片</li></ol>]]></content>
+    <content type="html"><![CDATA[<h2 id="section">2023.5.15</h2><p>当天什么都没折腾哦</p><h2 id="section-1">2023.5.14</h2><p>当天什么都没折腾哦</p><h2 id="section-2">2023.5.13</h2><ol type="1"><li><code>新增</code> 文章侧边的网易云播放器，还在调试ing</li><li><code>更改</code> 部分文章的日期</li><li><code>更改</code> 完善部分文章的标签与分类</li></ol><h2 id="section-3">2023.5.12</h2><ol type="1"><li><code>新增</code> 博客的运维日记，方便后续查看更改与变动</li><li><code>新增</code> 图片库，方便来快速查找上传到图床的照片</li><li><code>更改</code>全站图片均交给了SM.MS图床托管，并且本地留有了备份</li><li><code>更改</code> 代码高亮为 Paraiso Dark 与 Paraiso Light</li><li><code>删除</code>Github库里原有的照片，节省空间并提速博客访问速度</li></ol>]]></content>
     
     
     <categories>
@@ -582,13 +584,13 @@
     
     <tags>
       
+      <tag>Hexo</tag>
+      
       <tag>运维</tag>
       
       <tag>日记</tag>
       
       <tag>图床</tag>
-      
-      <tag>Hexo</tag>
       
       <tag>Fluid</tag>
       
@@ -613,18 +615,7 @@
   
   
   <entry>
-    <title>Myschedule - Histone</title>
-    <link href="/"/>
-    <url>/</url>
-    
-    <content type="html"><![CDATA[<p>你好</p>]]></content>
-    
-  </entry>
-  
-  
-  
-  <entry>
-    <title>关于默子</title>
+    <title>友情链接</title>
     <link href="/"/>
     <url>/</url>
     
@@ -646,7 +637,7 @@
   
   
   <entry>
-    <title>友情链接</title>
+    <title>分类</title>
     <link href="/"/>
     <url>/</url>
     
@@ -657,11 +648,22 @@
   
   
   <entry>
-    <title>分类</title>
+    <title>关于默子</title>
     <link href="/"/>
     <url>/</url>
     
     <content type="html"><![CDATA[]]></content>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>Myschedule - Histone</title>
+    <link href="/"/>
+    <url>/</url>
+    
+    <content type="html"><![CDATA[<p>你好</p>]]></content>
     
   </entry>
   
